@@ -1,20 +1,17 @@
-import image from "../Assets/Images/placeholder-image.jpeg"
+import ListItem from "./ListItem"
 import "./Userlist.css"
 
 const UserList = () => {
   return (
       <ul className="user-list">
-        <li className="user-list-item">
-          <img src={image} alt="" />
-          <p>John Doe</p>
+        <li>
+          <ListItem />
         </li>
-        <li className="user-list-item">
-          <img src={image} alt="" />
-          <p>John Doe</p>
+        <li>
+          <ListItem />
         </li>
-        <li className="user-list-item">
-          <img src={image} alt="" />
-          <p>John Doe</p>
+        <li>
+          <ListItem />
         </li>
       </ul>
   )

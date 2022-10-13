@@ -19,7 +19,7 @@ ul {
   align-items: center;
 }
 
-/* .user-list:last-child {
+/* .user-list li:last-child {
   justify-content: flex-start;
 } */
 
