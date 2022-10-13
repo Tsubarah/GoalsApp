@@ -1,9 +1,9 @@
-import React from 'react'
+import Sidebar from "../Components/Sidebar"
 
 const ManagerPage = () => {
-  return (
-    <div>ManagerPage</div>
-  )
+    return (
+        <Sidebar />
+    )
 }
 
 export default ManagerPage
