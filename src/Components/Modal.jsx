@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import GoalsForm from '../Components/GoalsForm'
 
 const Modal = () => {
     const [show, setShow] = useState(false)
@@ -18,6 +19,8 @@ const Modal = () => {
                 <h2>Create a Goal</h2>
 
                 {/* There will be a form here to add goals */}
+
+                <GoalsForm />
 
             </div>
     </>
