@@ -1,18 +1,21 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css';
+import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
 
 function App() {
-  return (
-    <div className="App">
+    return (
+        <div className="App">
 
-      <Routes>
-        <Route path="/" element={<ManagerPage />} />
+            <Navbar />
 
-      </Routes>
+            <Routes>
+                <Route path="/" element={<ManagerPage />} />
 
-    </div>
-  );
+            </Routes>
+
+        </div>
+    );
 }
 
 export default App;

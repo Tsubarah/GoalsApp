@@ -1,0 +1,22 @@
+.navbar {
+    height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 1rem;
+    background-color: rgb(119, 165, 201);
+}
+
+.logo {
+    height:100%;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: white;
+    margin-left: 1rem;
+}
