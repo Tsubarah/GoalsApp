@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import GoalsForm from '../Components/GoalsForm'
+import GoalsForm from './GoalsForm'
 import "./Modal.css"
 
 const Modal = () => {
@@ -11,23 +11,32 @@ const Modal = () => {
 
   return (
         <>
-        <button className="addGoal-button" onClick={handleShow}>Create a Goal</button>
+        <div className="d-flex text-align-center justify-content-center">
+        <button className="addGoal-button green-button d-flex justify-content-center" onClick={handleShow}>Create a Goal</button>
+        </div>
 
-            <div show={show} className="addGoal-modal">
+          {
+            show && (
 
-                <button onClick={handleClose}>Close</button>
+            <div className="addGoal-modal">
+
+              <div className="button-container">
+                <button className="green-button" onClick={handleClose}>Close</button>
+                </div>
+
 
                 <h2>Create a Goal</h2>
 
                 <hr />
 
-                {/* There will be a form here to add goals */}
 
                 <GoalsForm />
 
-                <hr />
+                
 
             </div>
+            )
+          }
     </>
   )
 }
