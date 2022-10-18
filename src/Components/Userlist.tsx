@@ -4,13 +4,13 @@ import "./Userlist.css"
 const UserList = () => {
   return (
       <ul className="user-list">
-        <li>
+        <li className="listItem">
           <ListItem />
         </li>
-        <li>
+        <li className="listItem">
           <ListItem />
         </li>
-        <li>
+        <li className="listItem">
           <ListItem />
         </li>
       </ul>

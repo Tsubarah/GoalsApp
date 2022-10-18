@@ -2,21 +2,18 @@ ul {
   list-style-type: none;
 }
 
+.listItem {
+  width: 50%;
+}
+
 .user-list {
-  width: 100%;
-  margin-top: 5rem;
-  margin-left: 12rem;
-  display: flex; 
-  justify-content: space-evenly;
+  width: 85%;
+  height:100%;
+  display: flex;
   flex-wrap: wrap;
 }
 .user-list-item {
-  width: 30rem;
-  height: 6rem;
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 50%;
 }
 
 /* .user-list li:last-child {
