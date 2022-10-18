@@ -1,9 +1,5 @@
 .sidebar {
     background-image: linear-gradient(to bottom, rgb(119, 165, 201, 1), rgb(119, 165, 114, 0.4));
-    position: fixed;
-    top: 4rem;
-    left: 0;
-    width: 10rem;
-    height: 100%;
-    padding: 0 1rem;
+    min-height: 100vh;
+    width: 15%;
 }
