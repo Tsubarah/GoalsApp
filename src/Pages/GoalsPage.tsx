@@ -1,6 +1,6 @@
-import './ConsultantPage.css'
+import './GoalsPage.css'
 
-const ConsultantPage = () => {
+const GoalsPage = () => {
     return (
         <div className="container">
 
@@ -79,4 +79,4 @@ const ConsultantPage = () => {
     )
 }
 
-export default ConsultantPage
+export default GoalsPage
