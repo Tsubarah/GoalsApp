@@ -38,7 +38,7 @@ const EditGoalsForm = () => {
 
         <hr />
 
-        <button type="submit" className="submit-button">Create</button>
+        <button type="submit" className="submit-button">Save Changes</button>
 
     </form>
 </div>
