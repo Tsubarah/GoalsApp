@@ -6,6 +6,10 @@
     background-color: rgb(119, 165, 201);
 }
 
+.navbar-logo {
+    padding: 0.25rem;
+}
+
 .logo {
     height:100%;
 }
