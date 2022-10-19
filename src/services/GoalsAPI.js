@@ -3,7 +3,7 @@
  */
 import axios from 'axios'
  
-axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = 'http://localhost:7071/api'
 
 /**
   * GET an endpoint
@@ -22,9 +22,9 @@ const get = async (endpoint) => {
 /**
  * Get all goals
  */
-const getGoals = () => {
-  return get('/goals')
-}
+// const getGoals = () => {
+//   return get('/goals')
+// }
 
 
 /**
@@ -64,6 +64,27 @@ const deleteGoal = async (goal_id) => {
   const res = await axios.delete(`/goals/${goal_id}`)
   return res.data
 }
+
+// var axios = require('axios');
+const getGoals = async () => {
+  var config = {
+    method: 'get',
+    url: 'http://localhost:7071/api/goals',
+    headers:  "Access-Control-Allow-Origin: *" 
+  };
+  
+  const roomsResponse = await axios(config)
+  .then(function (response) {
+    return response;
+  }).catch(function (error) {
+    console.log(error);
+    return error;
+  })
+  return roomsResponse
+}
+
+
+
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
