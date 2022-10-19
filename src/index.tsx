@@ -4,15 +4,16 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient({
   defaultOptions: {
-      queries: {
-          refetchOnWindowFocus: false,
-          staleTime: 10 * 60 * 1000,  // 10 minutes
-          cacheTime: 15 * 60 * 1000,  // 15 minutes
-      }
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 5 * 60 * 1000,
+      cacheTime: 15 * 60 * 1000,
+    }
   }
 })
 

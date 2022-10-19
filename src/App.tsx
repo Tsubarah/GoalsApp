@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import './App.css';
 import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
@@ -16,6 +17,7 @@ function App() {
 
             </Routes>
 
+            <ReactQueryDevtools />
         </div>
     );
 }
