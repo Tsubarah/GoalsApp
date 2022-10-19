@@ -1,59 +1,43 @@
 import { useState, useRef, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import useCreateGoal from '../Hooks/useCreateGoal'
 import "./GoalsForm.css"
 
 
 const GoalsForm = () => {
-
-  // input states
-  // const [newCategory, setNewCategory] = useState('')
-  // const [newPrio, setNewPrio] = useState(5)
-  // const [newTargetReached, setNewTargetReached] = useState('')
-  // const [newMilestones, setNewMilestones] = useState('')
-  // const [newHalfYearProgress, setNewHalfYearProgress] = useState('')
-  // const [newCost, setNewCost] = useState(null)
-  // const [newDescription, setNewDescription] = useState('')
-
-  // input references
-  // const newCategoryRef = useRef()
-  // const newPrioRef = useRef()
-  // const newTargetReachedRef = useRef()
-  // const milestonesRef = useRef()
-  // const newHalfYearProgressRef = useRef()
-  // const newCostRef = useRef()
-  // const newDescriptionRef = useRef()
-
   const {
     register,
     handleSubmit,
     reset,
   } = useForm()
 
-  const handleCreateSubmit = (data) => {
-    
-    const newGoal = {
-      category: data.category,
-      description: data.description,
-      prio: Number(data.prio),
-      target_reached: data.target_reached,
-      milestones: data.milestones,
-      cost: Number(data.cost),
-      half_year_progress: null,
-      end_of_year_progress: null,
-      isComplete: false,
-    }
+  const createGoalMutation = useCreateGoal()
 
-    console.log(newGoal)
-    // onSubmit(newGoal)
-  }
-
-  useEffect(() => {
+  
+  // const handleCreateSubmit = (data) => {
     
-  }, [])
+  //   const newGoal = {
+  //     category: data.category,
+  //     description: data.description,
+  //     prio: Number(data.prio),
+  //     target_reached: data.target_reached,
+  //     milestones: data.milestones,
+  //     cost: Number(data.cost),
+  //     half_year_progress: null,
+  //     isComplete: false,
+  //   }
+
+  //   // console.log(newGoal)
+  //   // onSubmit(newGoal)
+  // }
+
+  // useEffect(() => {
+    
+  // }, [])
 
   return (
     <div>
-        <form onSubmit={handleSubmit(handleCreateSubmit)}>
+        <form onSubmit={handleSubmit(createGoalMutation.mutate)}>
 
         <label><p className="label-p">Type of Goal</p></label>
             <select 

@@ -22,9 +22,9 @@ const get = async (endpoint) => {
 /**
  * Get all goals
  */
-// const getGoals = () => {
-//   return get('/goals')
-// }
+const getGoals = () => {
+  return get('/goals')
+}
 
 
 /**
@@ -40,11 +40,7 @@ const getGoal = (id) => {
  * @param data Object with properties and values for the new goal
  */
 const createGoal = async (data) => {
-  const res = await axios.post('/goals', data, {
-    headers: { 
-      'Content-Type': 'application/json'
-    }
-  })
+  const res = await axios.post('/goals', data)
   return res.data
 }
 
@@ -69,23 +65,23 @@ const deleteGoal = async (goal_id) => {
   return res.data
 }
 
-// var axios = require('axios');
-const getGoals = async () => {
-  var config = {
-    method: 'get',
-    url: 'http://localhost:7071/api/goals',
-    headers:  "Access-Control-Allow-Origin: *" 
-  };
+
+// const getGoals = async () => {
+//   var config = {
+//     method: 'get',
+//     url: 'http://localhost:7071/api/goals',
+//     headers:  "Access-Control-Allow-Origin: *" 
+//   };
   
-  const roomsResponse = await axios(config)
-  .then(function (response) {
-    return response;
-  }).catch(function (error) {
-    console.log(error);
-    return error;
-  })
-  return roomsResponse
-}
+//   const roomsResponse = await axios(config)
+//   .then(function (response) {
+//     return response;
+//   }).catch(function (error) {
+//     console.log(error);
+//     return error;
+//   })
+//   return roomsResponse
+// }
 
 
 
