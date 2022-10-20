@@ -1,5 +1,4 @@
 import logo from '../Assets/Images/geshdo-logo.png'
-import './Navbar.css'
 
 const Navbar = () => {
     return (

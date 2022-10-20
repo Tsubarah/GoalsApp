@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import './App.css';
+import { ReactQueryDevtools } from 'react-query/devtools'
+import '../src/Assets/scss/App.scss'
 import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
 import GoalsPage from './Pages/GoalsPage';
@@ -16,6 +17,7 @@ function App() {
 
             </Routes>
 
+            <ReactQueryDevtools />
         </div>
     );
 }
