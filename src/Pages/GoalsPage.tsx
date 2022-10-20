@@ -1,5 +1,4 @@
 import useGoals from '../Hooks/useGoals'
-import './GoalsPage.css'
 import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
 

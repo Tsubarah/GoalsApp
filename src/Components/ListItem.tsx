@@ -1,5 +1,4 @@
 import image from "../Assets/Images/placeholder-image.jpeg"
-import "./ListItem.css"
 
 const ListItem = () => {
   return (

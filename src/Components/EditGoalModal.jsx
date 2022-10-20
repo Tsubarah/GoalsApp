@@ -1,6 +1,5 @@
 import { useState } from "react"
 import EditGoalsForm from "./EditGoalsForm"
-import "./Modal.css"
 
 const EditGoalModal = () => {
     const [show, setShow] = useState(false)

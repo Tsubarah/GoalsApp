@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import useCreateGoal from '../Hooks/useCreateGoal'
-import "./GoalsForm.css"
-
 
 const GoalsForm = () => {
   const {

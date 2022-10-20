@@ -1,5 +1,4 @@
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
-import './Profile.css'
 
 const Profile = () => {
     return (

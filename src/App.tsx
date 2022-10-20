@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import './App.css';
+import '../src/Assets/scss/App.scss'
 import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
 import GoalsPage from './Pages/GoalsPage';
