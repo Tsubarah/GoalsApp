@@ -40,7 +40,7 @@ const getGoal = (id) => {
  * @param data Object with properties and values for the new goal
  */
 const createGoal = async (data) => {
-  const res = await axios.post('/goals', data)
+  const res = await axios.post('/goals/create', data)
   return res.data
 }
 
