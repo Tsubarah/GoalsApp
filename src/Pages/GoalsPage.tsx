@@ -34,7 +34,7 @@ const GoalsPage = () => {
                                         <th className="th-expected">Expected half year progress</th>
                                         <th className="th-cost">Cost</th>
                                     </tr>
-                                    {goals.data.map((goal: any, i:any) => (
+                                    {goals.map((goal: any, i:any) => (
                                     <tr key={i}>
                                         <td>{goal.prio}</td>
                                         <td>{goal.description}</td>
