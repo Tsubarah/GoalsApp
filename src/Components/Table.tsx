@@ -25,7 +25,11 @@ const table = ({ goals }: any) => {
                   <td>{goal.half_year_progress}</td>
                   <td>{goal.cost}</td>
               </tr>
-              <Accordion />
+              <tr>
+                <td colSpan={3}>
+                    <Accordion />
+                </td>
+              </tr>
               {/* <tr key={goal.id}>
                 <th className="half-review">Half Year Review</th>
                 <th className="end-review">End of Year Review</th>

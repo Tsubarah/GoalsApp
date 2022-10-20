@@ -1,13 +1,27 @@
-import { useForm } from 'react-hook-form'
+import { useForm, useFieldArray } from 'react-hook-form'
 import useCreateGoal from '../Hooks/useCreateGoal'
 import "./GoalsForm.css"
 
 const GoalsForm = () => {
   const {
+    control,
     register,
     handleSubmit,
+    formState: { errors },
     reset,
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      reviews: [
+        { half_year_review: "" },
+        { end_of_year_review: "" },
+      ]
+    }
+  })
+
+  const { fields } = useFieldArray({
+    control,
+    name: "reviews",
+  })
 
   const createGoalMutation = useCreateGoal()
 
@@ -89,7 +103,14 @@ const GoalsForm = () => {
 
             <br />
 
-            <input 
+            {fields.map((item, index) => (
+              <input 
+                className="hidden"
+                key={item.id}
+                {...register(`reviews.${index}.value`)}
+              />
+            ))}
+            {/* <input 
               {...register("half_year_review")}
               type="text" 
               id="cost" 
@@ -105,7 +126,7 @@ const GoalsForm = () => {
               id="cost" 
               className="hidden"
             >
-              </input>
+              </input> */}
 
 
             <br />
