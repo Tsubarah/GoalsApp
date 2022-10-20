@@ -2,10 +2,11 @@ import useGoals from '../Hooks/useGoals'
 import './GoalsPage.css'
 import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
+import Table from '../Components/Table'
 
 const GoalsPage = () => {
     const { data: goals, isLoading} = useGoals()
-    console.log(goals)
+    // console.log(goals)
 
     return (
         
@@ -23,7 +24,8 @@ const GoalsPage = () => {
                         <h2>Personal development</h2>
                         <button className='add-btn'>Add Goal +</button>
                     </div>
-                        <div className="table-wrapper">
+                        <Table goals={goals} />
+                        {/* <div className="table-wrapper">
                              <table>
                                 <tbody>
                                     <tr>
@@ -45,7 +47,7 @@ const GoalsPage = () => {
                                     </tr>
                                 ))}
                                 </tbody>
-                             </table>
+                             </table> */}
                              {/* <table>
                                  <tr>
                                      <th className="half-review">Half Year Review</th>
@@ -56,7 +58,7 @@ const GoalsPage = () => {
                                      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, quod quasi aliquid, placeat rem, quam esse quisquam iure debitis nulla ut iusto dicta! Quidem soluta, obcaecati molestiae dignissimos assumenda natus. Neque maiores dolor sequi beatae vero odio quas esse est assumenda excepturi reiciendis, laboriosam ipsa vitae quis asperiores! Voluptas corporis fugit ex nihil culpa vero possimus accusantium labore ipsa voluptate.</td>
                                  </tr>
                              </table> */}
-                         </div>
+                         {/* </div> */}
                     
 
                    

@@ -1,8 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import useCreateGoal from '../Hooks/useCreateGoal'
 import "./GoalsForm.css"
-
 
 const GoalsForm = () => {
   const {
@@ -12,28 +10,6 @@ const GoalsForm = () => {
   } = useForm()
 
   const createGoalMutation = useCreateGoal()
-
-  
-  // const handleCreateSubmit = (data) => {
-    
-  //   const newGoal = {
-  //     category: data.category,
-  //     description: data.description,
-  //     prio: Number(data.prio),
-  //     target_reached: data.target_reached,
-  //     milestones: data.milestones,
-  //     cost: Number(data.cost),
-  //     half_year_progress: null,
-  //     isComplete: false,
-  //   }
-
-  //   // console.log(newGoal)
-  //   // onSubmit(newGoal)
-  // }
-
-  // useEffect(() => {
-    
-  // }, [])
 
   return (
     <div>
