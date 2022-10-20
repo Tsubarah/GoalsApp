@@ -65,6 +65,7 @@ const deleteGoal = async (goal_id) => {
   return res.data
 }
 
+<<<<<<< HEAD
 
 // const getGoals = async () => {
 //   var config = {
@@ -86,6 +87,8 @@ const deleteGoal = async (goal_id) => {
 
 
 
+=======
+>>>>>>> dev
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
