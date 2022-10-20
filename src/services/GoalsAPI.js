@@ -65,30 +65,6 @@ const deleteGoal = async (goal_id) => {
   return res.data
 }
 
-<<<<<<< HEAD
-
-// const getGoals = async () => {
-//   var config = {
-//     method: 'get',
-//     url: 'http://localhost:7071/api/goals',
-//     headers:  "Access-Control-Allow-Origin: *" 
-//   };
-  
-//   const roomsResponse = await axios(config)
-//   .then(function (response) {
-//     return response;
-//   }).catch(function (error) {
-//     console.log(error);
-//     return error;
-//   })
-//   return roomsResponse
-// }
-
-
-
-
-=======
->>>>>>> dev
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
