@@ -50,7 +50,6 @@ const GoalsForm = () => {
             </select><br />
 
             <label><p className="label-p">Goal Description:</p></label>
-            <br />
             <textarea
               {...register("description")}
               id="description" 
@@ -75,7 +74,6 @@ const GoalsForm = () => {
             <br />
 
             <label><p className="label-p">When is your goal done?</p></label>
-            <br />
             <input 
               {...register("target_reached")}
               type="text" 
@@ -86,7 +84,6 @@ const GoalsForm = () => {
             <br />
 
             <label><p className="label-p">Milestones:</p></label>
-            <br />
             <input 
               {...register("milestones")}
               type="text" 
@@ -97,7 +94,6 @@ const GoalsForm = () => {
             <br />
 
             <label><p className="label-p">Costs:</p></label>
-            <br />
             <input 
               {...register("cost")}
               type="text" 
@@ -106,6 +102,35 @@ const GoalsForm = () => {
               </input>
 
             <br />
+
+            <label><p className="label-p">Expected half year progress:</p></label>
+            <input 
+              {...register("half_year_progress")}
+              type="text" 
+              id="cost" 
+            >
+              </input>
+
+            <br />
+
+            <input 
+              {...register("half_year_review")}
+              type="text" 
+              id="cost" 
+              className="hidden"
+            >
+              </input>
+
+            <br />
+
+            <input 
+              {...register("end_of_year_review")}
+              type="text" 
+              id="cost" 
+              className="hidden"
+            >
+              </input>
+
 
             <br />
 
