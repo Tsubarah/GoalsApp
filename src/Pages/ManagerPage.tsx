@@ -1,3 +1,4 @@
+import ScrollSpy from "../Components/ScrollSpy"
 import Sidebar from "../Components/Sidebar"
 import UserList from "../Components/Userlist"
 
@@ -6,6 +7,7 @@ const ManagerPage = () => {
         <div className="manager-page-wrapper">
                 <Sidebar />
 
+                <ScrollSpy />
             
                 <UserList />
                 
