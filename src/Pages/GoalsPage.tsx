@@ -1,11 +1,13 @@
 import useGoals from '../Hooks/useGoals'
 import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
-import DeleteGoal from '../Hooks/useDeleteGoal'
+import useDeleteGoal from '../Hooks/useDeleteGoal'
 
 const GoalsPage = () => {
     const { data: goals, isLoading} = useGoals()
     console.log(goals)
+
+    const deleteGoalMutation = useDeleteGoal()
 
     return (
         
@@ -42,13 +44,14 @@ const GoalsPage = () => {
                                         <td>{goal.milestones}</td>
                                         <td>{goal.half_year_progress}</td>
                                         <td>{goal.cost}</td>
+                                            <button className="green-button" onClick={() => deleteGoalMutation.mutate(goal)}>
+                                                Delete
+                                            </button>
                                     </tr>
+                                
                                 ))}
                                 </tbody>
                              </table>
-                             <button onClick={DeleteGoal}>
-                                    Delete
-                             </button>
                              {/* <table>
                                  <tr>
                                      <th className="half-review">Half Year Review</th>
