@@ -1,8 +1,13 @@
 import './HistoryPage.css'
+import ScrollSpy from '../Components/ScrollSpy'
 
 const HistoryPage = () => {
   return (
-    <div>HistoryPage</div>
+    <>
+    <div>
+    <ScrollSpy />
+    </div>
+    </>
   )
 }
 
