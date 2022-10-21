@@ -4,6 +4,18 @@ import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
 import Table from '../Components/Table'
 
+interface IGoal {
+    category: string,
+    prio: number,
+    description: string,
+    target_reached: string,
+    milestones: string, 
+    half_year_progress: string,
+    cost: number,
+    isComplete: boolean,
+    reviews: [],
+}
+
 const GoalsPage = () => {
     const { data: goals, isLoading} = useGoals()
     // console.log(goals)
