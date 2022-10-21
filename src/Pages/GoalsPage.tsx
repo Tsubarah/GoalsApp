@@ -1,6 +1,7 @@
 import useGoals from '../Hooks/useGoals'
 import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
+import DeleteGoal from '../Hooks/useDeleteGoal'
 
 const GoalsPage = () => {
     const { data: goals, isLoading} = useGoals()
@@ -45,6 +46,9 @@ const GoalsPage = () => {
                                 ))}
                                 </tbody>
                              </table>
+                             <button onClick={DeleteGoal}>
+
+                             </button>
                              {/* <table>
                                  <tr>
                                      <th className="half-review">Half Year Review</th>
