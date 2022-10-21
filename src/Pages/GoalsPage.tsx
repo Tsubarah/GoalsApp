@@ -47,7 +47,7 @@ const GoalsPage = () => {
                                 </tbody>
                              </table>
                              <button onClick={DeleteGoal}>
-
+                                    Delete
                              </button>
                              {/* <table>
                                  <tr>
