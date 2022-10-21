@@ -41,6 +41,7 @@ const getGoal = (id) => {
  */
 const createGoal = async (data) => {
   const res = await axios.post('/goals/create', data)
+  console.log(data)
   return res.data
 }
 
