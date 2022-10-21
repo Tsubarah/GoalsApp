@@ -45,6 +45,14 @@
     flex-grow : 1;
     width: 100%;
     margin: 3rem 0;
+
+    .table-headers {
+        margin-bottom: 0.5rem;
+
+        &:not(:first-child){
+            margin-top: 3rem;
+        }
+    }    
     
     .active-content {
         display: block;
