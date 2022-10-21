@@ -1,5 +1,4 @@
 import ListItem from "./ListItem"
-import "./Userlist.css"
 
 const UserList = () => {
   return (

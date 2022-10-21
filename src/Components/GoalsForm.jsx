@@ -1,6 +1,9 @@
 import { useForm, useFieldArray } from 'react-hook-form'
 import useCreateGoal from '../Hooks/useCreateGoal'
+<<<<<<< HEAD
 import "./GoalsForm.css"
+=======
+>>>>>>> dev
 
 const GoalsForm = () => {
   const {
