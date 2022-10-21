@@ -12,8 +12,12 @@ const GoalsForm = () => {
   } = useForm({
     defaultValues: {
       reviews: [
-        { half_year_review: "" },
-        { end_of_year_review: "" },
+        { type: "half_year_review", 
+          value: "" 
+        },
+        { type: "end_of_year_review", 
+          value: "" 
+        },
       ]
     }
   })
@@ -24,6 +28,7 @@ const GoalsForm = () => {
   })
 
   const createGoalMutation = useCreateGoal()
+
 
   return (
     <div>
