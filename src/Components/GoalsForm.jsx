@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import useCreateGoal from '../Hooks/useCreateGoal'
 
@@ -11,10 +12,12 @@ const GoalsForm = () => {
   } = useForm({
     defaultValues: {
       reviews: [
-        { type: "half_year_review", 
+        { 
+          type: "half_year_review", 
           value: "" 
         },
-        { type: "end_of_year_review", 
+        { 
+          type: "end_of_year_review", 
           value: "" 
         },
       ]
@@ -58,11 +61,11 @@ const GoalsForm = () => {
               {...register("prio")}
               id="prio"
             >
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
+                <option value={Number(1)}>1</option>
+                <option value={Number(2)}>2</option>
+                <option value={Number(3)}>3</option>
+                <option value={Number(4)}>4</option>
+                <option value={Number(5)}>5</option>
             </select>
 
             <br />
@@ -90,7 +93,7 @@ const GoalsForm = () => {
             <label><p className="label-p">Costs:</p></label>
             <input 
               {...register("cost")}
-              type="text" 
+              type="number"
               id="cost" 
             >
               </input>
