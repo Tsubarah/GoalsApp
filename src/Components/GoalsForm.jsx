@@ -116,24 +116,6 @@ const GoalsForm = () => {
                 {...register(`reviews.${index}.value`)}
               />
             ))}
-            {/* <input 
-              {...register("half_year_review")}
-              type="text" 
-              id="cost" 
-              className="hidden"
-            >
-              </input>
-
-            <br />
-
-            <input 
-              {...register("end_of_year_review")}
-              type="text" 
-              id="cost" 
-              className="hidden"
-            >
-              </input> */}
-
 
             <br />
 
