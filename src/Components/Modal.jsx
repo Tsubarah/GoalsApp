@@ -2,15 +2,12 @@ import { useState } from 'react'
 import GoalsForm from './GoalsForm'
 
 const Modal = () => {
-    const [show, setShow] = useState(false)
-
-    const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
+  const [show, setShow] = useState(false)
 
   return (
         <>
         <div className="d-flex text-align-center justify-content-center">
-        <button className="addGoal-button green-button d-flex justify-content-center" onClick={handleShow}>Create a Goal</button>
+        <button className="addGoal-button green-button d-flex justify-content-center" onClick={() => setShow(!show)}>Create a Goal</button>
         </div>
 
           {
@@ -19,7 +16,7 @@ const Modal = () => {
             <div className="addGoal-modal">
 
               <div className="button-container">
-                <button className="green-button" onClick={handleClose}>Close</button>
+                <button className="green-button" onClick={() => setShow(!show)}>Close</button>
                 </div>
 
 
@@ -29,7 +26,6 @@ const Modal = () => {
 
 
                 <GoalsForm />
-
                 
 
             </div>
