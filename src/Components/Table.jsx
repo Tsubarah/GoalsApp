@@ -1,8 +1,20 @@
 import './Table.css'
 import Accordion from './Accordion'
+// import useDeleteGoal from '../Hooks/useDeleteGoal'
 
-const table = ({ goal }) => {
-  console.log(goal)
+const Table = ({ goal }) => {
+  // const deleteGoalMutation = useDeleteGoal({ id: goal.id })
+
+  const deleteGoal = async () => {
+    const res = await fetch(`http://localhost:7071/api/goals/delete/${goal.id}`, {
+      method: "delete",
+      // body: JSON.stringify({ id: goal.id })
+    })
+
+    const data = res.json()
+    console.log('data', data)
+  }
+
   return (
     <div className="table-wrapper">
       <table>
@@ -33,9 +45,15 @@ const table = ({ goal }) => {
               </tr>
             </>
         </tbody>
+        <button 
+          className="delete-btn"
+          onClick={() => deleteGoal()}
+        >
+          Delete
+        </button>
       </table>
     </div>
   )
 }
 
-export default table
+export default Table

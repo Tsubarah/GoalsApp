@@ -63,7 +63,11 @@ const updateGoal = async (goal_id: string, data: IGoal) => {
  * @param goal_id goal to delete
  */
 const deleteGoal = async (goal_id: string) => {
-  const res = await axios.delete(`/goals/${goal_id}`)
+  const res = await axios.delete(`/goals`, {
+    data: {
+      id: goal_id
+    }
+  })
   return res.data
 }
 
