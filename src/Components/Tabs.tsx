@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
 
@@ -9,6 +9,27 @@ type TabsProps = {
 
 const Tabs = ({ goals }: TabsProps) => {
     const [toggleState, setToggleState] = useState(1);
+    const [personalDevelopmentPrio, setPersonalDevelopmentPrio] = useState([] as any)
+    const [customerInteractionPrio, setCustomerInteractionPrio] = useState([] as any)
+    const [buildingGeshdoPrio, setBuildingGeshdoPrio] = useState([] as any)
+    const [personalDevelopment, setPersonalDevelopment] = useState([] as any)
+    const [customerInteraction, setCustomerInteraction] = useState([] as any)
+    const [buildingGeshdo, setBuildingGeshdo] = useState([] as any)
+
+    useEffect(()=> {
+        const filteredPrioDev =  goals.filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
+        setPersonalDevelopmentPrio(filteredPrioDev)
+        const filteredPrioCus =  goals.filter(goal => goal.category === "customerInteraction" && goal.prio === Number("1"))
+        setCustomerInteractionPrio(filteredPrioCus)
+        const filteredPrioBui =  goals.filter(goal => goal.category === "buildingGeshdo" && goal.prio === Number("1"))
+        setBuildingGeshdoPrio(filteredPrioBui )
+        const categoryDev = goals.filter(goal => goal.category === "personalDevelopment") 
+        setPersonalDevelopment(categoryDev)
+        const categoryCus = goals.filter(goal => goal.category === "customerInteraction") 
+        setCustomerInteraction(categoryCus)
+        const categoryBui = goals.filter(goal => goal.category === "buildingGeshdo") 
+        setBuildingGeshdo(categoryBui)
+    },[])
 
     const toggleTab = (index: number) => {
       setToggleState(index);
@@ -48,144 +69,26 @@ const Tabs = ({ goals }: TabsProps) => {
             <div className="content-tabs">
 
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
-
                     <h3 className="table-headers">Personal Development</h3>
-                    
-                    {goals
-                        .filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
-                        .map((goal, i) => (
-                            <div className="table-wrapper" key={i}>
-                                <Table goal={goal} />
-                            </div>
-                        ))
-                    }
-                    
-                    <h3 className="table-headers">Customer Interaction</h3>
+                    <Table goals={personalDevelopmentPrio} />
 
-                    {goals
-                        .filter(goal => goal.category === "customerInteraction" && goal.prio === Number("1"))
-                        .map((goal, i) => (
-                            <div className="table-wrapper" key={i}>
-                                <Table goal={goal} />
-                            </div>
-                        ))
-                    }
+                    <h3 className="table-headers">Customer Interaction</h3>
+                    <Table goals={customerInteractionPrio} />
 
                     <h3 className="table-headers">Building Geshdo</h3>
-                    
-                    {goals
-                        .filter(goal => goal.category === "buildingGeshdo" && goal.prio === Number("1"))
-                        .map((goal, i) => (
-                            <div className="table-wrapper" key={i}>
-                                <Table goal={goal} />
-                                <table>
-                                <tr key={i}>
-                                        <td>{goal.prio}</td>
-                                        <td>{goal.description}</td>
-                                        <td>{goal.target_reached}</td>
-                                        <td>{goal.milestones}</td>
-                                        <td>{goal.half_year_progress}</td>
-                                        <td>{goal.cost}</td>
-                                </tr>
-                                </table>
-                            </div>
-                        ))
-                    }
-
+                    <Table goals={buildingGeshdoPrio} />
                 </div>
 
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
-
-                    <div className="table-wrapper">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th className="th-prio">Prio</th>
-                                    <th className="th-description">Goal description</th>
-                                    <th className="th-target">Target reached when</th>
-                                    <th className="th-milestone">Milestone</th>
-                                    <th className="th-expected">Expected half year progress</th>
-                                    <th className="th-cost">Cost</th>
-                                </tr>
-                                
-                                {goals
-                                .filter(goal => goal.category === "personalDevelopment")
-                                .map((goal, i) => (
-                                    <tr key={i}>
-                                        <td>{goal.prio}</td>
-                                        <td>{goal.description}</td>
-                                        <td>{goal.target_reached}</td>
-                                        <td>{goal.milestones}</td>
-                                        <td>{goal.half_year_progress}</td>
-                                        <td>{goal.cost}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-
+                    <Table goals={personalDevelopment} />
                 </div>
 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
-
-                    <div className="table-wrapper">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th className="th-prio">Prio</th>
-                                    <th className="th-description">Goal description</th>
-                                    <th className="th-target">Target reached when</th>
-                                    <th className="th-milestone">Milestone</th>
-                                    <th className="th-expected">Expected half year progress</th>
-                                    <th className="th-cost">Cost</th>
-                                </tr>
-                                {goals
-                                .filter(goal => goal.category === "customerInteraction")
-                                .map((goal, i) => (
-                                    <tr key={i}>
-                                        <td>{goal.prio}</td>
-                                        <td>{goal.description}</td>
-                                        <td>{goal.target_reached}</td>
-                                        <td>{goal.milestones}</td>
-                                        <td>{goal.half_year_progress}</td>
-                                        <td>{goal.cost}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                
+                    <Table goals={customerInteraction} />
                 </div>
 
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
-
-                    <div className="table-wrapper">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th className="th-prio">Prio</th>
-                                    <th className="th-description">Goal description</th>
-                                    <th className="th-target">Target reached when</th>
-                                    <th className="th-milestone">Milestone</th>
-                                    <th className="th-expected">Expected half year progress</th>
-                                    <th className="th-cost">Cost</th>
-                                </tr>
-                                {goals
-                                .filter(goal => goal.category === "buildingGeshdo")
-                                .map((goal, i) => (
-                                    <tr key={i}>
-                                        <td>{goal.prio}</td>
-                                        <td>{goal.description}</td>
-                                        <td>{goal.target_reached}</td>
-                                        <td>{goal.milestones}</td>
-                                        <td>{goal.half_year_progress}</td>
-                                        <td>{goal.cost}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-
+                    <Table goals={buildingGeshdo} />
                 </div>
             </div>
         </>
