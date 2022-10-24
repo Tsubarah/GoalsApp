@@ -24,13 +24,12 @@ const table = ({ goal }) => {
                 <td>{goal.half_year_progress}</td>
                 <td>{goal.cost}</td>
               </tr>
-              <tr className="whatever">
-                <td colSpan={3}>
-                  <Accordion data={goal.reviews[0]} />
-                </td>
-                <td colspan={3}>
-                  <Accordion data={goal.reviews[1]} />
-                </td>
+              <tr>
+                {goal.reviews.map(review => (
+                  <td colSpan={3}>
+                    <Accordion data={review} />
+                  </td>
+                ))}
               </tr>
             </>
         </tbody>
