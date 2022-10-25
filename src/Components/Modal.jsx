@@ -9,8 +9,8 @@ const Modal = () => {
 
   return (
         <>
-        <div className="d-flex text-align-center justify-content-center">
-        <button className="addGoal-button green-button d-flex justify-content-center" onClick={handleShow}>Create a Goal</button>
+        <div className="d-flex button-holder">
+        <button className="addGoal-button green-button d-flex" onClick={handleShow}>Create a Goal</button>
         </div>
 
           {

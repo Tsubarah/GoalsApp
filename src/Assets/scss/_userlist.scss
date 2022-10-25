@@ -2,8 +2,20 @@ ul {
     list-style-type: none;
   }
   
-  .listItem {
+  .listItem  {
     width: 50%;
+    border-bottom: 1px solid;
+    padding-top: 2rem;
+
+  }
+
+  .listItem:nth-child(even) {
+
+    background-color: lightblue;
+  }
+
+  a {
+    text-decoration: none;
   }
   
   .user-list {

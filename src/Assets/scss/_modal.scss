@@ -16,8 +16,9 @@
     overflow:scroll;
    }
    
-   
-   
+   .button-holder {
+    justify-content: flex-end !important;
+   }
    
    .green-button {
      appearance: none;
