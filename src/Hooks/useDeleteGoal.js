@@ -1,24 +1,27 @@
 import { useQueryClient, useMutation } from 'react-query'
-import { toast } from 'react-toastify'
-import GoalsAPI from '../services/GoalsAPI'
+import GoalsAPI from "../services/GoalsAPI"
 
-const useDeleteGoal = () => {
-    const queryClient = useQueryClient()
+const useDeleteGoal = ({ id }) => {
+  const queryClient = useQueryClient({
+    defaultOptions: {
+      queries: {
+        enabled: false,
+        manual: true,
+      }
+    }
+  })
 
-
-  return useMutation(GoalsAPI.deleteGoal, {
+  return useMutation('goals', GoalsAPI.deleteGoal(id), {
     onError: (error) => {
-        console.log(error.message)
+      console.log(error.message)
     },
 
-    onSuccess:() => {
-        toast.success('Goal deleted!')
+    onSuccess: () => {
+      console.log("Goal deleted")
 
-        queryClient.invalidateQueries('goals')
+      queryClient.invalidateQueries('goals')
     }
-  }) (
-    
-  )
+  })
 }
 
 export default useDeleteGoal

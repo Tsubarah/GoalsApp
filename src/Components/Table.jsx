@@ -1,8 +1,23 @@
 import './Table.css'
 import Accordion from './Accordion'
+import { useEffect, useState } from 'react'
+// import useDeleteGoal from '../Hooks/useDeleteGoal'
 
-const table = ({ goal }) => {
-  console.log(goal)
+const Table = ({ goal }) => {
+  // const { deleteMutation } = useDeleteGoal({ id: goal.id })
+
+  const deleteGoal = async () => {
+    try {
+      const res = await fetch(`http://localhost:7071/api/goals/delete/${goal.id}`, {
+        method: "delete",
+      })
+      console.log("Goal successfully deleted. Status code:", res.status)
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   return (
     <div className="table-wrapper">
       <table>
@@ -24,19 +39,24 @@ const table = ({ goal }) => {
                 <td>{goal.half_year_progress}</td>
                 <td>{goal.cost}</td>
               </tr>
-              <tr className="whatever">
-                <td colSpan={3}>
-                  <Accordion data={goal.reviews[0]} />
-                </td>
-                <td colspan={3}>
-                  <Accordion data={goal.reviews[1]} />
-                </td>
+              <tr>
+                {goal.reviews.map(review => (
+                  <td colSpan={3}>
+                    <Accordion data={review} />
+                  </td>
+                ))}
               </tr>
             </>
         </tbody>
+        <button 
+          className="delete-btn"
+          onClick={() => deleteGoal()}
+        >
+          Delete
+        </button>
       </table>
     </div>
   )
 }
 
-export default table
+export default Table
