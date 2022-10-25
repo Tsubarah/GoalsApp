@@ -1,122 +1,153 @@
-import { useState, useRef, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import useCreateGoal from '../Hooks/useCreateGoal'
+import { Controller, useForm, useFieldArray } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"
+import useCreateGoal from "../Hooks/useCreateGoal";
+
 
 const GoalsForm = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-  } = useForm()
+    const {
+        control,
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm({
+        defaultValues: {
+            reviews: [
+                {
+                    type: "half_year_review",
+                    value: "",
+                },
+                {
+                    type: "end_of_year_review",
+                    value: "",
+                },
+            ],
+        },
+    });
 
-  const createGoalMutation = useCreateGoal()
+    const { fields } = useFieldArray({
+        control,
+        name: "reviews",
+    });
 
-  
-  // const handleCreateSubmit = (data) => {
-    
-  //   const newGoal = {
-  //     category: data.category,
-  //     description: data.description,
-  //     prio: Number(data.prio),
-  //     target_reached: data.target_reached,
-  //     milestones: data.milestones,
-  //     cost: Number(data.cost),
-  //     half_year_progress: null,
-  //     isComplete: false,
-  //   }
+    const createGoalMutation = useCreateGoal();
 
-  //   // console.log(newGoal)
-  //   // onSubmit(newGoal)
-  // }
+    return (
+        <div>
+            <form onSubmit={handleSubmit(createGoalMutation.mutate)}>
+                <label>
+                    <p className="label-p">Type of Goal</p>
+                </label>
+                <select {...register("category")} id="category">
+                    <option value="personalDevelopment">
+                        Personal Development
+                    </option>
+                    <option value="customerInteraction">
+                        Customer Interaction
+                    </option>
+                    <option value="buildingGeshdo">Building Geshdo</option>
+                </select>
+                <br />
 
-  // useEffect(() => {
-    
-  // }, [])
+                <label>
+                    <p className="label-p">Goal Description:</p>
+                </label>
+                <textarea
+                    {...register("description")}
+                    id="description"
+                    placeholder="Describe your goal here..."
+                ></textarea>
 
-  return (
-    <div>
-        <form onSubmit={handleSubmit(createGoalMutation.mutate)}>
+                <br />
 
-        <label><p className="label-p">Type of Goal</p></label>
-            <select 
-              {...register("category")}
-              id="category" 
-            >
-                <option value="personalDevelopment">Personal Development</option>
-                <option value="customerInteraction">Customer Interaction</option>
-                <option value="buildingGeshdo">Building Geshdo</option>
-            </select><br />
+                <label>
+                    <p className="label-p">Prio:</p>
+                </label>
+                <select {...register("prio")} id="prio">
+                    <option value={Number(1)}>1</option>
+                    <option value={Number(2)}>2</option>
+                    <option value={Number(3)}>3</option>
+                    <option value={Number(4)}>4</option>
+                    <option value={Number(5)}>5</option>
+                </select>
 
-            <label><p className="label-p">Goal Description:</p></label>
-            <br />
-            <textarea
-              {...register("description")}
-              id="description" 
-              placeholder="Describe your goal here..." 
-            >
-            </textarea>
-            
-            <br />
+                <br />
 
-            <label><p className="label-p">Prio:</p></label>
-            <select 
-              {...register("prio")}
-              id="prio"
-            >
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-            </select>
 
-            <br />
+                <label>
+                    <p className="label-p">Deadline:</p>
+                </label>
+                <Controller
+                    control={control}
+                    name="deadline"
+                    render={({ field }) => (
+                        <DatePicker
+                            placeholderText="Select date"
+                            onChange={(date) => field.onChange(date)}
+                            selected={field.value}
+                        />
+                    )}
+                />
 
-            <label><p className="label-p">When is your goal done?</p></label>
-            <br />
-            <input 
-              {...register("target_reached")}
-              type="text" 
-              id="doneWhen" 
-            >
-            </input>
-            
-            <br />
+                <br />
 
-            <label><p className="label-p">Milestones:</p></label>
-            <br />
-            <input 
-              {...register("milestones")}
-              type="text" 
-              id="milestones" 
-            >
-            </input>
+                <label>
+                    <p className="label-p">When is your goal done?</p>
+                </label>
+                <input
+                    {...register("target_reached")}
+                    type="text"
+                    id="doneWhen"
+                ></input>
 
-            <br />
+                <br />
 
-            <label><p className="label-p">Costs:</p></label>
-            <br />
-            <input 
-              {...register("cost")}
-              type="text" 
-              id="cost" 
-            >
-              </input>
+                <label>
+                    <p className="label-p">Milestones:</p>
+                </label>
+                <input
+                    {...register("milestones")}
+                    type="text"
+                    id="milestones"
+                ></input>
 
-            <br />
+                <br />
 
-            <br />
+                <label>
+                    <p className="label-p">Costs:</p>
+                </label>
+                <input {...register("cost")} type="number" id="cost"></input>
 
-            <button 
-              type="submit" 
-              className="submit-button"
-            >
-              Create
-            </button>
+                <br />
 
-        </form>
-    </div>
-  )
-}
+                <label>
+                    <p className="label-p">Expected half year progress:</p>
+                </label>
+                <input
+                    {...register("half_year_progress")}
+                    type="text"
+                    id="cost"
+                ></input>
 
-export default GoalsForm
+                <br />
+
+                {fields.map((item, index) => (
+                    <input
+                        className="hidden"
+                        key={item.id}
+                        {...register(`reviews.${index}.value`)}
+                    />
+                ))}
+
+                <br />
+
+                <button type="submit" className="submit-button">
+                    Create
+                </button>
+            </form>
+        </div>
+    );
+};
+
+export default GoalsForm;

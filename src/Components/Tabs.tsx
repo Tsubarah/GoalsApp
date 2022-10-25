@@ -1,9 +1,16 @@
 import { useState } from "react";
+import Table from './Table';
+import { IGoal } from '../typings/Goal'
 
-const Tabs = ({ goals }) => {
+// Types are used for props 
+type TabsProps = {
+    goals: IGoal[]
+}
+
+const Tabs = ({ goals }: TabsProps) => {
     const [toggleState, setToggleState] = useState(1);
 
-    const toggleTab = (index) => {
+    const toggleTab = (index: number) => {
       setToggleState(index);
     };
 
@@ -45,29 +52,10 @@ const Tabs = ({ goals }) => {
                     <h3 className="table-headers">Personal Development</h3>
                     
                     {goals
-                        .filter(goal => goal.category === "personalDevelopment" && goal.prio === "1")
+                        .filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
                         .map((goal, i) => (
                             <div className="table-wrapper" key={i}>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th className="th-prio">Prio</th>
-                                            <th className="th-description">Goal description</th>
-                                            <th className="th-target">Target reached when</th>
-                                            <th className="th-milestone">Milestone</th>
-                                            <th className="th-expected">Expected half year progress</th>
-                                            <th className="th-cost">Cost</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{goal.prio}</td>
-                                            <td>{goal.description}</td>
-                                            <td>{goal.target}</td>
-                                            <td>{goal.milestones}</td>
-                                            <td>{goal.half_year_progress}</td>
-                                            <td>{goal.cost}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <Table goal={goal} />
                             </div>
                         ))
                     }
@@ -75,29 +63,10 @@ const Tabs = ({ goals }) => {
                     <h3 className="table-headers">Customer Interaction</h3>
 
                     {goals
-                        .filter(goal => goal.category === "customerInteraction" && goal.prio === "1")
+                        .filter(goal => goal.category === "customerInteraction" && goal.prio === Number("1"))
                         .map((goal, i) => (
                             <div className="table-wrapper" key={i}>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th className="th-prio">Prio</th>
-                                            <th className="th-description">Goal description</th>
-                                            <th className="th-target">Target reached when</th>
-                                            <th className="th-milestone">Milestone</th>
-                                            <th className="th-expected">Expected half year progress</th>
-                                            <th className="th-cost">Cost</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{goal.prio}</td>
-                                            <td>{goal.description}</td>
-                                            <td>{goal.target}</td>
-                                            <td>{goal.milestones}</td>
-                                            <td>{goal.half_year_progress}</td>
-                                            <td>{goal.cost}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <Table goal={goal} />
                             </div>
                         ))
                     }
@@ -105,29 +74,19 @@ const Tabs = ({ goals }) => {
                     <h3 className="table-headers">Building Geshdo</h3>
                     
                     {goals
-                        .filter(goal => goal.category === "buildingGeshdo" && goal.prio === "1")
+                        .filter(goal => goal.category === "buildingGeshdo" && goal.prio === Number("1"))
                         .map((goal, i) => (
                             <div className="table-wrapper" key={i}>
+                                <Table goal={goal} />
                                 <table>
-                                    <tbody>
-                                        <tr>
-                                            <th className="th-prio">Prio</th>
-                                            <th className="th-description">Goal description</th>
-                                            <th className="th-target">Target reached when</th>
-                                            <th className="th-milestone">Milestone</th>
-                                            <th className="th-expected">Expected half year progress</th>
-                                            <th className="th-cost">Cost</th>
-                                        </tr>
-
-                                        <tr>
-                                            <td>{goal.prio}</td>
-                                            <td>{goal.description}</td>
-                                            <td>{goal.target}</td>
-                                            <td>{goal.milestones}</td>
-                                            <td>{goal.half_year_progress}</td>
-                                            <td>{goal.cost}</td>
-                                        </tr>
-                                    </tbody>
+                                <tr key={i}>
+                                        <td>{goal.prio}</td>
+                                        <td>{goal.description}</td>
+                                        <td>{goal.target_reached}</td>
+                                        <td>{goal.milestones}</td>
+                                        <td>{goal.half_year_progress}</td>
+                                        <td>{goal.cost}</td>
+                                </tr>
                                 </table>
                             </div>
                         ))
@@ -155,7 +114,7 @@ const Tabs = ({ goals }) => {
                                     <tr key={i}>
                                         <td>{goal.prio}</td>
                                         <td>{goal.description}</td>
-                                        <td>{goal.target}</td>
+                                        <td>{goal.target_reached}</td>
                                         <td>{goal.milestones}</td>
                                         <td>{goal.half_year_progress}</td>
                                         <td>{goal.cost}</td>
@@ -186,7 +145,7 @@ const Tabs = ({ goals }) => {
                                     <tr key={i}>
                                         <td>{goal.prio}</td>
                                         <td>{goal.description}</td>
-                                        <td>{goal.target}</td>
+                                        <td>{goal.target_reached}</td>
                                         <td>{goal.milestones}</td>
                                         <td>{goal.half_year_progress}</td>
                                         <td>{goal.cost}</td>
@@ -217,7 +176,7 @@ const Tabs = ({ goals }) => {
                                     <tr key={i}>
                                         <td>{goal.prio}</td>
                                         <td>{goal.description}</td>
-                                        <td>{goal.target}</td>
+                                        <td>{goal.target_reached}</td>
                                         <td>{goal.milestones}</td>
                                         <td>{goal.half_year_progress}</td>
                                         <td>{goal.cost}</td>

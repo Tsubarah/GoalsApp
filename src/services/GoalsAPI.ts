@@ -1,3 +1,4 @@
+import { IGoal } from '../typings/Goal'
 /**
  * Service for communicating with the json-server backend
  */
@@ -11,7 +12,7 @@ axios.defaults.baseURL = 'http://localhost:7071/api'
   * @returns Promise
 */
 
-const get = async (endpoint) => {
+const get = async (endpoint: string) => {
   const res = await axios.get(endpoint)
 
   // FAKE_DELAY && await new Promise(r => setTimeout(r, FAKE_DELAY))
@@ -22,7 +23,7 @@ const get = async (endpoint) => {
 /**
  * Get all goals
  */
-const getGoals = () => {
+const getGoals = ():Promise<IGoal[]> => {
   return get('/goals')
 }
 
@@ -30,7 +31,7 @@ const getGoals = () => {
 /**
  * Get single goal
  */
-const getGoal = (id) => {
+const getGoal = (id: string) => {
   return get(`/goals/${id}`)
 }
 
@@ -39,8 +40,9 @@ const getGoal = (id) => {
  * Create a new Goal
  * @param data Object with properties and values for the new goal
  */
-const createGoal = async (data) => {
+const createGoal = async (data: IGoal) => {
   const res = await axios.post('/goals/create', data)
+  console.log(data)
   return res.data
 }
 
@@ -50,7 +52,7 @@ const createGoal = async (data) => {
  * @param goal_id Goal to update
  * @param data Data to update goal with
  */
-const updateGoal = async (goal_id, data) => {
+const updateGoal = async (goal_id: string, data: IGoal) => {
   const res = await axios.patch(`/goals/${goal_id}`, data)
   return res.data
 }
@@ -60,7 +62,7 @@ const updateGoal = async (goal_id, data) => {
  * Delete a goal
  * @param goal_id goal to delete
  */
-const deleteGoal = async (goal_id) => {
+const deleteGoal = async (goal_id: string) => {
   const res = await axios.delete(`/goals/${goal_id}`)
   return res.data
 }
