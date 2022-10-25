@@ -1,9 +1,14 @@
 import useGoals from '../Hooks/useGoals'
 import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
+import { useEffect } from 'react'
 
 const GoalsPage = () => {
     const { data: goals, isLoading} = useGoals()
+
+    useEffect(() => {
+        console.log('goals', goals)
+    }, [goals])
 
     return (
         
