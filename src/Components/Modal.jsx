@@ -25,7 +25,7 @@ const Modal = () => {
                 <hr />
 
 
-                <GoalsForm />
+                <GoalsForm setShow={setShow} />
                 
 
             </div>
