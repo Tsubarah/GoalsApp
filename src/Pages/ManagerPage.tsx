@@ -7,7 +7,7 @@ const ManagerPage = () => {
         <div className="manager-page-wrapper">
                 <Sidebar />
 
-                <ScrollSpy />
+                
             
                 <UserList />
                 

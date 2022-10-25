@@ -11,17 +11,41 @@ const ScrollSpy = () => {
                     headerBackground="true"
                 >
                     <ul className="scrollspy-nav">
-                        <li><a href="#section_1">2020</a></li>
-                        <li><a href="#section_2">2021</a></li>
-                        <li><a href="#section_3">2022</a></li>
+                        <li><a href="#section_1"><strong>2020</strong></a></li>
+                        <li><a href="#section_2"><strong>2021</strong></a></li>
+                        <li><a href="#section_3"><strong>2022</strong></a></li>
                     </ul>
                 </ScrollspyNav>
                 
                 <div>
-                    <div style={{"height": "400px"}}><span>Welcome!</span></div>
-                    <div id="section_1" style={{"height": "500px"}}><span>2020</span></div>
-                    <div id="section_2" style={{"height": "500px"}}><span>2021</span></div>
-                    <div id="section_3" style={{"height": "500px"}}><span>2022</span></div>
+                    
+                    <div id="section_1" className="scrollspy-section" >
+                        <h2><strong>2020</strong></h2>
+                        <hr />
+                            <div>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam soluta ratione dolore, rem dignissimos nulla blanditiis ab alias aperiam quas facere, temporibus, iusto recusandae laborum sed vitae quos pariatur praesentium?
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam soluta ratione dolore, rem dignissimos nulla blanditiis ab alias aperiam quas facere, temporibus, iusto recusandae laborum sed vitae quos pariatur praesentium?
+                            </div>
+                        <hr />
+                    </div>
+                    <div id="section_2" className="scrollspy-section">
+                        <h2><strong>2021</strong></h2>
+                        <hr />
+                            <div>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam  soluta ratione dolore, rem dignissimos nulla blanditiis ab alias aperiam quas facere, temporibus, iusto recusandae laborum sed vitae quos pariatur praesentium?
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam soluta ratione dolore, rem dignissimos nulla blanditiis ab alias aperiam quas facere, temporibus, iusto recusandae laborum sed vitae quos pariatur praesentium?
+                            </div>
+                        <hr />
+                    </div>
+                    <div id="section_3" className="scrollspy-section">
+                        <h2><strong>2022</strong></h2>
+                        <hr />
+                            <div>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam soluta ratione dolore, rem dignissimos nulla blanditiis ab alias aperiam quas facere, temporibus, iusto recusandae laborum sed vitae quos pariatur praesentium?
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam soluta ratione dolore, rem dignissimos nulla blanditiis ab alias aperiam quas facere, temporibus, iusto recusandae laborum sed vitae quos pariatur praesentium?
+                            </div>
+                            <hr />
+                    </div>
                 </div>
             </div>
   )

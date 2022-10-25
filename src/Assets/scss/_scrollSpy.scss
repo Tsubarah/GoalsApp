@@ -1,11 +1,32 @@
 .scrollspy-nav {
-    background-color: blue;
     display:flex;
     flex-direction: row;
     height: 60px;
     align-items: center;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    height: 5rem;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+
     li {
-        margin-left: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+
+        a {
+            text-decoration: none;
+        }
     }
 }
 
+
+.scrollspy-section {
+    height: 600px;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    h2 {
+        font-size: 2rem;
+    }
+}
