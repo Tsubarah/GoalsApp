@@ -6,13 +6,15 @@ const Table = ({ goal }) => {
   // const deleteGoalMutation = useDeleteGoal({ id: goal.id })
 
   const deleteGoal = async () => {
-    const res = await fetch(`http://localhost:7071/api/goals/delete/${goal.id}`, {
-      method: "delete",
-      // body: JSON.stringify({ id: goal.id })
-    })
+    try {
+      const res = await fetch(`http://localhost:7071/api/goals/delete/${goal.id}`, {
+        method: "delete",
+      })
+      console.log("Goal successfully deleted. Status code:", res.status)
 
-    const data = res.json()
-    console.log('data', data)
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   return (
