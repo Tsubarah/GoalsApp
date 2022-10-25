@@ -45,8 +45,8 @@ const table = ({ goals }) => {
                         </tr>
 
                         <tr>
-                            {goal.reviews.map(review => (
-                                <td colSpan={3}>
+                            {goal.reviews.map((review,i) => (
+                                <td colSpan={3} key={i}>
                                     <Accordion data={review} />
                                 </td>
                             ))}
