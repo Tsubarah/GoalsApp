@@ -1,16 +1,24 @@
 import useEditGoal from "../Hooks/useEditGoal"
+import { Controller, useForm, useFieldArray } from "react-hook-form"
 
-const EditGoalsForm = () => {
+const EditGoalsForm = ({ setShow, goal }) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors},
+        reset,
+    } = useForm()
 
     const editGoalMutation = useEditGoal()
 
-    const editGoal = (data) => {
-        editGoalMutation.mutate(data)
+    const editGoal = async (data) => {
+        await editGoalMutation.mutate(data, goal.id)
+
     }
 
   return (
     <div>
-    <form>
+    <form onSubmit={handleSubmit(editGoal)}>
         <h2>Edit Goal</h2>
     <label><p className="label-p">Type of Goal</p></label>
         <select name="category" id="category">
