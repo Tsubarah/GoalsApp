@@ -1,6 +1,5 @@
 import './Table.css'
 import Accordion from './Accordion'
-import { useEffect, useState } from 'react'
 // import useDeleteGoal from '../Hooks/useDeleteGoal'
 
 const Table = ({ goal }) => {

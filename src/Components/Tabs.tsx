@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
 
@@ -15,6 +15,11 @@ const Tabs = ({ goals }: TabsProps) => {
     };
 
     console.log(goals)
+
+    useEffect(() => {
+        console.log(goals)
+        console.log(toggleState)
+    }, [goals, toggleState])
 
     return (
         <>
