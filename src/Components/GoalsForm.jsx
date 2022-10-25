@@ -3,8 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import useCreateGoal from "../Hooks/useCreateGoal";
 
-
-const GoalsForm = () => {
+const GoalsForm = ({ setShow }) => {
     const {
         control,
         register,
@@ -30,12 +29,18 @@ const GoalsForm = () => {
         control,
         name: "reviews",
     });
-
+    
     const createGoalMutation = useCreateGoal();
+
+    const createGoal = (data) => {
+      createGoalMutation.mutate(data)
+      reset()
+      setShow(false)
+    }
 
     return (
         <div>
-            <form onSubmit={handleSubmit(createGoalMutation.mutate)}>
+            <form onSubmit={handleSubmit(createGoal)}>
                 <label>
                     <p className="label-p">Type of Goal</p>
                 </label>
