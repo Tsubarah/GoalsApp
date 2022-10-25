@@ -16,7 +16,7 @@ const Tabs = ({ goals }: TabsProps) => {
     const [customerInteraction, setCustomerInteraction] = useState([] as any)
     const [buildingGeshdo, setBuildingGeshdo] = useState([] as any)
 
-    useEffect(()=> {
+    const filterFunction = () => {
         const filteredPrioDev =  goals.filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
         setPersonalDevelopmentPrio(filteredPrioDev)
         const filteredPrioCus =  goals.filter(goal => goal.category === "customerInteraction" && goal.prio === Number("1"))
@@ -29,12 +29,17 @@ const Tabs = ({ goals }: TabsProps) => {
         setCustomerInteraction(categoryCus)
         const categoryBui = goals.filter(goal => goal.category === "buildingGeshdo") 
         setBuildingGeshdo(categoryBui)
-    },[])
+    }
+
+    
+    useEffect(()=> {
+        filterFunction()
+    },[goals])
 
     const toggleTab = (index: number) => {
       setToggleState(index);
     };
-
+    
     console.log(goals)
 
     return (

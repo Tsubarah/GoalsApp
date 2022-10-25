@@ -38,7 +38,7 @@ const table = ({ goals }) => {
                             <td>{goal.prio}</td>
                             <td><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></td>
                             <td>{goal.description}</td>
-                            <td>{goal.target}</td>
+                            <td>{goal.target_reached}</td>
                             <td>{goal.milestones}</td>
                             <td>{goal.half_year_progress}</td>
                             <td>{goal.cost}</td>
