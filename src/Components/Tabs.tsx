@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
+import useEditGoal from '../Hooks/useEditGoal'
 
 // Types are used for props 
 type TabsProps = {
@@ -86,6 +87,7 @@ const Tabs = ({ goals }: TabsProps) => {
                                         <td>{goal.milestones}</td>
                                         <td>{goal.half_year_progress}</td>
                                         <td>{goal.cost}</td>
+                                        <button className="green-button">Edit</button>
                                 </tr>
                                 </table>
                             </div>
