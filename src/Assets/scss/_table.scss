@@ -1,0 +1,41 @@
+th {
+  	background-color: rgb(119, 165, 201);
+  	color: white;
+  	padding: 0.25rem 0.5rem;
+}
+
+.th-description,
+.th-target,
+.th-milestone,
+.th-expected {
+  	width: 20%;
+}
+
+.th-prio {
+  	width: 3%;
+}
+
+.th-cost {
+  	width: 4%;
+}
+
+.th-deadline {
+  	width: 8%;
+}
+
+td {
+	padding: 0.25rem 0.75rem;
+	border: 1px solid grey;
+	word-wrap: break-word;
+}
+
+table {
+  	width: 100%;
+  	table-layout: fixed;
+}
+
+// .half-review,
+// .end-review
+// {
+//   width: 50%;
+// }
