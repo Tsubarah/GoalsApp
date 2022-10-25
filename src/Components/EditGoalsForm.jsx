@@ -1,6 +1,13 @@
-import React from 'react'
+import useEditGoal from "../Hooks/useEditGoal"
 
 const EditGoalsForm = () => {
+
+    const editGoalMutation = useEditGoal()
+
+    const editGoal = (data) => {
+        editGoalMutation.mutate(data)
+    }
+
   return (
     <div>
     <form>
