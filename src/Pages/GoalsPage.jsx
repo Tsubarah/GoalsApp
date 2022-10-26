@@ -1,13 +1,16 @@
-import useGoals from '../Hooks/useGoals'
+import { getGoals } from "../services/GoalsAPI"
+import { useQuery } from "react-query"
 import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const GoalsPage = () => {
-    const { data: goals, isLoading} = useGoals()
+    const [goalsList, setGoalsList] = useState(undefined)
+
+    const { data: goals, isLoading } = useQuery('goals', getGoals)
 
     useEffect(() => {
-        console.log('goals', goals)
+        setGoalsList(goals)
     }, [goals])
 
     return (

@@ -1,19 +1,16 @@
 import './Table.css'
 import Accordion from './Accordion'
-// import useDeleteGoal from '../Hooks/useDeleteGoal'
+import useDeleteGoal from '../Hooks/useDeleteGoal'
+
 
 const Table = ({ goal }) => {
-  // const { deleteMutation } = useDeleteGoal({ id: goal.id })
 
-  const deleteGoal = async () => {
-    try {
-      const res = await fetch(`http://localhost:7071/api/goals/delete/${goal.id}`, {
-        method: "delete",
-      })
-      console.log("Goal successfully deleted. Status code:", res.status)
+  const { mutate: deleteFn } = useDeleteGoal()
+  
 
-    } catch (error) {
-      console.log(error.message)
+  const onDeleteHandler = (id) => {
+    if (window.confirm('Are you sure?')) {
+      deleteFn(id);
     }
   }
 
@@ -49,7 +46,7 @@ const Table = ({ goal }) => {
         </tbody>
         <button 
           className="delete-btn"
-          onClick={() => deleteGoal()}
+          onClick={() => onDeleteHandler(goal.id)}
         >
           Delete
         </button>
