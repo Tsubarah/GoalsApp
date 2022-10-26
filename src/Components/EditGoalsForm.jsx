@@ -8,22 +8,9 @@ const EditGoalsForm = ({ setShow, goal }) => {
         control,
         register,
         handleSubmit,
-        formState: { errors},
+        formState: { errors },
         reset,
-    } = useForm({
-        defaultValues: {
-            reviews: [
-                {
-                    type: "half_year_review",
-                    value: "",
-                },
-                {
-                    type: "end_of_year_review",
-                    value: "",
-                },
-            ],
-        },
-    })
+    } = useForm()
 
     const { fields } = useFieldArray({
         control,
@@ -32,21 +19,21 @@ const EditGoalsForm = ({ setShow, goal }) => {
 
     const editGoalMutation = useEditGoal()
 
-    const editGoal = (data) => {
+    const updateGoal = (data, goal) => {
          editGoalMutation.mutate(data, goal.id)
 
     }
 
   return (
     <div>
-    <form onSubmit={handleSubmit(editGoal)}>
+    <form onSubmit={handleSubmit(updateGoal)}>
         
         <label>
             <p className="label-p">Type of Goal</p>
         </label>
         <select {...register("category")} 
                 id="category" 
-                //defaultValue={category}
+               // defaultValue={goal.category}
                 >
             <option value="personalDevelopment">Personal Development</option>
             <option value="customerInteraction">Customer Interaction</option>
@@ -58,8 +45,9 @@ const EditGoalsForm = ({ setShow, goal }) => {
         <label>
             <p className="label-p">Goal Description:</p>
         </label>
-        <textarea {...register("description")} id="description" 
-        //defaultValue={description}
+        <textarea 
+                {...register("description")}            id="description" 
+            // defaultValue={goal.description}
         ></textarea>
         
         <br />
@@ -69,7 +57,7 @@ const EditGoalsForm = ({ setShow, goal }) => {
         </label>
         <select {...register("prio")} 
                 id="prio"
-                //defaultValue={prio}
+                //defaultValue={goal.prio}
                 >
             <option value={Number(1)}>1</option>
             <option value={Number(2)}>2</option>
@@ -91,7 +79,7 @@ const EditGoalsForm = ({ setShow, goal }) => {
                             placeholderText="Select date"
                             onChange={(date) => field.onChange(date)}
                             selected={field.value}
-                            //defaultValue={deadline}
+                            //defaultValue={goal.deadline}
                         />
                     )}
                 />
@@ -105,7 +93,7 @@ const EditGoalsForm = ({ setShow, goal }) => {
             {...register("target_reached")}
             type="text"
             id="doneWhen"
-            //defaultValue={target_reached}
+            //defaultValue={goal.target_reached}
         ></input>
 
         <label>
@@ -115,17 +103,18 @@ const EditGoalsForm = ({ setShow, goal }) => {
             {...register("milestones")} 
             type="text" 
             id="milestones"
-            //defaultValue={milestones}
+            //defaultValue={goal.milestones}
         ></input>
 
             <br />
 
         <label>
             <p className="label-p">Costs:</p></label>
-        <input {...register("costs")} 
-                type="number" 
-                id="cost"
-                //defaultValue={cost}
+        <input 
+            {...register("costs")} 
+            type="number" 
+            id="cost"
+            //defaultValue={goal.cost}
         ></input>
         
         <br />
@@ -136,7 +125,7 @@ const EditGoalsForm = ({ setShow, goal }) => {
             {...register("half_year_progress")}
             type="text"
             id="cost"
-            // defaultValue={half_year_progress}
+             //defaultValue={goal.half_year_progress}
         ></input>
 
         {fields.map((item, index) => (
@@ -156,9 +145,9 @@ const EditGoalsForm = ({ setShow, goal }) => {
 
         <button type="submit" className="submit-button">Save Changes</button>
 
-        <button className="status-button green-button">Completed</button>
+        <button className="status-button green-button" onClick={() =>{}}>Completed</button>
         
-        <button className="delete-button red-button">Delete</button>
+        <button className="delete-button red-button" onClick={() =>{}}>Delete</button>
         
     </form>
 </div>
