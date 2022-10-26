@@ -91,6 +91,7 @@ const GoalsForm = ({ setShow }) => {
                             placeholderText="Select date"
                             onChange={(date) => field.onChange(date)}
                             selected={field.value}
+                            minDate={new Date()}
                         />
                     )}
                 />
