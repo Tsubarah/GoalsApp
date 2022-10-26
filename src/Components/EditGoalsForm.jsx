@@ -40,12 +40,14 @@ const EditGoalsForm = ({ setShow, goal }) => {
   return (
     <div>
     <form onSubmit={handleSubmit(editGoal)}>
-        <h2>Edit Goal</h2>
+        
         <label>
             <p className="label-p">Type of Goal</p>
         </label>
         <select {...register("category")} 
-                id="category" defaultValue={category}>
+                id="category" 
+                //defaultValue={category}
+                >
             <option value="personalDevelopment">Personal Development</option>
             <option value="customerInteraction">Customer Interaction</option>
             <option value="buildingGeshdo">Building Geshdo</option>
@@ -55,16 +57,20 @@ const EditGoalsForm = ({ setShow, goal }) => {
 
         <label>
             <p className="label-p">Goal Description:</p>
-        </label><br />
-        <textarea {...register("description")} id="description" defaultValue={description}></textarea>
+        </label>
+        <textarea {...register("description")} id="description" 
+        //defaultValue={description}
+        ></textarea>
         
         <br />
 
         <label>
             <p className="label-p">Prio:</p>
         </label>
-        <select {...register("prio")} id="prio"
-        defaultValue={prio}>
+        <select {...register("prio")} 
+                id="prio"
+                //defaultValue={prio}
+                >
             <option value={Number(1)}>1</option>
             <option value={Number(2)}>2</option>
             <option value={Number(3)}>3</option>
@@ -75,8 +81,8 @@ const EditGoalsForm = ({ setShow, goal }) => {
         <br />
 
         <label>
-            <p className="label-p">Deadline</p>
-        </label><br />
+            <p className="label-p">Deadline:</p>
+        </label>
         <Controller
                     control={control}
                     name="deadline"
@@ -85,7 +91,7 @@ const EditGoalsForm = ({ setShow, goal }) => {
                             placeholderText="Select date"
                             onChange={(date) => field.onChange(date)}
                             selected={field.value}
-                            defaultValue={deadline}
+                            //defaultValue={deadline}
                         />
                     )}
                 />
@@ -99,28 +105,27 @@ const EditGoalsForm = ({ setShow, goal }) => {
             {...register("target_reached")}
             type="text"
             id="doneWhen"
-            defaultValue={target_reached}
+            //defaultValue={target_reached}
         ></input>
 
         <label>
             <p className="label-p">Milestones:</p>
         </label>
-        <br />
         <input 
             {...register("milestones")} 
             type="text" 
             id="milestones"
-            defaultValue={milestones}
+            //defaultValue={milestones}
         ></input>
 
             <br />
 
         <label>
-            <p className="label-p">Costs:</p></label><br />
+            <p className="label-p">Costs:</p></label>
         <input {...register("costs")} 
                 type="number" 
                 id="cost"
-                defaultValue={cost}
+                //defaultValue={cost}
         ></input>
         
         <br />
@@ -131,7 +136,7 @@ const EditGoalsForm = ({ setShow, goal }) => {
             {...register("half_year_progress")}
             type="text"
             id="cost"
-            defaultValue={half_year_progress}
+            // defaultValue={half_year_progress}
         ></input>
 
         {fields.map((item, index) => (
@@ -139,7 +144,7 @@ const EditGoalsForm = ({ setShow, goal }) => {
                         className="hidden"
                         key={item.id}
                         {...register(`reviews.${index}.value`)}
-                        
+
                     />
                 ))}
 
@@ -151,10 +156,10 @@ const EditGoalsForm = ({ setShow, goal }) => {
 
         <button type="submit" className="submit-button">Save Changes</button>
 
-        <button className="status-button">Completed</button>
-
-        <button className="delete-button">Delete</button>
-
+        <button className="status-button green-button">Completed</button>
+        
+        <button className="delete-button red-button">Delete</button>
+        
     </form>
 </div>
   )

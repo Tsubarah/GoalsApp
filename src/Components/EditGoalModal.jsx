@@ -23,12 +23,12 @@ const EditGoalModal = () => {
 
 
             <h2>Edit a Goal</h2>
-
+            
             <hr />
-
-
+            
+            
             <EditGoalsForm />
-
+            
             
 
         </div>
