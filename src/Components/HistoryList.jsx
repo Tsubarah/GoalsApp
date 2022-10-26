@@ -32,17 +32,17 @@ const HistoryList = ({ goals }) => {
     return (
         <>
             <div>
-                <h3>Personal Development</h3>
+                <h3 className="history-headers">Personal Development</h3>
                 <Table goals={completedDev} />
             </div>
 
             <div>
-                <h3>Customer Interaction</h3>
+                <h3 className="history-headers">Customer Interaction</h3>
                 <Table goals={completedCus} />
             </div>
 
             <div>
-                <h3>Building Geshdo</h3>
+                <h3 className="history-headers">Building Geshdo</h3>
                 <Table goals={completedBui} />
             </div>
         </>
