@@ -4,6 +4,7 @@ import '../src/Assets/scss/App.scss'
 import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
 import GoalsPage from './Pages/GoalsPage';
+import HistoryPage from './Pages/HistoryPage';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<ManagerPage />} />
                 <Route path="/goals" element={<GoalsPage />} />
+                <Route path="/history" element={<HistoryPage />} />
 
             </Routes>
 
