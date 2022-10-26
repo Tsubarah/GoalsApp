@@ -14,6 +14,13 @@ ul {
     background-color: lightblue;
   }
 
+  .listItem:nth-child(4n), .listItem:nth-child(4n-1) {
+    background: lightblue;
+}
+.listItem:nth-child(4n-2), .listItem:nth-child(4n-3) {
+    background:lightcyan;
+}
+
   a {
     text-decoration: none;
   }
