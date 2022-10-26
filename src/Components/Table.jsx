@@ -1,58 +1,64 @@
-import './Table.css'
-import Accordion from './Accordion'
-import useDeleteGoal from '../Hooks/useDeleteGoal'
+import Accordion from "./Accordion";
+import Moment from 'react-moment';
 
+const table = ({ goals }) => {
 
-const Table = ({ goal }) => {
-
-  const { mutate: deleteFn } = useDeleteGoal()
+  // const { mutate: deleteFn } = useDeleteGoal()
   
 
-  const onDeleteHandler = (id) => {
-    if (window.confirm('Are you sure?')) {
-      deleteFn(id);
-    }
-  }
+  // const onDeleteHandler = (id) => {
+  //   if (window.confirm('Are you sure?')) {
+  //     deleteFn(id);
+  //   }
+  // }
 
-  return (
-    <div className="table-wrapper">
-      <table>
-        <tbody>
-          <tr>
-            <th className="th-prio">Prio</th>
-            <th className="th-description">Goal description</th>
-            <th className="th-target">Target reached when</th>
-            <th className="th-milestone">Milestone</th>
-            <th className="th-expected">Expected half year progress</th>
-            <th className="th-cost">Cost</th>
-          </tr>
-            <>
-              <tr>
-                <td>{goal.prio}</td>
-                <td>{goal.description}</td>
-                <td>{goal.target}</td>
-                <td>{goal.milestones}</td>
-                <td>{goal.half_year_progress}</td>
-                <td>{goal.cost}</td>
-              </tr>
-              <tr>
-                {goal.reviews.map(review => (
-                  <td colSpan={3}>
-                    <Accordion data={review} />
-                  </td>
+    return (
+        <div className="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th className="th-prio">Prio</th>
+                        <th className="th-deadline">Deadline</th>
+                        <th className="th-description">Goal description</th>
+                        <th className="th-target">Target reached when</th>
+                        <th className="th-milestone">Milestone</th>
+                        <th className="th-expected">
+                            Expected half year progress
+                        </th>
+                        <th className="th-cost">Cost</th>
+                    </tr>
+                </thead>
+
+                {goals.map((goal, i) => (
+                    <tbody key={i}>
+                        <tr>
+                            <td>{goal.prio}</td>
+                            <td><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></td>
+                            <td>{goal.description}</td>
+                            <td>{goal.target_reached}</td>
+                            <td>{goal.milestones}</td>
+                            <td>{goal.half_year_progress}</td>
+                            <td>{goal.cost}</td>
+                        </tr>
+
+                        <tr>
+                            {goal.reviews.map((review,i) => (
+                                <td colSpan={3} key={i}>
+                                    <Accordion data={review} />
+                                </td>
+                            ))}
+                        </tr>
+                        {/* <button 
+                          className="delete-btn"
+                          onClick={() => onDeleteHandler(goal.id)}
+                        >
+                          Delete
+                        </button> */}
+                    </tbody>
                 ))}
-              </tr>
-            </>
-        </tbody>
-        <button 
-          className="delete-btn"
-          onClick={() => onDeleteHandler(goal.id)}
-        >
-          Delete
-        </button>
-      </table>
-    </div>
-  )
-}
+            </table>
+        </div>
+    );
+};
 
-export default Table
+export default table;
