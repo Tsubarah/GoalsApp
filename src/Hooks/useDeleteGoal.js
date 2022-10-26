@@ -1,7 +1,8 @@
 import { useQueryClient, useMutation } from 'react-query'
-import GoalsAPI from "../services/GoalsAPI"
+import { toast } from 'react-toastify'
+import { deleteGoal } from "../services/GoalsAPI"
 
-const useDeleteGoal = ({ id }) => {
+const useDeleteGoal = () => {
   const queryClient = useQueryClient({
     defaultOptions: {
       queries: {
@@ -11,15 +12,13 @@ const useDeleteGoal = ({ id }) => {
     }
   })
 
-  return useMutation('goals', GoalsAPI.deleteGoal(id), {
-    onError: (error) => {
-      console.log(error.message)
+  return useMutation((id) => deleteGoal(id), {
+    onSuccess() {
+      toast.error("Deleting goal! 🗑")
+      queryClient.invalidateQueries('goals');
     },
-
-    onSuccess: () => {
-      console.log("Goal deleted")
-
-      queryClient.invalidateQueries('goals')
+    onError(error) {
+      console.log('error', error)
     }
   })
 }

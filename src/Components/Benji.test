@@ -1,0 +1,13 @@
+{ getGoal } = useGoalSelector()
+
+goal, setGoal = useState()
+goalId, setGoalId = useState()
+
+useEffect(() => {
+const currentGoal = await getGoal()
+setGoal(currentGoal)
+
+}, [goalId])
+
+
+onClick={() => setGoalId(goal2)}

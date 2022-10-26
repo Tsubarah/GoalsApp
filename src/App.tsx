@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { ToastContainer } from 'react-toastify';
 import '../src/Assets/scss/App.scss'
 import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
@@ -19,6 +20,7 @@ function App() {
 
             </Routes>
 
+            <ToastContainer autoClose={2000} />
             <ReactQueryDevtools />
         </div>
     );

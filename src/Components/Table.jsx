@@ -3,17 +3,14 @@ import Moment from 'react-moment';
 
 const table = ({ goals }) => {
 
-    // const deleteGoal = async () => {
-    //     try {
-    //       const res = await fetch(`http://localhost:7071/api/goals/delete/${goal.id}`, {
-    //         method: "delete",
-    //       })
-    //       console.log("Goal successfully deleted. Status code:", res.status)
-    
-    //     } catch (error) {
-    //       console.log(error.message)
-    //     }
-    //   }
+  // const { mutate: deleteFn } = useDeleteGoal()
+  
+
+  // const onDeleteHandler = (id) => {
+  //   if (window.confirm('Are you sure?')) {
+  //     deleteFn(id);
+  //   }
+  // }
 
     return (
         <div className="table-wrapper">
@@ -51,14 +48,14 @@ const table = ({ goals }) => {
                                 </td>
                             ))}
                         </tr>
+                        {/* <button 
+                          className="delete-btn"
+                          onClick={() => onDeleteHandler(goal.id)}
+                        >
+                          Delete
+                        </button> */}
                     </tbody>
                 ))}
-                {/* <button 
-                    className="delete-btn"
-                    onClick={() => deleteGoal()}
-                    >
-                    Delete
-                </button> */}
             </table>
         </div>
     );
