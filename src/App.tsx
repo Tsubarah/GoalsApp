@@ -6,6 +6,7 @@ import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
 import GoalsPage from './Pages/GoalsPage';
 import HistoryPage from './Pages/HistoryPage';
+import { AuthPage } from './Pages/AuthPage';
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
                 <Route path="/" element={<ManagerPage />} />
                 <Route path="/goals" element={<GoalsPage />} />
                 <Route path="/history" element={<HistoryPage />} />
-
+                <Route path="/auth" element={<AuthPage />} />
             </Routes>
 
             <ToastContainer autoClose={2000} />

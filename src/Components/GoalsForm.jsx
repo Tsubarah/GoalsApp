@@ -1,6 +1,5 @@
 import { Controller, useForm, useFieldArray } from "react-hook-form";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"
 import useCreateGoal from "../Hooks/useCreateGoal";
 
 const GoalsForm = ({ setShow }) => {
