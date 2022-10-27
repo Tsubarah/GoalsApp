@@ -3,9 +3,10 @@ import { toast } from 'react-toastify'
 import GoalsAPI from '../services/GoalsAPI'
 
 
-const useEditGoal = () => {
-    const queryClient = useQueryClient()
-  return useMutation(GoalsAPI.updateGoal, {
+const useEditGoal = ( id, data ) => {
+  const queryClient = useQueryClient()
+  
+  return useMutation(GoalsAPI.updateGoal(id, data), {
     onError:(error) => {
         console.log(error.message)
     },

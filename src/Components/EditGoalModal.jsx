@@ -1,15 +1,19 @@
 import { useState } from "react"
 import EditGoalsForm from "./EditGoalsForm"
 
-const EditGoalModal = () => {
+const EditGoalModal = ({ goal }) => {
     const [show, setShow] = useState(false)
 
-    const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
   return (
     <>
     <div className="d-flex text-align-center justify-content-center">
-    <button className="addGoal-button green-button d-flex justify-content-center" onClick={handleShow}>Edit a Goal</button>
+
+    <button className="addGoal-button green-button d-flex justify-content-center" 
+      onClick={() => {setShow(!show)}}
+    >
+      Edit a Goal
+    </button>
+
     </div>
 
       {
@@ -18,7 +22,13 @@ const EditGoalModal = () => {
         <div className="addGoal-modal">
 
           <div className="button-container">
-            <button className="green-button" onClick={handleClose}>Close</button>
+
+            <button className="green-button" 
+              onClick={() => {setShow(!show)}}
+            >
+              Close
+            </button>
+            
             </div>
 
 
@@ -27,7 +37,7 @@ const EditGoalModal = () => {
             <hr />
             
             
-            <EditGoalsForm />
+            <EditGoalsForm goal={goal} />
             
             
 

@@ -1,5 +1,6 @@
 import Accordion from "./Accordion";
 import Moment from 'react-moment';
+import EditGoalModal from './EditGoalModal';
 
 const table = ({ goals }) => {
 
@@ -50,6 +51,7 @@ const table = ({ goals }) => {
                                     <Accordion data={review} />
                                 </td>
                             ))}
+                            <EditGoalModal goal={goal} />
                         </tr>
                     </tbody>
                 ))}
