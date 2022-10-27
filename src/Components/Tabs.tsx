@@ -42,6 +42,11 @@ const Tabs = ({ goals }: TabsProps) => {
     
     console.log(goals)
 
+    useEffect(() => {
+        console.log(goals)
+        console.log(toggleState)
+    }, [goals, toggleState])
+
     return (
         <>
             <div className="bloc-tabs">

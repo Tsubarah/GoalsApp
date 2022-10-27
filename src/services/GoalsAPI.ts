@@ -23,7 +23,7 @@ const get = async (endpoint: string) => {
 /**
  * Get all goals
  */
-const getGoals = ():Promise<IGoal[]> => {
+export const getGoals = ():Promise<IGoal[]> => {
   return get('/goals')
 }
 
@@ -62,12 +62,8 @@ export const updateGoal = async (goal_id: string, data: IGoal) => {
  * Delete a goal
  * @param goal_id goal to delete
  */
-const deleteGoal = async (goal_id: string) => {
-  const res = await axios.delete(`/goals/delete/${goal_id}`, {
-    data: {
-      id: goal_id
-    }
-  })
+export const deleteGoal = async (goal_id: string) => {
+  const res = await axios.delete(`/goals/${goal_id}`)
   return res.data
 }
 

@@ -50,14 +50,14 @@ const table = ({ goals }) => {
                             ))}
                             <EditGoalModal goal={goal} />
                         </tr>
+                        {/* <button 
+                          className="delete-btn"
+                          onClick={() => onDeleteHandler(goal.id)}
+                        >
+                          Delete
+                        </button> */}
                     </tbody>
                 ))}
-                {/* <button 
-                  className="delete-btn"
-                  onClick={() => onDeleteHandler(goal.id)}
-                >
-                  Delete
-                </button> */}
             </table>
         </div>
     );
