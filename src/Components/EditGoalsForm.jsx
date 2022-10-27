@@ -31,6 +31,24 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
 
 
   const onUpdateHandler = (data) => {
+    // const updatedGoal = {
+    //   id: data.id,
+    //   category: data.category,
+    //   creationDate: data.creationDate,
+    //   description: data.description,
+    //   halfYearProgress: data.half_year_progress,
+    //   isComplete: data.isComplete,
+    //   milestones: data.milestones,
+    //   prio: data.prio,
+    //   reviews: [
+    //     {
+    //       halfYearReview: data.half_year_review,
+    //     },
+    //     {
+    //       endOfYearReview: data.end_of_year_review,
+    //     }
+    //   ]
+    // }
     console.log('id', data.id)
     console.log('update data', data)
       editFn(data.id, data)
