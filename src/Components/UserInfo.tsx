@@ -19,7 +19,7 @@ const UserInfo = () => {
                     <h4>ID:</h4>
                     <p>ee34ep-282a-4b5f-b41a-967c6vc9-43oslv</p>
                     <h4>Manager: </h4>
-                    <p>Fredrik Sydvart</p>
+                    <p>John Doe</p>
                 </div>
             </div>
             <div className="user-profile">
