@@ -1,9 +1,13 @@
 import useEditGoal from "../Hooks/useEditGoal"
+import useDeleteGoal from "../Hooks/useDeleteGoal";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"
 import { Controller, useForm, useFieldArray } from "react-hook-form"
+import "react-datepicker/dist/react-datepicker.css"
 
-const EditGoalsForm = ({ goal }) => {
+const EditGoalsForm = ({ goal, show, setShow }) => {
+  const { mutate: deleteFn } = useDeleteGoal()
+  const { mutate: editFn } = useEditGoal()
+
   const {
     control,
     register,
@@ -18,17 +22,25 @@ const EditGoalsForm = ({ goal }) => {
     name: "reviews",
   });
 
-  const { mutate: editFn } = useEditGoal()
+  const onDeleteHandler = (id) => {
+    if (window.confirm('Are you sure?')) {
+      deleteFn(id);
+      setShow(!show)
+    }
+  }
 
-  const updateGoal = (id, data) => {
-    console.log('id', id)
-    editFn(id, data)
+
+  const onUpdateHandler = (data) => {
+    console.log('id', data.id)
+    console.log('update data', data)
+      editFn(data.id, data)
+    // setShow(!show)
   }
 
 
   return (
     <div>
-      <form onSubmit={handleSubmit(updateGoal(goal.id, goal))}>
+      <form onSubmit={handleSubmit(onUpdateHandler)}>
 
         <label>
           <p className="label-p">Type of Goal</p>
@@ -150,7 +162,12 @@ const EditGoalsForm = ({ goal }) => {
 
         {/* <button className="status-button green-button" onClick={() => { }}>Completed</button> */}
 
-        {/* <button className="delete-button red-button" onClick={() => { }}>Delete</button> */}
+        <button 
+          className="delete-btn"
+          onClick={() => onDeleteHandler(goal.id)}
+        >
+          Delete
+        </button>
 
       </form>
     </div>

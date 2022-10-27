@@ -37,7 +37,7 @@ const EditGoalModal = ({ goal }) => {
           
           <hr />
           
-          <EditGoalsForm goal={goal} />
+          <EditGoalsForm goal={goal} setShow={setShow} show={show} />
             
         </div>
         )

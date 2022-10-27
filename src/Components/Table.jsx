@@ -4,14 +4,14 @@ import EditGoalModal from './EditGoalModal';
 
 const table = ({ goals }) => {
   
-  // const { mutate: deleteFn } = useDeleteGoal()
+//   const { mutate: deleteFn } = useDeleteGoal()
   
 
-  // const onDeleteHandler = (id) => {
-  //   if (window.confirm('Are you sure?')) {
-  //     deleteFn(id);
-  //   }
-  // }
+//   const onDeleteHandler = (id) => {
+//     if (window.confirm('Are you sure?')) {
+//       deleteFn(id);
+//     }
+//   }
 
     return (
         <div className="table-wrapper">

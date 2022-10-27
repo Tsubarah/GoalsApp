@@ -3,9 +3,7 @@ import { toast } from 'react-toastify'
 import { updateGoal } from '../services/GoalsAPI'
 
 
-const useEditGoal = ( id, data ) => {
-  console.log('id', id)
-  console.log('data', data)
+const useEditGoal = () => {
   const queryClient = useQueryClient({
     defaultOptions: {
       queries: {
@@ -16,18 +14,15 @@ const useEditGoal = ( id, data ) => {
   })
   
   return useMutation((id, data) => updateGoal(id, data), {
+    onSuccess: () => {
+      toast.success('Goal updated!')
+
+      queryClient.invalidateQueries('goals')
+  },
     onError:(error) => {
         console.log(error.message)
     },
-
-    onSuccess: () => {
-        toast.success('Goal updated!')
-
-        queryClient.invalidateQueries('goals')
-    }
-  }
-    
-  )
+  })
 }
 
 export default useEditGoal

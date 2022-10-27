@@ -4,6 +4,8 @@ import "react-datepicker/dist/react-datepicker.css"
 import useCreateGoal from "../Hooks/useCreateGoal";
 
 const GoalsForm = ({ setShow }) => {
+    const { mutate: createFn } = useCreateGoal();
+
     const {
         control,
         register,
@@ -29,11 +31,9 @@ const GoalsForm = ({ setShow }) => {
         control,
         name: "reviews",
     });
-    
-    const createGoalMutation = useCreateGoal();
 
     const createGoal = (data) => {
-      createGoalMutation.mutate(data)
+      createFn(data)
       reset()
       setShow(false)
     }
