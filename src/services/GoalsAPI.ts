@@ -52,7 +52,7 @@ const createGoal = async (data: IGoal) => {
  * @param goal_id Goal to update
  * @param data Data to update goal with
  */
-const updateGoal = async (goal_id: string, data: IGoal) => {
+export const updateGoal = async (goal_id: string, data: IGoal) => {
   const res = await axios.patch(`/goals/${goal_id}`, data)
   return res.data
 }

@@ -1,19 +1,17 @@
 import Accordion from "./Accordion";
 import Moment from 'react-moment';
+import EditGoalModal from './EditGoalModal';
 
 const table = ({ goals }) => {
+  
+  // const { mutate: deleteFn } = useDeleteGoal()
+  
 
-    // const deleteGoal = async () => {
-    //     try {
-    //       const res = await fetch(`http://localhost:7071/api/goals/delete/${goal.id}`, {
-    //         method: "delete",
-    //       })
-    //       console.log("Goal successfully deleted. Status code:", res.status)
-    
-    //     } catch (error) {
-    //       console.log(error.message)
-    //     }
-    //   }
+  // const onDeleteHandler = (id) => {
+  //   if (window.confirm('Are you sure?')) {
+  //     deleteFn(id);
+  //   }
+  // }
 
     return (
         <div className="table-wrapper">
@@ -50,14 +48,15 @@ const table = ({ goals }) => {
                                     <Accordion data={review} />
                                 </td>
                             ))}
+                            <EditGoalModal goal={goal} />
                         </tr>
                     </tbody>
                 ))}
                 {/* <button 
-                    className="delete-btn"
-                    onClick={() => deleteGoal()}
-                    >
-                    Delete
+                  className="delete-btn"
+                  onClick={() => onDeleteHandler(goal.id)}
+                >
+                  Delete
                 </button> */}
             </table>
         </div>

@@ -6,17 +6,28 @@ const Modal = () => {
 
   return (
         <>
-        <div className="d-flex text-align-center justify-content-center">
-        <button className="addGoal-button green-button d-flex justify-content-center" onClick={() => setShow(!show)}>Create a Goal</button>
-        </div>
+          <div className="d-flex text-align-center justify-content-center">
+
+            <button 
+              className="addGoal-button green-button d-flex justify-content-center" 
+              onClick={() => setShow(!show)}
+            >
+              Create a Goal
+            </button>
+          </div>
 
           {
             show && (
 
-            <div className="addGoal-modal">
+              <div className="addGoal-modal">
 
-              <div className="button-container">
-                <button className="green-button" onClick={() => setShow(!show)}>Close</button>
+                <div className="button-container">
+                  <button 
+                    className="green-button" 
+                    onClick={() => setShow(!show)}
+                  >
+                    Close
+                  </button>
                 </div>
 
 
@@ -26,9 +37,9 @@ const Modal = () => {
 
 
                 <GoalsForm setShow={setShow} />
-                
+                  
 
-            </div>
+              </div>
             )
           }
     </>
