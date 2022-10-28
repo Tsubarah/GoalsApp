@@ -8,14 +8,13 @@
 @import 'sidebar';
 @import 'tabs';
 @import 'userlist';
-@import 'goalsForm';
-@import 'goalsForm';
-@import 'goalsForm';
 @import 'scrollSpy';
 @import 'editGoalsForm';
 @import 'editGoalModal';
-
+@import 'react-toastify/dist/ReactToastify.css';
 @import 'table';
+@import 'historyPage';
+@import 'userInfo';
 
 body {
     margin: 0;

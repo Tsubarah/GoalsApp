@@ -11,7 +11,7 @@ const useCreateGoal = () => {
     },
 
     onSuccess: () => {
-      toast.success('Goal created!')
+      toast.success('New goal created! 🥳')
 
       queryClient.invalidateQueries('goals')
     }
