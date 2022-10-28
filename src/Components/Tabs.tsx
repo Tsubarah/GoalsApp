@@ -31,6 +31,23 @@ const Tabs = ({ goals }: TabsProps) => {
         setBuildingGeshdo(categoryBui)
     }
 
+    //15552000000 six months in millisecounds
+
+    let spanSixMonths = Date.now() - 15552000000
+
+    console.log('hejhej',spanSixMonths)
+
+    const filterSixMonths = () => {
+
+        const sixMonths = goals.filter(goal => Date.parse(goal.creationDate) >= spanSixMonths)
+        
+        console.log('sixmonths',sixMonths)
+    }
+
+    console.log(filterSixMonths())
+
+    
+
     
     useEffect(()=> {
         filterFunction()
@@ -70,7 +87,7 @@ const Tabs = ({ goals }: TabsProps) => {
                     Building Geshdo
                 </button>
             </div>
-
+            <button className="green-button" onClick={() => {filterSixMonths()}}>Goals 6 months</button>
             <div className="content-tabs">
 
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
