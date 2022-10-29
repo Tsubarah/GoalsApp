@@ -5,6 +5,7 @@ import useCreateGoal from "../Hooks/useCreateGoal";
 
 const GoalsForm = ({ setShow }) => {
     const { mutate: createFn } = useCreateGoal();
+    // const value = null;
 
     const {
         control,
@@ -33,6 +34,7 @@ const GoalsForm = ({ setShow }) => {
     });
 
     const createGoal = (data) => {
+      console.log('data', data)
       createFn(data)
       reset()
       setShow(false)
@@ -69,12 +71,15 @@ const GoalsForm = ({ setShow }) => {
                 <label>
                     <p className="label-p">Prio:</p>
                 </label>
-                <select {...register("prio")} id="prio">
-                    <option value={Number(1)}>1</option>
-                    <option value={Number(2)}>2</option>
-                    <option value={Number(3)}>3</option>
-                    <option value={Number(4)}>4</option>
-                    <option value={Number(5)}>5</option>
+                <select {...register("prio", { 
+                    valueAsNumber: true
+                    })} 
+                    id="prio">
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
                 </select>
 
                 <br />
@@ -89,9 +94,13 @@ const GoalsForm = ({ setShow }) => {
                     render={({ field }) => (
                         <DatePicker
                             placeholderText="Select date"
-                            onChange={(date) => field.onChange(date)}
+                            onChange={(date) => {field.onChange(date)}}
+                            // selected={field.value}
                             selected={field.value}
-                            minDate={new Date()}
+                            // value={new Date("10/01/2022")}
+                            // defaultValue={new Date()}
+                            // minDate={new Date()}
+                            // required
                         />
                     )}
                 />
@@ -123,7 +132,11 @@ const GoalsForm = ({ setShow }) => {
                 <label>
                     <p className="label-p">Costs:</p>
                 </label>
-                <input {...register("cost")} type="number" id="cost"></input>
+                <input {...register("cost", {
+                    valueAsNumber: true,
+                    })} 
+                    type="number" 
+                    id="cost"></input>
 
                 <br />
 

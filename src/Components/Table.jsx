@@ -3,15 +3,6 @@ import Moment from 'react-moment';
 import EditGoalModal from './EditGoalModal';
 
 const table = ({ goals }) => {
-  
-//   const { mutate: deleteFn } = useDeleteGoal()
-  
-
-//   const onDeleteHandler = (id) => {
-//     if (window.confirm('Are you sure?')) {
-//       deleteFn(id);
-//     }
-//   }
 
     return (
         <div className="table-wrapper">
@@ -50,12 +41,6 @@ const table = ({ goals }) => {
                             ))}
                             <EditGoalModal goal={goal} />
                         </tr>
-                        {/* <button 
-                          className="delete-btn"
-                          onClick={() => onDeleteHandler(goal.id)}
-                        >
-                          Delete
-                        </button> */}
                     </tbody>
                 ))}
             </table>

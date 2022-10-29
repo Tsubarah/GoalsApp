@@ -1,19 +1,37 @@
 import useEditGoal from "../Hooks/useEditGoal"
 import useDeleteGoal from "../Hooks/useDeleteGoal";
 import DatePicker from "react-datepicker";
-import { Controller, useForm, useFieldArray } from "react-hook-form"
+import { useState, useEffect } from 'react'
+import { checkValue } from "../utils/helpers"
+import { useForm, useFieldArray } from "react-hook-form"
 import "react-datepicker/dist/react-datepicker.css"
 
 const EditGoalsForm = ({ goal, show, setShow }) => {
   const { mutate: deleteFn } = useDeleteGoal()
   const { mutate: editFn } = useEditGoal()
 
+  const [selectedDate, setSelectedDate] = useState(goal.deadline)
+  const [isComplete, setIsComplete] = useState(goal.isComplete)
+
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+        reviews: [
+            {
+                type: "half_year_review",
+                value: "",
+            },
+            {
+                type: "end_of_year_review",
+                value: "",
+            },
+        ],
+    },
+})
   
   console.log('goal', goal)
 
@@ -30,30 +48,46 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
   }
 
 
-  const onUpdateHandler = (data) => {
-    // const updatedGoal = {
-    //   id: data.id,
-    //   category: data.category,
-    //   creationDate: data.creationDate,
-    //   description: data.description,
-    //   halfYearProgress: data.half_year_progress,
-    //   isComplete: data.isComplete,
-    //   milestones: data.milestones,
-    //   prio: data.prio,
-    //   reviews: [
-    //     {
-    //       halfYearReview: data.half_year_review,
-    //     },
-    //     {
-    //       endOfYearReview: data.end_of_year_review,
-    //     }
-    //   ]
-    // }
-    console.log('id', data.id)
-    console.log('update data', data)
-      editFn(data.id, data)
+  const onUpdateHandler = async (data) => {
+    // console.log('GOALdeadline', goal.deadline)
+    console.log('data', data)
+    // console.log('DATAdeadline', data.deadline)
+    const updatedGoal = {
+      id: goal.id,
+      creationDate: goal.creationDate,
+      category: checkValue(data.category, goal.category),
+      deadline: checkValue(selectedDate, goal.deadline),
+      description: checkValue(data.description, goal.description),
+      half_year_progress: checkValue(data.half_year_progress, goal.half_year_progress),
+      isComplete: isComplete,
+      milestones: checkValue(data.milestones, goal.milestones),
+      prio: checkValue(data.prio, goal.prio),
+      cost: checkValue(data.costs, goal.costs),
+      reviews: [
+        {
+          type: "half_year_review",
+          value: checkValue(data.half_year_review, goal.half_year_review)
+        },
+        {
+          type: "end_of_year_review",
+          value: checkValue(data.end_of_year_review, goal.end_of_year_review),
+        }
+      ]
+    }
+    // console.log('GOAL NOT UPDATED', goal)
+    console.log('updated data', updatedGoal)
+    // console.log('DATA', data)
+    
+    if (updatedGoal) {
+      editFn(updatedGoal.id, updatedGoal)
+    }
     // setShow(!show)
   }
+
+  useEffect(() => {
+    if (!goal) return
+    setSelectedDate(goal.deadline)
+  }, [goal])
 
 
   return (
@@ -88,15 +122,17 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
         <label>
           <p className="label-p">Prio:</p>
         </label>
-        <select {...register("prio")}
+        <select {...register("prio", {
+          valueAsNumber: true,
+          })}
           id="prio"
           defaultValue={goal.prio}
         >
-          <option value={Number(1)}>1</option>
-          <option value={Number(2)}>2</option>
-          <option value={Number(3)}>3</option>
-          <option value={Number(4)}>4</option>
-          <option value={Number(5)}>5</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
         </select>
 
         <br />
@@ -104,18 +140,12 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
         <label>
           <p className="label-p">Deadline:</p>
         </label>
-        <Controller
-          control={control}
-          name="deadline"
-          render={({ field }) => (
-            <DatePicker
-              placeholderText="Select date"
-              onChange={(date) => field.onChange(date)}
-              selected={field.value}
-              defaultValue={goal.deadline}
-            />
-          )}
-        />
+          <DatePicker
+            placeholderText="Select date"
+            onChange={(date) => setSelectedDate(date.toISOString())}
+            selected={new Date(selectedDate)}
+            minDate={new Date()}
+          />
 
         <br />
 
@@ -144,7 +174,9 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
         <label>
           <p className="label-p">Costs:</p></label>
         <input
-          {...register("costs")}
+          {...register("costs", {
+            valueAsNumber: true,
+            })}
           type="number"
           id="cost"
           defaultValue={goal.cost}
@@ -165,11 +197,10 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
           <input
             key={item.id}
             {...register(`reviews.${index}.value`)}
-
           />
         ))}
 
-        <hr />
+        <br />
 
         <button 
           type="submit" 
@@ -178,7 +209,11 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
           Save Changes
         </button>
 
-        {/* <button className="status-button green-button" onClick={() => { }}>Completed</button> */}
+        <button className="status-button green-button" 
+          onClick={() => setIsComplete(!isComplete)}
+        >
+          {isComplete ? "Completed" : "Not completed"}
+        </button>
 
         <button 
           className="delete-btn"

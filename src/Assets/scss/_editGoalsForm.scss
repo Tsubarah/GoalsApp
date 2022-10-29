@@ -29,26 +29,26 @@
     white-space: nowrap;
   }
   
-  .red-button:hover {
-    background-color: #841e1e;
-    opacity: 1;
-    transform: translateY(0);
-    transition-duration: .35s;
-  }
-  
-  .red-button:active {
-    transform: translateY(2px);
-    transition-duration: .35s;
-  }
-  
-  .red-button:hover {
-    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
-  }
-  
-   .delete-button {
-     margin-left: 47%;
-   }
+.red-button:hover {
+  background-color: #841e1e;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+}
 
-   .status-button {
-    margin-left: 20px;
-   }
+.red-button:active {
+  transform: translateY(2px);
+  transition-duration: .35s;
+}
+
+.red-button:hover {
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
+.delete-button {
+  margin-left: 47%;
+}
+
+.status-button {
+margin-left: 20px;
+}
