@@ -1,8 +1,13 @@
 import Accordion from "./Accordion";
 import Moment from 'react-moment';
 import EditGoalModal from './EditGoalModal';
+import { IGoal } from '../typings/Goal'
 
-const table = ({ goals }) => {
+type TabsProps = {
+    goals: IGoal[]
+}
+
+const table = ({ goals }: TabsProps) => {
 
     return (
         <div className="table-wrapper">

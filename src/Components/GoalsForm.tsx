@@ -2,10 +2,17 @@ import { Controller, useForm, useFieldArray } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import useCreateGoal from "../Hooks/useCreateGoal";
+import { IGoal } from '../typings/Goal'
+import { useState } from 'react'
 
-const GoalsForm = ({ setShow }) => {
+type FormProps = {
+    show: boolean,
+    setShow: (show: boolean) => void;
+}
+
+const GoalsForm = ({ setShow, show }: FormProps) => {
     const { mutate: createFn } = useCreateGoal();
-    // const value = null;
+    const [date, setDate] = useState<Date | null>(new Date())
 
     const {
         control,
@@ -13,7 +20,7 @@ const GoalsForm = ({ setShow }) => {
         handleSubmit,
         formState: { errors },
         reset,
-    } = useForm({
+    } = useForm<IGoal>({
         defaultValues: {
             reviews: [
                 {
@@ -28,16 +35,17 @@ const GoalsForm = ({ setShow }) => {
         },
     });
 
+    
     const { fields } = useFieldArray({
         control,
         name: "reviews",
     });
 
-    const createGoal = (data) => {
+    const createGoal = (data: IGoal) => {
       console.log('data', data)
       createFn(data)
       reset()
-      setShow(false)
+      setShow(!show)
     }
 
     return (
@@ -91,18 +99,23 @@ const GoalsForm = ({ setShow }) => {
                 <Controller
                     control={control}
                     name="deadline"
-                    render={({ field }) => (
-                        <DatePicker
+                    render={({ field }) => {
+                        console.log(typeof(field.value));
+                        const selectedDate = new Date(field.value)
+                        return <DatePicker
                             placeholderText="Select date"
-                            onChange={(date) => {field.onChange(date)}}
+                            dateFormat="dd-MM-yyyy"
+                            selected={date}
+                            onChange={(date: Date | null) => setDate(date)}
+
+                            // onChange={(date) => {field.onChange(date)}}
                             // selected={field.value}
-                            selected={field.value}
                             // value={new Date("10/01/2022")}
                             // defaultValue={new Date()}
                             // minDate={new Date()}
                             // required
                         />
-                    )}
+                    }}
                 />
 
                 <br />

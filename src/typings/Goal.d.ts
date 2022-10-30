@@ -1,7 +1,7 @@
 export interface IGoal {
-  id: string;
-  creationDate: string;
-  _ts: number;
+  id?: string;
+  creationDate?: string;
+  _ts?: number;
   category: string,
   prio: number,
   description: string,
@@ -9,11 +9,12 @@ export interface IGoal {
   milestones: string, 
   half_year_progress: string,
   cost: number,
-  isComplete: boolean,
+  isComplete?: boolean,
+  deadline: string,
   reviews: IReview [],
 }
 
 interface IReview {
- half_year_review: string,
- end_of_year_review: string
+  type: string,
+  value: string,
 }

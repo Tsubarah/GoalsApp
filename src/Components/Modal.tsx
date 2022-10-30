@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import GoalsForm from './GoalsForm'
 
+
+
 const Modal = () => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState<boolean>(false)
 
   return (
         <>
@@ -36,7 +38,7 @@ const Modal = () => {
                 <hr />
 
 
-                <GoalsForm setShow={setShow} />
+                <GoalsForm setShow={setShow} show={show} />
                   
 
               </div>
