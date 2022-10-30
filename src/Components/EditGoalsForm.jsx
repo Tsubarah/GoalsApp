@@ -61,6 +61,7 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
       half_year_progress: checkValue(data.half_year_progress, goal.half_year_progress),
       isComplete: isComplete,
       milestones: checkValue(data.milestones, goal.milestones),
+      target_reached: checkValue(data.target_reached, goal.target_reached),
       prio: checkValue(data.prio, goal.prio),
       cost: checkValue(data.costs, goal.costs),
       reviews: [

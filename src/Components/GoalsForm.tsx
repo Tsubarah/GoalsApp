@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import useCreateGoal from "../Hooks/useCreateGoal";
 import { IGoal } from '../typings/Goal'
-import { useState } from 'react'
 
 type FormProps = {
     show: boolean,
@@ -12,7 +11,6 @@ type FormProps = {
 
 const GoalsForm = ({ setShow, show }: FormProps) => {
     const { mutate: createFn } = useCreateGoal();
-    const [date, setDate] = useState<Date | null>(new Date())
 
     const {
         control,
@@ -99,23 +97,16 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
                 <Controller
                     control={control}
                     name="deadline"
-                    render={({ field }) => {
-                        console.log(typeof(field.value));
-                        const selectedDate = new Date(field.value)
-                        return <DatePicker
+                    render={({ field }) => (
+                        <DatePicker
                             placeholderText="Select date"
                             dateFormat="dd-MM-yyyy"
-                            selected={date}
-                            onChange={(date: Date | null) => setDate(date)}
-
-                            // onChange={(date) => {field.onChange(date)}}
-                            // selected={field.value}
-                            // value={new Date("10/01/2022")}
-                            // defaultValue={new Date()}
-                            // minDate={new Date()}
-                            // required
+                            selected={field.value ? new Date(field.value) : null} 
+                            onChange={(date) => {field.onChange(date)}}
+                            minDate={new Date()}
+                            required
                         />
-                    }}
+                    )}
                 />
 
                 <br />
