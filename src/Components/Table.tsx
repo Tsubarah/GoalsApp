@@ -4,7 +4,7 @@ import EditGoalModal from './EditGoalModal';
 import { IGoal } from '../typings/Goal'
 
 type TabsProps = {
-    goals: IGoal[]
+    goals: IGoal[],
 }
 
 const table = ({ goals }: TabsProps) => {

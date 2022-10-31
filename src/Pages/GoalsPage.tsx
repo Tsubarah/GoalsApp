@@ -1,10 +1,11 @@
-import useGoals from "../Hooks/useGoals"
+import useGoal from '../Hooks/useGoal'
 import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
 
 const GoalsPage = () => {
+    const { getGoals: goals, isLoading } = useGoal()
 
-    const { data: goals, isLoading } = useGoals()
+    console.log('goals', goals)
 
     return (
         

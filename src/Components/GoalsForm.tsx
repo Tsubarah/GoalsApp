@@ -1,7 +1,7 @@
 import { Controller, useForm, useFieldArray } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
-import useCreateGoal from "../Hooks/useCreateGoal";
+import useGoal from '../Hooks/useGoal'
 import { IGoal } from '../typings/Goal'
 
 type FormProps = {
@@ -10,7 +10,7 @@ type FormProps = {
 }
 
 const GoalsForm = ({ setShow, show }: FormProps) => {
-    const { mutate: createFn } = useCreateGoal();
+    const { createGoal } = useGoal();
 
     const {
         control,
@@ -39,16 +39,16 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
         name: "reviews",
     });
 
-    const createGoal = (data: IGoal) => {
+    const create = (data: IGoal) => {
       console.log('data', data)
-      createFn(data)
+      createGoal.mutate(data)
       reset()
       setShow(!show)
     }
 
     return (
         <div>
-            <form onSubmit={handleSubmit(createGoal)}>
+            <form onSubmit={handleSubmit(create)}>
                 <label>
                     <p className="label-p">Type of Goal</p>
                 </label>

@@ -1,7 +1,14 @@
 import { useState } from "react"
 import EditGoalsForm from "./EditGoalsForm"
+import { IGoal } from '../typings/Goal'
 
-const EditGoalModal = ({ goal }) => {
+type ModalProps = {
+  goal: IGoal,
+  // show: boolean,
+  // setShow: (show: boolean) => void,
+}
+
+const EditGoalModal = ({ goal }: ModalProps) => {
   const [show, setShow] = useState(false)
 
   return (

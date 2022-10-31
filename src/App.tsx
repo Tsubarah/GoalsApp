@@ -17,7 +17,6 @@ function App() {
                 <Route path="/" element={<ManagerPage />} />
                 <Route path="/goals" element={<GoalsPage />} />
                 <Route path="/history" element={<HistoryPage />} />
-
             </Routes>
 
             <ToastContainer autoClose={2000} />

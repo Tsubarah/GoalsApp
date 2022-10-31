@@ -31,7 +31,7 @@ export const getGoals = ():Promise<IGoal[]> => {
 /**
  * Get single goal
  */
-const getGoal = (id: string) => {
+export const getGoal = (id: string) => {
   return get(`/goals/${id}`)
 }
 

@@ -1,24 +1,38 @@
-import useEditGoal from "../Hooks/useEditGoal"
-import useDeleteGoal from "../Hooks/useDeleteGoal";
+import useGoal from '../Hooks/useGoal'
 import DatePicker from "react-datepicker";
 import { useState, useEffect } from 'react'
-import { checkValue } from "../utils/helpers"
 import { useForm, useFieldArray } from "react-hook-form"
 import "react-datepicker/dist/react-datepicker.css"
+import { IGoal } from "../typings/Goal";
 
-const EditGoalsForm = ({ goal, show, setShow }) => {
-  const { mutate: deleteFn } = useDeleteGoal()
-  const { mutate: editFn } = useEditGoal()
+type EditProps = {
+  goal: IGoal,
+  show: boolean,
+  setShow: (show: boolean) => void,
+  // deleteFn(id: string): void,
+}
+
+const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
+  const { deleteGoal, editGoal } = useGoal();
+
+
+
+  // const [localGoal, setLocalGoal] = useState<IGoal>(goal);
+
 
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
+
+  // const onSubmit = async () => {
+  //   await goalService.updateGoal(goal);
+  // }
 
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IGoal>({
     defaultValues: {
         reviews: [
             {
@@ -40,50 +54,57 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
     name: "reviews",
   });
 
-  const onDeleteHandler = (id) => {
+  const onDeleteHandler = (id: string) => {
     if (window.confirm('Are you sure?')) {
-      deleteFn(id);
+      deleteGoal.mutate(id);
       setShow(!show)
     }
   }
 
-
-  const onUpdateHandler = async (data) => {
-    // console.log('GOALdeadline', goal.deadline)
+  const onUpdateHandler = async (data: IGoal) => {
+    const x: IGoal= {...data, description: 'New descrption'}
     console.log('data', data)
-    // console.log('DATAdeadline', data.deadline)
-    const updatedGoal = {
-      id: goal.id,
-      creationDate: goal.creationDate,
-      category: checkValue(data.category, goal.category),
-      deadline: checkValue(selectedDate, goal.deadline),
-      description: checkValue(data.description, goal.description),
-      half_year_progress: checkValue(data.half_year_progress, goal.half_year_progress),
-      isComplete: isComplete,
-      milestones: checkValue(data.milestones, goal.milestones),
-      target_reached: checkValue(data.target_reached, goal.target_reached),
-      prio: checkValue(data.prio, goal.prio),
-      cost: checkValue(data.costs, goal.costs),
-      reviews: [
-        {
-          type: "half_year_review",
-          value: checkValue(data.half_year_review, goal.half_year_review)
-        },
-        {
-          type: "end_of_year_review",
-          value: checkValue(data.end_of_year_review, goal.end_of_year_review),
-        }
-      ]
-    }
-    // console.log('GOAL NOT UPDATED', goal)
-    console.log('updated data', updatedGoal)
-    // console.log('DATA', data)
-    
-    if (updatedGoal) {
-      editFn(updatedGoal.id, updatedGoal)
-    }
-    // setShow(!show)
   }
+
+  // const onUpdateHandler = async (data: IGoal) => {
+  //   // console.log('GOALdeadline', goal.deadline)
+  //   console.log('data', data)
+  //   // console.log('DATAdeadline', data.deadline)
+  //   const updatedGoal: IGoal = {
+  //     id: goal.id,
+  //     creationDate: goal.creationDate,
+  //     category: data.category,
+  //     deadline: selectedDate,
+  //     description: data.description,
+  //     half_year_progress: data.half_year_progress,
+  //     isComplete: isComplete,
+  //     milestones: data.milestones,
+  //     target_reached: data.target_reached,
+  //     prio: data.prio,
+  //     cost: data.cost,
+  //     reviews: data.reviews.map(review => {
+  //       type: review.type,
+  //       value: review.value,
+  //     })
+  //       // {
+  //       //   type: data.reviews.type,
+  //       //   value: data.reviews[0].value
+  //       // },
+  //       // {
+  //       //   type: "end_of_year_review",
+  //       //   value: data.reviews[1].value,
+  //       // }
+      
+  //   }
+  //   // console.log('GOAL NOT UPDATED', goal)
+  //   console.log('updated data', updatedGoal)
+  //   // console.log('DATA', data)
+    
+  //   if (updatedGoal) {
+  //     editFn(updatedGoal.id, updatedGoal)
+  //   }
+  //   // setShow(!show)
+  // }
 
   useEffect(() => {
     if (!goal) return
@@ -143,7 +164,7 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
         </label>
           <DatePicker
             placeholderText="Select date"
-            onChange={(date) => setSelectedDate(date.toISOString())}
+            onChange={(date) => setSelectedDate(date ? date.toISOString(): "")}
             selected={new Date(selectedDate)}
             minDate={new Date()}
           />
@@ -175,7 +196,7 @@ const EditGoalsForm = ({ goal, show, setShow }) => {
         <label>
           <p className="label-p">Costs:</p></label>
         <input
-          {...register("costs", {
+          {...register("cost", {
             valueAsNumber: true,
             })}
           type="number"

@@ -1,5 +1,5 @@
 export interface IGoal {
-  id?: string;
+  id: string;
   creationDate?: string;
   _ts?: number;
   category: string,
@@ -11,7 +11,7 @@ export interface IGoal {
   cost: number,
   isComplete?: boolean,
   deadline: string,
-  reviews: IReview [],
+  reviews: IReview[],
 }
 
 interface IReview {
