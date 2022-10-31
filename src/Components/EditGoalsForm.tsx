@@ -15,8 +15,6 @@ type EditProps = {
 const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   const { deleteGoal, editGoal } = useGoal();
 
-
-
   // const [localGoal, setLocalGoal] = useState<IGoal>(goal);
 
 
@@ -31,6 +29,7 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
     control,
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<IGoal>({
     defaultValues: {
@@ -61,9 +60,18 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
     }
   }
 
-  const onUpdateHandler = async (data: IGoal) => {
-    const x: IGoal= {...data, description: 'New descrption'}
+  const onUpdateHandler = (data: IGoal) => {
+    // const x: IGoal= {...data, description: 'New descrption'}
+    const updatedGoal: IGoal = {
+      ...data,
+      id: goal.id,
+      creationDate: goal.creationDate,
+      isComplete: isComplete,
+      deadline: selectedDate,
+    }
     console.log('data', data)
+    console.log('updatedGoal', updatedGoal)
+    // editGoal.mutate(updatedGoal)
   }
 
   // const onUpdateHandler = async (data: IGoal) => {

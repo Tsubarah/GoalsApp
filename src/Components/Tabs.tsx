@@ -40,7 +40,7 @@ const Tabs = ({ goals }: TabsProps) => {
       setToggleState(index);
     };
     
-    console.log(goals)
+    // console.log(goals)
 
     useEffect(() => {
         console.log(goals)

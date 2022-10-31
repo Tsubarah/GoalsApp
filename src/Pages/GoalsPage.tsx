@@ -5,7 +5,7 @@ import Modal from '../Components/Modal'
 const GoalsPage = () => {
     const { getGoals: goals, isLoading } = useGoal()
 
-    console.log('goals', goals)
+    // console.log('goals', goals)
 
     return (
         

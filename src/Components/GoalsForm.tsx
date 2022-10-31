@@ -157,7 +157,8 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
 
                 {fields.map((item, index) => (
                     <input
-                        className="hidden"
+                        // className="hidden"
+                        type="hidden"
                         key={item.id}
                         {...register(`reviews.${index}.value`)}
                     />
