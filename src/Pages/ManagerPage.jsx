@@ -8,7 +8,7 @@ const ManagerPage = () => {
         <div className="manager-page-wrapper">
                 <Sidebar />
 
-                <EditGoalModal />
+                <ScrollSpy />
             
                 <UserList />
                 
