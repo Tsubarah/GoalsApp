@@ -16,6 +16,8 @@ const Tabs = ({ goals }: TabsProps) => {
     const [customerInteraction, setCustomerInteraction] = useState([] as any)
     const [buildingGeshdo, setBuildingGeshdo] = useState([] as any)
 
+    
+
     const filterFunction = () => {
         const filteredPrioDev =  goals.filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
         setPersonalDevelopmentPrio(filteredPrioDev)
@@ -31,28 +33,43 @@ const Tabs = ({ goals }: TabsProps) => {
         setBuildingGeshdo(categoryBui)
     }
 
-    //15552000000 six months in millisecounds
+    // Filter functions that filter goals after how long ago a goal was created
+    //Get the span of now and 3 months ago
+    const threeNow = new Date();
+    threeNow.setMonth(threeNow.getMonth() - 3)
+    const threeMonthsAgo = threeNow.getTime()
+    console.log("3 månader sedan:", threeMonthsAgo)
 
-    let spanSixMonths = Date.now() - 15552000000
+    //Get the span of now and 6 months ago and 12 months
+    const now = new Date();
+    now.setMonth(now.getMonth() - 6);
+    const sixMonthsAgo = now.getTime()
+    console.log("6 månader sedan: ", sixMonthsAgo)
 
-    console.log('hejhej',spanSixMonths)
+    
+    const filterThreeMonths = () => {
+
+        const threeMonths = goals.filter(goal => Date.parse(goal.creationDate) >= threeMonthsAgo)
+        setPersonalDevelopment(threeMonths)
+        setCustomerInteraction(threeMonths)
+        setBuildingGeshdo(threeMonths)
+    }
 
     const filterSixMonths = () => {
 
-        const sixMonths = goals.filter(goal => Date.parse(goal.creationDate) >= spanSixMonths)
-        
-        console.log('sixmonths',sixMonths)
+        const sixMonths = goals.filter(goal => Date.parse(goal.creationDate) >= sixMonthsAgo)
+        setPersonalDevelopment(sixMonths)
+        setCustomerInteraction(sixMonths)
+        setBuildingGeshdo(sixMonths)
     }
 
-    console.log(filterSixMonths())
-
+    const filterTwelveMonths = () => {
+        const twelveMonths = goals.filter(goal => Date.parse(goal.creationDate) < sixMonthsAgo)
+        setPersonalDevelopment(twelveMonths)
+        setCustomerInteraction(twelveMonths)
+        setBuildingGeshdo(twelveMonths)
+    }
     
-
-    
-        const now = new Date();
-        now.setMonth(now.getMonth() - 6);
-        const sixMonthsAgo = now.getTime()
-        console.log("6 månader sedan: ", sixMonthsAgo)
 
     useEffect(()=> {
         filterFunction()
@@ -69,6 +86,15 @@ const Tabs = ({ goals }: TabsProps) => {
 
     return (
         <>
+        <div className="filterByTimeSpan-wrapper">
+            <h3>Filter by month</h3>
+        <select className="filterByTimeSpan" id="timeSpan">
+            <option onClick={()=>{filterFunction()}} value="all">Show All</option>
+            <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
+            <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
+            <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
+        </select>
+        </div>
             <div className="bloc-tabs">
                 <button
                     className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -95,7 +121,7 @@ const Tabs = ({ goals }: TabsProps) => {
                     Building Geshdo
                 </button>
             </div>
-            <button className="green-button" onClick={() => {filterSixMonths()}}>Goals 6 months</button>
+            
             <div className="content-tabs">
 
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
