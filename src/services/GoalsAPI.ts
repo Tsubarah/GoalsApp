@@ -31,7 +31,7 @@ export const getGoals = ():Promise<IGoal[]> => {
 /**
  * Get single goal
  */
-const getGoal = (id: string) => {
+export const getGoal = (id: string) => {
   return get(`/goals/${id}`)
 }
 
@@ -52,8 +52,9 @@ const createGoal = async (data: IGoal) => {
  * @param goal_id Goal to update
  * @param data Data to update goal with
  */
-const updateGoal = async (goal_id: string, data: IGoal) => {
-  const res = await axios.patch(`/goals/${goal_id}`, data)
+export const updateGoal = async (goal_id: string, data: IGoal) => {
+  console.log('data in API', goal_id, data)
+  const res = await axios.put(`/goals/${goal_id}`, data)
   return res.data
 }
 

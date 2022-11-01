@@ -1,45 +1,56 @@
 import { Controller, useForm, useFieldArray } from "react-hook-form";
 import DatePicker from "react-datepicker";
-import useCreateGoal from "../Hooks/useCreateGoal";
+import "react-datepicker/dist/react-datepicker.css"
+import useGoal from '../Hooks/useGoal'
+import { IGoal } from '../typings/Goal'
 
-const GoalsForm = ({ setShow }) => {
+type FormProps = {
+    show: boolean,
+    setShow: (show: boolean) => void;
+}
+
+const GoalsForm = ({ setShow, show }: FormProps) => {
+    const { createGoal } = useGoal();
+
     const {
         control,
         register,
         handleSubmit,
         formState: { errors },
         reset,
-    } = useForm({
+    } = useForm<IGoal>({
         defaultValues: {
             reviews: [
                 {
                     type: "half_year_review",
+                    name: "Half year review",
                     value: "",
                 },
                 {
                     type: "end_of_year_review",
+                    name: "End of year review",
                     value: "",
                 },
             ],
         },
     });
 
+    
     const { fields } = useFieldArray({
         control,
         name: "reviews",
     });
-    
-    const createGoalMutation = useCreateGoal();
 
-    const createGoal = (data) => {
-      createGoalMutation.mutate(data)
+    const create = (data: IGoal) => {
+      console.log('data', data)
+      createGoal.mutate(data)
       reset()
-      setShow(false)
+      setShow(!show)
     }
 
     return (
         <div>
-            <form onSubmit={handleSubmit(createGoal)}>
+            <form onSubmit={handleSubmit(create)}>
                 <label>
                     <p className="label-p">Type of Goal</p>
                 </label>
@@ -68,12 +79,15 @@ const GoalsForm = ({ setShow }) => {
                 <label>
                     <p className="label-p">Prio:</p>
                 </label>
-                <select {...register("prio")} id="prio">
-                    <option value={Number(1)}>1</option>
-                    <option value={Number(2)}>2</option>
-                    <option value={Number(3)}>3</option>
-                    <option value={Number(4)}>4</option>
-                    <option value={Number(5)}>5</option>
+                <select {...register("prio", { 
+                    valueAsNumber: true
+                    })} 
+                    id="prio">
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
                 </select>
 
                 <br />
@@ -88,9 +102,11 @@ const GoalsForm = ({ setShow }) => {
                     render={({ field }) => (
                         <DatePicker
                             placeholderText="Select date"
-                            onChange={(date) => field.onChange(date)}
-                            selected={field.value}
+                            dateFormat="dd-MM-yyyy"
+                            selected={field.value ? new Date(field.value) : null} 
+                            onChange={(date) => {field.onChange(date)}}
                             minDate={new Date()}
+                            required
                         />
                     )}
                 />
@@ -122,7 +138,11 @@ const GoalsForm = ({ setShow }) => {
                 <label>
                     <p className="label-p">Costs:</p>
                 </label>
-                <input {...register("cost")} type="number" id="cost"></input>
+                <input {...register("cost", {
+                    valueAsNumber: true,
+                    })} 
+                    type="number" 
+                    id="cost"></input>
 
                 <br />
 
@@ -139,7 +159,8 @@ const GoalsForm = ({ setShow }) => {
 
                 {fields.map((item, index) => (
                     <input
-                        className="hidden"
+                        // className="hidden"
+                        type="hidden"
                         key={item.id}
                         {...register(`reviews.${index}.value`)}
                     />
