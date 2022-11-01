@@ -9,21 +9,14 @@ type EditProps = {
   goal: IGoal,
   show: boolean,
   setShow: (show: boolean) => void,
-  // deleteFn(id: string): void,
 }
 
 const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   const { deleteGoal, editGoal } = useGoal();
 
-  // const [localGoal, setLocalGoal] = useState<IGoal>(goal);
-
 
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
-
-  // const onSubmit = async () => {
-  //   await goalService.updateGoal(goal);
-  // }
 
   const {
     control,
@@ -36,10 +29,12 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
         reviews: [
             {
                 type: "half_year_review",
+                name: "Half year review",
                 value: "",
             },
             {
                 type: "end_of_year_review",
+                name: "End of year review",
                 value: "",
             },
         ],
@@ -60,8 +55,7 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
     }
   }
 
-  const onUpdateHandler = (data: IGoal) => {
-    // const x: IGoal= {...data, description: 'New descrption'}
+  const onUpdateHandler = async (data: IGoal) => {
     const updatedGoal: IGoal = {
       ...data,
       id: goal.id,
@@ -71,48 +65,9 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
     }
     console.log('data', data)
     console.log('updatedGoal', updatedGoal)
-    // editGoal.mutate(updatedGoal)
+    editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
   }
 
-  // const onUpdateHandler = async (data: IGoal) => {
-  //   // console.log('GOALdeadline', goal.deadline)
-  //   console.log('data', data)
-  //   // console.log('DATAdeadline', data.deadline)
-  //   const updatedGoal: IGoal = {
-  //     id: goal.id,
-  //     creationDate: goal.creationDate,
-  //     category: data.category,
-  //     deadline: selectedDate,
-  //     description: data.description,
-  //     half_year_progress: data.half_year_progress,
-  //     isComplete: isComplete,
-  //     milestones: data.milestones,
-  //     target_reached: data.target_reached,
-  //     prio: data.prio,
-  //     cost: data.cost,
-  //     reviews: data.reviews.map(review => {
-  //       type: review.type,
-  //       value: review.value,
-  //     })
-  //       // {
-  //       //   type: data.reviews.type,
-  //       //   value: data.reviews[0].value
-  //       // },
-  //       // {
-  //       //   type: "end_of_year_review",
-  //       //   value: data.reviews[1].value,
-  //       // }
-      
-  //   }
-  //   // console.log('GOAL NOT UPDATED', goal)
-  //   console.log('updated data', updatedGoal)
-  //   // console.log('DATA', data)
-    
-  //   if (updatedGoal) {
-  //     editFn(updatedGoal.id, updatedGoal)
-  //   }
-  //   // setShow(!show)
-  // }
 
   useEffect(() => {
     if (!goal) return
@@ -224,10 +179,15 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
         ></input>
 
         {fields.map((item, index) => (
-          <input
-            key={item.id}
-            {...register(`reviews.${index}.value`)}
-          />
+          <>
+            <label>
+              <p className="label-p">{item.name}</p>
+            </label>
+            <input
+              key={item.id}
+              {...register(`reviews.${index}.value`)}
+            />
+          </>
         ))}
 
         <br />

@@ -54,7 +54,7 @@ const createGoal = async (data: IGoal) => {
  */
 export const updateGoal = async (goal_id: string, data: IGoal) => {
   console.log('data in API', goal_id, data)
-  const res = await axios.patch(`/goals/${goal_id}`, data)
+  const res = await axios.put(`/goals/${goal_id}`, data)
   return res.data
 }
 

@@ -16,5 +16,6 @@ export interface IGoal {
 
 interface IReview {
   type: string,
+  name: string,
   value: string,
 }

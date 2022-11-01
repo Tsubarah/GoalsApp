@@ -23,10 +23,12 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
             reviews: [
                 {
                     type: "half_year_review",
+                    name: "Half year review",
                     value: "",
                 },
                 {
                     type: "end_of_year_review",
+                    name: "End of year review",
                     value: "",
                 },
             ],

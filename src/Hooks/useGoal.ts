@@ -3,6 +3,11 @@ import GoalsAPI from '../services/GoalsAPI'
 import { IGoal } from '../typings/Goal'
 import { toast } from 'react-toastify'
 
+type editGoalParams = {
+  id: string,
+  data: IGoal,
+}
+
 const useGoal = () => {
   const queryClient = useQueryClient()
 
@@ -36,7 +41,8 @@ const useGoal = () => {
   })
 
 
-  const editGoal = useMutation([(id: string, data: IGoal) => GoalsAPI.updateGoal(id, data), {
+
+  const editGoal = useMutation(({ id, data } : editGoalParams) => GoalsAPI.updateGoal(id, data), {
     onSuccess: () => {
       toast.success('Goal updated!')
 
@@ -45,7 +51,7 @@ const useGoal = () => {
     onError:(error: { message: string }) => {
         console.log(error.message)
     },
-  }])
+  })
 
 
   const deleteGoal = useMutation((id: string) => GoalsAPI.deleteGoal(id), {
