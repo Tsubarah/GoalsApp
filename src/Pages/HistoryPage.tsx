@@ -1,5 +1,4 @@
-
-import useGoals from '../Hooks/useGoals'
+import useGoal from '../Hooks/useGoal'
 import Tabs from '../Components/Tabs'
 // import { IGoal } from '../typings/Goal'
 import HistoryList from '../Components/HistoryList'
@@ -9,7 +8,7 @@ import HistoryList from '../Components/HistoryList'
 // }
 
 const HistoryPage = () => {
-	const { data:goals , isLoading } = useGoals()
+	const { getGoals: goals , isLoading } = useGoal()
 
 	return (
 		

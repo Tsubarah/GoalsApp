@@ -13,7 +13,7 @@ export default function SimpleAccordion({ data }) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>{data.type}</Typography>
+          <Typography>{data.name}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>

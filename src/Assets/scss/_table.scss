@@ -1,7 +1,7 @@
 th {
   	background-color: rgb(119, 165, 201);
   	color: white;
-  	padding: 0.25rem 0.5rem;
+  	padding: 1rem 1rem;
 }
 
 .th-description,
@@ -32,6 +32,13 @@ td {
 table {
   	width: 100%;
   	table-layout: fixed;
+}
+
+.edit-btn {
+	background-color: white;
+	border: none;
+	font-size: 1.2rem;
+	cursor: pointer;
 }
 
 // .half-review,

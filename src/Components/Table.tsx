@@ -1,16 +1,13 @@
 import Accordion from "./Accordion";
 import Moment from 'react-moment';
+import EditGoalModal from './EditGoalModal';
+import { IGoal } from '../typings/Goal'
 
-const table = ({ goals }) => {
+type TabsProps = {
+    goals: IGoal[],
+}
 
-  // const { mutate: deleteFn } = useDeleteGoal()
-  
-
-  // const onDeleteHandler = (id) => {
-  //   if (window.confirm('Are you sure?')) {
-  //     deleteFn(id);
-  //   }
-  // }
+const table = ({ goals }: TabsProps) => {
 
     return (
         <div className="table-wrapper">
@@ -47,13 +44,8 @@ const table = ({ goals }) => {
                                     <Accordion data={review} />
                                 </td>
                             ))}
+                            <EditGoalModal goal={goal} />
                         </tr>
-                        {/* <button 
-                          className="delete-btn"
-                          onClick={() => onDeleteHandler(goal.id)}
-                        >
-                          Delete
-                        </button> */}
                     </tbody>
                 ))}
             </table>
