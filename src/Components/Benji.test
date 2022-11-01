@@ -11,3 +11,62 @@ setGoal(currentGoal)
 
 
 onClick={() => setGoalId(goal2)}
+
+
+TS rules:
+(Tells that the value in the array has to be numbers)
+let numbers: number[] = [1, 2, 3];
+
+(Tuples - mix - keep it with 2 values)
+let user: [number, string] = [1, 'Benjamin'];
+
+// PascalCase
+const enum Size { Small = 1, Medium, Large }
+let mySize: Size = Size.Medium
+
+(Tells the function what type it should return, by adding a ? it becomes optional, u could also set taxYear with a default value (taxYear = 2022))
+function calculateTax(income: number, taxYear?: number): number {
+  if (taxYear < 2022)
+    return income * 1.2;
+  return income * 1.3;
+}
+calculateTax(10_000)
+
+(declaring objects - readonly prevents from changing a value)
+let employee: {
+  readonly id: number,
+  name: string,
+  retore: (date: Date) => void
+} = { 
+  id: 1, 
+  name: 'Benjamin',
+  retire: (date: Date) => {
+    console.log(date)
+  }
+};
+employee.id = 0;   <-- This will not work because of readonly
+
+(Type defines a custom - better way of doing the above)
+type Employee = {
+  readonly id: number,
+  name: string,
+  retore: (date: Date) => void
+}
+
+(Uses type on the object)
+let employee: Employee = {
+  id: 1, 
+  name: 'Benjamin',
+  retire: (date: Date) => {
+    console.log(date)
+  }
+};
+
+(Remember to tell functions what it should return. By Narrowing you get the methods depending on the type)
+function  kgToLbs(weight: number | string): number {
+  // Narrowing
+  if (typeof weight === 'number)
+    return weight: 2.2; <-- ctrl + space gives you number methods
+  else
+    return parseInt(weight) * 2.2;
+}
