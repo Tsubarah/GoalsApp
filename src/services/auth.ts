@@ -26,6 +26,7 @@ export const useAuth = () => {
               account: tokenResponse?.account!,
             })
             .then((response) => {
+              // console.log('response', response)
               if (response.account) {
                 instance.setActiveAccount(response.account);
 
@@ -88,5 +89,43 @@ export const useAuth = () => {
     return imageUrl;
   };
 
-  return { getUserName, getProfilePhotoUrl, accessToken };
+  const getUserDetails = async (accessToken: string) => {
+    if (!accessToken) {
+      return "";
+    }
+    const headers = new Headers();
+    const bearer = `Bearer ${accessToken}`;
+    headers.append("Authorization", bearer);
+    headers.append("Content-Type", "json");
+    console.log('accessToken', accessToken)
+    const options = {
+      method: "GET",
+      headers: headers,
+    };
+
+    let userUrl = "";
+    try {
+      await fetch('https://graph.microsoft.com/v1.0/me', options)
+        .then(async (response) => {
+          if (response != null && response.ok) {
+            const data = await response.json();
+            if (data !== null) {
+              console.log('response', data);
+              // window.URL = window.URL || window.webkitURL;
+              // userUrl = window.URL.createObjectURL(data);
+            }
+          } else {
+            throw new Error("User not found");
+          }
+        })
+        .catch((error) => {
+          throw new Error("User not found");
+        });
+    } catch (err) {
+      userUrl = "";
+    }
+    return userUrl;
+  };
+
+  return { getUserName, getProfilePhotoUrl, accessToken, getUserDetails };
 };

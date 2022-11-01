@@ -34,7 +34,7 @@ const Tabs = ({ goals }: TabsProps) => {
         const now = new Date();
         now.setMonth(now.getMonth() - 6);
         const sixMonthsAgo = now.getTime()
-        console.log("6 månader sedan: ", sixMonthsAgo)
+        // console.log("6 månader sedan: ", sixMonthsAgo)
 
     useEffect(()=> {
         filterFunction()
@@ -45,8 +45,8 @@ const Tabs = ({ goals }: TabsProps) => {
     };
 
     useEffect(() => {
-        console.log(goals)
-        console.log(toggleState)
+        // console.log(goals)
+        // console.log(toggleState)
     }, [goals, toggleState])
 
     return (

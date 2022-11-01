@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../services/auth";
 
 export const AuthPage = () => {
-  const { accessToken, getUserName, getProfilePhotoUrl } = useAuth();
+  const { accessToken, getUserName, getProfilePhotoUrl, getUserDetails } = useAuth();
   const [photoUrl, setPhotoUrl] = useState<string>();
   const userName = getUserName();
 
@@ -14,6 +14,7 @@ export const AuthPage = () => {
       setPhotoUrl(await getProfilePhotoUrl(accessToken));
     }
     getPhoto(accessToken);
+    getUserDetails(accessToken)
   }, [accessToken]);
 
   return (

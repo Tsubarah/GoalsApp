@@ -8,7 +8,7 @@ type TabsProps = {
 }
 
 const Table = ({ goals }: TabsProps) => {
-
+  
   return (
     <div className="table-wrapper">
       <table>
