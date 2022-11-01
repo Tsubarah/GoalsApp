@@ -11,6 +11,8 @@ type EditProps = {
   setShow: (show: boolean) => void,
 }
 
+console.log("lol")
+
 const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   const { deleteGoal, editGoal } = useGoal();
 
