@@ -9,14 +9,16 @@ type EditProps = {
   goal: IGoal,
   show: boolean,
   setShow: (show: boolean) => void,
+  // completedSwipe: boolean | string,
+  // setCompletedSwipe: (completedSwipe: boolean | string) => void,
 }
 
 const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   const { deleteGoal, editGoal } = useGoal();
 
-
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
+  const [completedSwipe, setCompletedSwipe] = useState<boolean | string>(false)
 
   const {
     control,
@@ -56,6 +58,13 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   }
 
   const onUpdateHandler = async (data: IGoal) => {
+    console.log('BEFORE completedSwipe', completedSwipe)
+    console.log('isComplete?', isComplete)
+    if (isComplete) {
+      setCompletedSwipe(goal.id)
+    }
+  
+
     const updatedGoal: IGoal = {
       ...data,
       id: goal.id,
@@ -66,12 +75,14 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
     console.log('data', data)
     console.log('updatedGoal', updatedGoal)
     editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
+    setShow(!show)
   }
 
 
   useEffect(() => {
     if (!goal) return
     setSelectedDate(goal.deadline)
+    setCompletedSwipe(goal.id)
   }, [goal])
 
 
@@ -179,7 +190,7 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
         ></input>
 
         {fields.map((item, index) => (
-          <>
+          <div key={index}>
             <label>
               <p className="label-p">{item.name}</p>
             </label>
@@ -187,7 +198,7 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
               key={item.id}
               {...register(`reviews.${index}.value`)}
             />
-          </>
+          </div>
         ))}
 
         <br />
@@ -199,7 +210,9 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
           Save Changes
         </button>
 
-        <button className="status-button green-button" 
+        <button
+          type="button"
+          className="status-button green-button" 
           onClick={() => setIsComplete(!isComplete)}
         >
           {isComplete ? "Completed" : "Not completed"}

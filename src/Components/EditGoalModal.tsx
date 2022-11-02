@@ -6,6 +6,8 @@ type ModalProps = {
   goal: IGoal,
   // show: boolean,
   // setShow: (show: boolean) => void,
+  // completedSwipe: boolean | string,
+  // setCompletedSwipe: (completedSwipe: boolean |string) => void,
 }
 
 const EditGoalModal = ({ goal }: ModalProps) => {

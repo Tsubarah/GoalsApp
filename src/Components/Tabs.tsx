@@ -31,11 +31,11 @@ const Tabs = ({ goals }: TabsProps) => {
         setBuildingGeshdo(categoryBui)
     }
 
-        const now = new Date();
-        now.setMonth(now.getMonth() - 6);
-        const sixMonthsAgo = now.getTime()
-        // console.log("6 månader sedan: ", sixMonthsAgo)
-
+    const now = new Date();
+    now.setMonth(now.getMonth() - 6);
+    const sixMonthsAgo = now.getTime()
+    // console.log("6 månader sedan: ", sixMonthsAgo)
+        
     useEffect(()=> {
         filterFunction()
     },[goals])

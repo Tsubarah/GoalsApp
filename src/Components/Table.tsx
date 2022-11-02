@@ -8,7 +8,6 @@ type TabsProps = {
 }
 
 const Table = ({ goals }: TabsProps) => {
-  
   return (
     <div className="table-wrapper">
       <table>
@@ -27,7 +26,7 @@ const Table = ({ goals }: TabsProps) => {
         </thead>
 
         {goals.map((goal, i) => (
-          <tbody key={i}>
+          <tbody key={i} className={goal.isComplete ? "slide-out-right" : ""}>
             <tr>
               <td>{goal.prio}</td>
               <td><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></td>
