@@ -5,7 +5,7 @@ const ListItem = () => {
     <a href={`/goals`}>
       <div className="user-list-item">
         <img src={image} alt="" />
-        <p>John Doe</p>
+        <h3>John Doe</h3>
       </div>
     </a>
   )
