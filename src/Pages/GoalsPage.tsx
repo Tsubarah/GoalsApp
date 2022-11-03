@@ -4,29 +4,29 @@ import Modal from '../Components/Modal'
 import UserInfo from "../Components/UserInfo"
 
 const GoalsPage = () => {
-    const { getGoals: goals, isLoading } = useGoal()
+  const { getGoals: goals, isLoading } = useGoal()
 
-    // console.log('goals', goals)
+  // console.log('goals', goals)
 
-    return (
-        
-        <div className="container">
+  return (
 
-            {isLoading && (<p>Loading...</p>)}
+    <div className="container">
 
-            {!isLoading && goals && (
-                
-                <>
-                    <Modal />
-                    
-                    <UserInfo />
-                    
-                    <Tabs goals={goals} />
-                </>
-            )}
-            
-        </div>
-    )
+      {isLoading && (<p>Loading...</p>)}
+
+      {!isLoading && goals && (
+
+        <>
+          <Modal />
+
+          <UserInfo />
+
+          <Tabs goals={goals} />
+        </>
+      )}
+
+    </div>
+  )
 }
 
 export default GoalsPage

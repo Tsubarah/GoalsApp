@@ -80,8 +80,8 @@ const Tabs = ({ goals }: TabsProps) => {
     };
 
     useEffect(() => {
-        console.log(goals)
-        console.log(toggleState)
+        // console.log(goals)
+        // console.log(toggleState)
     }, [goals, toggleState])
 
     return (
