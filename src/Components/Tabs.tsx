@@ -9,6 +9,7 @@ type TabsProps = {
 
 const Tabs = ({ goals }: TabsProps) => {
     const [toggleState, setToggleState] = useState(1);
+    // const [localGoals, setLocalGoals] = useState<undefined>()
     const [personalDevelopmentPrio, setPersonalDevelopmentPrio] = useState([] as any)
     const [customerInteractionPrio, setCustomerInteractionPrio] = useState([] as any)
     const [buildingGeshdoPrio, setBuildingGeshdoPrio] = useState([] as any)
@@ -35,7 +36,11 @@ const Tabs = ({ goals }: TabsProps) => {
     now.setMonth(now.getMonth() - 6);
     const sixMonthsAgo = now.getTime()
     // console.log("6 månader sedan: ", sixMonthsAgo)
-        
+    
+    // useEffect(() => {
+    //     setLocalGoals(goals)
+    // }, [goals])
+
     useEffect(()=> {
         filterFunction()
     },[goals])

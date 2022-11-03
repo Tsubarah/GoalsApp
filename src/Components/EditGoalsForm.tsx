@@ -83,7 +83,7 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
     if (!goal) return
     setSelectedDate(goal.deadline)
     setCompletedSwipe(goal.id)
-  }, [goal])
+  }, [goal, completedSwipe])
 
 
   return (

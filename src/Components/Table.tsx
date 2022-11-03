@@ -2,10 +2,15 @@ import Accordion from "./Accordion";
 import Moment from 'react-moment';
 import EditGoalModal from './EditGoalModal';
 import { IGoal } from '../typings/Goal'
+import { useEffect } from "react";
+// import { useEffect, useState } from "react";
 
 type TabsProps = {
   goals: IGoal[],
+  // localGoals: IGoal[],
 }
+
+
 
 const Table = ({ goals }: TabsProps) => {
   return (
@@ -24,7 +29,7 @@ const Table = ({ goals }: TabsProps) => {
             <th className="th-cost">Cost</th>
           </tr>
         </thead>
-
+    
         {goals.map((goal, i) => (
           <tbody key={i} className={goal.isComplete ? "slide-out-right" : ""}>
             <tr>
