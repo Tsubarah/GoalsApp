@@ -49,7 +49,7 @@ const Tabs = ({ goals }: TabsProps) => {
     
     const filterThreeMonths = () => {
 
-        const threeMonths = goals.filter(goal => Date.parse(goal.creationDate) >= threeMonthsAgo)
+        const threeMonths = goals.filter(goal => Date.parse(goal.creationDate as string) >= threeMonthsAgo)
         setPersonalDevelopment(threeMonths)
         setCustomerInteraction(threeMonths)
         setBuildingGeshdo(threeMonths)
@@ -57,14 +57,14 @@ const Tabs = ({ goals }: TabsProps) => {
 
     const filterSixMonths = () => {
 
-        const sixMonths = goals.filter(goal => Date.parse(goal.creationDate) >= sixMonthsAgo)
+        const sixMonths = goals.filter(goal => Date.parse(goal.creationDate as string) >= sixMonthsAgo)
         setPersonalDevelopment(sixMonths)
         setCustomerInteraction(sixMonths)
         setBuildingGeshdo(sixMonths)
     }
 
     const filterTwelveMonths = () => {
-        const twelveMonths = goals.filter(goal => Date.parse(goal.creationDate) < sixMonthsAgo)
+        const twelveMonths = goals.filter(goal => Date.parse(goal.creationDate as string) < sixMonthsAgo)
         setPersonalDevelopment(twelveMonths)
         setCustomerInteraction(twelveMonths)
         setBuildingGeshdo(twelveMonths)
