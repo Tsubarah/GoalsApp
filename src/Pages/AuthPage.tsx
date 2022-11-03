@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../services/auth";
+import useUsers from "../services/useUsers";
 
 export const AuthPage = () => {
-  const { accessToken, getUserName, getProfilePhotoUrl } = useAuth();
+  const { accessToken } = useAuth();
+  const { getUserName, getProfilePhotoUrl, getUserDetails, getUsers } = useUsers();
   const [photoUrl, setPhotoUrl] = useState<string>();
   const userName = getUserName();
 
@@ -14,6 +16,8 @@ export const AuthPage = () => {
       setPhotoUrl(await getProfilePhotoUrl(accessToken));
     }
     getPhoto(accessToken);
+    getUserDetails(accessToken)
+    getUsers(accessToken)
   }, [accessToken]);
 
   return (

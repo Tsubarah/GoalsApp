@@ -26,6 +26,7 @@ export const useAuth = () => {
               account: tokenResponse?.account!,
             })
             .then((response) => {
+              // console.log('response', response)
               if (response.account) {
                 instance.setActiveAccount(response.account);
 
@@ -48,45 +49,5 @@ export const useAuth = () => {
       });
   }, [accounts, instance]);
 
-  const getUserName = (): AzureUser | undefined => user;
-
-  const getProfilePhotoUrl = async (accessToken: string) => {
-    if (!accessToken) {
-      return "";
-    }
-    const headers = new Headers();
-    const bearer = `Bearer ${accessToken}`;
-    headers.append("Authorization", bearer);
-    headers.append("Content-Type", "image/jpeg");
-
-    const options = {
-      method: "GET",
-      headers: headers,
-    };
-
-    let imageUrl = "";
-    try {
-      await fetch("https://graph.microsoft.com/v1.0/me/photo/$value", options)
-        .then((response) => {
-          if (response != null && response.ok) {
-            return response.blob().then((data) => {
-              if (data !== null) {
-                window.URL = window.URL || window.webkitURL;
-                imageUrl = window.URL.createObjectURL(data);
-              }
-            });
-          } else {
-            throw new Error("Profile image not found");
-          }
-        })
-        .catch((error) => {
-          throw new Error("Profile image not found");
-        });
-    } catch (err) {
-      imageUrl = "";
-    }
-    return imageUrl;
-  };
-
-  return { getUserName, getProfilePhotoUrl, accessToken };
+  return {  accessToken, user };
 };
