@@ -18,7 +18,7 @@ const EditGoalModal = ({ goal }: ModalProps) => {
       <div className="d-flex text-align-center justify-content-center">
 
       <button 
-        className="addGoal-button green-button d-flex justify-content-center" 
+        className="addGoal-button green-button d-flex justify-content-center editGoalButton" 
         onClick={() => {setShow(!show)}}
       >
         Edit

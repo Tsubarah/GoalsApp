@@ -7,11 +7,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 export default function SimpleAccordion({ data }) {
   return (
     <div>
-      <Accordion>
+      <Accordion className='accordionWrapper'>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          
         >
           <Typography>{data.name}</Typography>
         </AccordionSummary>

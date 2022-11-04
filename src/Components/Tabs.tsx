@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
+import NewTable from './NewTable'
 
 // Types are used for props 
 type TabsProps = {
@@ -17,6 +18,8 @@ const Tabs = ({ goals }: TabsProps) => {
     const [customerInteraction, setCustomerInteraction] = useState([] as any)
     const [buildingGeshdo, setBuildingGeshdo] = useState([] as any)
 
+    
+
     const filterFunction = () => {
         const filteredPrioDev =  goals.filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
         setPersonalDevelopmentPrio(filteredPrioDev)
@@ -32,14 +35,43 @@ const Tabs = ({ goals }: TabsProps) => {
         setBuildingGeshdo(categoryBui)
     }
 
+    // Filter functions that filter goals after how long ago a goal was created
+    //Get the span of now and 3 months ago
+    const threeNow = new Date();
+    threeNow.setMonth(threeNow.getMonth() - 3)
+    const threeMonthsAgo = threeNow.getTime()
+    console.log("3 månader sedan:", threeMonthsAgo)
+
+    //Get the span of now and 6 months ago and 12 months
     const now = new Date();
     now.setMonth(now.getMonth() - 6);
     const sixMonthsAgo = now.getTime()
-    // console.log("6 månader sedan: ", sixMonthsAgo)
+    console.log("6 månader sedan: ", sixMonthsAgo)
+
     
-    // useEffect(() => {
-    //     setLocalGoals(goals)
-    // }, [goals])
+    const filterThreeMonths = () => {
+
+        const threeMonths = goals.filter(goal => Date.parse(goal.creationDate as string) >= threeMonthsAgo)
+        setPersonalDevelopment(threeMonths)
+        setCustomerInteraction(threeMonths)
+        setBuildingGeshdo(threeMonths)
+    }
+
+    const filterSixMonths = () => {
+
+        const sixMonths = goals.filter(goal => Date.parse(goal.creationDate as string) >= sixMonthsAgo)
+        setPersonalDevelopment(sixMonths)
+        setCustomerInteraction(sixMonths)
+        setBuildingGeshdo(sixMonths)
+    }
+
+    const filterTwelveMonths = () => {
+        const twelveMonths = goals.filter(goal => Date.parse(goal.creationDate as string) < sixMonthsAgo)
+        setPersonalDevelopment(twelveMonths)
+        setCustomerInteraction(twelveMonths)
+        setBuildingGeshdo(twelveMonths)
+    }
+    
 
     useEffect(()=> {
         filterFunction()
@@ -56,6 +88,15 @@ const Tabs = ({ goals }: TabsProps) => {
 
     return (
         <>
+        <div className="filterByTimeSpan-wrapper">
+            <h3>Filter by month</h3>
+        <select className="filterByTimeSpan" id="timeSpan">
+            <option onClick={()=>{filterFunction()}} value="all">Show All</option>
+            <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
+            <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
+            <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
+        </select>
+        </div>
             <div className="bloc-tabs">
                 <button
                     className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -82,30 +123,30 @@ const Tabs = ({ goals }: TabsProps) => {
                     Building Geshdo
                 </button>
             </div>
-
+            
             <div className="content-tabs">
 
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
                     <h3 className="table-headers">Personal Development</h3>
-                    <Table goals={personalDevelopmentPrio} />
+                    <NewTable goals={personalDevelopmentPrio} />
 
                     <h3 className="table-headers">Customer Interaction</h3>
-                    <Table goals={customerInteractionPrio} />
+                    <NewTable goals={customerInteractionPrio} />
 
                     <h3 className="table-headers">Building Geshdo</h3>
-                    <Table goals={buildingGeshdoPrio} />
+                    <NewTable goals={buildingGeshdoPrio} />
                 </div>
 
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
-                    <Table goals={personalDevelopment} />
+                    <NewTable goals={personalDevelopment} />
                 </div>
 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
-                    <Table goals={customerInteraction} />
+                    <NewTable goals={customerInteraction} />
                 </div>
 
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
-                    <Table goals={buildingGeshdo} />
+                    <NewTable goals={buildingGeshdo} />
                 </div>
             </div>
         </>

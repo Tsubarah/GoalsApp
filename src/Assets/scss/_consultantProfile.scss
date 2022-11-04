@@ -1,0 +1,22 @@
+.consultantProfile {
+    text-align: center;
+    color: rgb(58, 58, 58);
+}
+
+.consultant-img {
+    margin: 3rem;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    
+}
+
+.buttonsConsultant {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+
