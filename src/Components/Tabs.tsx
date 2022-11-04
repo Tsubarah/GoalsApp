@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
-import NewTable from './NewTable'
 
 // Types are used for props 
 type TabsProps = {
@@ -128,25 +127,25 @@ const Tabs = ({ goals }: TabsProps) => {
 
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
                     <h3 className="table-headers">Personal Development</h3>
-                    <NewTable goals={personalDevelopmentPrio} />
+                    <Table goals={personalDevelopmentPrio} />
 
                     <h3 className="table-headers">Customer Interaction</h3>
-                    <NewTable goals={customerInteractionPrio} />
+                    <Table goals={customerInteractionPrio} />
 
                     <h3 className="table-headers">Building Geshdo</h3>
-                    <NewTable goals={buildingGeshdoPrio} />
+                    <Table goals={buildingGeshdoPrio} />
                 </div>
 
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
-                    <NewTable goals={personalDevelopment} />
+                    <Table goals={personalDevelopment} />
                 </div>
 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
-                    <NewTable goals={customerInteraction} />
+                    <Table goals={customerInteraction} />
                 </div>
 
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
-                    <NewTable goals={buildingGeshdo} />
+                    <Table goals={buildingGeshdo} />
                 </div>
             </div>
         </>
