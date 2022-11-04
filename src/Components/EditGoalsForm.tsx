@@ -18,13 +18,12 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
 
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
-  const [completedSwipe, setCompletedSwipe] = useState<boolean | string>(false)
+  // const [completedSwipe, setCompletedSwipe] = useState<boolean | string>(false)
 
   const {
     control,
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<IGoal>({
     defaultValues: {
@@ -58,11 +57,11 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   }
 
   const onUpdateHandler = async (data: IGoal) => {
-    console.log('BEFORE completedSwipe', completedSwipe)
-    console.log('isComplete?', isComplete)
-    if (isComplete) {
-      setCompletedSwipe(goal.id)
-    }
+    // console.log('BEFORE completedSwipe', completedSwipe)
+    // console.log('isComplete?', isComplete)
+    // if (isComplete) {
+    //   setCompletedSwipe(goal.id)
+    // }
   
 
     const updatedGoal: IGoal = {
@@ -82,8 +81,8 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   useEffect(() => {
     if (!goal) return
     setSelectedDate(goal.deadline)
-    setCompletedSwipe(goal.id)
-  }, [goal, completedSwipe])
+    // setCompletedSwipe(goal.id)
+  }, [goal])
 
 
   return (

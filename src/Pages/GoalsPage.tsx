@@ -2,6 +2,7 @@ import useGoal from '../Hooks/useGoal'
 import Tabs from '../Components/Tabs'
 import Modal from '../Components/Modal'
 import UserInfo from "../Components/UserInfo"
+import LoadingSpinner from '../Components/LoadingSpinner'
 
 const GoalsPage = () => {
   const { getGoals: goals, isLoading } = useGoal()
@@ -9,22 +10,21 @@ const GoalsPage = () => {
   // console.log('goals', goals)
 
   return (
-
     <div className="container">
+      <>
+        {isLoading && <LoadingSpinner />}
 
-      {isLoading && (<p>Loading...</p>)}
+        {!isLoading && goals && (
 
-      {!isLoading && goals && (
+          <>
+            <Modal />
 
-        <>
-          <Modal />
+            <UserInfo />
 
-          <UserInfo />
-
-          <Tabs goals={goals} />
-        </>
-      )}
-
+            <Tabs goals={goals} />
+          </>
+        )}
+      </>
     </div>
   )
 }

@@ -2,7 +2,8 @@ import Accordion from "./Accordion";
 import Moment from 'react-moment';
 import EditGoalModal from './EditGoalModal';
 import { IGoal } from '../typings/Goal'
-import { useEffect } from "react";
+import { Key, useEffect, useState } from "react";
+import clsx from 'clsx'
 // import { useEffect, useState } from "react";
 
 type TabsProps = {
@@ -10,9 +11,29 @@ type TabsProps = {
   // localGoals: IGoal[],
 }
 
-
-
 const Table = ({ goals }: TabsProps) => {
+  const [inCompleteGoals, setInCompleteGoals] = useState([] as any)
+  const [inComplete, setInComplete] = useState()
+
+  let slide: string;
+  
+  const filterGoals = () => {
+    const inCompleted = goals.filter(goal => !goal.isComplete)
+    slide = clsx(inCompleted.map(goal => !goal.isComplete) ? "" : "slide-out-right");
+    console.log('Incomplete', inCompleted)
+    
+    // setTimeout(() => {
+      setInCompleteGoals(inCompleted)
+    // }, 2000)
+  }
+
+  useEffect(() => {
+    if (!goals) return
+      filterGoals()
+    console.log('incomplete', inCompleteGoals)
+    console.log('goals', goals)
+  }, [goals])
+
   return (
     <div className="table-wrapper">
       <table>
@@ -30,8 +51,8 @@ const Table = ({ goals }: TabsProps) => {
           </tr>
         </thead>
     
-        {goals.map((goal, i) => (
-          <tbody key={i} className={goal.isComplete ? "slide-out-right" : ""}>
+        {inCompleteGoals.map((goal: IGoal, i: Key | null | undefined) => (
+          <tbody key={i} className={slide ? slide : ""}>
             <tr>
               <td>{goal.prio}</td>
               <td><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></td>

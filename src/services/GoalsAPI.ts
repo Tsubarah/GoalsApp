@@ -12,10 +12,12 @@ axios.defaults.baseURL = 'http://localhost:7071/api'
   * @returns Promise
 */
 
+const FAKE_DELAY = 1500
+
 const get = async (endpoint: string) => {
   const res = await axios.get(endpoint)
 
-  // FAKE_DELAY && await new Promise(r => setTimeout(r, FAKE_DELAY))
+  FAKE_DELAY && await new Promise(r => setTimeout(r, FAKE_DELAY))
 
   return res.data
 }
