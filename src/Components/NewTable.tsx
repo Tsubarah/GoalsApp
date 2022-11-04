@@ -64,13 +64,14 @@ const NewTable = ({ goals }: TabsProps) => {
           <div>
             <div className="reviews">
               {goal.reviews.map((review, i) => (
-                <div  key={i}>
+                
+                <div className="accordion" key={i}>
                   <Accordion data={review} />
                 </div>
               ))}
               <EditGoalModal goal={goal} />
             </div>
-          </div>
+            </div>
       </div>
       
         ))}

@@ -1,15 +1,23 @@
 ul {
     list-style-type: none;
+    display: flex;
+    padding: 0;
   }
   
   .listItem  {
     width: 50%;
     padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
   }
 
   a {
     text-decoration: none;
-    color: #666666;
+    color: rgb(58, 58, 58);
+    width: 80%;
   }
   
   .user-list {
@@ -19,20 +27,29 @@ ul {
     flex-wrap: wrap;
   }
   .user-list-item {
-    width: 70%;
+    align-self: center;
+    width: 100%;
     border-style: solid ;
     border-width: 2px;
     border-color: #748291;
     border-radius: 50px;
     background-color: #e7e7e7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
+
+  .user-list-item:active {
+    background-color: lightblue;
+  }
+ 
+  
   
   /* .user-list li:last-child {
     justify-content: flex-start;
   } */
   
   .user-list-item h3 {
-    padding-left: 3rem;
+    
+    padding-left: 2rem;
     padding-right: 2rem;
   }
   
@@ -41,5 +58,5 @@ ul {
     height: 6rem;
     display: flex;
     border-radius: 50%;
-    float: left;
+    
   }

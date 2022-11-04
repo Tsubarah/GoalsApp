@@ -1,14 +1,21 @@
 
-import Profile from './Profile'
+import ConsultantProfile from './ConsultantProfile'
 import { useState } from 'react'
 
-const RightSidbar = () => {
-  const [show, setShow] = useState<boolean>(false)
-  return (
-    <div className='rightSidbar'>
-        
-        <Profile />
+type sidebarProps ={
+  show: boolean,
+  setShow: (show: boolean) => void,
+}
+
+const RightSidbar = ({show, setShow}: sidebarProps) => {
   
+  return (
+    <div className='profileWrapper'>
+      {show && (  
+    
+        <ConsultantProfile />
+
+    )}
     </div>
   )
 }
