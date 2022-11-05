@@ -7,7 +7,6 @@ type sidebarProps ={
 }
 
 const RightSidebar = ({show, setShow}: sidebarProps) => {
-  
   return (
     <div className='profileWrapper'>
       <div className="rightSidebar-placeholder"></div>
