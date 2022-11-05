@@ -7,7 +7,6 @@
         margin: auto;
         width: 40%;
         display: flex;
-        // justify-content: flex-end;
         background-color: #2e3e4e;
         border-radius: 8px;
         color: #f8f8f8e8;
@@ -19,6 +18,10 @@
         width: 50%;
         display: flex;
         flex-direction: column;
+    }
+
+    .user-stats h4 {
+        margin-top: 0;
     }
 
     .user-profile {

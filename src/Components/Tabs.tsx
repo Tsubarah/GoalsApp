@@ -127,14 +127,17 @@ const Tabs = ({ goals }: TabsProps) => {
                 
             <div className="content-tabs">
 
-                <div className={toggleState === 1 ? "content  active-content" : "content"}>
-                    <h3 className="table-headers">Personal Development</h3>
+                <div className={toggleState === 1 
+                                ? "content  active-content" 
+                                : "content"}
+                >
+                    <h2 className="table-headers">Personal Development</h2>
                     <Table goals={personalDevelopmentPrio} />
 
-                    <h3 className="table-headers">Customer Interaction</h3>
+                    <h2 className="table-headers">Customer Interaction</h2>
                     <Table goals={customerInteractionPrio} />
 
-                    <h3 className="table-headers">Building Geshdo</h3>
+                    <h2 className="table-headers">Building Geshdo</h2>
                     <Table goals={buildingGeshdoPrio} />
                 </div>
 
