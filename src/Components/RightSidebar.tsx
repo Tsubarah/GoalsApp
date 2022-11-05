@@ -2,8 +2,8 @@ import ConsultantProfile from './ConsultantProfile'
 import { Link } from 'react-router-dom'
 
 type sidebarProps ={
-  show: boolean,
-  setShow: (show: boolean) => void,
+  show: boolean | null,
+  setShow: (show: boolean | null) => void,
 }
 
 const RightSidebar = ({show, setShow}: sidebarProps) => {
@@ -11,9 +11,9 @@ const RightSidebar = ({show, setShow}: sidebarProps) => {
     <div className='profileWrapper'>
       <div className="rightSidebar-placeholder"></div>
         
-      <div className={`${show
+      <div className={`${show === true
                         ? "slide-in-right" 
-                        : "slide-out-right"} rightSidebar`}
+                        : "rightSidebar"} rightSidebar`}
       >
                         
         <ConsultantProfile />

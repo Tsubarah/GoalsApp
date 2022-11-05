@@ -1,8 +1,8 @@
 import image from "../Assets/Images/placeholder-image.jpeg"
 
 type itemProps = {
-  show: boolean,
-  setShow: (show: boolean) => void,
+  show: boolean | null,
+  setShow: (show: boolean | null) => void,
 }
 
 const ListItem = ({show, setShow}: itemProps) => {
