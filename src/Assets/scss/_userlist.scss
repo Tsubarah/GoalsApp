@@ -1,67 +1,43 @@
 ul {
     list-style-type: none;
-    display: flex;
-    padding: 0;
-  }
-  
-  .listItem  {
-    width: 35%;
-    padding-top: 2rem;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    flex-direction: row;
-    // align-items: center;
   }
 
-  a {
-    text-decoration: none;
-    color: rgb(58, 58, 58);
-    width: 80%;
-  }
-  
-  .user-list {
-    width: 80%;
-    height:100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .user-list-item {
-    align-self: center;
-    width: 100%;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #b6b6b6;
-    border-radius: 50px;
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
+.user-list {
+  padding: 0;
+  margin-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  .user-list-item:hover {
-    cursor: pointer;
-  }
+.item button {
+  margin-left: 5rem;
+  margin-bottom: 2rem;
+  padding-left: 0;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  border-style: solid;
+  border-color: #b6b6b6;
+  border-radius: 50px;
+  background-color: #dbd9d9;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-  .user-list-item:active {
-    background-color: lightblue;
-  }
- 
-  
-  
-  /* .user-list li:last-child {
-    justify-content: flex-start;
-  } */
-  
-  .user-list-item h3 {
-    
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  
-  .user-list-item img {
-    width: 6rem;
-    height: 6rem;
-    display: flex;
-    border-radius: 50%;
-    
-  }
+.item button:hover {
+  background-color: #ebe8e8;
+  cursor: pointer;
+}
+
+.item button:active {
+  background-color: #f8f8f8;
+}
+
+.item h3 {
+  color: #3a3a3ad9;
+  padding: 0 8rem 0 3rem;
+}
+
+.item img {
+  height: 6rem;
+  border-radius: 50%;
+}

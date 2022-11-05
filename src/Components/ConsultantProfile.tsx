@@ -9,7 +9,9 @@ const ConsultantProfile = () => {
       <h4 className="profile-h4">Title</h4>
       <p className="profile-text">Consultant</p>
       <h4 className="profile-h4">info</h4>
-      <p className="profile-text">Blablablabla bla</p>
+      <p className="profile-text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </p>
       <h4 className="profile-h4">Details</h4>
       <p className="profile-text">0989542837</p>
     </div>
