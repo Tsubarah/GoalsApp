@@ -1,22 +1,27 @@
-.consultantProfile {
+.profile-h4 {
+    margin-bottom: 0.2rem;
+}
+
+.profile-text {
+    margin: 0;
+}
+
+.consultant-profile {
     text-align: center;
     color: rgb(58, 58, 58);
 }
 
 .consultant-img {
-    margin: 3rem;
-    width: 10rem;
+    margin-top: 4rem;
     height: 10rem;
     border-radius: 50%;
     object-fit: cover;
-    
 }
 
-.buttonsConsultant {
-    margin-top: 6rem;
+.consultant-buttons-container {
+    margin-top: 4rem;
     display: flex;
     justify-content: space-evenly;
-    flex-direction: row;
 }
 
 

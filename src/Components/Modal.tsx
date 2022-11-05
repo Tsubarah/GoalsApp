@@ -11,7 +11,7 @@ const Modal = () => {
           <div className="d-flex text-align-center justify-content-center">
 
             <button 
-              className="addGoal-button green-button d-flex justify-content-center" 
+              className="button create-btn" 
               onClick={() => setShow(!show)}
             >
               Create a Goal

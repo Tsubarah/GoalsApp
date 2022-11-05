@@ -1,5 +1,5 @@
 
-import RightSidbar from "../Components/RightSidbar"
+import RightSidebar from "../Components/RightSidebar"
 import Sidebar from "../Components/Sidebar"
 import UserList from "../Components/Userlist"
 import { useState } from "react"
@@ -10,9 +10,9 @@ const ManagerPage = () => {
     <div className="manager-page-wrapper">
       <Sidebar />
         
-       <UserList setShow={setShow} show={show} /> 
+      <UserList setShow={setShow} show={show} /> 
 
-       <RightSidbar setShow={setShow} show={show} />
+      <RightSidebar setShow={setShow} show={show} />
 
     </div>
   )

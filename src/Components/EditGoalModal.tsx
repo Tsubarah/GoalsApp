@@ -15,16 +15,12 @@ const EditGoalModal = ({ goal }: ModalProps) => {
 
   return (
     <>
-      <div className="d-flex text-align-center justify-content-center">
-
       <button 
-        className="addGoal-button green-button d-flex justify-content-center editGoalButton" 
+        className="button edit-btn" 
         onClick={() => {setShow(!show)}}
       >
         Edit
       </button>
-
-      </div>
 
       {
         show && (
@@ -34,7 +30,7 @@ const EditGoalModal = ({ goal }: ModalProps) => {
           <div className="button-container">
 
             <button 
-              className="green-button" 
+              className="button close-btn" 
               onClick={() => {setShow(!show)}}
             >
               Close
@@ -51,7 +47,7 @@ const EditGoalModal = ({ goal }: ModalProps) => {
         </div>
         )
       }
-</>
+    </>
   )
 }
 
