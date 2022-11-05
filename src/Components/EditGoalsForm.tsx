@@ -50,7 +50,7 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   });
 
   const onDeleteHandler = (id: string) => {
-    if (window.confirm('Are you sure?')) {
+    if (window.confirm('Are you sure you want to delete this goal?')) {
       deleteGoal.mutate(id);
       setShow(!show)
     }

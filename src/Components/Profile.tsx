@@ -8,7 +8,6 @@ const Profile = () => {
             <h4>Manager</h4>
             <p><strong>Info:</strong> Blabla</p>
             <p><strong>Inormation:</strong> Blabla</p>
-
         </div>
     )
 }

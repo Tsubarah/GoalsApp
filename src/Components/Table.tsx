@@ -44,25 +44,25 @@ const Table = ({ goals }: TabsProps) => {
 
                         <div className="goal-info">
                             <div className="cells cells-prio">
-                                <h4>{goal.prio}</h4>
+                                <p>{goal.prio}</p>
                             </div>
                             <div className="cells cells-deadline">
-                                <h4><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></h4>
+                                <p><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></p>
                             </div>
                             <div className="cells cells-description">
-                                <h4>{goal.description}</h4>
+                                <p>{goal.description}</p>
                             </div>
                             <div className="cells cells-target">
-                                <h4>{goal.target_reached}</h4>
+                                <p>{goal.target_reached}</p>
                             </div>
                             <div className="cells cells-milestone">
-                                <h4>{goal.milestones}</h4>
+                                <p>{goal.milestones}</p>
                             </div>
                             <div className="cells cells-progress">
-                                <h4>{goal.half_year_progress}</h4>
+                                <p>{goal.half_year_progress}</p>
                             </div>
                             <div className="cells cells-cost">
-                                <h4>{goal.cost}</h4>
+                                <p>{goal.cost}</p>
                             </div>
                         </div>
                         <div className="reviews">

@@ -5,13 +5,13 @@ ul {
   }
   
   .listItem  {
-    width: 50%;
+    width: 35%;
     padding-top: 2rem;
     display: flex;
     justify-content: center;
     text-align: center;
     flex-direction: row;
-    align-items: center;
+    // align-items: center;
   }
 
   a {
@@ -21,11 +21,12 @@ ul {
   }
   
   .user-list {
-    width: 85%;
+    width: 80%;
     height:100%;
     display: flex;
     flex-wrap: wrap;
   }
+  
   .user-list-item {
     align-self: center;
     width: 100%;
