@@ -1,20 +1,13 @@
-import { useState } from 'react'
 import GoalsForm from './GoalsForm'
 
+type ModalProps = {
+  show: boolean,
+  setShow: (show: boolean) => void;
+}
 
-
-const Modal = () => {
-  const [show, setShow] = useState<boolean>(false)
-
+const Modal = ({ show, setShow}: ModalProps) => {
   return (
       <>
-        <button 
-          className="button create-btn" 
-          onClick={() => setShow(!show)}
-        >
-          Create a Goal
-        </button>
-
         {show && (
           <div className="addGoal-modal">
 

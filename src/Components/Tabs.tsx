@@ -87,15 +87,17 @@ const Tabs = ({ goals }: TabsProps) => {
 
     return (
         <>
-        <div className="filterByTimeSpan-wrapper">
-            <h3>Filter by month</h3>
-        <select className="filterByTimeSpan" id="timeSpan">
-            <option onClick={()=>{filterFunction()}} value="all">Show All</option>
-            <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
-            <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
-            <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
-        </select>
-        </div>
+            <div className="filter-months-span-wrapper">
+                <div className="filter-months">
+                    <h3>Filter by month</h3>
+                    <select className="filterByTimeSpan" id="timeSpan">
+                        <option onClick={()=>{filterFunction()}} value="all">Show All</option>
+                        <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
+                        <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
+                        <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
+                    </select>
+                </div>
+            </div>
             <div className="bloc-tabs">
                 <button
                     className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -122,7 +124,7 @@ const Tabs = ({ goals }: TabsProps) => {
                     Building Geshdo
                 </button>
             </div>
-            
+                
             <div className="content-tabs">
 
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
@@ -149,7 +151,6 @@ const Tabs = ({ goals }: TabsProps) => {
                 </div>
             </div>
         </>
-
     );
 }
 
