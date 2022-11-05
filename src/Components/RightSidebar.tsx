@@ -14,8 +14,8 @@ const RightSidebar = ({show, setShow}: sidebarProps) => {
         
       <div className={`${show 
                         ? "slide-in-right" 
-                        : "slide-out-right"} rightSidebar`
-                      }>
+                        : "slide-out-right"} rightSidebar`}
+      >
                         
         <ConsultantProfile />
 
@@ -23,6 +23,7 @@ const RightSidebar = ({show, setShow}: sidebarProps) => {
           <Link to="/goals">
             <button className='button goals-btn'>Goals</button>
           </Link>
+
           <Link to="/history">
             <button className='button history-btn'>History</button>
           </Link>
