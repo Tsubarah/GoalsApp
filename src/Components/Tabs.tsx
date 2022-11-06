@@ -90,8 +90,20 @@ const Tabs = ({ goals }: TabsProps) => {
         <>
 
             <Modal setShow={setShow} show={show} />
-
+            
+            <div className="select-header">
+                <h3>Filter by month</h3>
+            </div>
             <div className="filter-months-span-wrapper">
+                <div className="filter-months">
+                    <select className="filterByTimeSpan" id="timeSpan">
+                        <option onClick={()=>{filterFunction()}} value="all">Show All</option>
+                        <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
+                        <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
+                        <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
+                    </select>
+                    <span className="custom-arrow"></span>
+                </div>
                 <div>
                     <button 
                         className="button create-btn" 
@@ -99,16 +111,6 @@ const Tabs = ({ goals }: TabsProps) => {
                     >
                         Create a Goal
                     </button>
-                </div>
-
-                <div className="filter-months">
-                    <h3>Filter by month</h3>
-                    <select className="filterByTimeSpan" id="timeSpan">
-                        <option onClick={()=>{filterFunction()}} value="all">Show All</option>
-                        <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
-                        <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
-                        <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
-                    </select>
                 </div>
             </div>
 
