@@ -10,7 +10,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        padding: 0.5rem 0;
+        // padding: 0.5rem 0;
         background-color: #275878;
         color: white;
         width: 100%;
@@ -57,6 +57,25 @@
                 .cells {
                     padding: 0.5rem 0 0.5rem 1rem;
                     background-color: white;
+                    position: relative;
+
+                    p {
+                        margin: 0.25rem 0;
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 1rem;
+                        left: 0.25rem;
+                        border-left: 1px solid rgb(201, 192, 192);
+                        height: 100%;
+                        color: grey;
+                    }
+
+                    &:first-child::after {
+                        content: none;
+                    }
 
                     &.cells-deadline {
                         width: 8%;
@@ -88,7 +107,9 @@
                 }
 
                 .accordion {
-                    width: 48%;
+                    width: 47%;
+                    margin-right: 0.25rem;
+                    // background-color: grey;
                 }
             }
         }
@@ -99,7 +120,13 @@
     box-shadow: none!important;
 }
 .css-15v22id-MuiAccordionDetails-root {
-    box-shadow:  2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    // box-shadow:  2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+/* Funkar inte som det ska med transparent*/
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
+    // background-color: rgba(128, 128, 128, 0.075);
+    // border-right: 0.25rem solid rgba(128, 128, 128, 0.075);
 }
 
 .slide-out-right {

@@ -11,7 +11,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        padding: 0.5rem 0;
+        // padding: 0.5rem 0;
         background-color: #275878;
         color: white;
         width: 100%;
@@ -56,6 +56,25 @@
 
                 .cells {
                     padding: 0.5rem 0 0.5rem 1rem;
+                    position: relative;
+
+                    p {
+                        margin: 0.25rem 0;
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 1rem;
+                        left: 0.25rem;
+                        border-left: 1px solid rgb(201, 192, 192);
+                        height: 100%;
+                        color: grey;
+                    }
+
+                    &:first-child::after {
+                        content: none;
+                    }
         
                     &.cells-deadline {
                         width: 8%;
@@ -85,7 +104,7 @@
                     display: flex;
                 }
                 .accordion {
-                    width: 48%;
+                    width: 46%;
                 }
             }
         }
