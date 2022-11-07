@@ -1,7 +1,7 @@
 import image from "../Assets/Images/placeholder-image.jpeg"
 
 type itemProps = {
-  show: boolean,
+  show: boolean | null,
   setShow: (show: boolean) => void,
 }
 
