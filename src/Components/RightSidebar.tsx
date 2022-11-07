@@ -13,9 +13,12 @@ const RightSidebar = ({show, setShow}: sidebarProps) => {
     <div className='rightSidebar-wrapper'>
       <div className="rightSidebar-placeholder"></div>
         
-      <div className={`${show === true
-                        ? "slide-in-right" 
-                        : show === false ? "slide-out-right" : ""} rightSidebar`}
+      <div className={`${show === null
+                          ? "hidden" 
+                            : show 
+                            ? "slide-in-right rightSidebar" 
+                          : "slide-out-right rightSidebar"
+                      }`}
       >
                         
         <ConsultantProfile />
