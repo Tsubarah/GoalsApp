@@ -1,17 +1,10 @@
 import { useAuth } from "../services/auth";
+import { IUser } from '../typings/User'
 
 type AzureUser = {
 	name: string;
 	email: string;
   };
-
-type User = {
-    displayName: string, 
-    id: string,
-    jobTitle: string,
-    mail: string,
-    mobilePhone?: number
-}
 
 const useUsers = () => {
 	const { user } = useAuth();
@@ -59,7 +52,7 @@ const useUsers = () => {
         return imageUrl;
     };
 
-    const getUserDetails = async (accessToken: string) : Promise<User | undefined>=>  {
+    const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
         if (!accessToken) {
             return undefined;
         }
@@ -73,7 +66,7 @@ const useUsers = () => {
             headers: headers,
         };
 
-        let user : User | undefined 
+        let user : IUser | undefined 
         try {
             await fetch("https://graph.microsoft.com/v1.0/me", options)
                 .then(async (response) => {
