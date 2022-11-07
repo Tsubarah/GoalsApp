@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
+import Modal from '../Components/Modal'
 
 // Types are used for props 
 type TabsProps = {
@@ -9,6 +10,7 @@ type TabsProps = {
 
 const Tabs = ({ goals }: TabsProps) => {
     const [toggleState, setToggleState] = useState(1);
+    const [show, setShow] = useState<boolean>(false)
     // const [localGoals, setLocalGoals] = useState<undefined>()
     const [personalDevelopmentPrio, setPersonalDevelopmentPrio] = useState([] as any)
     const [customerInteractionPrio, setCustomerInteractionPrio] = useState([] as any)
@@ -17,7 +19,6 @@ const Tabs = ({ goals }: TabsProps) => {
     const [customerInteraction, setCustomerInteraction] = useState([] as any)
     const [buildingGeshdo, setBuildingGeshdo] = useState([] as any)
 
-    
 
     const filterFunction = () => {
         const filteredPrioDev =  goals.filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
@@ -87,17 +88,32 @@ const Tabs = ({ goals }: TabsProps) => {
 
     return (
         <>
+
+            <Modal setShow={setShow} show={show} />
+            
+            <div className="select-header">
+                <h3>Filter by month</h3>
+            </div>
             <div className="filter-months-span-wrapper">
                 <div className="filter-months">
-                    <h3>Filter by month</h3>
                     <select className="filterByTimeSpan" id="timeSpan">
                         <option onClick={()=>{filterFunction()}} value="all">Show All</option>
                         <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
                         <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
                         <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
                     </select>
+                    <span className="custom-arrow"></span>
+                </div>
+                <div>
+                    <button 
+                        className="button create-btn" 
+                        onClick={() => setShow(!show)}
+                    >
+                        Create a Goal
+                    </button>
                 </div>
             </div>
+
             <div className="bloc-tabs">
                 <button
                     className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -142,14 +158,17 @@ const Tabs = ({ goals }: TabsProps) => {
                 </div>
 
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
+                    <h2 className="table-headers">Personal Development</h2>
                     <Table goals={personalDevelopment} />
                 </div>
 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
+                    <h2 className="table-headers">Customer Interaction</h2>
                     <Table goals={customerInteraction} />
                 </div>
 
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
+                    <h2 className="table-headers">Building Geshdo</h2>
                     <Table goals={buildingGeshdo} />
                 </div>
             </div>

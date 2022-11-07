@@ -2,7 +2,7 @@ import ListItem from "./ListItem"
 
 type listProps = {
   show: boolean | null,
-  setShow: (show: boolean | null) => void,
+  setShow: (show: boolean) => void,
 }
 const UserList = ({show, setShow}: listProps)  => {
   return (
