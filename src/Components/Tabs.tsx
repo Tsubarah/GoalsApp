@@ -11,42 +11,41 @@ type TabsProps = {
 const Tabs = ({ goals }: TabsProps) => {
   const [toggleState, setToggleState] = useState(1);
   const [show, setShow] = useState<boolean>(false)
-  // const [personalDevelopmentPrio, setPersonalDevelopmentPrio] = useState([] as any)
-  // const [customerInteractionPrio, setCustomerInteractionPrio] = useState([] as any)
-  // const [buildingGeshdoPrio, setBuildingGeshdoPrio] = useState([] as any)
-  // const [personalDevelopment, setPersonalDevelopment] = useState([] as any)
-  // const [customerInteraction, setCustomerInteraction] = useState([] as any)
-  // const [buildingGeshdo, setBuildingGeshdo] = useState([] as any)
 
   const sections = [
     {
       id: 1,
-      name: 'All',
-      category: 'all',
-      goals: goals,
+      name: 'Prio',
+      category: 'prio',
+      goals: goals?.filter(goal => goal.prio === 1).sort((a, b) => b.category.localeCompare(a.category)),
     },
     {
       id: 2,
       name: 'Personal Development',
       category: 'personalDevelopment',
       goals: goals?.filter(goal => goal.category === "personalDevelopment"),
-      // prio: goals?.filter(goal => goal.prio === Number("1"))
     },
     {
       id: 3,
       name: 'Customer Interaction',
       category: 'customerInteraction',
       goals: goals?.filter(goal => goal.category === "customerInteraction"),
-      prio: goals?.filter(goal => goal.category === "customerInteraction" && goal.prio === Number("1"))
     },
     {
       id: 4,
       name: 'Building Geshdo',
       category: 'buildingGeshdo',
       goals: goals?.filter(goal => goal.category === "buildingGeshdo"),
-      prio: goals?.filter(goal => goal.category === "buildingGeshdo" && goal.prio === Number("1"))
     }
   ]
+
+  const filterByCategories = sections.filter(section => section.name !== "Prio")
+  const filterPrioPD = sections[0].goals.filter(goal => goal.category === "personalDevelopment")
+  const filterPrioCI = sections[0].goals.filter(goal => goal.category === "customerInteraction")
+  const filterPrioBG = sections[0].goals.filter(goal => goal.category === "buildingGeshdo")
+
+  console.log('PrioGoals', sections[0].goals)
+  console.log('sections', sections)
 
   //Get the span of now and 3 months ago
   const threeNow = new Date();
@@ -77,23 +76,6 @@ const Tabs = ({ goals }: TabsProps) => {
   //     name: "12 months"
   //   }
   // ]
-
-  console.log('sections', sections)
-
-  // const filterFunction = () => {
-  //   const filteredPrioDev = goals.filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
-  //   setPersonalDevelopmentPrio(filteredPrioDev)
-  //   const filteredPrioCus = goals.filter(goal => goal.category === "customerInteraction" && goal.prio === Number("1"))
-  //   setCustomerInteractionPrio(filteredPrioCus)
-  //   const filteredPrioBui = goals.filter(goal => goal.category === "buildingGeshdo" && goal.prio === Number("1"))
-  //   setBuildingGeshdoPrio(filteredPrioBui)
-  //   const categoryDev = goals.filter(goal => goal.category === "personalDevelopment")
-  //   setPersonalDevelopment(categoryDev)
-  //   const categoryCus = goals.filter(goal => goal.category === "customerInteraction")
-  //   setCustomerInteraction(categoryCus)
-  //   const categoryBui = goals.filter(goal => goal.category === "buildingGeshdo")
-  //   setBuildingGeshdo(categoryBui)
-  // }
 
   // Filter functions that filter goals after how long ago a goal was created
 
@@ -151,7 +133,7 @@ const Tabs = ({ goals }: TabsProps) => {
   // }
 
   useEffect(() => {
-    // filterFunction()
+    
   }, [goals])
 
   const toggleTab = (index: number) => {
@@ -198,7 +180,10 @@ const Tabs = ({ goals }: TabsProps) => {
       <div className="bloc-tabs">
         {sections.map(section => (
           <button
-          className={toggleState === section.id ? "tabs active-tabs" : "tabs"} 
+          className={toggleState === section.id 
+                      ? "tabs active-tabs" 
+                      : "tabs"
+                    } 
           onClick={() => toggleTab(section.id)}
           >
             {section.name}
@@ -207,44 +192,34 @@ const Tabs = ({ goals }: TabsProps) => {
       </div>
       
       <div className="content-tabs">
-        {sections.map(section => (
-          <div className={toggleState === section.id ? "content active-content" : "content"}>
-            <h2 className="table-headers">{section.name}</h2>
-            <Table goals={section.goals}/>
-          </div>
-        ))}
-      </div>
-      {/* <div className="content-tabs">
-
-        <div className={toggleState === 1
-          ? "content  active-content"
-          : "content"}
+        <div className={toggleState === 1 
+                          ? "content active-content" 
+                          : "content"
+                        }
         >
-          <h2 className="table-headers">Personal Development</h2>
-          <Table goals={personalDevelopmentPrio} />
-
-          <h2 className="table-headers">Customer Interaction</h2>
-          <Table goals={customerInteractionPrio} />
-
-          <h2 className="table-headers">Building Geshdo</h2>
-          <Table goals={buildingGeshdoPrio} />
+          {sections[0].goals && (
+            <>
+              <h2 className="table-headers">Personal Development</h2>
+              <Table goals={filterPrioPD}/>
+              <h2 className="table-headers">Customer Interaction</h2>
+              <Table goals={filterPrioCI}/>
+              <h2 className="table-headers">Building Geshdo</h2>
+              <Table goals={filterPrioBG}/>
+            </>
+          )}
         </div>
-
-        <div className={toggleState === 2 ? "content  active-content" : "content"}>
-          <h2 className="table-headers">Personal Development</h2>
-          <Table goals={personalDevelopment} />
-        </div>
-
-        <div className={toggleState === 3 ? "content  active-content" : "content"}>
-          <h2 className="table-headers">Customer Interaction</h2>
-          <Table goals={customerInteraction} />
-        </div>
-
-        <div className={toggleState === 4 ? "content  active-content" : "content"}>
-          <h2 className="table-headers">Building Geshdo</h2>
-          <Table goals={buildingGeshdo} />
-        </div>
-      </div> */}
+        {filterByCategories.map(section => (
+            <div className={toggleState === section.id 
+                              ? "content active-content" 
+                              : "content"
+                            }
+            >
+              <h2 className="table-headers">{section.name}</h2>
+              <Table goals={section.goals} />
+            </div>
+          )
+        )}
+      </div>
     </>
   );
 }
