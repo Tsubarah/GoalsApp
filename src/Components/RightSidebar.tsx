@@ -3,17 +3,22 @@ import { Link } from 'react-router-dom'
 
 type sidebarProps ={
   show: boolean | null,
-  setShow: (show: boolean | null) => void,
+  setShow: (show: boolean) => void,
 }
 
 const RightSidebar = ({show, setShow}: sidebarProps) => {
+  console.log('show', show)
+  
   return (
-    <div className='profileWrapper'>
+    <div className='rightSidebar-wrapper'>
       <div className="rightSidebar-placeholder"></div>
         
-      <div className={`${show
-                        ? "slide-in-right" 
-                        : "slide-out-right"} rightSidebar`}
+      <div className={`${show === null
+                          ? "hidden" 
+                            : show 
+                            ? "slide-in-right rightSidebar" 
+                          : "slide-out-right rightSidebar"
+                      }`}
       >
                         
         <ConsultantProfile />

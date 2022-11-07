@@ -5,8 +5,7 @@ import UserList from "../Components/Userlist"
 import { useState } from "react"
 
 const ManagerPage = () => {
-  const [show, setShow] = useState<boolean | null>(false)
-  console.log('show', show)
+  const [show, setShow] = useState<boolean | null>(null)
   return (
     <div className="manager-page-wrapper">
       <Sidebar />

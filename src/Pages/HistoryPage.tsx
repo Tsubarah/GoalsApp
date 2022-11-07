@@ -1,5 +1,4 @@
 import useGoal from '../Hooks/useGoal'
-import Tabs from '../Components/Tabs'
 // import { IGoal } from '../typings/Goal'
 import HistoryList from '../Components/HistoryList'
 
@@ -12,7 +11,7 @@ const HistoryPage = () => {
 
 	return (
 		
-		<div className="container">
+		<div className="history-page-wrapper">
 
 			<h2>History</h2>
 
