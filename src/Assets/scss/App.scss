@@ -7,7 +7,8 @@
 @import 'scrollSpy';
 @import 'editGoalsForm';
 @import 'react-toastify/dist/ReactToastify.css';
-@import 'table';
+// @import 'table';
+@import 'table2';
 @import 'historyPage';
 @import 'userInfo';
 @import 'rightSidebar';
@@ -20,3 +21,6 @@ body {
     font-family: 'Work Sans', sans-serif;
 }
 
+.App {
+    background-color: #F0F2F5;
+}

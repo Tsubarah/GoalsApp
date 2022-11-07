@@ -1,15 +1,78 @@
+.select-header {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
 .filter-months-span-wrapper {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .filter-months {
-    width: 20rem;
+    position: relative;
+}
+
+select {
+    position: relative;
+    appearance: none;
+    padding: 0.75em 1.5em;
+    width: 16rem;
+    font-size: 1rem;
+    background: rgb(255, 255, 255);
+    border: 0;
+    box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+}
+
+select > option {
+    // background-color: rgb(255, 255, 255);
+}
+
+select:focus-visible {
+    outline: none;
+}
+    
+.custom-arrow {
+    position: absolute;
+    height: 100%;
+    width: 2.5em;
+    top: 0;
+    right: 0;
+    display: block;
+    background: rgba(128, 128, 128, 0.075);
+    pointer-events: none;
+}
+
+.custom-arrow::after,
+.custom-arrow::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.bengt {
+    text-align: start;
+}
+
+.custom-arrow::before {
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    border-bottom: 0.5em solid #1e5f84;
+    top: 38%;
+}
+
+.custom-arrow::after {
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    border-top: 0.5em solid #1e5f84;
+    top: 64%;
 }
 
 .bloc-tabs {
-    margin-top: 5rem;
+    margin-top: 2rem;
     display: flex;
     width: 100%;
 
@@ -28,10 +91,12 @@
             border-right: 1px solid rgba(0, 0, 0, 0.274);
         }
     }
-
+    
     .active-tabs  {
-        background: white;
+         background-color: #F0F2F5;
         border-bottom: 1px solid transparent;
+        font-family: 'Urbanist', sans-serif;
+        font-size: 1;
 
         &:before {
             content: "";
@@ -45,7 +110,6 @@
             background: #275878;
         }
     }
-
     button {
         border: none;
     }
@@ -58,20 +122,21 @@
 
     .table-headers {
         margin-bottom: 0.5rem;
-        text-decoration: underline;
+        font-weight: 600;
+        font-size: 1.5em;
 
         &:not(:first-child){
             margin-top: 3rem;
         }
     }    
-    
     .active-content {
         display: block;
     }
 }
 
 .content {
-    background: white;
+    // background: white;
     display: none;
 }
+
 

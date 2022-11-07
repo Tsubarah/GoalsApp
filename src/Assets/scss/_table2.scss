@@ -1,6 +1,5 @@
 .table-wrapper {
     width: 100%;
-    background-color: white;
 
     h4 {
         margin: 0;
@@ -40,22 +39,24 @@
             }
         }
     }
+
     .body-wrapper {
-        position: relative;
-        box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
 
         .cell-row {
-            margin-top: 0.25rem;
+            position: relative;
+            box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
 
-            &:not(:last-child) {
-                border-bottom: 1px solid grey;
+            &:not(:first-child) {
+                margin-top: 1rem;
             }
+            
             .goal-info {
                 display: flex;
                 width: 100%;
 
                 .cells {
                     padding: 0.5rem 0 0.5rem 1rem;
+                    background-color: white;
                     position: relative;
 
                     p {
@@ -75,7 +76,7 @@
                     &:first-child::after {
                         content: none;
                     }
-        
+
                     &.cells-deadline {
                         width: 8%;
                     }
@@ -102,20 +103,30 @@
 
                 .revs {
                     display: flex;
+                    background-color: white;
                 }
+
                 .accordion {
-                    width: 46%;
+                    width: 47%;
+                    margin-right: 0.25rem;
+                    // background-color: grey;
                 }
             }
         }
     }
 }
+
 .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
     box-shadow: none!important;
 }
-
 .css-15v22id-MuiAccordionDetails-root {
-    box-shadow:  2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)
+    // box-shadow:  2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+/* Funkar inte som det ska med transparent*/
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
+    // background-color: rgba(128, 128, 128, 0.075);
+    // border-right: 0.25rem solid rgba(128, 128, 128, 0.075);
 }
 
 .slide-out-right {
