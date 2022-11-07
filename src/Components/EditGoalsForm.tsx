@@ -9,20 +9,21 @@ type EditProps = {
   goal: IGoal,
   show: boolean,
   setShow: (show: boolean) => void,
+  // completedSwipe: boolean | string,
+  // setCompletedSwipe: (completedSwipe: boolean | string) => void,
 }
 
 const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   const { deleteGoal, editGoal } = useGoal();
 
-
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
+  // const [completedSwipe, setCompletedSwipe] = useState<boolean | string>(false)
 
   const {
     control,
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<IGoal>({
     defaultValues: {
@@ -49,13 +50,20 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   });
 
   const onDeleteHandler = (id: string) => {
-    if (window.confirm('Are you sure?')) {
+    if (window.confirm('Are you sure you want to delete this goal?')) {
       deleteGoal.mutate(id);
       setShow(!show)
     }
   }
 
   const onUpdateHandler = async (data: IGoal) => {
+    // console.log('BEFORE completedSwipe', completedSwipe)
+    // console.log('isComplete?', isComplete)
+    // if (isComplete) {
+    //   setCompletedSwipe(goal.id)
+    // }
+  
+
     const updatedGoal: IGoal = {
       ...data,
       id: goal.id,
@@ -66,32 +74,81 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
     console.log('data', data)
     console.log('updatedGoal', updatedGoal)
     editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
+    setShow(!show)
   }
 
 
   useEffect(() => {
     if (!goal) return
     setSelectedDate(goal.deadline)
+    // setCompletedSwipe(goal.id)
   }, [goal])
 
 
   return (
     <div>
       <form onSubmit={handleSubmit(onUpdateHandler)}>
+        <div className="top-section">
 
-        <label>
-          <p className="label-p">Type of Goal</p>
-        </label>
-        <select {...register("category")}
-          id="category"
-          defaultValue={goal.category}
-        >
-          <option value="personalDevelopment">Personal Development</option>
-          <option value="customerInteraction">Customer Interaction</option>
-          <option value="buildingGeshdo">Building Geshdo</option>
-        </select>
+          <div className="left">
+            <label>
+              <p className="label-p">Type of Goal:</p>
+            </label>
+            <select {...register("category")}
+              id="category"
+              defaultValue={goal.category}
+            >
+              <option value="personalDevelopment">Personal Development</option>
+              <option value="customerInteraction">Customer Interaction</option>
+              <option value="buildingGeshdo">Building Geshdo</option>
+            </select>
+          </div>
 
-        <br />
+          <div className="right">
+            <label>
+              <p className="label-p">Prio:</p>
+            </label>
+            <select {...register("prio", {
+              valueAsNumber: true,
+              })}
+              id="prio"
+              defaultValue={goal.prio}
+            >
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="middle-section">
+          <div className="left">
+            <label>
+              <p className="label-p">Deadline:</p>
+            </label>
+              <DatePicker
+                placeholderText="Select date"
+                onChange={(date) => setSelectedDate(date ? date.toISOString(): "")}
+                selected={new Date(selectedDate)}
+                minDate={new Date()}
+              />
+          </div>
+          
+          <div className="right">
+            <label>
+              <p className="label-p">Costs:</p></label>
+            <input
+              {...register("cost", {
+                valueAsNumber: true,
+                })}
+              type="number"
+              id="cost"
+              defaultValue={goal.cost}
+            ></input>
+          </div>
+        </div>
 
         <label>
           <p className="label-p">Goal Description:</p>
@@ -101,38 +158,6 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
           id="description"
           defaultValue={goal.description}
         ></textarea>
-
-        <br />
-
-        <label>
-          <p className="label-p">Prio:</p>
-        </label>
-        <select {...register("prio", {
-          valueAsNumber: true,
-          })}
-          id="prio"
-          defaultValue={goal.prio}
-        >
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-
-        <br />
-
-        <label>
-          <p className="label-p">Deadline:</p>
-        </label>
-          <DatePicker
-            placeholderText="Select date"
-            onChange={(date) => setSelectedDate(date ? date.toISOString(): "")}
-            selected={new Date(selectedDate)}
-            minDate={new Date()}
-          />
-
-        <br />
 
         <label>
           <p className="label-p">When is your goal done?</p>
@@ -154,20 +179,6 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
           defaultValue={goal.milestones}
         ></input>
 
-        <br />
-
-        <label>
-          <p className="label-p">Costs:</p></label>
-        <input
-          {...register("cost", {
-            valueAsNumber: true,
-            })}
-          type="number"
-          id="cost"
-          defaultValue={goal.cost}
-        ></input>
-
-        <br />
         <label>
           <p className="label-p">Expected half year progress:</p>
         </label>
@@ -179,39 +190,46 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
         ></input>
 
         {fields.map((item, index) => (
-          <>
+          <div key={index}>
             <label>
-              <p className="label-p">{item.name}</p>
+              <p className="label-p">{item.name}:</p>
             </label>
             <input
               key={item.id}
               {...register(`reviews.${index}.value`)}
             />
-          </>
+          </div>
         ))}
 
-        <br />
+        <div className="buttons-container">
+          <div>
+            <button 
+              type="submit" 
+              className="button submit-btn"
+            >
+              Save Changes
+            </button>
+          </div>
 
-        <button 
-          type="submit" 
-          className="submit-button"
-        >
-          Save Changes
-        </button>
+          <div>
+            <button
+              type="button"
+              className="button status-btn" 
+              onClick={() => setIsComplete(!isComplete)}
+            >
+              {isComplete ? "Completed" : "Not completed"}
+            </button>
+          </div>
 
-        <button className="status-button green-button" 
-          onClick={() => setIsComplete(!isComplete)}
-        >
-          {isComplete ? "Completed" : "Not completed"}
-        </button>
-
-        <button 
-          className="delete-btn"
-          onClick={() => onDeleteHandler(goal.id)}
-        >
-          Delete
-        </button>
-
+          <div>
+            <button 
+              className="button delete-btn"
+              onClick={() => onDeleteHandler(goal.id)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   )

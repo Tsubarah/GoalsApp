@@ -1,48 +1,125 @@
-th {
-  	background-color: rgb(119, 165, 201);
-  	color: white;
-  	padding: 1rem 1rem;
+.table-wrapper {
+    // padding: 0.5rem;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(128,126,128,1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(128,126,128,1);
+    box-shadow: 0px 0px 3px 0px rgba(128,126,128,1);
+    width: 100%;
+
+    h4 {
+        margin: 0;
+        width: 100%;
+    }
+    
+    .header-wrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0.5rem 0;
+        background-color: #275878;
+        color: white;
+        width: 100%;
+
+        .headers {
+            padding: 0.25rem;
+            
+            &.header-deadline {
+                width: 10%;
+            }
+
+            &.header-prio {
+                width: 5%;
+            }
+
+            &.header-cost {
+                width: 5%;
+            }
+
+            &.header-description,
+            &.header-target,
+            &.header-milestone,
+            &.header-progress
+            {
+                width: 20%;
+            }
+        }
+    }
+
+    .body-wrapper {
+   
+        .cell-row {
+            margin-top: 0.25rem;
+
+            .goal-info {
+                display: flex;
+                width: 100%;
+
+                .cells {
+                    padding: 0.25rem;
+        
+                    &.cells-deadline {
+                        width: 10%;
+                    }
+        
+                    &.cells-prio {
+                        width: 5%;
+                    }
+        
+                    &.cells-cost {
+                        width: 5%;
+                    }
+        
+                    &.cells-description,
+                    &.cells-target,
+                    &.cells-milestone,
+                    &.cells-progress
+                    {
+                        width: 20%;
+                    }
+                }
+            }
+           
+            .reviews {
+                width: 100%;
+
+                .revs {
+                    display: flex;
+                }
+
+                .accordion {
+                    width: 48%;
+                }
+            }
+        }
+    }
 }
 
-.th-description,
-.th-target,
-.th-milestone,
-.th-expected {
-  	width: 20%;
+.slide-out-right {
+	-webkit-animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	animation: slide-out-right 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
-.th-prio {
-  	width: 3%;
+ @-webkit-keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
 }
 
-.th-cost {
-  	width: 4%;
-}
-
-.th-deadline {
-  	width: 8%;
-}
-
-td {
-	padding: 0.25rem 0.75rem;
-	border: 1px solid grey;
-	word-wrap: break-word;
-}
-
-table {
-  	width: 100%;
-  	table-layout: fixed;
-}
-
-.edit-btn {
-	background-color: white;
-	border: none;
-	font-size: 1.2rem;
-	cursor: pointer;
-}
-
-// .half-review,
-// .end-review
-// {
-//   width: 50%;
-// }

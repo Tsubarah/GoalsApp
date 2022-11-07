@@ -3,7 +3,7 @@ h1,h2,h3 {
     padding: 0;
   }
   
-.container {
+.goals-page-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,19 +11,4 @@ h1,h2,h3 {
     min-height: calc(100vh - 4rem);
     width: 90%;
     margin: 2rem auto;
-}
-  
-.category-header {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: 2rem;
-}
-  
-.add-btn {
-    background-color: white;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
 }

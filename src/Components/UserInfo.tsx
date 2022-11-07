@@ -1,34 +1,21 @@
-import React from "react";
 import Profile from "./Profile";
 
 const UserInfo = () => {
     return (
-        <div className="user-wrapper">
-            <div className="user-stats">
-                <div className="stats-left">
-                    <h4>Name:</h4>
-                    <p>John Doe</p>
-                    <h4>Job Title: </h4>
-                    <p>Intern</p>
-                    <h4>Mail: </h4>
-                    <p>john.doe@something.se</p>
-                </div>
-                <div className="stats-right">
-                    <h4>mobilePhone:</h4>
-                    <p>+46733001122</p>
-                    <h4>ID:</h4>
-                    <p>ee34ep-282a-4b5f-b41a-967c6vc9-43oslv</p>
-                    <h4>Manager: </h4>
-                    <p>John Doe</p>
-                </div>
-            </div>
-            <div className="user-profile">
-
-                <Profile />
-
-            </div>
+      <div className="user-wrapper">
+        <div className="user">
+          <div className="user-stats">
+              <h4>Mail: john.doe@something.se</h4>
+              <h4>ID: ee34ep-282a-4b5f-b41a-967c6vc9-43oslv</h4>
+              <h4>Goals: 4</h4>
+          </div>
+          <div className="user-profile">
+            <Profile />
+          </div>
         </div>
-    );
+
+      </div>
+    )
 };
 
 export default UserInfo;

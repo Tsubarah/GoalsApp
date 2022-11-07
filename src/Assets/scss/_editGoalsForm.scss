@@ -1,54 +1,185 @@
-.red-button {
-    appearance: none;
-    backface-visibility: hidden;
-    background-color: #ae2727;
-    border-radius: 8px;
-    border-style: none;
-    box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: normal;
-    line-height: 1.5;
-    outline: none;
-    overflow: hidden;
-    padding: 13px 20px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transform: translate3d(0, 0, 0);
-    transition: all .3s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: top;
-    white-space: nowrap;
-  }
-  
-.red-button:hover {
-  background-color: #841e1e;
+a {
+  width: unset;
+}
+
+input {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px 12px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+select {
+  font-size: 14px;
+  padding: 12px 20px;
+  width: 100%;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+#half-year-progress {
+  margin-bottom: 2rem;
+}
+
+.addGoal-modal {
+  width: 700px;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 2rem 2rem;
+  display: block;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+  border-radius: 20px;
+ }
+
+ .modal-header {
+  position:fixed
+}
+
+.label-p {
+  margin-bottom: 0.2rem;
+  margin-left: 5px;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons-container button {
+  margin-left: 1rem;
+}
+
+.button {
+  padding: 8px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #b0a5a5;
+  border-style: none;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.create-btn {
+  background-color: #1e5f84;
+}
+
+.create-btn:hover {
+  background-color: #278eae;
   opacity: 1;
   transform: translateY(0);
   transition-duration: .35s;
 }
 
-.red-button:active {
-  transform: translateY(2px);
-  transition-duration: .35s;
+.edit-btn {
+  background-color: #1e5f84;
 }
 
-.red-button:hover {
+.edit-btn:hover {
+  background-color: #278eae;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
   box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
 }
 
-.delete-button {
-  margin-left: 47%;
+.submit-btn {
+  background-color: #1e5f84;
 }
 
-.status-button {
-margin-left: 20px;
+.submit-btn:hover {
+  background-color: #278eae;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+}
+
+.status-btn {
+  background-color: #1e5f84;
+}
+
+.status-btn:hover {
+  background-color: #278eae;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
+.delete-btn {
+  background-color: #bb2d3b;
+}
+
+.delete-btn:hover {
+  background-color: #dc3545;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+}
+
+.close-btn {
+  background-color: #1e5f84;
+}
+
+.close-btn:hover {
+  background-color: #278eae;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
+.goals-btn, .history-btn {
+  background-color: #2e3e4e;
+}
+
+.goals-btn:hover, .history-btn:hover {
+  background-color: #1e5f84;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
+.left, .right {
+  width: 20rem;
+}
+
+.top-section, .middle-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.hidden {
+display: none;
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
-import NewTable from './NewTable'
 
 // Types are used for props 
 type TabsProps = {
@@ -10,6 +9,7 @@ type TabsProps = {
 
 const Tabs = ({ goals }: TabsProps) => {
     const [toggleState, setToggleState] = useState(1);
+    // const [localGoals, setLocalGoals] = useState<undefined>()
     const [personalDevelopmentPrio, setPersonalDevelopmentPrio] = useState([] as any)
     const [customerInteractionPrio, setCustomerInteractionPrio] = useState([] as any)
     const [buildingGeshdoPrio, setBuildingGeshdoPrio] = useState([] as any)
@@ -87,15 +87,17 @@ const Tabs = ({ goals }: TabsProps) => {
 
     return (
         <>
-        <div className="filterByTimeSpan-wrapper">
-            <h3>Filter by month</h3>
-        <select className="filterByTimeSpan" id="timeSpan">
-            <option onClick={()=>{filterFunction()}} value="all">Show All</option>
-            <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
-            <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
-            <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
-        </select>
-        </div>
+            <div className="filter-months-span-wrapper">
+                <div className="filter-months">
+                    <h3>Filter by month</h3>
+                    <select className="filterByTimeSpan" id="timeSpan">
+                        <option onClick={()=>{filterFunction()}} value="all">Show All</option>
+                        <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
+                        <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
+                        <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
+                    </select>
+                </div>
+            </div>
             <div className="bloc-tabs">
                 <button
                     className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -122,34 +124,36 @@ const Tabs = ({ goals }: TabsProps) => {
                     Building Geshdo
                 </button>
             </div>
-            
+                
             <div className="content-tabs">
 
-                <div className={toggleState === 1 ? "content  active-content" : "content"}>
-                    <h3 className="table-headers">Personal Development</h3>
-                    <NewTable goals={personalDevelopmentPrio} />
+                <div className={toggleState === 1 
+                                ? "content  active-content" 
+                                : "content"}
+                >
+                    <h2 className="table-headers">Personal Development</h2>
+                    <Table goals={personalDevelopmentPrio} />
 
-                    <h3 className="table-headers">Customer Interaction</h3>
-                    <NewTable goals={customerInteractionPrio} />
+                    <h2 className="table-headers">Customer Interaction</h2>
+                    <Table goals={customerInteractionPrio} />
 
-                    <h3 className="table-headers">Building Geshdo</h3>
-                    <NewTable goals={buildingGeshdoPrio} />
+                    <h2 className="table-headers">Building Geshdo</h2>
+                    <Table goals={buildingGeshdoPrio} />
                 </div>
 
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
-                    <NewTable goals={personalDevelopment} />
+                    <Table goals={personalDevelopment} />
                 </div>
 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
-                    <NewTable goals={customerInteraction} />
+                    <Table goals={customerInteraction} />
                 </div>
 
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
-                    <NewTable goals={buildingGeshdo} />
+                    <Table goals={buildingGeshdo} />
                 </div>
             </div>
         </>
-
     );
 }
 

@@ -1,3 +1,13 @@
+.filter-months-span-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter-months {
+    width: 20rem;
+}
+
 .bloc-tabs {
     margin-top: 5rem;
     display: flex;
@@ -32,7 +42,7 @@
             transform: translateX(-50%);
             width: calc(100% + 2px);
             height: 0.5rem;
-            background: rgb(88, 147, 241);
+            background: #275878;
         }
     }
 
@@ -48,6 +58,7 @@
 
     .table-headers {
         margin-bottom: 0.5rem;
+        text-decoration: underline;
 
         &:not(:first-child){
             margin-top: 3rem;

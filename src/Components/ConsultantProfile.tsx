@@ -3,23 +3,18 @@ import placeholder from '../Assets/Images/placeholder-image.jpeg'
 const ConsultantProfile = () => {
   return (
     
-    <div className='consultantProfile rightSidbar'>
-        <img src={placeholder} className='consultant-img' alt="" />
-        <h3 className="profile-name">Jane Doe</h3>
-            <p><strong>Title:<br /></strong></p>
-            <p>Consultant</p>
-            <p><strong>Info:<br /></strong></p>
-            <p>Blablablabla bla</p>
-            <p><strong>Information:<br /></strong></p>
-            <p>0989542837</p>
-
-            <div className='buttonsConsultant'>
-                <button className='green-button'>Goals</button>
-                <button className='green-button'>History</button>
-            </div>
-
+    <div className='consultant-profile'>
+      <img src={placeholder} className='consultant-img' alt="" />
+      <h2 className="profile-name">Jane Doe</h2>
+      <h4 className="profile-h4">Title</h4>
+      <p className="profile-text">Consultant</p>
+      <h4 className="profile-h4">info</h4>
+      <p className="profile-text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </p>
+      <h4 className="profile-h4">Details</h4>
+      <p className="profile-text">0989542837</p>
     </div>
-    
   )
 }
 

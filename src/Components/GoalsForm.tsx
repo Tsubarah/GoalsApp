@@ -51,19 +51,72 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
   return (
     <div>
       <form onSubmit={handleSubmit(create)}>
-        <label>
-          <p className="label-p">Type of Goal</p>
-        </label>
-        <select {...register("category")} id="category">
-          <option value="personalDevelopment">
-            Personal Development
-          </option>
-          <option value="customerInteraction">
-            Customer Interaction
-          </option>
-          <option value="buildingGeshdo">Building Geshdo</option>
-        </select>
-        <br />
+        <div className="top-section">
+
+          <div className="left">
+            <label>
+              <p className="label-p">Type of Goal:</p>
+            </label>
+            <select {...register("category")}
+              id="category"
+            >
+              <option value="personalDevelopment">Personal Development</option>
+              <option value="customerInteraction">Customer Interaction</option>
+              <option value="buildingGeshdo">Building Geshdo</option>
+            </select>
+          </div>
+
+          <div className="right">
+            <label>
+              <p className="label-p">Prio:</p>
+            </label>
+            <select {...register("prio", {
+              valueAsNumber: true,
+              })}
+              id="prio"
+            >
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="middle-section">
+          <div className="left">
+            <label>
+              <p className="label-p">Deadline:</p>
+            </label>
+            <Controller
+              control={control}
+              name="deadline"
+              render={({ field }) => (
+                <DatePicker
+                  placeholderText="Select date"
+                  dateFormat="dd-MM-yyyy"
+                  selected={field.value ? new Date(field.value) : null}
+                  onChange={(date) => { field.onChange(date) }}
+                  minDate={new Date()}
+                  required
+                />
+              )}
+            />
+          </div>
+          
+          <div className="right">
+            <label>
+              <p className="label-p">Costs:</p></label>
+            <input
+              {...register("cost", {
+                valueAsNumber: true,
+                })}
+              type="number"
+              id="cost"
+            ></input>
+          </div>
+        </div>
 
         <label>
           <p className="label-p">Goal Description:</p>
@@ -74,45 +127,6 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
           placeholder="Describe your goal here..."
         ></textarea>
 
-        <br />
-
-        <label>
-          <p className="label-p">Prio:</p>
-        </label>
-        <select {...register("prio", {
-          valueAsNumber: true
-        })}
-          id="prio">
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-
-        <br />
-
-
-        <label>
-          <p className="label-p">Deadline:</p>
-        </label>
-        <Controller
-          control={control}
-          name="deadline"
-          render={({ field }) => (
-            <DatePicker
-              placeholderText="Select date"
-              dateFormat="dd-MM-yyyy"
-              selected={field.value ? new Date(field.value) : null}
-              onChange={(date) => { field.onChange(date) }}
-              minDate={new Date()}
-              required
-            />
-          )}
-        />
-
-        <br />
-
         <label>
           <p className="label-p">When is your goal done?</p>
         </label>
@@ -121,8 +135,6 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
           type="text"
           id="doneWhen"
         ></input>
-
-        <br />
 
         <label>
           <p className="label-p">Milestones:</p>
@@ -133,42 +145,24 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
           id="milestones"
         ></input>
 
-        <br />
-
-        <label>
-          <p className="label-p">Costs:</p>
-        </label>
-        <input {...register("cost", {
-          valueAsNumber: true,
-        })}
-          type="number"
-          id="cost"></input>
-
-        <br />
-
         <label>
           <p className="label-p">Expected half year progress:</p>
         </label>
         <input
           {...register("half_year_progress")}
           type="text"
-          id="cost"
+          id="half-year-progress"
         ></input>
-
-        <br />
 
         {fields.map((item, index) => (
           <input
-            // className="hidden"
             type="hidden"
             key={item.id}
             {...register(`reviews.${index}.value`)}
           />
         ))}
 
-        <br />
-
-        <button type="submit" className="submit-button">
+        <button type="submit" className="button submit-btn">
           Create
         </button>
       </form>

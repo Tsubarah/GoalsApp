@@ -6,17 +6,13 @@ type listProps = {
 }
 const UserList = ({show, setShow}: listProps)  => {
   return (
+    <div className="user-list-wrapper">
       <ul className="user-list">
-        <li className="listItem">
-          <ListItem setShow={setShow} show={show} />
-        </li>
-        <li className="listItem">
-          <ListItem setShow={setShow} show={show}/>
-        </li>
-        <li className="listItem">
-          <ListItem  setShow={setShow} show={show}/>
-        </li>
+        <ListItem setShow={setShow} show={show} />
+        <ListItem setShow={setShow} show={show}/>
+        <ListItem  setShow={setShow} show={show}/>
       </ul>
+    </div>
   )
 }
 
