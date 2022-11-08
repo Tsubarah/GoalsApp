@@ -3,14 +3,42 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import useGoal from '../Hooks/useGoal'
 import { IGoal } from '../typings/Goal'
+import { IUser } from '../typings/User'
+import { useEffect, useState } from "react";
+import { useAuth } from "../services/auth";
+import useUsers from "../services/useUsers";
+import { setEnvironmentData } from "worker_threads";
 
 type FormProps = {
   show: boolean,
   setShow: (show: boolean) => void;
 }
 
-const GoalsForm = ({ setShow, show }: FormProps) => {
+const GoalsForm:Function = ({ setShow, show}: FormProps) => {
+  const { accessToken } = useAuth();
+  const { getUserDetails } = useUsers()
   const { createGoal } = useGoal();
+  const [userData, setUserData] = useState<IUser>();
+
+   useEffect(() => {
+      if (!accessToken) {
+        return;
+      }
+      
+      async function getUser(accessToken: string) {
+        const user = await getUserDetails(accessToken)
+          if (user) {
+            console.log(user)
+            setUserData(user)
+            console.log(userData)
+          }
+      }
+      getUser(accessToken)
+  },[accessToken])
+  
+  useEffect(() => {
+    console.log(userData)
+  },[userData])
 
   const {
     control,
@@ -35,13 +63,13 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
     },
   });
 
-
   const { fields } = useFieldArray({
     control,
     name: "reviews",
   });
 
-  const create = (data: IGoal) => {
+  const create = (data: IGoal ) => {
+    data = {...data, uid: userData?.id}
     console.log('data', data)
     createGoal.mutate(data)
     reset()
@@ -65,6 +93,15 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
               <option value="buildingGeshdo">Building Geshdo</option>
             </select>
           </div>
+
+          {userData && (
+            <>
+            
+              {/* <p>{userData.displayName}</p>
+              <p>{userData.id}</p>
+              <p>{userData.jobTitle}</p> */}
+            </>
+          )}
 
           <div className="right">
             <label>
