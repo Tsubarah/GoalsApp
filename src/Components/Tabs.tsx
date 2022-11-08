@@ -75,7 +75,12 @@ const Tabs = ({ goals }: TabsProps) => {
       </div>
       <div className="filter-months-span-wrapper">
         <div className="filter-months">
-          <select className="filterByTimeSpan" id="timeSpan" onChange={(e) => setMonth(e.currentTarget.value)}>
+          <select 
+            className="filterByTimeSpan" 
+            id="timeSpan" 
+            onChange={(e) => 
+              setMonth(e.currentTarget.value)}
+          >
             <option value="all">Show All</option>
             <option value="3months">3 Months (1-3 months)</option>
             <option value="6months">6 Months (1-6 months)</option>
@@ -94,8 +99,9 @@ const Tabs = ({ goals }: TabsProps) => {
       </div>
 
       <div className="bloc-tabs">
-        {sections.map(section => (
+        {sections.map((section, i) => (
           <button
+            key={i}
             className={toggleState === section.id
               ? "tabs active-tabs"
               : "tabs"
