@@ -33,6 +33,7 @@ const Tabs = ({ goals }: TabsProps) => {
         setCustomerInteraction(categoryCus)
         const categoryBui = goals.filter(goal => goal.category === "buildingGeshdo") 
         setBuildingGeshdo(categoryBui)
+ 
     }
 
     // Filter functions that filter goals after how long ago a goal was created
@@ -40,13 +41,13 @@ const Tabs = ({ goals }: TabsProps) => {
     const threeNow = new Date();
     threeNow.setMonth(threeNow.getMonth() - 3)
     const threeMonthsAgo = threeNow.getTime()
-    console.log("3 månader sedan:", threeMonthsAgo)
+    
 
     //Get the span of now and 6 months ago and 12 months
     const now = new Date();
     now.setMonth(now.getMonth() - 6);
     const sixMonthsAgo = now.getTime()
-    console.log("6 månader sedan: ", sixMonthsAgo)
+    
 
     
     const filterThreeMonths = () => {

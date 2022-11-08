@@ -10,6 +10,7 @@
 
 .navbar-logo {
     padding: 0.25rem;
+    margin-left: 2rem;
 }
 
 .logo {
@@ -19,10 +20,12 @@
 .navbar-menu {
     display: flex;
     align-items: center;
+    margin-right: 2rem;
 }
 
 .navbar-menu a {
     text-decoration: none;
     color: white;
     margin-left: 1rem;
+    margin-right: 1rem;
 }

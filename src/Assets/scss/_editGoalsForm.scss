@@ -179,3 +179,27 @@ textarea {
 .hidden {
 display: none;
 }
+
+@media screen and (max-width: 1800px) {
+  .edit-btn {
+    position: absolute;
+    padding: 0.5rem 1rem;
+    right: -0.4rem;
+    bottom: 0.25rem;
+    margin-right: 0.75rem;
+    background-color: #1e5f84;
+  }
+}
+
+@media screen and (max-width: 1400px){
+  .edit-btn {
+    position: absolute;
+    padding: 0.5rem 1rem;
+    right: -0.6rem;
+    bottom: 0.25rem;
+    margin-right: 0.75rem;
+    background-color: #1e5f84;
+    
+    text-align: center;
+  }
+}
