@@ -13,8 +13,8 @@
     border-left: 2px solid #b6b6b6;
     color:#383838;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
-    // animation: slide-in-right 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    border-top-left-radius: 15px;
+    // border: 2px solid #222d38;
 }
 .slide-in-right {
 	animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;

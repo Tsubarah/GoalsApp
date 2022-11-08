@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom'
 
 type sidebarProps ={
   show: boolean | null,
-  setShow: (show: boolean) => void,
 }
 
-const RightSidebar = ({show, setShow}: sidebarProps) => {
-  console.log('show', show)
+const RightSidebar = ({show}: sidebarProps) => {
   
   return (
     <div className='rightSidebar-wrapper'>
