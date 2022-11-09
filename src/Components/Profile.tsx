@@ -27,7 +27,7 @@ const Profile = ({userdata}: UserProps) => {
         <div className="profile">
             {photoUrl && <img src={photoUrl ? photoUrl : placeholder} alt={userdata?.displayName} />}
             <h2>{userdata?.displayName}</h2>
-            <h4>{userdata?.jobTitle}</h4>
+            <h3>{userdata?.jobTitle}</h3>
         </div>
     )
 }
