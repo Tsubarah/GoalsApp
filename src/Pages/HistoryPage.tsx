@@ -28,7 +28,7 @@ const HistoryPage = () => {
 			{!isLoading && goals && (
 				<>
 
-				<UserInfo />
+				<UserInfo goals={goals} />
 
 				<h2 className='history-h2'>Completed Goals</h2>
 

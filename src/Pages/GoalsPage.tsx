@@ -27,7 +27,7 @@ const GoalsPage = () => {
         {!isLoading && goals && (
 
         <>
-            <UserInfo />
+            <UserInfo goals={goals} />
 
             <Tabs goals={goals} />
         </>

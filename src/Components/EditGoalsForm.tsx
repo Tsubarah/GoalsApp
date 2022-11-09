@@ -33,7 +33,7 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
             {
                 type: "end_of_year_review",
                 name: "End of year review",
-                value: goal?.reviews[1].value || "",
+                value: goal?.reviews[0].value || "",
             },
         ],
     },
