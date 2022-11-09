@@ -60,6 +60,7 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
       creationDate: goal.creationDate,
       isComplete: isComplete,
       deadline: selectedDate,
+      uid: goal.uid
     }
     console.log('data', data)
     console.log('updatedGoal', updatedGoal)
