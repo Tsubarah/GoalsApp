@@ -11,6 +11,10 @@ const UserList = ({show, setShow}: listProps)  => {
         <ListItem setShow={setShow} show={show} />
         <ListItem setShow={setShow} show={show}/>
         <ListItem  setShow={setShow} show={show}/>
+        <ListItem  setShow={setShow} show={show}/>
+        <ListItem  setShow={setShow} show={show}/>
+        <ListItem  setShow={setShow} show={show}/>
+        <ListItem  setShow={setShow} show={show}/>
       </ul>
     </div>
   )
