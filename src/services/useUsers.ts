@@ -74,7 +74,7 @@ const useUsers = () => {
                         const data = await response.json();
                         if (data !== null) {
 
-                            console.log("data from fetch:", data)
+                            // console.log("data from fetch:", data)
 
                             user = {
                                 displayName: data.displayName,
@@ -95,7 +95,7 @@ const useUsers = () => {
             // userObject = {name: "", jobTitle:"", uid: ""};
             console.log(err)
         }
-        console.log("Return Object", user)
+        // console.log("Return Object", user)
         return user
     };
 

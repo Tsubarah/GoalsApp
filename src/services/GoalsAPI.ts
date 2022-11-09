@@ -1,5 +1,4 @@
 import { IGoal } from '../typings/Goal'
-import { QueryFunctionContext } from "react-query";
 /**
  * Service for communicating with the json-server backend
  */
@@ -26,8 +25,8 @@ const get = async (endpoint: string) => {
 /**
  * Get all goals
  */
-export const getGoals = async ({ queryKey }: any):Promise<IGoal[]> => {
-  const [_key, {uid}] = queryKey
+export const getGoals = async (uid: string | undefined):Promise<IGoal[]> => {
+//   const [_key, { id }] = queryKey
   console.log('uid', uid)
   return get(`/goals/${uid}`)
 }
@@ -35,6 +34,7 @@ export const getGoals = async ({ queryKey }: any):Promise<IGoal[]> => {
 // export const getGoals = ():Promise<IGoal[]> => {
 //   return get('/goals')
 // }
+
 
 /**
  * Get single goal

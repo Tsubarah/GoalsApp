@@ -1,13 +1,21 @@
-import useGoal from '../Hooks/useGoal'
-// import { IGoal } from '../typings/Goal'
+import { useEffect } from 'react'
+import { useQuery} from 'react-query'
+import { useParams} from 'react-router-dom'
+import { IGoal } from '../typings/Goal'
+import GoalsAPI from '../services/GoalsAPI'
+import LoadingSpinner from '../Components/LoadingSpinner'
 import HistoryList from '../Components/HistoryList'
 
-// type TabsProps = {
-//     goals: IGoal[]
-// }
-
 const HistoryPage = () => {
-	const { getGoals: goals , isLoading } = useGoal()
+    const { id } = useParams()
+    const { data: goals, isLoading } = useQuery<IGoal[]>(['goals', id], () => GoalsAPI.getGoals(id))
+
+    useEffect(() => {
+        if (!goals)
+        return
+        console.log(goals)
+      },[])
+      console.log('goals', goals)
 
 	return (
 		
@@ -15,7 +23,7 @@ const HistoryPage = () => {
 
 			<h2>History</h2>
 
-			{isLoading && (<p>Loading... </p>)}
+			{isLoading && <LoadingSpinner />}
 
 			{!isLoading && goals && (
 

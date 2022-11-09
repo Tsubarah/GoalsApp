@@ -43,16 +43,8 @@ const useGoal = () => {
     getUser(accessToken)
   },[accessToken])
 
-  const { data: getGoals, isLoading } = useQuery({
-    queryKey: ['goals', {uid: userData?.id}],
-    queryFn: () => GoalsAPI.getGoals({uid: userData?.id}),
-  })
-
-  // const { data: getGoals, isLoading } = useQuery<IGoal[]>('goals', GoalsAPI.getGoals, {
-  // })
-  
-  // <IGoal[]>({ queryKey: ['goals', {uid: userData?.id}], GoalsAPI.getGoals, {
-  // })
+//   const { data: getGoals, isLoading } = useQuery<IGoal[]>(['goals', userData?.id], GoalsAPI.getGoals, {
+//   })
 
   const createGoal = useMutation(GoalsAPI.createGoal, {
     onError: (error: { message: String}) => {
@@ -65,8 +57,6 @@ const useGoal = () => {
       queryClient.invalidateQueries('goals')
     }
   })
-
-
 
   const editGoal = useMutation(({ id, data } : editGoalParams) => GoalsAPI.updateGoal(id, data), {
     onSuccess: () => {
@@ -93,11 +83,11 @@ const useGoal = () => {
 
   return {
     // getGoal,
-    getGoals,
+    // getGoals,
     createGoal,
     editGoal,
     deleteGoal,
-    isLoading,
+    // isLoading,
   }
 }
 
