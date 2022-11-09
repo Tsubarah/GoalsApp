@@ -1,6 +1,10 @@
 import { useQuery, useQueryClient, useMutation } from 'react-query'
 import GoalsAPI from '../services/GoalsAPI'
+import { useEffect, useState } from "react";
 import { IGoal } from '../typings/Goal'
+import { IUser } from '../typings/User'
+import { useAuth } from "../services/auth";
+import useUsers from "../services/useUsers";
 import { toast } from 'react-toastify'
 
 type editGoalParams = {
@@ -10,6 +14,9 @@ type editGoalParams = {
 
 const useGoal = () => {
   const queryClient = useQueryClient()
+  const { accessToken } = useAuth();
+  const { getUserDetails } = useUsers()
+  const [userData, setUserData] = useState<IUser>();
 
   // const queryClient = useQueryClient({
   //   defaultOptions: {
@@ -18,15 +25,26 @@ const useGoal = () => {
   //       manual: true,
   //     }
   //   }
-  // })
-
+  // })  
 
   // const getGoal = useQuery<IGoal>(['goal', id], () => GoalsAPI.getGoal(id))
 
+  useEffect(() => {
+    if (!accessToken) {
+      return;
+    }
+    
+    async function getUser(accessToken: string) {
+      const user = await getUserDetails(accessToken)
+      if (user) {
+        setUserData(user)
+      }
+    }
+    getUser(accessToken)
+  },[accessToken])
 
-  const { data: getGoals, isLoading } = useQuery<IGoal[]>('goals', GoalsAPI.getGoals, {
-  })
-
+//   const { data: getGoals, isLoading } = useQuery<IGoal[]>(['goals', userData?.id], GoalsAPI.getGoals, {
+//   })
 
   const createGoal = useMutation(GoalsAPI.createGoal, {
     onError: (error: { message: String}) => {
@@ -39,8 +57,6 @@ const useGoal = () => {
       queryClient.invalidateQueries('goals')
     }
   })
-
-
 
   const editGoal = useMutation(({ id, data } : editGoalParams) => GoalsAPI.updateGoal(id, data), {
     onSuccess: () => {
@@ -67,11 +83,11 @@ const useGoal = () => {
 
   return {
     // getGoal,
-    getGoals,
+    // getGoals,
     createGoal,
     editGoal,
     deleteGoal,
-    isLoading,
+    // isLoading,
   }
 }
 

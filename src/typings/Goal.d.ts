@@ -1,7 +1,8 @@
 export interface IGoal {
-  id: string;
-  creationDate?: string;
-  _ts?: number;
+  uid?: string,
+  id: string,
+  creationDate?: string,
+  _ts?: number,
   category: string,
   prio: number,
   description: string,

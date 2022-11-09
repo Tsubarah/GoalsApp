@@ -11,7 +11,7 @@ type AzureUser = {
 export const useAuth = () => {
   const { instance, accounts } = useMsal();
   const [user, setUser] = useState<AzureUser>();
-  const [accessToken, setAccessToken] = useState<string>();
+  const [accessToken, setAccessToken] = useState<string | undefined>();
 
   useEffect(() => {
     instance
