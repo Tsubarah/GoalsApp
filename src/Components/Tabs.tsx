@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
 import Modal from '../Components/Modal'
+import TabsDetails from '../Components/TabsDetails'
 
 // Types are used for props 
 type TabsProps = {
@@ -40,6 +41,8 @@ const Tabs = ({ goals }: TabsProps) => {
     }
   ]
 
+  // const incompleteGoals = sections[0].goals.filter(goal => !goal.isComplete)
+  const allGoals = sections[0].goals
   const filterByCategories = sections.filter(section => section.name !== "Prio")
   const filterPrioPD = sections[0].goals.filter(goal => goal.category === "personalDevelopment")
   const filterPrioCI = sections[0].goals.filter(goal => goal.category === "customerInteraction")
@@ -63,7 +66,6 @@ const Tabs = ({ goals }: TabsProps) => {
   };
 
   useEffect(() => {
-
   }, [goals, toggleState])
 
   return (
@@ -93,7 +95,7 @@ const Tabs = ({ goals }: TabsProps) => {
             className="button create-btn"
             onClick={() => setShow(!show)}
           >
-            Create a Goal
+            Create goal
           </button>
         </div>
       </div>
@@ -119,43 +121,28 @@ const Tabs = ({ goals }: TabsProps) => {
           : "content"
         }
         >
-          {sections[0].goals && (
+          {allGoals && (
             <>
               {month === '3months' ? (
-                <div>
-                  <h2 className="table-headers">Personal Development</h2>
-                  <Table goals={filterPrioPD.filter((goal => Date.parse(goal.creationDate as string) >= threeMonthsAgo))} />
-                  <h2 className="table-headers">Customer Interaction</h2>
-                  <Table goals={filterPrioCI.filter((goal => Date.parse(goal.creationDate as string) >= threeMonthsAgo))} />
-                  <h2 className="table-headers">Building Geshdo</h2>
-                  <Table goals={filterPrioBG.filter((goal => Date.parse(goal.creationDate as string) >= threeMonthsAgo))} />
-                </div>
+
+                <TabsDetails prioPD={filterPrioPD} prioCI={filterPrioCI} prioBG={filterPrioBG} months={threeMonthsAgo} />
+
               ) : month === '6months' ? (
-                <div>
-                  <h2 className="table-headers">Personal Development</h2>
-                  <Table goals={filterPrioPD.filter((goal => Date.parse(goal.creationDate as string) >= sixMonthsAgo))} />
-                  <h2 className="table-headers">Customer Interaction</h2>
-                  <Table goals={filterPrioCI.filter((goal => Date.parse(goal.creationDate as string) >= sixMonthsAgo))} />
-                  <h2 className="table-headers">Building Geshdo</h2>
-                  <Table goals={filterPrioBG.filter((goal => Date.parse(goal.creationDate as string) >= sixMonthsAgo))} />
-                </div>
+
+                <TabsDetails prioPD={filterPrioPD} prioCI={filterPrioCI} prioBG={filterPrioBG} months={sixMonthsAgo} />
+
               ) : month === '12months' ? (
-                <div>
-                  <h2 className="table-headers">Personal Development</h2>
-                  <Table goals={filterPrioPD.filter((goal => Date.parse(goal.creationDate as string) >= twelveMonthsAgo))} />
-                  <h2 className="table-headers">Customer Interaction</h2>
-                  <Table goals={filterPrioCI.filter((goal => Date.parse(goal.creationDate as string) >= twelveMonthsAgo))} />
-                  <h2 className="table-headers">Building Geshdo</h2>
-                  <Table goals={filterPrioBG.filter((goal => Date.parse(goal.creationDate as string) >= twelveMonthsAgo))} />
-                </div>
+
+                <TabsDetails prioPD={filterPrioPD} prioCI={filterPrioCI} prioBG={filterPrioBG} months={twelveMonthsAgo} />
+                
               ) : (
                 <div>
                   <h2 className="table-headers">Personal Development</h2>
-                  <Table goals={filterPrioPD} />
+                  <Table goals={filterPrioPD.filter(goal => !goal.isComplete)} />
                   <h2 className="table-headers">Customer Interaction</h2>
-                  <Table goals={filterPrioCI} />
+                  <Table goals={filterPrioCI.filter(goal => !goal.isComplete)} />
                   <h2 className="table-headers">Building Geshdo</h2>
-                  <Table goals={filterPrioBG} />
+                  <Table goals={filterPrioBG.filter(goal => !goal.isComplete)} />
                 </div>
               )}
             </>
