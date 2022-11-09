@@ -2,179 +2,185 @@ import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goal'
 import Modal from '../Components/Modal'
+import TabsDetails from '../Components/TabsDetails'
 
 // Types are used for props 
 type TabsProps = {
-    goals: IGoal[]
+  goals: IGoal[],
 }
 
 const Tabs = ({ goals }: TabsProps) => {
-    const [toggleState, setToggleState] = useState(1);
-    const [show, setShow] = useState<boolean>(false)
-    // const [localGoals, setLocalGoals] = useState<undefined>()
-    const [personalDevelopmentPrio, setPersonalDevelopmentPrio] = useState([] as any)
-    const [customerInteractionPrio, setCustomerInteractionPrio] = useState([] as any)
-    const [buildingGeshdoPrio, setBuildingGeshdoPrio] = useState([] as any)
-    const [personalDevelopment, setPersonalDevelopment] = useState([] as any)
-    const [customerInteraction, setCustomerInteraction] = useState([] as any)
-    const [buildingGeshdo, setBuildingGeshdo] = useState([] as any)
+  const [toggleState, setToggleState] = useState(1);
+  const [show, setShow] = useState<boolean>(false)
+  const [month, setMonth] = useState<string>("all")
 
-
-    const filterFunction = () => {
-        const filteredPrioDev =  goals.filter(goal => goal.category === "personalDevelopment" && goal.prio === Number("1"))
-        setPersonalDevelopmentPrio(filteredPrioDev)
-        const filteredPrioCus =  goals.filter(goal => goal.category === "customerInteraction" && goal.prio === Number("1"))
-        setCustomerInteractionPrio(filteredPrioCus)
-        const filteredPrioBui =  goals.filter(goal => goal.category === "buildingGeshdo" && goal.prio === Number("1"))
-        setBuildingGeshdoPrio(filteredPrioBui )
-        const categoryDev = goals.filter(goal => goal.category === "personalDevelopment") 
-        setPersonalDevelopment(categoryDev)
-        const categoryCus = goals.filter(goal => goal.category === "customerInteraction") 
-        setCustomerInteraction(categoryCus)
-        const categoryBui = goals.filter(goal => goal.category === "buildingGeshdo") 
-        setBuildingGeshdo(categoryBui)
- 
+  const sections = [
+    {
+      id: 1,
+      name: 'Prio',
+      category: 'prio',
+      goals: goals?.filter(goal => goal.prio === 1).sort((a, b) => b.category.localeCompare(a.category)),
+    },
+    {
+      id: 2,
+      name: 'Personal Development',
+      category: 'personalDevelopment',
+      goals: goals?.filter(goal => goal.category === "personalDevelopment"),
+    },
+    {
+      id: 3,
+      name: 'Customer Interaction',
+      category: 'customerInteraction',
+      goals: goals?.filter(goal => goal.category === "customerInteraction"),
+    },
+    {
+      id: 4,
+      name: 'Building Geshdo',
+      category: 'buildingGeshdo',
+      goals: goals?.filter(goal => goal.category === "buildingGeshdo"),
     }
+  ]
 
-    // Filter functions that filter goals after how long ago a goal was created
-    //Get the span of now and 3 months ago
-    const threeNow = new Date();
-    threeNow.setMonth(threeNow.getMonth() - 3)
-    const threeMonthsAgo = threeNow.getTime()
-    
+  // const incompleteGoals = sections[0].goals.filter(goal => !goal.isComplete)
+  const allGoals = sections[0].goals
+  const filterByCategories = sections.filter(section => section.name !== "Prio")
+  const filterPrioPD = sections[0].goals.filter(goal => goal.category === "personalDevelopment")
+  const filterPrioCI = sections[0].goals.filter(goal => goal.category === "customerInteraction")
+  const filterPrioBG = sections[0].goals.filter(goal => goal.category === "buildingGeshdo")
 
-    //Get the span of now and 6 months ago and 12 months
-    const now = new Date();
-    now.setMonth(now.getMonth() - 6);
-    const sixMonthsAgo = now.getTime()
-    
+  //Get the span of now and 3 months ago
+  const threeNow = new Date();
+  threeNow.setMonth(threeNow.getMonth() - 3)
+  const threeMonthsAgo = threeNow.getTime()
 
-    
-    const filterThreeMonths = () => {
+  const sixNow = new Date();
+  sixNow.setMonth(sixNow.getMonth() - 6);
+  const sixMonthsAgo = sixNow.getTime()
 
-        const threeMonths = goals.filter(goal => Date.parse(goal.creationDate as string) >= threeMonthsAgo)
-        setPersonalDevelopment(threeMonths)
-        setCustomerInteraction(threeMonths)
-        setBuildingGeshdo(threeMonths)
-    }
+  const twelveNow = new Date();
+  twelveNow.setMonth(twelveNow.getMonth() - 12);
+  const twelveMonthsAgo = twelveNow.getTime()
 
-    const filterSixMonths = () => {
+  const toggleTab = (index: number) => {
+    setToggleState(index);
+  };
 
-        const sixMonths = goals.filter(goal => Date.parse(goal.creationDate as string) >= sixMonthsAgo)
-        setPersonalDevelopment(sixMonths)
-        setCustomerInteraction(sixMonths)
-        setBuildingGeshdo(sixMonths)
-    }
+  useEffect(() => {
+  }, [goals, toggleState])
 
-    const filterTwelveMonths = () => {
-        const twelveMonths = goals.filter(goal => Date.parse(goal.creationDate as string) < sixMonthsAgo)
-        setPersonalDevelopment(twelveMonths)
-        setCustomerInteraction(twelveMonths)
-        setBuildingGeshdo(twelveMonths)
-    }
-    
+  return (
+    <>
+      <Modal setShow={setShow} show={show} />
 
-    useEffect(()=> {
-        filterFunction()
-    },[goals])
+      <div className="select-header">
+        <h3>Filter by month</h3>
+      </div>
+      <div className="filter-months-span-wrapper">
+        <div className="filter-months">
+          <select 
+            className="filterByTimeSpan" 
+            id="timeSpan" 
+            onChange={(e) => 
+              setMonth(e.currentTarget.value)}
+          >
+            <option value="all">Show All</option>
+            <option value="3months">3 Months (1-3 months)</option>
+            <option value="6months">6 Months (1-6 months)</option>
+            <option value="12months">12 Months (1-12 months)</option>
+          </select>
+          <span className="custom-arrow"></span>
+        </div>
+        <div>
+          <button
+            className="button create-btn"
+            onClick={() => setShow(!show)}
+          >
+            Create goal
+          </button>
+        </div>
+      </div>
 
-    const toggleTab = (index: number) => {
-      setToggleState(index);
-    };
+      <div className="bloc-tabs">
+        {sections.map((section, i) => (
+          <button
+            key={i}
+            className={toggleState === section.id
+              ? "tabs active-tabs"
+              : "tabs"
+            }
+            onClick={() => toggleTab(section.id)}
+          >
+            {section.name}
+          </button>
+        ))}
+      </div>
 
-    useEffect(() => {
-        // console.log(goals)
-        // console.log(toggleState)
-    }, [goals, toggleState])
+      <div className="content-tabs">
+        <div className={toggleState === 1
+          ? "content active-content"
+          : "content"
+        }
+        >
+          {allGoals && (
+            <>
+              {month === '3months' ? (
 
-    return (
-        <>
+                <TabsDetails prioPD={filterPrioPD} prioCI={filterPrioCI} prioBG={filterPrioBG} months={threeMonthsAgo} />
 
-            <Modal setShow={setShow} show={show} />
-            
-            <div className="select-header">
-                <h3>Filter by month</h3>
-            </div>
-            <div className="filter-months-span-wrapper">
-                <div className="filter-months">
-                    <select className="filterByTimeSpan" id="timeSpan">
-                        <option onClick={()=>{filterFunction()}} value="all">Show All</option>
-                        <option onClick={()=>{filterThreeMonths()}}value="3months">3 Months (1-3 months)</option>
-                        <option onClick={()=>{filterSixMonths()}}value="6months">6 Months (1-6 months)</option>
-                        <option onClick={()=>{filterTwelveMonths()}}value="12months">12 Months (7-12 months)</option>
-                    </select>
-                    <span className="custom-arrow"></span>
-                </div>
-                <div>
-                    <button 
-                        className="button create-btn" 
-                        onClick={() => setShow(!show)}
-                    >
-                        Create a Goal
-                    </button>
-                </div>
-            </div>
+              ) : month === '6months' ? (
 
-            <div className="bloc-tabs">
-                <button
-                    className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-                    onClick={() => toggleTab(1)}
-                >
-                    Prio
-                </button>
-                <button
-                    className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-                    onClick={() => toggleTab(2)}
-                >
-                    Personal Development
-                </button>
-                <button
-                    className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-                    onClick={() => toggleTab(3)}
-                >
-                    Customer Interaction
-                </button>
-                <button
-                    className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
-                    onClick={() => toggleTab(4)}
-                >
-                    Building Geshdo
-                </button>
-            </div>
+                <TabsDetails prioPD={filterPrioPD} prioCI={filterPrioCI} prioBG={filterPrioBG} months={sixMonthsAgo} />
+
+              ) : month === '12months' ? (
+
+                <TabsDetails prioPD={filterPrioPD} prioCI={filterPrioCI} prioBG={filterPrioBG} months={twelveMonthsAgo} />
                 
-            <div className="content-tabs">
-
-                <div className={toggleState === 1 
-                                ? "content  active-content" 
-                                : "content"}
-                >
-                    <h2 className="table-headers">Personal Development</h2>
-                    <Table goals={personalDevelopmentPrio} />
-
-                    <h2 className="table-headers">Customer Interaction</h2>
-                    <Table goals={customerInteractionPrio} />
-
-                    <h2 className="table-headers">Building Geshdo</h2>
-                    <Table goals={buildingGeshdoPrio} />
+              ) : (
+                <div>
+                  <h2 className="table-headers">Personal Development</h2>
+                  <Table goals={filterPrioPD.filter(goal => !goal.isComplete)} />
+                  <h2 className="table-headers">Customer Interaction</h2>
+                  <Table goals={filterPrioCI.filter(goal => !goal.isComplete)} />
+                  <h2 className="table-headers">Building Geshdo</h2>
+                  <Table goals={filterPrioBG.filter(goal => !goal.isComplete)} />
                 </div>
-
-                <div className={toggleState === 2 ? "content  active-content" : "content"}>
-                    <h2 className="table-headers">Personal Development</h2>
-                    <Table goals={personalDevelopment} />
-                </div>
-
-                <div className={toggleState === 3 ? "content  active-content" : "content"}>
-                    <h2 className="table-headers">Customer Interaction</h2>
-                    <Table goals={customerInteraction} />
-                </div>
-
-                <div className={toggleState === 4 ? "content  active-content" : "content"}>
-                    <h2 className="table-headers">Building Geshdo</h2>
-                    <Table goals={buildingGeshdo} />
-                </div>
-            </div>
-        </>
-    );
+              )}
+            </>
+          )}
+        </div>
+        {filterByCategories.map(section => (
+          <div className={toggleState === section.id
+            ? "content active-content"
+            : "content"
+          }
+          >
+            {month === "3months" ? (
+              <div>
+                <h2 className="table-headers">{section.name}</h2>
+                <Table goals={section.goals.filter((goal => Date.parse(goal.creationDate as string) >= threeMonthsAgo))} />
+              </div>
+            ) : month === "6months" ? (
+              <div>
+                <h2 className="table-headers">{section.name}</h2>
+                <Table goals={section.goals.filter((goal => Date.parse(goal.creationDate as string) >= sixMonthsAgo))} />
+              </div>
+            ) : month === "twelvemonths" ? (
+              <div>
+                <h2 className="table-headers">{section.name}</h2>
+                <Table goals={section.goals.filter((goal => Date.parse(goal.creationDate as string) >= twelveMonthsAgo))} />
+              </div>
+            ) : (
+              <div>
+                <h2 className="table-headers">{section.name}</h2>
+                <Table goals={section.goals} />
+              </div>
+            )}
+          </div>
+          )
+        )}
+      </div>
+    </>
+  );
 }
 
 export default Tabs

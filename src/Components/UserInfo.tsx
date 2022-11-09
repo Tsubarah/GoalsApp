@@ -27,16 +27,16 @@ const UserInfo:FC = () => {
       <div className="user-wrapper">
         <div className="user">
           <div className="user-stats">
-            <h4>Mail: {userData?.mail}</h4>
-            <h4>ID: {userData?.id}</h4>
-            <h4>Phone number: {userData?.mobilePhone}</h4>
+            <p><strong>Mail:</strong> {userData?.mail}</p>
+            <p><strong>ID:</strong> {userData?.id}</p>
+            <p><strong>Phone number:</strong> {userData?.mobilePhone}</p>
           </div>
           <div className="user-profile">
             <Profile userdata={userData}/>
           </div>
         </div>
       </div>
-    )
+  )
 };
 
 export default UserInfo;
