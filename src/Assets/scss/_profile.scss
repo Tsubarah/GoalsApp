@@ -1,21 +1,22 @@
 .profile {
     margin-top: 5rem;
     text-align: center;
+    
+    img {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    h2 {
+        margin-top: 1rem;
+        color: #f8f8f8e8;
+    }
+
+    h4 {
+        margin-top: 1rem;
+        color: #f8f8f8e8;
+    }
 }
 
-.profile h2 {
-    margin-top: 1rem;
-    color: #f8f8f8e8;
-}
-
-.profile h4 {
-    margin-top: 1rem;
-    color: #f8f8f8e8;
-}
-
-.profile-img {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50%;
-    object-fit: cover;
-}
