@@ -1,4 +1,5 @@
 import { useAuth } from "../services/auth";
+import { IUser } from '../typings/User'
 
 type AzureUser = {
 	name: string;
@@ -51,30 +52,37 @@ const useUsers = () => {
         return imageUrl;
     };
 
-    const getUserDetails = async (accessToken: string) => {
+    const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
         if (!accessToken) {
-            return "";
+            return undefined;
         }
         const headers = new Headers();
         const bearer = `Bearer ${accessToken}`;
         headers.append("Authorization", bearer);
         headers.append("Content-Type", "json");
-        console.log("accessToken", accessToken);
+        // console.log("accessToken", accessToken);
         const options = {
             method: "GET",
             headers: headers,
         };
 
-        let userUrl = "";
+        let user : IUser | undefined 
         try {
             await fetch("https://graph.microsoft.com/v1.0/me", options)
                 .then(async (response) => {
                     if (response != null && response.ok) {
                         const data = await response.json();
                         if (data !== null) {
-                            console.log("response", data);
-                            // window.URL = window.URL || window.webkitURL;
-                            // userUrl = window.URL.createObjectURL(data);
+
+                            // console.log("data from fetch:", data)
+
+                            user = {
+                                displayName: data.displayName,
+                                id: data.id,
+                                jobTitle: data.jobTitle,
+                                mail: data.mail,
+                                mobilePhone: data.mobilePhone
+                            }
                         }
                     } else {
                         throw new Error("User not found");
@@ -84,9 +92,11 @@ const useUsers = () => {
                     throw new Error("User not found");
                 });
         } catch (err) {
-            userUrl = "";
+            // userObject = {name: "", jobTitle:"", uid: ""};
+            console.log(err)
         }
-        return userUrl;
+        // console.log("Return Object", user)
+        return user
     };
 
     const getUsers = async (accessToken: string) => {
@@ -97,7 +107,7 @@ const useUsers = () => {
         const bearer = `Bearer ${accessToken}`;
         headers.append("Authorization", bearer);
         headers.append("Content-Type", "json");
-        console.log("accessToken", accessToken);
+        // console.log("accessToken", accessToken);
         const options = {
             method: "GET",
             headers: headers,
@@ -112,7 +122,9 @@ const useUsers = () => {
                         if (data !== null) {
                             console.log("response", data);
                             // window.URL = window.URL || window.webkitURL;
-                            // userUrl = window.URL.createObjectURL(data);
+                            // usersUrl = window.URL.createObjectURL(data);
+                            usersUrl = data
+                            console.log(usersUrl)
                         }
                     } else {
                         throw new Error("Users not found");

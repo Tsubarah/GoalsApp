@@ -3,13 +3,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import useGoal from '../Hooks/useGoal'
 import { IGoal } from '../typings/Goal'
+import { useParams} from 'react-router-dom'
 
 type FormProps = {
   show: boolean,
   setShow: (show: boolean) => void;
 }
 
-const GoalsForm = ({ setShow, show }: FormProps) => {
+const GoalsForm:Function = ({ setShow, show}: FormProps) => {
+  const { id } = useParams()
   const { createGoal } = useGoal();
 
   const {
@@ -35,13 +37,13 @@ const GoalsForm = ({ setShow, show }: FormProps) => {
     },
   });
 
-
   const { fields } = useFieldArray({
     control,
     name: "reviews",
   });
 
-  const create = (data: IGoal) => {
+  const create = (data: IGoal ) => {
+    data = {...data, uid: id}
     console.log('data', data)
     createGoal.mutate(data)
     reset()
