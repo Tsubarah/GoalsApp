@@ -10,7 +10,7 @@ const ListItem = ({show, setShow}: itemProps) => {
     <li className="item">
       <button onClick={() => setShow(!show)}>
       <img src={image} alt="" />
-      <h3>John Doe</h3>
+      <h3>Jane Doe</h3>
       </button>
     </li>
   )
