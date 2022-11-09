@@ -30,7 +30,7 @@ const HistoryPage = () => {
 
 				<UserInfo />
 
-				<h2 className='history-h2'>Completed Goals</h2>
+				<h2 className='history-h2'>History</h2>
 
 				<HistoryList goals={goals} />
 				
