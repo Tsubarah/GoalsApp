@@ -28,12 +28,12 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
             {
                 type: "half_year_review",
                 name: "Half year review",
-                value: "",
+                value: goal?.reviews[0].value || "",
             },
             {
                 type: "end_of_year_review",
                 name: "End of year review",
-                value: "",
+                value: goal?.reviews[1].value || "",
             },
         ],
     },
