@@ -3,8 +3,13 @@ import { FC, useEffect, useState } from "react";
 import { useAuth } from "../services/auth";
 import useUsers from "../services/useUsers";
 import { IUser } from '../typings/User'
+import { IGoal } from "../typings/Goal";
 
-const UserInfo:FC = () => {
+type UserInfoProps = {
+  goals: IGoal[],
+}
+
+const UserInfo = ({ goals }: UserInfoProps) => {
   const { accessToken } = useAuth();
   const { getUserDetails } = useUsers()
   const [userData, setUserData] = useState<IUser>();
@@ -29,7 +34,7 @@ const UserInfo:FC = () => {
           <div className="user-stats">
             <p><strong>Mail:</strong> {userData?.mail}</p>
             <p><strong>ID:</strong> {userData?.id}</p>
-            <p><strong>Phone number:</strong> {userData?.mobilePhone}</p>
+            <p><strong>Goals:</strong> {goals.length}</p>
           </div>
           <div className="user-profile">
             <Profile userdata={userData}/>
