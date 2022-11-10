@@ -40,6 +40,7 @@ textarea {
   background: white;
   box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
   border-radius: 20px;
+  overflow: scroll;
  }
 
  .modal-header {
@@ -155,6 +156,7 @@ textarea {
 }
 
 .goals-btn, .history-btn {
+  width: 8rem;
   background-color: #2e3e4e;
 }
 

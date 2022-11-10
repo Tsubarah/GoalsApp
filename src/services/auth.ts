@@ -11,7 +11,7 @@ type AzureUser = {
 export const useAuth = () => {
   const { instance, accounts } = useMsal();
   const [user, setUser] = useState<AzureUser>();
-  const [accessToken, setAccessToken] = useState<string>();
+  const [accessToken, setAccessToken] = useState<string | undefined>();
 
   useEffect(() => {
     instance
@@ -26,7 +26,7 @@ export const useAuth = () => {
               account: tokenResponse?.account!,
             })
             .then((response) => {
-              // console.log('response', response)
+              console.log('response', response)
               if (response.account) {
                 instance.setActiveAccount(response.account);
 

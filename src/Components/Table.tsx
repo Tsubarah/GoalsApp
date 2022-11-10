@@ -2,8 +2,8 @@ import Accordion from "./Accordion"
 import Moment from 'react-moment'
 import EditGoalModal from "./EditGoalModal"
 import { IGoal } from '../typings/Goal'
-import { Key, useEffect, useState } from "react";
-import clsx from 'clsx'
+// import { Key, useEffect, useState } from "react";
+// import clsx from 'clsx'
 // import { useEffect, useState } from "react";
 
 type TabsProps = {
@@ -11,7 +11,6 @@ type TabsProps = {
 }
 
 const Table = ({ goals }: TabsProps) => {
-
     return (
         <>
             <div className="table-wrapper">
@@ -67,7 +66,7 @@ const Table = ({ goals }: TabsProps) => {
                         </div>
                         <div className="reviews">
                             <div className="revs">
-                                {goal.reviews.map((review, i) => (
+                                {goal?.reviews.map((review, i) => (
                                     <div className="accordion" key={i}>
                                         <Accordion data={review} />
                                     </div>

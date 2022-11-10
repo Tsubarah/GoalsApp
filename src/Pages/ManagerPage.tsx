@@ -12,7 +12,7 @@ const ManagerPage = () => {
         
       <UserList setShow={setShow} show={show} /> 
 
-      <RightSidebar setShow={setShow} show={show} />
+      <RightSidebar show={show} />
 
     </div>
   )

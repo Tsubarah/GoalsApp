@@ -1,21 +1,47 @@
 import Profile from "./Profile";
+import { FC, useEffect, useState } from "react";
+import { useAuth } from "../services/auth";
+import useUsers from "../services/useUsers";
+import { IUser } from '../typings/User'
+import { IGoal } from "../typings/Goal";
 
-const UserInfo = () => {
+type UserInfoProps = {
+  goals: IGoal[],
+}
+
+const UserInfo = ({ goals }: UserInfoProps) => {
+  const { accessToken } = useAuth();
+  const { getUserDetails } = useUsers()
+  const [userData, setUserData] = useState<IUser>();
+
+  useEffect(() => {
+    if (!accessToken) {
+      return;
+    }
+    
+    async function getUser(accessToken: string) {
+      const user = await getUserDetails(accessToken)
+      if (user) {
+        setUserData(user)
+      }
+    }
+    getUser(accessToken)
+  },[accessToken])
+
     return (
       <div className="user-wrapper">
         <div className="user">
           <div className="user-stats">
-              <h4>Mail: john.doe@something.se</h4>
-              <h4>ID: ee34ep-282a-4b5f-b41a-967c6vc9-43oslv</h4>
-              <h4>Goals: 4</h4>
+            <p><strong>Mail:</strong> {userData?.mail}</p>
+            <p><strong>ID:</strong> {userData?.id}</p>
+            <p><strong>Goals:</strong> {goals.length}</p>
           </div>
           <div className="user-profile">
-            <Profile />
+            <Profile userdata={userData}/>
           </div>
         </div>
-
       </div>
-    )
+  )
 };
 
 export default UserInfo;

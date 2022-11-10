@@ -16,8 +16,8 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<ManagerPage />} />
-                <Route path="/goals" element={<GoalsPage />} />
-                <Route path="/history" element={<HistoryPage />} />
+                <Route path="/goals/:id" element={<GoalsPage />} />
+                <Route path="/history/:id" element={<HistoryPage />} />
                 <Route path="/auth" element={<AuthPage />} />
             </Routes>
 

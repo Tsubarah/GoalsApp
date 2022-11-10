@@ -14,24 +14,50 @@
 
     .user-stats {
         margin: auto;
-        padding-left: 2rem;
-        width: 50%;
+        width: 60%;
         display: flex;
         flex-direction: column;
+        overflow-wrap: break-word;
+
+        p {
+            font-size: 1.25rem;
+        }
     }
 
-    .user-stats h4 {
-        margin-top: 0;
+    .user-stats .mail {
+        display: flex;
     }
 
     .user-profile {
         width: 50%;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
         
         .profile {
             margin: 0;
         };
     }
+
+    .whatever {
+        display: inline-block;
+    }
 }
+
+@media only screen and (max-width: 1650px) {
+    .user-wrapper .user {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1510px) {
+    .user-wrapper .user {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .user-wrapper .user {
+        width: 65%;
+    }
+}
+

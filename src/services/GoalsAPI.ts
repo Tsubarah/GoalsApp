@@ -25,9 +25,15 @@ const get = async (endpoint: string) => {
 /**
  * Get all goals
  */
-export const getGoals = ():Promise<IGoal[]> => {
-  return get('/goals')
+export const getGoals = async (uid: string | undefined):Promise<IGoal[]> => {
+//   const [_key, { id }] = queryKey
+  console.log('uid', uid)
+  return get(`/goals/${uid}`)
 }
+
+// export const getGoals = ():Promise<IGoal[]> => {
+//   return get('/goals')
+// }
 
 
 /**

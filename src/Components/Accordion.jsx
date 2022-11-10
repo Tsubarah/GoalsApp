@@ -6,6 +6,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function SimpleAccordion({ data }) {
   return (
+    // <div>
+    //   {!data.value.length ? (
+    //     <Accordion className='accordionWrapper'>
+    //       <Typography>{data.name + " (empty)"}</Typography>
+    //     <AccordionDetails>
+    //       <Typography>
+    //         {data.value}
+    //       </Typography>
+    //     </AccordionDetails>
+    //   </Accordion>
+    //   ) : (
     <div>
       <Accordion className='accordionWrapper'>
         <AccordionSummary
@@ -22,6 +33,7 @@ export default function SimpleAccordion({ data }) {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      {/* )} */}
     </div>
   );
 }
