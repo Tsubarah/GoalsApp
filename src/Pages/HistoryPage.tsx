@@ -23,7 +23,7 @@ const HistoryPage = () => {
 		<div className="history-page-wrapper">
 
 
-			{isLoading && <LoadingSpinner />}
+			{isLoading && <div className='loading-spinner'><LoadingSpinner /></div>}
 
 			{!isLoading && goals && (
 				<>
