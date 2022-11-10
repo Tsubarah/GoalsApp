@@ -26,7 +26,7 @@ export const useAuth = () => {
               account: tokenResponse?.account!,
             })
             .then((response) => {
-              console.log('response', response)
+              // console.log('response', response)
               if (response.account) {
                 instance.setActiveAccount(response.account);
 
