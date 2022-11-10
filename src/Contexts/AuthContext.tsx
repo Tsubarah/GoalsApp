@@ -1,30 +1,20 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { 
-    useAuth
-     
-    } from '../services/auth'
+import { useAuth } from '../services/auth'
 
-    type authProps = {
-        accessToken: string,
-        setAccessToken:
-    }
-
-
+  
 const AuthContext = createContext()
 
-const useAuthContext = () => {
-    return useContext(AuthContext)
+const useAuthContext = () => useContext(AuthContext)
+
+const AuthProvider = ({ children }) => {
+  const auth = useAuth()
+
+  return <AuthContext.Provider value={auth}>
+    {children}
+  </AuthContext.Provider>
+  
+  
 }
 
-const AuthContextProvider = ({ children }) => {
-    const [user, setUser] = useState<AzureUser>()
-    const [accessToken, setAccessToken] = useState<string>()
-    const [loading, setLoading] = useState(true)
-}
-  return (
-    <>
-    </>
-  )
-}
 
-export default AuthContext
+export { useAuthContext, AuthProvider}
