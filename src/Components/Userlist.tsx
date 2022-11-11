@@ -36,8 +36,8 @@ const UserList = ({show, setShow}: listProps)  => {
     <div className="user-list-wrapper">
 			{usersData && (
 				<ul className="user-list">
-					{usersData.map((user) => (
-						<ListItem setShow={setShow} show={show} user={user} />
+					{usersData.map((user, i) => (
+						<ListItem key={i} setShow={setShow} show={show} user={user} />
 					))}
       	</ul>
 			)}

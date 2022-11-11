@@ -8,8 +8,8 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-
     console.log(user)
+    
   return (
     <li className="item">
       <button onClick={() => setShow(!show)}>
