@@ -47,23 +47,25 @@ const HistoryList = ({ goals }) => {
             </div> */}
 
             <div className="history-list-wrapper">
-                <li>
-                    <ul>
+                <ul>
+                    <li>
                         <div className="history-list-item">
                            <p className="history-list-p"> Prio: | Deadline: | Goal Description: | Target Reached When: | Milestone: | Cost: </p>
                            <button className="history-list-button">
                             View
                            </button>
                         </div>
+                        </li>
+                        <li>
                         <div className="history-list-item">
                            <p className="hostory-list-p"> Prio: | DeadLine: | Goal Description: | Target Reached When: | Milestone: | Cost: </p>
                            <button className="history-list-button">
                             View
                            </button>
                         </div>
-
-                    </ul>
-                </li>
+                    </li>
+                    
+                </ul>
             </div>
         </>
     );
