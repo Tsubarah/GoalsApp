@@ -31,7 +31,7 @@ const HistoryList = ({ goals }) => {
 
     return (
         <>
-            {/* <div>
+             <div>
                 <h2 className="history-headers">Personal Development</h2>
                 <Table goals={completedDev} />
             </div>
@@ -44,9 +44,9 @@ const HistoryList = ({ goals }) => {
             <div>
                 <h2 className="history-headers">Building Geshdo</h2>
                 <Table goals={completedBui} />
-            </div> */}
+            </div> 
 
-            <div className="history-list-wrapper">
+            {/* <div className="history-list-wrapper">
                 <ul>
                     <li>
                         <div className="history-list-item">
@@ -66,7 +66,7 @@ const HistoryList = ({ goals }) => {
                     </li>
                     
                 </ul>
-            </div>
+            </div> */}
         </>
     );
 };
