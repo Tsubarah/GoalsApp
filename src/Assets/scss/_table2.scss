@@ -116,19 +116,6 @@
     }
 }
 
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root {
-    // box-shadow: none!important;
-}
-.css-15v22id-MuiAccordionDetails-root {
-    // box-shadow:  2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-}
-
-/* Funkar inte som det ska med transparent*/
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
-    // background-color: rgba(128, 128, 128, 0.075);
-    // border-right: 0.25rem solid rgba(128, 128, 128, 0.075);
-}
-
 .slide-out-right {
 	-webkit-animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 	animation: slide-out-right 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;

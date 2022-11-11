@@ -1,9 +1,9 @@
-ul {
-    list-style-type: none;
-  }
-
 .user-list-wrapper {
-  width: 60%;
+  width: 50%;
+
+  @media only screen and (min-width: 1100px) {
+    width: 60%;
+  }
 }
 
 .user-list {
@@ -11,65 +11,69 @@ ul {
   margin-top: 5rem;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-}
-.item {
-  width: 33%;
-}
-
-
-.item button {
-  margin-left: 4rem;
-  margin-bottom: 3rem;
-  padding-left: 0;
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  border-style: solid;
-  border-color: #b6b6b6;
-  border-radius: 50px;
-  background-color: #dbd9d9;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 75%;
-}
-
-.item button:hover {
-  background-color: #ebe8e8;
-  cursor: pointer;
-}
-
-.item button:active {
-  background-color: #f8f8f8;
-}
-
-.item h3 {
-  color: #3a3a3ad9;
-  padding: 0 2rem 0 2rem;
-}
-
-.item img {
-  height: 6rem;
-  border-radius: 50%;
-}
-
-@media screen and (max-width: 1480px) {
-  .item{
-    width: 50%;
+  width: 90%;
+  list-style-type: none;
+  
+  @media only screen and (min-width: 1300px) {
+    width: 100%;
   }
-  .item button {
+
+  @media only screen and (min-width: 1600px) {
     width: 80%;
-    margin-left: 2rem;
   }
 
-  .item h3 {
-    font-size: small;
-    padding: 0 1rem 0 1rem;
+  .item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    @media only screen and (min-width: 1100px) {
+      width: 50%;
+    }
+  
+    img {
+      height: 5rem;
+      border-radius: 50%;
+    
+      @media only screen and (min-width: 1100px) {
+        height: 6rem;
+      }
+    }
+    
+  
+    h3 {
+      color: #3a3a3ad9;
+      padding: 0 1.25rem 0 1.5rem;
+    }
+  
+    button {
+      width: 70%;
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      border-style: solid;
+      border-color: #b6b6b6;
+      border-radius: 50px;
+      background-color: #dbd9d9;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-bottom: 3rem;
+      padding-left: 0;
+    
+      @media only screen and (min-width: 1100px) {
+        width: 75%;
+      }
+  
+      &:hover {
+        background-color: #ebe8e8;
+        cursor: pointer;
+      }
+  
+      &:active {
+        background-color: #f8f8f8;
+      }
+    }
   }
-
 }
 
-@media screen and (max-width: 2210px) {
-  .item{
-    width: 50%;
-  }
-}
+
