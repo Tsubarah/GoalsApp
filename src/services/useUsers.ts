@@ -113,7 +113,7 @@ const useUsers = () => {
             headers: headers,
         };
 
-        let usersUrl = "";
+        let users: [IUser] | undefined 
         try {
             await fetch("https://graph.microsoft.com/v1.0/users", options)
                 .then(async (response) => {
@@ -123,8 +123,8 @@ const useUsers = () => {
                             console.log("response", data);
                             // window.URL = window.URL || window.webkitURL;
                             // usersUrl = window.URL.createObjectURL(data);
-                            usersUrl = data
-                            console.log(usersUrl)
+                            users = data.value
+                            console.log(users)
                         }
                     } else {
                         throw new Error("Users not found");
@@ -134,9 +134,9 @@ const useUsers = () => {
                     throw new Error("Users not found");
                 });
         } catch (err) {
-            usersUrl = "";
+            // users = [];
         }
-        return usersUrl;
+        return users;
     };
 
     return {
