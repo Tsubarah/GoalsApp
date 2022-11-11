@@ -74,7 +74,6 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
     setShow(!show)
   }
 
-
   useEffect(() => {
     if (!goal) return
     setSelectedDate(goal.deadline)

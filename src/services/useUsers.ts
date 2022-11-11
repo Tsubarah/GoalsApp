@@ -68,7 +68,7 @@ const useUsers = () => {
             headers: headers,
         };
 
-        let user : IUser | undefined 
+        // let user : IUser | undefined 
         try {
             await fetch("https://graph.microsoft.com/v1.0/me", options)
                 .then(async (response) => {
@@ -77,14 +77,20 @@ const useUsers = () => {
                         if (data !== null) {
 
                             // console.log("data from fetch:", data)
-
-                            user = {
+                            setCurrentUser({
                                 displayName: data.displayName,
                                 id: data.id,
                                 jobTitle: data.jobTitle,
                                 mail: data.mail,
                                 mobilePhone: data.mobilePhone
-                            }
+                            })
+                            // user = {
+                            //     displayName: data.displayName,
+                            //     id: data.id,
+                            //     jobTitle: data.jobTitle,
+                            //     mail: data.mail,
+                            //     mobilePhone: data.mobilePhone
+                            // }
                         }
                     } else {
                         throw new Error("User not found");
@@ -98,7 +104,7 @@ const useUsers = () => {
             console.log(err)
         }
         // console.log("Return Object", user)
-        return user
+        // return user
     };
 
     const getUsers = async (accessToken: string) => {

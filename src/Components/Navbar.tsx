@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../services/auth";
 import useUsers from "../services/useUsers";
 import {IUser} from "../typings/User"
+import { useAuthContext } from '../Contexts/AuthContext';
 
 const Navbar = () => {
     const { accessToken } = useAuth();
     const { getUserDetails } = useUsers();
     const [userData, setUserData] = useState<IUser>();
+    const { currentUser } = useAuthContext()
 
     useEffect(() => {
       if (!accessToken) {
@@ -32,7 +34,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-menu">
                 <a href="/">Consultants</a>
-                <a href={`/goals/${userData?.id}`}>Goals</a>
+                <a href={`/goals/${currentUser?.id}`}>Goals</a>
                 <a href="/">Logout</a>
             </div>
         </nav>
