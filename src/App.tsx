@@ -7,8 +7,25 @@ import ManagerPage from './Pages/ManagerPage';
 import GoalsPage from './Pages/GoalsPage';
 import HistoryPage from './Pages/HistoryPage';
 import { AuthPage } from './Pages/AuthPage';
+import { useEffect } from 'react'
+import { useAuth } from "./services/auth";
+import useUsers from "./services/useUsers";
+
 
 function App() {
+    const { accessToken } = useAuth();
+    const { getUserDetails } = useUsers();
+
+    useEffect(() => {
+        if (!accessToken) {
+          return;
+        }
+        async function getUser(accessToken: string) {
+          await getUserDetails(accessToken)
+        }
+        getUser(accessToken)
+      }, [accessToken]);
+      
     return (
         <div className="App">
 
