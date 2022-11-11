@@ -1,3 +1,4 @@
+import { useAuthContext } from "../Contexts/AuthContext";
 import { useAuth } from "../services/auth";
 import { IUser } from '../typings/User'
 
@@ -7,6 +8,7 @@ type AzureUser = {
   };
 
 const useUsers = () => {
+    const { setCurrentUser } = useAuthContext();
 	const { user } = useAuth();
 
     const getUserName = (): AzureUser | undefined => user;
