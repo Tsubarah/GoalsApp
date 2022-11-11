@@ -4,13 +4,10 @@ import { IGoal } from '../typings/Goal'
 
 type ModalProps = {
   goal: IGoal,
-  // show: boolean,
-  // setShow: (show: boolean) => void,
-  // completedSwipe: boolean | string,
-  // setCompletedSwipe: (completedSwipe: boolean |string) => void,
+  setSlide: (slide: string) => void,
 }
 
-const EditGoalModal = ({ goal }: ModalProps) => {
+const EditGoalModal = ({ goal, setSlide }: ModalProps) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -42,7 +39,7 @@ const EditGoalModal = ({ goal }: ModalProps) => {
           
           <hr />
           
-          <EditGoalsForm goal={goal} setShow={setShow} show={show} />
+          <EditGoalsForm goal={goal} setShow={setShow} show={show} setSlide={setSlide} />
             
         </div>
         )

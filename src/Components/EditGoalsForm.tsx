@@ -9,9 +9,10 @@ type EditProps = {
   goal: IGoal,
   show: boolean,
   setShow: (show: boolean) => void,
+  setSlide: (slide: string) => void,
 }
 
-const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
+const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
   const { deleteGoal, editGoal } = useGoal();
 
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
@@ -63,6 +64,11 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
       uid: goal.uid
     }
     console.log('data', data)
+
+    // if (isComplete) {
+    //   setSlide("slide-out-right")
+    // }
+
     console.log('updatedGoal', updatedGoal)
     editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
     setShow(!show)

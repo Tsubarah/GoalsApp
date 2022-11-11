@@ -3,20 +3,37 @@
     text-align: center;
     
     img {
-        height: 12rem;
+        height: 7rem;
         border: 2px solid #ffffff4f;
         border-radius: 50%;
         object-fit: cover;
+        margin: 0 0.5rem;
+
+        @media only screen and (min-width: 900px) {
+            height: 10rem
+        }
     }
 
     h2 {
         margin-top: 1rem;
         color: #f8f8f8e8;
+        font-size: 1.25rem;
+        padding: 0 0.5rem;
+
+        @media only screen and (min-width: 900px) {
+            font-size: 1.5rem;
+            padding: 0 1rem;
+        }
     }
 
     h3 {
+        font-size: 1rem;
         margin-top: 1rem;
         color: #f8f8f8e8;
+
+        @media only screen and (min-width: 900px) {
+            font-size: 1.25rem
+        }
     }
 }
 

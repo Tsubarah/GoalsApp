@@ -9,8 +9,8 @@ const RightSidebar = ({show}: sidebarProps) => {
   
   return (
     <div className='rightSidebar-wrapper'>
-      <div className="rightSidebar-placeholder"></div>
-        
+      {/* <div className="rightSidebar-placeholder"></div> */}
+
       <div className={`${show === null
                           ? "hidden" 
                             : show 
