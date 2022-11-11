@@ -19,25 +19,25 @@ const Tabs = ({ goals }: TabsProps) => {
       id: 1,
       name: 'Prio',
       category: 'prio',
-      goals: goals?.filter(goal => goal.prio === 1).sort((a, b) => b.category.localeCompare(a.category)),
+      goals: goals?.filter(goal => goal.prio === 1).sort((a, b) => b.category.localeCompare(a.category)).sort((a, b) => a.deadline.localeCompare(b.deadline)),
     },
     {
       id: 2,
       name: 'Personal Development',
       category: 'personalDevelopment',
-      goals: goals?.filter(goal => goal.category === "personalDevelopment"),
+      goals: goals?.filter(goal => goal.category === "personalDevelopment").sort((a, b) => a.deadline.localeCompare(b.deadline)),
     },
     {
       id: 3,
       name: 'Customer Interaction',
       category: 'customerInteraction',
-      goals: goals?.filter(goal => goal.category === "customerInteraction"),
+      goals: goals?.filter(goal => goal.category === "customerInteraction").sort((a, b) => a.deadline.localeCompare(b.deadline)),
     },
     {
       id: 4,
       name: 'Building Geshdo',
       category: 'buildingGeshdo',
-      goals: goals?.filter(goal => goal.category === "buildingGeshdo"),
+      goals: goals?.filter(goal => goal.category === "buildingGeshdo").sort((a, b) => a.deadline.localeCompare(b.deadline)),
     }
   ]
 
