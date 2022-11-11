@@ -1,18 +1,15 @@
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../services/auth'
 
-type AzureUser = {
-    name: string;
-    email: string;
-}
+
 
 const RequireAuth = (
     children,
     redirectTo = "/Auth",
 ) => {
-    const { accessToken } = useAuth()
+    const { user } = useAuth()
   return (
-    accessToken
+    user
     ? children
     : <Navigate to={redirectTo}
   )
