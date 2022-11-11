@@ -11,7 +11,7 @@ const RequireAuth = (
   return (
     user
     ? children
-    : <Navigate to={redirectTo}
+    : <Navigate to={redirectTo} />
   )
 }
 

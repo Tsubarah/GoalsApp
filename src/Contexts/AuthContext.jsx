@@ -1,39 +1,44 @@
-// import { createContext, useContext, useEffect, useState } from 'react'
-// import { useAuth } from '../services/auth'
-// import { useMsal } from '@azure/msal-react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { useAuth } from '../services/auth'
+//import { useMsal } from '@azure/msal-react'
 
   
-// const AuthContext = createContext(null)
+const AuthContext = createContext(null)
 
-// const useAuthContext = () => useContext(AuthContext)
+const useAuthContext = () => useContext(AuthContext)
 
-// const AuthProvider = ({ children }) => {
-//   const { instance, accounts } = useMsal()
-//   const [currentUser, setCurrentUser] = useState(null)
-//   const [userEmail, setUserEmail] = useState(null)
-//   const [accessToken, setAccessToken] = useState<string | undefined>()
+const AuthProvider = ({ children }) => {
+  //const { instance, accounts } = useMsal()
+  const [currentUser, setCurrentUser] = useState(null)
+  const [userEmail, setUserEmail] = useState(null)
+  const [accessToken, setAccessToken] = useState()
   
-//   const auth = useAuth()
+  const auth = useAuth()
 
+  currentUser === auth.user
+
+  console.log('currentUser',currentUser)
+
+  console.log('accessToken', accessToken)
   
-//   useEffect(()=> {
+  useEffect(()=> {
+    setCurrentUser(user)
+    setUserEmail(user?.email)
+    setAccessToken(accessToken)
+  },[])
 
-//   },[])
+  const contextValues = {
+    currentUser,
+    userEmail,
+    accessToken,
+    
+  }
 
-//   const contextValues = {
-//     currentUser,
-//     userEmail,
-//     accessToken,
-//     instance,
-//     accounts,
-
-//   }
-
-//   return <AuthContext.Provider value={auth}>
-//     {children}
-//   </AuthContext.Provider>
+  return <AuthContext.Provider value={auth}>
+    {children}
+  </AuthContext.Provider>
   
-// }
+}
 
 
-// export { useAuthContext, AuthProvider}
+export { useAuthContext, AuthProvider}
