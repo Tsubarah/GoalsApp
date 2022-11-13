@@ -14,7 +14,7 @@ const Navbar = () => {
             <div className="navbar-menu">
                 <a href="/">Consultants</a>
                 <a href={`/goals/${currentUser?.id}`}>Goals</a>
-                <a href="/">Logout</a>
+                <a href="/logout">Logout</a>
             </div>
         </nav>
     )
