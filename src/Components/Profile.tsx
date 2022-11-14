@@ -25,7 +25,7 @@ const Profile = () => {
         <div className="profile">
           {targetedUser && id === targetedUser.id ? (
             <>
-              {photoUrl && <img src={photoUrl ? photoUrl : placeholder} alt={targetedUser?.displayName} />}
+              <img src={targetedUser.imageUrl ? targetedUser.imageUrl : placeholder} alt={targetedUser?.displayName} />
               <h2>{targetedUser?.displayName}</h2>
               <h3>{targetedUser?.jobTitle}</h3>
             </>
