@@ -14,7 +14,7 @@ interface AuthContextInterface {
   targetedUser: IUser | undefined,
   setTargetedUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
   users: IUser[] | undefined,
-  setUsers: React.Dispatch<React.SetStateAction<[] | undefined>>,
+  setUsers: React.Dispatch<React.SetStateAction<IUser[] | undefined>>,
   accessToken: string | undefined
 }
   
@@ -27,7 +27,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   const [accessToken, setAccessToken] = useState<string | undefined>();
   const [currentUser, setCurrentUser] = useState<IUser>()
   const [targetedUser, setTargetedUser] = useState<IUser>()
-  const [users, setUsers] = useState<[]>()
+  const [users, setUsers] = useState<IUser[]>()
   // const [userEmail, setUserEmail] = useState()
   const [loading, setLoading] = useState(false)
 

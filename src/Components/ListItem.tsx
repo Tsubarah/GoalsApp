@@ -1,6 +1,6 @@
-import image from "../Assets/Images/placeholder-image.jpeg"
 import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/User'
+import placeholder from '../Assets/Images/placeholder-image.jpeg'
 
 type itemProps = {
   show: boolean | null,
@@ -11,6 +11,10 @@ type itemProps = {
 const ListItem = ({show, setShow, user}: itemProps) => {
   const { setTargetedUser } = useAuthContext()
     
+  let url = `https://graph.microsoft.com/v1.0/users/${user.id}/photo/$value`
+  // let url = user.imageUrl
+
+  console.log('users', user)
   return (
     <li className="item">
       <button onClick={() => {
@@ -18,10 +22,10 @@ const ListItem = ({show, setShow, user}: itemProps) => {
         setTargetedUser(user)
       }}
       >
-      <img src={image} alt="" />
+      <img src={url} alt="" />
       <h3>{user.displayName}</h3>
       </button>
-    </li>
+      </li>
   )
 }
 

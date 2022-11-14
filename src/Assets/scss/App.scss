@@ -24,3 +24,11 @@ body {
 .App {
     background-color: #F0F2F5;
 }
+
+.logout {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
