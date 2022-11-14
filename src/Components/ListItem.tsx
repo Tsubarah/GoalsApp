@@ -12,9 +12,9 @@ const ListItem = ({show, setShow, user}: itemProps) => {
   const { setTargetedUser } = useAuthContext()
     
   let url = `https://graph.microsoft.com/v1.0/users/${user.id}/photo/$value`
+  console.log('user', user)
   // let url = user.imageUrl
 
-  console.log('users', user)
   return (
     <li className="item">
       <button onClick={() => {
@@ -22,7 +22,7 @@ const ListItem = ({show, setShow, user}: itemProps) => {
         setTargetedUser(user)
       }}
       >
-      <img src={url} alt="" />
+      <img src={url !== "" ? url : placeholder} alt="" />
       <h3>{user.displayName}</h3>
       </button>
       </li>
