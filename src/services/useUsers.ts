@@ -134,13 +134,13 @@ const useUsers = () => {
                             // usersUrl = window.URL.createObjectURL(data);
                             users = data.value
 
-                            if (users) {
-                                users.map(user => {
-                                    getUsersPhotoUrl(accessToken, user.id).then(value => user.imageUrl = value)
-                                    return user.imageUrl
-                                })
-                                console.log('users', users)
-                                setUsers(users)
+                            // if (users) {
+                            //     users.map(user => {
+                            //         getUsersPhotoUrl(accessToken, user.id).then(value => user.imageUrl = value)
+                            //         return user.imageUrl
+                            //     })
+                            //     console.log('users', users)
+                                // setUsers(users)
 
                                 // await Promise.all(users.map(async (user) => {
                                 //     user.image = getUsersPhotoUrl(accessToken, user.id).then()
@@ -150,7 +150,7 @@ const useUsers = () => {
                                 // users.forEach(user => {
                                 //     user.imageUrl = getUsersPhotoUrl(accessToken, user.id).then()
                                 // })
-                            }
+                            // }
                         }
                     } else {
                         throw new Error("Users not found");
