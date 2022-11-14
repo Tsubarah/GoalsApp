@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from "./authConfig";
+import AuthContextProvider from './Contexts/AuthContext'
 
 const pca = new PublicClientApplication(msalConfig);
 
@@ -31,7 +32,9 @@ root.render(
     <MsalProvider instance={pca}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <App />
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
         </BrowserRouter>
       </QueryClientProvider>
     </MsalProvider>

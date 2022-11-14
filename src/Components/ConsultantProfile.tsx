@@ -2,7 +2,6 @@ import placeholder from '../Assets/Images/placeholder-image.jpeg'
 
 const ConsultantProfile = () => {
   return (
-    
     <div className='consultant-profile'>
       <img src={placeholder} className='consultant-img' alt="" />
       <h2 className="profile-name">Jane Doe</h2>

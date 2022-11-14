@@ -1,7 +1,6 @@
 import Tabs from '../Components/Tabs'
 import UserInfo from "../Components/UserInfo"
 import LoadingSpinner from '../Components/LoadingSpinner'
-import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import GoalsAPI from '../services/GoalsAPI'
 import { useParams } from 'react-router-dom'

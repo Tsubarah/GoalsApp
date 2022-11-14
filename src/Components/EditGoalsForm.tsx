@@ -13,10 +13,10 @@ type EditProps = {
 }
 
 const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
-  const { deleteGoal, editGoal } = useGoal();
-
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
+  
+  const { deleteGoal, editGoal } = useGoal();
 
   const {
     control,
@@ -73,7 +73,6 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
     editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
     setShow(!show)
   }
-
 
   useEffect(() => {
     if (!goal) return

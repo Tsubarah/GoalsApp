@@ -8,7 +8,7 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-    console.log(user)
+    // console.log(user)
     
   return (
     <li className="item">
