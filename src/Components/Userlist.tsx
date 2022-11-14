@@ -12,7 +12,7 @@ type listProps = {
 const UserList = ({show, setShow}: listProps)  => {
   const { accessToken } = useAuth();
   const { getUsers } = useUsers()
-  const [usersData, setUsersData] = useState<[IUser]>();
+  const [usersData, setUsersData] = useState<IUser[]>();
 
 	useEffect(() => {
     if (!accessToken) {
@@ -29,7 +29,12 @@ const UserList = ({show, setShow}: listProps)  => {
   },[accessToken])
 
 	useEffect(() => {
-		console.log('usersData', usersData)
+		// console.log('usersData', usersData)
+        // async function getUsersWithPhoto(accessToken: string, id: string)
+        //  let newUsers =usersData
+        if (!usersData) {
+            return
+        }
 	},[usersData])
     
   return (
@@ -39,7 +44,7 @@ const UserList = ({show, setShow}: listProps)  => {
 					{usersData.map((user, i) => (
 						<ListItem key={i} setShow={setShow} show={show} user={user} />
 					))}
-      	</ul>
+      	        </ul>
 			)}
     </div>
   )

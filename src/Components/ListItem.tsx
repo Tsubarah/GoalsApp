@@ -1,5 +1,5 @@
-import image from "../Assets/Images/placeholder-image.jpeg"
 import { IUser } from '../typings/User'
+import placeholder from '../Assets/Images/placeholder-image.jpeg'
 
 type itemProps = {
   show: boolean | null,
@@ -8,14 +8,17 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-    // console.log(user)
+
+    let url = `https://graph.microsoft.com/v1.0/users/${user.id}/photo/$value`
+    // let url = user.imageUrl
+    // console.log('url', user.imageUrl)
     
   return (
     <li className="item">
-      <button onClick={() => setShow(!show)}>
-      <img src={image} alt="" />
-      <h3>{user.displayName}</h3>
-      </button>
+        <button onClick={() => setShow(!show)}>
+        <img src={url}  alt="" />
+        <h3>{user.displayName}</h3>
+        </button>
     </li>
   )
 }

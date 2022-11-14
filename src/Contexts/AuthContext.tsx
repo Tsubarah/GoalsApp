@@ -13,6 +13,8 @@ interface AuthContextInterface {
   setCurrentUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
   targetedUser: IUser | undefined,
   setTargetedUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
+  users: IUser[] | undefined,
+  setUsers: React.Dispatch<React.SetStateAction<IUser[] | undefined>>
 }
   
 const AuthContext = createContext<AuthContextInterface>({} as AuthContextInterface)
@@ -23,6 +25,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   //const { instance, accounts } = useMsal()
   const [currentUser, setCurrentUser] = useState<IUser>()
   const [targetedUser, setTargetedUser] = useState<IUser>()
+  const [users, setUsers] = useState<IUser[]>()
   // const [userEmail, setUserEmail] = useState()
   const [loading, setLoading] = useState(false)
   const [accessToken, setAccessToken] = useState()
@@ -38,6 +41,8 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     setCurrentUser,
     targetedUser,
     setTargetedUser,
+    users, 
+    setUsers
   }
 
   return (
