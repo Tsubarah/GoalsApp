@@ -76,12 +76,8 @@ const HistoryList = ({ goals }) => {
                                 <div className="history-description">{goal.description}</div>
                                 <div className="history-creationDate"><Moment format="YYYY/MM/DD">{goal.creationDate}</Moment></div>
                             </div>
-                            
-                            {/* <button onClick={() => setShow} goal={goal} className="history-list-button">
-                                View
-                            </button> */}
                             <div className="history-button-holder">
-                            <EditGoalModal goal={goal}/>
+                                <EditGoalModal goal={goal}/>
                             </div>
                         </div>
                         
