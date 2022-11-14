@@ -191,8 +191,8 @@ const useUsers = () => {
                         return response.blob().then((data) => {
                             if (data !== null) {
                                 // window.URL = window.URL || window.webkitURL;
-                                imageUrl = response.url
-                                // console.log('imageUrl', imageUrl)
+                                window.URL = window.URL || window.webkitURL;
+                                imageUrl = window.URL.createObjectURL(data);
                             }
                         });
                     } else {
