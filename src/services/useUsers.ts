@@ -1,17 +1,9 @@
 import { useAuthContext } from "../Contexts/AuthContext";
-import { useAuth } from "../services/auth";
 import { IUser } from '../typings/User'
 
-type AzureUser = {
-	name: string;
-	email: string;
-  };
 
 const useUsers = () => {
-    const { setCurrentUser } = useAuthContext();
-	const { user } = useAuth();
-
-    const getUserName = (): AzureUser | undefined => user;
+    const { setCurrentUser, setUsers } = useAuthContext();
 
     const getProfilePhotoUrl = async (accessToken: string) => {
         if (!accessToken) {
@@ -121,18 +113,18 @@ const useUsers = () => {
             headers: headers,
         };
 
-        let users: [IUser] | undefined 
+        // let users: IUser[] | undefined
         try {
             await fetch("https://graph.microsoft.com/v1.0/users", options)
                 .then(async (response) => {
                     if (response != null && response.ok) {
                         const data = await response.json();
                         if (data !== null) {
-                            console.log("response", data);
+                            // console.log("response", data);
                             // window.URL = window.URL || window.webkitURL;
                             // usersUrl = window.URL.createObjectURL(data);
-                            users = data.value
-                            console.log(users)
+                            setUsers(data.value)
+                            // console.log(users)
                         }
                     } else {
                         throw new Error("Users not found");
@@ -144,11 +136,10 @@ const useUsers = () => {
         } catch (err) {
             // users = [];
         }
-        return users;
+        // return users;
     };
 
     return {
-        getUserName,
         getProfilePhotoUrl,
         getUserDetails,
         getUsers,

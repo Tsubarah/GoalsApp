@@ -3,7 +3,8 @@ import GoalsAPI from '../services/GoalsAPI'
 import { useEffect, useState } from "react";
 import { IGoal } from '../typings/Goal'
 import { IUser } from '../typings/User'
-import { useAuth } from "../services/auth";
+// import { useAuth } from "../services/auth";
+import { useAuthContext } from '../Contexts/AuthContext';
 import useUsers from "../services/useUsers";
 import { toast } from 'react-toastify'
 
@@ -14,7 +15,7 @@ type editGoalParams = {
 
 const useGoal = () => {
   const queryClient = useQueryClient()
-  const { accessToken } = useAuth();
+  const { accessToken } = useAuthContext();
   const { getUserDetails } = useUsers()
   const [userData, setUserData] = useState<IUser>();
 

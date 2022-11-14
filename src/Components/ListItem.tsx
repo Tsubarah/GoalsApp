@@ -1,4 +1,5 @@
 import image from "../Assets/Images/placeholder-image.jpeg"
+import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/User'
 
 type itemProps = {
@@ -8,11 +9,15 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-    // console.log(user)
+  const { setTargetedUser } = useAuthContext()
     
   return (
     <li className="item">
-      <button onClick={() => setShow(!show)}>
+      <button onClick={() => {
+        setShow(!show)
+        setTargetedUser(user)
+      }}
+      >
       <img src={image} alt="" />
       <h3>{user.displayName}</h3>
       </button>
