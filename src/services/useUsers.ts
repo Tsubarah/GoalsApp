@@ -115,6 +115,7 @@ const useUsers = () => {
         };
 
         let users: IUser[] | undefined
+        let imageUrl = "";
         try {
             await fetch("https://graph.microsoft.com/v1.0/users", options)
                 .then(async (response) => {
@@ -122,8 +123,8 @@ const useUsers = () => {
                         const data = await response.json();
                         if (data !== null) {
                             // console.log("response", data);
-                            // window.URL = window.URL || window.webkitURL;
-                            // usersUrl = window.URL.createObjectURL(data);
+                            window.URL = window.URL || window.webkitURL;
+                            imageUrl = window.URL.createObjectURL(data);
 
                             // console.log(users)
                             users = data.value
