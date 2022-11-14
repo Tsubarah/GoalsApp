@@ -31,7 +31,7 @@ const HistoryList = ({ goals }) => {
 
     return (
         <>
-             <div>
+             {/* <div>
                 <h2 className="history-headers">Personal Development</h2>
                 <Table goals={completedDev} />
             </div>
@@ -44,13 +44,39 @@ const HistoryList = ({ goals }) => {
             <div>
                 <h2 className="history-headers">Building Geshdo</h2>
                 <Table goals={completedBui} />
-            </div> 
+            </div>  */}
 
-            {/* <div className="history-list-wrapper">
+             <div className="history-list-wrapper">
+                <div className="history-header">
+                    <div className="history-deadline"><h3>Deadline</h3></div>
+                    <div className="history-category"><h3>Category</h3></div>
+                    <div className="history-description"><h3>Goal Description</h3></div>
+                    <div className="history-creationDate"><h3>Creation Date</h3></div>
+                </div>
                 <ul>
                     <li>
                         <div className="history-list-item">
-                           <p className="history-list-p"> Prio: | Deadline: | Goal Description: | Target Reached When: | Milestone: | Cost: </p>
+                           <div className="history-list-div">
+                                <div className="history-deadline"> 9/9/22 </div>
+                                <div className="history-category"> Building Geshdo</div> 
+                                <div className="history-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum, molestias illo, quae nemo porro magnam iure aperiam quisquam cumque aut, laudantium id rem at in dolor vitae! Et, quasi explicabo.</div>
+                                <div className="history-creationDate">6/7/23</div>
+                            </div>
+                            
+                           <button className="history-list-button">
+                            View
+                           </button>
+                           </div>
+                        
+                        </li>
+                        <li>
+                        <div className="history-list-item">
+                           <div className="history-list-div">
+                                <div className="history-deadline"> 22/22/22 </div>
+                                <div className="history-category">Personal Development</div>
+                                <div className="history-description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus obcaecati, aperiam repellat temporibus cumque, beatae a cum, voluptatem dignissimos facere fugiat perferendis repellendus? Commodi neque, vel in ipsa voluptas dolores!</div> 
+                                <div className="history-creationDate">7/8/22</div>
+                            </div>
                            <button className="history-list-button">
                             View
                            </button>
@@ -58,15 +84,21 @@ const HistoryList = ({ goals }) => {
                         </li>
                         <li>
                         <div className="history-list-item">
-                           <p className="hostory-list-p"> Prio: | DeadLine: | Goal Description: | Target Reached When: | Milestone: | Cost: </p>
+                           <div className="history-list-div">
+                           <div className="history-deadline"> 9/9/22 </div>
+                                <div className="history-category"> Customer Interaction</div> 
+                                <div className="history-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum obcaecati esse, praesentium rem excepturi beatae commodi vero eaque eius natus neque! Eligendi ratione omnis sit atque odit voluptate ea harum!</div>
+                                <div className="history-creationDate">6/9/20</div>
+                            </div>
                            <button className="history-list-button">
                             View
                            </button>
                         </div>
-                    </li>
+                        </li>
+                    
                     
                 </ul>
-            </div> */}
+            </div> 
         </>
     );
 };
