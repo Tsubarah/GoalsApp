@@ -172,7 +172,7 @@ const Tabs = ({ goals }: TabsProps) => {
             ) : (
               <div>
                 <h2 className="table-headers">{section.name}</h2>
-                <Table goals={section.goals} />
+                <Table goals={section.goals.filter(goal => !goal.isComplete)} />
               </div>
             )}
           </div>

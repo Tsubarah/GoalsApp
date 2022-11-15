@@ -45,12 +45,8 @@
       width: 70%;
       align-items: center;
       display: flex;
-    //   flex-wrap: wrap;
-      // border-style: solid;
-      // border-color: #b6b6b6;
       border-radius: 50px;
       border: 2px solid #c7dad4;
-      // background-color: #dbd9d9;
       background-color: #2f414f;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       margin-bottom: 3rem;
@@ -69,7 +65,7 @@
   
       &:active {
         h3 {
-          color: #2f414f;
+          color: white;
         }
         background-color: #3f5a70;
       }
