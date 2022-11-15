@@ -7,10 +7,18 @@
 
 .history-page-wrapper {
     margin-top: 2rem;
-    margin-left: 6rem;
-    margin-right: 6rem;
+    margin-left: 7rem;
+    margin-right: 7rem;
     .history-h2 {
         margin-top: 3rem;
         margin-bottom: 3rem;
     }
+}
+
+.loading-spinner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 5%;
+    height: 100%;
 }

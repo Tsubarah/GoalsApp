@@ -1,21 +1,23 @@
 import ListItem from "./ListItem"
+import { useAuthContext } from "../Contexts/AuthContext";
 
 type listProps = {
   show: boolean | null,
   setShow: (show: boolean) => void,
 }
+
 const UserList = ({show, setShow}: listProps)  => {
+  const { users } = useAuthContext()
+    
   return (
     <div className="user-list-wrapper">
-      <ul className="user-list">
-        <ListItem setShow={setShow} show={show} />
-        <ListItem setShow={setShow} show={show}/>
-        <ListItem  setShow={setShow} show={show}/>
-        <ListItem  setShow={setShow} show={show}/>
-        <ListItem  setShow={setShow} show={show}/>
-        <ListItem  setShow={setShow} show={show}/>
-        <ListItem  setShow={setShow} show={show}/>
-      </ul>
+			{users && (
+				<ul className="user-list">
+					{users.map((user, i) => (
+						<ListItem key={i} setShow={setShow} show={show} user={user} />
+					))}
+        </ul>
+			)}
     </div>
   )
 }

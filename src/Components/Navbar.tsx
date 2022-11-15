@@ -1,28 +1,9 @@
 import logo from '../Assets/Images/geshdo-logo.png'
-import { useEffect, useState } from "react";
-import { useAuth } from "../services/auth";
-import useUsers from "../services/useUsers";
-import {IUser} from "../typings/User"
+import { useAuthContext } from '../Contexts/AuthContext';
 
 const Navbar = () => {
-    const { accessToken } = useAuth();
-    const { getUserDetails } = useUsers();
-    const [userData, setUserData] = useState<IUser>();
-
-    useEffect(() => {
-      if (!accessToken) {
-        return;
-      }
-      async function getUser(accessToken: string) {
-        const user = await getUserDetails(accessToken)
-        if (user) {
-          setUserData(user)
-        }
-      }
-      getUser(accessToken)
-    }, [accessToken]);
+    const { currentUser } = useAuthContext()
     
-    // console.log("data", data)
     return (
         <nav className="navbar">
             <div className='navbar-logo'>
@@ -32,8 +13,8 @@ const Navbar = () => {
             </div>
             <div className="navbar-menu">
                 <a href="/">Consultants</a>
-                <a href={`/goals/${userData?.id}`}>Goals</a>
-                <a href="/">Logout</a>
+                <a href={`/goals/${currentUser?.id}`}>Goals</a>
+                <a href="/logout">Logout</a>
             </div>
         </nav>
     )

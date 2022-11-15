@@ -23,14 +23,14 @@ const HistoryPage = () => {
 		<div className="history-page-wrapper">
 
 
-			{isLoading && <LoadingSpinner />}
+			{isLoading && <div className='loading-spinner'><LoadingSpinner /></div>}
 
 			{!isLoading && goals && (
 				<>
 
 				<UserInfo goals={goals} />
 
-				<h2 className='history-h2'>Completed Goals</h2>
+				<h2 className='history-h2'>History</h2>
 
 				<HistoryList goals={goals} />
 				

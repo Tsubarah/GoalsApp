@@ -1,43 +1,38 @@
 import Profile from "./Profile";
-import { FC, useEffect, useState } from "react";
-import { useAuth } from "../services/auth";
-import useUsers from "../services/useUsers";
-import { IUser } from '../typings/User'
 import { IGoal } from "../typings/Goal";
+import { useAuthContext } from "../Contexts/AuthContext";
+import { useParams } from 'react-router-dom'
 
 type UserInfoProps = {
   goals: IGoal[],
 }
 
 const UserInfo = ({ goals }: UserInfoProps) => {
-  const { accessToken } = useAuth();
-  const { getUserDetails } = useUsers()
-  const [userData, setUserData] = useState<IUser>();
+  const { currentUser, targetedUser } = useAuthContext()
+  const { id } = useParams()
 
-  useEffect(() => {
-    if (!accessToken) {
-      return;
-    }
-    
-    async function getUser(accessToken: string) {
-      const user = await getUserDetails(accessToken)
-      if (user) {
-        setUserData(user)
-      }
-    }
-    getUser(accessToken)
-  },[accessToken])
+  console.log('currentUser', currentUser)
 
     return (
       <div className="user-wrapper">
         <div className="user">
           <div className="user-stats">
-            <p><strong>Mail:</strong> {userData?.mail}</p>
-            <p><strong>ID:</strong> {userData?.id}</p>
-            <p><strong>Goals:</strong> {goals.length}</p>
+            {targetedUser && id === targetedUser.id ? (
+              <>
+                <p><strong>Mail:</strong> {targetedUser?.mail}</p>
+                <p><strong>ID:</strong> {targetedUser?.id}</p>
+                <p><strong>Goals:</strong> {goals.length}</p>
+              </>
+            ) :
+              <>
+                <p><strong>Mail:</strong> {currentUser?.mail}</p>
+                <p><strong>ID:</strong> {currentUser?.id}</p>
+                <p><strong>Goals:</strong> {goals.length}</p>
+              </>
+            }
           </div>
           <div className="user-profile">
-            <Profile userdata={userData}/>
+            <Profile />
           </div>
         </div>
       </div>
