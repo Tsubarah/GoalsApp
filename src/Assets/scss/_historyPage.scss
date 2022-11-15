@@ -33,13 +33,13 @@
 
     .history-header {
         width: 90%;
-        display:flex;
+        display: flex;
         padding-left: 1rem;
         padding-right: 1rem;
     }
 
     ul {
-        list-style:none;
+        list-style: none;
         padding: 0;
     }
 
@@ -58,12 +58,12 @@
         
         .history-list-div {
             display: flex;
-            width:90%;
+            width: 90%;
         }
 
         .history-button-holder{
             display: flex;
-            width:10%;
+            width: 10%;
             height: 60px;
             justify-content: end;
             align-items: center;
@@ -72,20 +72,20 @@
 }
 
 .history-deadline {
- width:10%;
+ width: 10%;
 }
 
 .history-category {
-    width:20%;
+    width: 20%;
 }
 
 .history-description {
-    width:50%;
+    width: 50%;
     padding-right: 2rem;
 }
 
 .history-creationDate {
-    width:20%;
+    width: 20%;
 }
 
 // .history-list-item:hover {

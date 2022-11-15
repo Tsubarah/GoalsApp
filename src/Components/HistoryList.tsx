@@ -1,20 +1,19 @@
 import { useState, useEffect } from "react";
-import Table from "./Table";
+import { IGoal } from '../typings/Goal'
 import EditGoalModal from "./EditGoalModal";
 import Moment from "react-moment";
 
-// type HistoryProps = {
-//     goals: IGoal[],
+ type HistoryProps = {
+     goals: IGoal[],
 
-// }
+ }
 
 
-const HistoryList = ({ goals }) => {
-    const [show, setShow] = useState()
+const HistoryList = ({ goals }:HistoryProps) => {
     const [slide, setSlide] = useState("")
-    const [completedDev, setCompletedDev] = useState([]);
-    const [completedCus, setCompletedCus] = useState([]);
-    const [completedBui, setCompletedBui] = useState([]);
+    // const [completedDev, setCompletedDev] = useState([]);
+    // const [completedCus, setCompletedCus] = useState([]);
+    // const [completedBui, setCompletedBui] = useState([]);
 
     const filtering = () => {
        
@@ -36,9 +35,10 @@ const HistoryList = ({ goals }) => {
     };
     const completedGoals = goals.filter((goal) => goal.isComplete === true);
 
+
     useEffect(() => {
         filtering();
-    }, [show, goals]);
+    }, [slide, goals]);
     console.log('completed', completedGoals)
     return (
         <>
@@ -59,7 +59,7 @@ const HistoryList = ({ goals }) => {
 
              <div className="history-list-wrapper">
                 <div className="history-header">
-                    <div className="history-deadline"><h3>Creation Date</h3></div>
+                    <div className="history-deadline"><h3>Creation Date </h3></div>
                     <div className="history-category"><h3>Category</h3></div>
                     <div className="history-description"><h3>Goal Description</h3></div>
                     <div className="history-creationDate"><h3>Deadline</h3></div>
@@ -72,12 +72,12 @@ const HistoryList = ({ goals }) => {
                         
                            <div className="history-list-div">
                                 <div className="history-deadline"><Moment format="YYYY/MM/DD">{goal.creationDate}</Moment></div>
-                                <div className="history-category"> {goal.category}</div> 
+                                <div className="history-category"> {goal.category.replace(/([a-z])([A-Z])/g, '$1 $2').toUpperCase()}</div>
                                 <div className="history-description">{goal.description}</div>
                                 <div className="history-creationDate"><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></div>
                             </div>
                             <div className="history-button-holder">
-                                <EditGoalModal goal={goal}/>
+                                <EditGoalModal setSlide={setSlide} goal={goal}/>
                             </div>
                         </div>
                         
