@@ -57,6 +57,9 @@
       }
   
       &:hover {
+        h3 {
+          color: #f1f1ef;
+        }
         background-color: #3894a3;
         -webkit-transform: translateY(-2px);
         transform: translateY(-2px);
@@ -65,7 +68,7 @@
   
       &:active {
         h3 {
-          color: white;
+          color: #f1f1ef;
         }
         background-color: #3f5a70;
       }

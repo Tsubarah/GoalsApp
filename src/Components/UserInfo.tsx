@@ -12,6 +12,7 @@ const UserInfo = ({ goals }: UserInfoProps) => {
   const { id } = useParams()
 
   console.log('currentUser', currentUser)
+  console.log('targetedUser', targetedUser)
 
     return (
       <div className="user-wrapper">
@@ -21,13 +22,13 @@ const UserInfo = ({ goals }: UserInfoProps) => {
               <>
                 <p><strong>Mail:</strong> {targetedUser?.mail}</p>
                 <p><strong>ID:</strong> {targetedUser?.id}</p>
-                <p><strong>Goals:</strong> {goals.length}</p>
+                <p><strong>Goals:</strong> {goals.filter(goal => !goal.isComplete).length}</p>
               </>
             ) :
               <>
                 <p><strong>Mail:</strong> {currentUser?.mail}</p>
                 <p><strong>ID:</strong> {currentUser?.id}</p>
-                <p><strong>Goals:</strong> {goals.length}</p>
+                <p><strong>Goals:</strong> {goals.filter(goal => !goal.isComplete).length}</p>
               </>
             }
           </div>
