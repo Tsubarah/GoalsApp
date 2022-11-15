@@ -27,7 +27,7 @@ const RightSidebar = ({show}: sidebarProps) => {
             <button className='button goals-btn'>Goals</button>
           </Link>
 
-          <Link to="/history">
+          <Link to={`/goals/history/${targetedUser?.id}`}>
             <button className='button history-btn'>History</button>
           </Link>
         </div>

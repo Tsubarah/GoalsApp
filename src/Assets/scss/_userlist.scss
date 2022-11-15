@@ -40,22 +40,14 @@
         height: 6rem;
       }
     }
-    
-  
-    h3 {
-      color: #3a3a3ad9;
-      padding: 0 1.25rem 0 1.5rem;
-    }
   
     button {
       width: 70%;
       align-items: center;
       display: flex;
-    //   flex-wrap: wrap;
-      border-style: solid;
-      border-color: #b6b6b6;
       border-radius: 50px;
-      background-color: #dbd9d9;
+      border: 2px solid #c7dad4;
+      background-color: #2f414f;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       margin-bottom: 3rem;
       padding-left: 0;
@@ -65,12 +57,23 @@
       }
   
       &:hover {
-        background-color: #ebe8e8;
+        background-color: #3894a3;
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
         cursor: pointer;
       }
   
       &:active {
-        background-color: #f8f8f8;
+        h3 {
+          color: white;
+        }
+        background-color: #3f5a70;
+      }
+
+      h3 {
+        // color: #3a3a3ad9;
+        color: #c7dad4;
+        padding: 0 1.25rem 0 1.5rem;
       }
     }
   }

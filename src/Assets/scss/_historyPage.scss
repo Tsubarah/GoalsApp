@@ -3,12 +3,12 @@
     margin-top: 1rem;
 }
 
-
-
 .history-page-wrapper {
     margin-top: 2rem;
     margin-left: 7rem;
     margin-right: 7rem;
+    padding-bottom: 4rem;
+
     .history-h2 {
         margin-top: 3rem;
         margin-bottom: 3rem;
@@ -22,3 +22,73 @@
     width: 5%;
     height: 100%;
 }
+
+.history-list-wrapper {
+    width: 100%;
+    background-color: rgb(212, 212, 212);
+    box-shadow: inset 0 0 10px #2e2e2e;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+
+    .history-header {
+        width: 90%;
+        display: flex;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .history-list-item {
+        background-color: #e7e8e9;
+        display: flex;
+        justify-content: space-evenly;
+        width: 99%;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        padding-top: 1.5rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-bottom: 1.5rem;
+        border-radius: 8px;
+        
+        .history-list-div {
+            display: flex;
+            width: 90%;
+        }
+
+        .history-button-holder{
+            display: flex;
+            width: 10%;
+            height: 60px;
+            justify-content: end;
+            align-items: center;
+        }
+    }
+}
+
+.history-deadline {
+ width: 10%;
+}
+
+.history-category {
+    width: 20%;
+}
+
+.history-description {
+    width: 50%;
+    padding-right: 2rem;
+}
+
+.history-creationDate {
+    width: 20%;
+}
+
+ .history-list-item:hover {
+     background-color: #f0f2f5;
+//      transform: scale(1.05);
+  }

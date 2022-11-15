@@ -19,30 +19,30 @@ const Tabs = ({ goals }: TabsProps) => {
       id: 1,
       name: 'Prio',
       category: 'prio',
-      goals: goals?.filter(goal => goal.prio === 1).sort((a, b) => b.category.localeCompare(a.category)),
+      goals: goals?.filter(goal => goal.prio === 1).sort((a, b) => b.category.localeCompare(a.category)).sort((a, b) => a.deadline.localeCompare(b.deadline)),
     },
     {
       id: 2,
       name: 'Personal Development',
       category: 'personalDevelopment',
-      goals: goals?.filter(goal => goal.category === "personalDevelopment"),
+      goals: goals?.filter(goal => goal.category === "personalDevelopment").sort((a, b) => a.deadline.localeCompare(b.deadline)),
     },
     {
       id: 3,
       name: 'Customer Interaction',
       category: 'customerInteraction',
-      goals: goals?.filter(goal => goal.category === "customerInteraction"),
+      goals: goals?.filter(goal => goal.category === "customerInteraction").sort((a, b) => a.deadline.localeCompare(b.deadline)),
     },
     {
       id: 4,
       name: 'Building Geshdo',
       category: 'buildingGeshdo',
-      goals: goals?.filter(goal => goal.category === "buildingGeshdo"),
+      goals: goals?.filter(goal => goal.category === "buildingGeshdo").sort((a, b) => a.deadline.localeCompare(b.deadline)),
     }
   ]
 
   // const incompleteGoals = sections[0].goals.filter(goal => !goal.isComplete)
-  const allGoals = sections[0].goals
+  const prioGoals = sections[0].goals
   const filterByCategories = sections.filter(section => section.name !== "Prio")
   const filterPrioPD = sections[0].goals.filter(goal => goal.category === "personalDevelopment")
   const filterPrioCI = sections[0].goals.filter(goal => goal.category === "customerInteraction")
@@ -121,7 +121,7 @@ const Tabs = ({ goals }: TabsProps) => {
           : "content"
         }
         >
-          {allGoals && (
+          {prioGoals && (
             <>
               {month === '3months' ? (
 
@@ -172,7 +172,7 @@ const Tabs = ({ goals }: TabsProps) => {
             ) : (
               <div>
                 <h2 className="table-headers">{section.name}</h2>
-                <Table goals={section.goals} />
+                <Table goals={section.goals.filter(goal => !goal.isComplete)} />
               </div>
             )}
           </div>

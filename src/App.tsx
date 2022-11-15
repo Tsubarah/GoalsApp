@@ -39,7 +39,7 @@ function App() {
 						        <GoalsPage />
 					        </RequireAuth>
 				        } />
-                <Route path="/history/:id" element={
+                <Route path="/goals/history/:id" element={
                   <RequireAuth > 
                     <HistoryPage />
                   </RequireAuth>
