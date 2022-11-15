@@ -1,18 +1,10 @@
 import { Value } from "sass";
 import { useAuthContext } from "../Contexts/AuthContext";
-import { useAuth } from "../services/auth";
 import { IUser } from '../typings/User'
 
-type AzureUser = {
-	name: string;
-	email: string;
-  };
 
 const useUsers = () => {
     const { setCurrentUser, setUsers } = useAuthContext();
-	const { user } = useAuth();
-
-    const getUserName = (): AzureUser | undefined => user;
 
     const getProfilePhotoUrl = async (accessToken: string) => {
         if (!accessToken) {
@@ -122,7 +114,7 @@ const useUsers = () => {
             headers: headers,
         };
 
-        let users: IUser[] | undefined 
+        let users: IUser[] | undefined
         try {
             await fetch("https://graph.microsoft.com/v1.0/users", options)
                 .then(async (response) => {
@@ -132,6 +124,8 @@ const useUsers = () => {
                             // console.log("response", data);
                             // window.URL = window.URL || window.webkitURL;
                             // usersUrl = window.URL.createObjectURL(data);
+
+                            // console.log(users)
                             users = data.value
 
                             // if (users) {
@@ -162,7 +156,7 @@ const useUsers = () => {
         } catch (err) {
             // users = [];
         }
-        return users;
+        // return users;
     };
 
     const getUsersPhotoUrl = async (accessToken: string, id: string) => {
@@ -209,7 +203,6 @@ const useUsers = () => {
     };
 
     return {
-        getUserName,
         getProfilePhotoUrl,
         getUserDetails,
         getUsers,

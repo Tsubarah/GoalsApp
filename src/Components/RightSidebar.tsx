@@ -1,15 +1,16 @@
 import ConsultantProfile from './ConsultantProfile'
 import { Link } from 'react-router-dom'
+import { useAuthContext } from '../Contexts/AuthContext'
 
 type sidebarProps ={
   show: boolean | null,
 }
 
 const RightSidebar = ({show}: sidebarProps) => {
+  const { targetedUser } = useAuthContext()
   
   return (
     <div className='rightSidebar-wrapper'>
-      {/* <div className="rightSidebar-placeholder"></div> */}
 
       <div className={`${show === null
                           ? "hidden" 
@@ -22,7 +23,7 @@ const RightSidebar = ({show}: sidebarProps) => {
         <ConsultantProfile />
 
         <div className='consultant-buttons-container'>
-          <Link to="/goals">
+          <Link to={`/goals/${targetedUser?.id}`}>
             <button className='button goals-btn'>Goals</button>
           </Link>
 

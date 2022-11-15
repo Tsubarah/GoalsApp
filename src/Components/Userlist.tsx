@@ -1,8 +1,5 @@
 import ListItem from "./ListItem"
-import {  useEffect, useState } from "react";
-import { useAuth } from "../services/auth";
-import useUsers from "../services/useUsers";
-import { IUser } from '../typings/User'
+import { useAuthContext } from "../Contexts/AuthContext";
 
 type listProps = {
   show: boolean | null,
@@ -10,41 +7,16 @@ type listProps = {
 }
 
 const UserList = ({show, setShow}: listProps)  => {
-  const { accessToken } = useAuth();
-  const { getUsers } = useUsers()
-  const [usersData, setUsersData] = useState<IUser[]>();
-
-	useEffect(() => {
-    if (!accessToken) {
-      return;
-    }
-    
-    async function getAllUsers(accessToken: string) {
-      const users = await getUsers(accessToken)
-      if (users) {
-        setUsersData(users)
-      }
-    }
-    getAllUsers(accessToken)
-  },[accessToken])
-
-	useEffect(() => {
-		// console.log('usersData', usersData)
-        // async function getUsersWithPhoto(accessToken: string, id: string)
-        //  let newUsers =usersData
-        if (!usersData) {
-            return
-        }
-	},[usersData])
+  const { users } = useAuthContext()
     
   return (
     <div className="user-list-wrapper">
-			{usersData && (
+			{users && (
 				<ul className="user-list">
-					{usersData.map((user, i) => (
+					{users.map((user, i) => (
 						<ListItem key={i} setShow={setShow} show={show} user={user} />
 					))}
-      	        </ul>
+        </ul>
 			)}
     </div>
   )

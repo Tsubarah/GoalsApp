@@ -1,8 +1,7 @@
+import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/User'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
-import { useAuthContext } from '../Contexts/AuthContext'
 import { useEffect, useState } from 'react'
-import { useAuth } from "../services/auth";
 import useUsers from "../services/useUsers";
 
 type itemProps = {
@@ -12,8 +11,7 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-  const { setTargetedUser } = useAuthContext()
-  const { accessToken } = useAuth();
+  const { setTargetedUser, accessToken } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
   const [ consultant, setConsultant ] = useState<IUser>()
 
@@ -28,18 +26,6 @@ const ListItem = ({show, setShow, user}: itemProps) => {
       addImage(accessToken)
     },[accessToken])
 
-    useEffect(() => {
-        if (consultant) {
-            console.log('consultant', consultant)
-        }
-	},[consultant])
-    
-//   let url = `https://graph.microsoft.com/v1.0/users/${user.id}/photo/$value`
-  // let url = user.imageUrl
-
-    console.log('user.imageUrl', user.imageUrl)
-
-  console.log('users', user)
   return (
     <li className="item">
       <button onClick={() => {
