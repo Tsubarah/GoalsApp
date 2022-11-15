@@ -8,13 +8,14 @@ import GoalsPage from './Pages/GoalsPage';
 import HistoryPage from './Pages/HistoryPage';
 import { AuthPage } from './Pages/AuthPage';
 import { useEffect } from 'react'
-import { useAuth } from "./services/auth";
+// import { useAuth } from "./services/auth";
+import { useAuthContext } from './Contexts/AuthContext';
 import useUsers from "./services/useUsers";
 import LogoutPage from './Pages/LogoutPage';
 
 
 function App() {
-    const { accessToken } = useAuth();
+    const { accessToken } = useAuthContext();
     const { getUserDetails } = useUsers();
 
     useEffect(() => {
