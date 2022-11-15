@@ -59,10 +59,10 @@ const HistoryList = ({ goals }) => {
 
              <div className="history-list-wrapper">
                 <div className="history-header">
-                    <div className="history-deadline"><h3>Deadline</h3></div>
+                    <div className="history-deadline"><h3>Creation Date</h3></div>
                     <div className="history-category"><h3>Category</h3></div>
                     <div className="history-description"><h3>Goal Description</h3></div>
-                    <div className="history-creationDate"><h3>Creation Date</h3></div>
+                    <div className="history-creationDate"><h3>Deadline</h3></div>
                 </div>
                 <ul>
                 {completedGoals.map((goal, i)=> (
@@ -71,10 +71,10 @@ const HistoryList = ({ goals }) => {
                         <div className="history-list-item">
                         
                            <div className="history-list-div">
-                                <div className="history-deadline"><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></div>
+                                <div className="history-deadline"><Moment format="YYYY/MM/DD">{goal.creationDate}</Moment></div>
                                 <div className="history-category"> {goal.category}</div> 
                                 <div className="history-description">{goal.description}</div>
-                                <div className="history-creationDate"><Moment format="YYYY/MM/DD">{goal.creationDate}</Moment></div>
+                                <div className="history-creationDate"><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></div>
                             </div>
                             <div className="history-button-holder">
                                 <EditGoalModal goal={goal}/>

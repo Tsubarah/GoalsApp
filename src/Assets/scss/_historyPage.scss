@@ -32,7 +32,7 @@
     margin-bottom: 2rem;
 
     .history-header {
-        width: 90%;
+        width: 80%;
         display:flex;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -53,46 +53,36 @@
         padding-top: 1.5rem;
         padding-left: 0.75rem;
         padding-right: 0.75rem;
-        padding-bottom: 0.75rem;
+        padding-bottom: 1.5rem;
         border-radius: 8px;
         
-
-
         .history-list-div {
             display: flex;
-            width:100%;
+            width:80%;
         }
 
-    
-        // .history-list-button {
-        //     margin-right: 1rem;
-        //     margin-left: 1rem;
-        //     background-color: #2e3e4e;
-        //     padding: 0.5rem 2rem;
-        //     font-size: 16px;
-        //     font-weight: 600;
-        //     font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
-        //     border-radius: 8px;
-        //     color: #fff;
-        //     border-style: none;
-        //     line-height: 1.5;
-        //     cursor: pointer;
-            
-        // }
+        .history-button-holder{
+            display: flex;
+            width:20%;
+            height: 60px;
+            justify-content: end;
+        }
+
     }
 }
 
 .history-deadline {
- width:15%;
+ width:10%;
 }
 
 
 .history-category {
-    width:15%;
+    width:20%;
 }
 
 .history-description {
     width:50%;
+    padding-right: 2rem;
 }
 
 .history-creationDate {
