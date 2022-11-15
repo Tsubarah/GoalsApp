@@ -2,6 +2,7 @@ import Profile from "./Profile";
 import { IGoal } from "../typings/Goal";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { useParams } from 'react-router-dom'
+import { ClassNames } from "@emotion/react";
 
 type UserInfoProps = {
   goals: IGoal[],
@@ -27,7 +28,10 @@ const UserInfo = ({ goals }: UserInfoProps) => {
               <>
                 <p><strong>Mail:</strong> {currentUser?.mail}</p>
                 <p><strong>ID:</strong> {currentUser?.id}</p>
-                <p><strong>Goals:</strong> {goals.length}</p>
+                <div className="user-goals">
+                  <p><strong>Goals:</strong> {goals.length}</p>
+                  <p><strong>Completed Goals:</strong> 4</p>
+                </div>
               </>
             }
           </div>
