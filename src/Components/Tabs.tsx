@@ -42,7 +42,7 @@ const Tabs = ({ goals }: TabsProps) => {
   ]
 
   // const incompleteGoals = sections[0].goals.filter(goal => !goal.isComplete)
-  const allGoals = sections[0].goals
+  const prioGoals = sections[0].goals
   const filterByCategories = sections.filter(section => section.name !== "Prio")
   const filterPrioPD = sections[0].goals.filter(goal => goal.category === "personalDevelopment")
   const filterPrioCI = sections[0].goals.filter(goal => goal.category === "customerInteraction")
@@ -121,7 +121,7 @@ const Tabs = ({ goals }: TabsProps) => {
           : "content"
         }
         >
-          {allGoals && (
+          {prioGoals && (
             <>
               {month === '3months' ? (
 

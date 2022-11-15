@@ -2,6 +2,7 @@
     margin-bottom: 0.2rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    color: #3894a3
 }
 
 .profile-text {
@@ -22,6 +23,7 @@
     margin-top: 5rem;
     height: 9rem;
     border-radius: 50%;
+    border: 4px solid #3894a3;
     object-fit: cover;
 
     @media only screen and (min-width: 900px) {

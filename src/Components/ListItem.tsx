@@ -1,6 +1,8 @@
 import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/User'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
+import { useEffect, useState } from 'react'
+import useUsers from "../services/useUsers";
 
 type itemProps = {
   show: boolean | null,
@@ -9,11 +11,20 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-  const { setTargetedUser } = useAuthContext()
-    
-  let url = `https://graph.microsoft.com/v1.0/users/${user.id}/photo/$value`
-  console.log('user', user)
-  // let url = user.imageUrl
+  const { setTargetedUser, accessToken } = useAuthContext()
+  const { getUsersPhotoUrl } = useUsers()
+  const [ consultant, setConsultant ] = useState<IUser>()
+
+  useEffect(() => {
+    if (!accessToken) {
+        return;
+      }
+      async function addImage(accessToken: string) {
+        user.imageUrl = await getUsersPhotoUrl(accessToken, user.id)
+        setConsultant(user)
+      }
+      addImage(accessToken)
+    },[accessToken])
 
   return (
     <li className="item">
@@ -22,10 +33,10 @@ const ListItem = ({show, setShow, user}: itemProps) => {
         setTargetedUser(user)
       }}
       >
-      <img src={url !== "" ? url : placeholder} alt="" />
+      <img src={user.imageUrl ? user.imageUrl : placeholder} alt="" />
       <h3>{user.displayName}</h3>
       </button>
-      </li>
+    </li>
   )
 }
 
