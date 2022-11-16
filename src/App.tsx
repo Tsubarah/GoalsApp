@@ -8,11 +8,10 @@ import GoalsPage from './Pages/GoalsPage';
 import HistoryPage from './Pages/HistoryPage';
 import { AuthPage } from './Pages/AuthPage';
 import { useEffect } from 'react'
-// import { useAuth } from "./services/auth";
 import { useAuthContext } from './Contexts/AuthContext';
 import useUsers from "./services/useUsers";
 import LogoutPage from './Pages/LogoutPage';
-
+import RequireAuth from './Components/RequireAuth';
 
 function App() {
     const { accessToken } = useAuthContext();
@@ -35,8 +34,16 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<ManagerPage />} />
-                <Route path="/goals/:id" element={<GoalsPage />} />
-                <Route path="/history/:id" element={<HistoryPage />} />
+                <Route path="/goals/:id" element={
+					        // <RequireAuth >
+						        <GoalsPage />
+					        // </RequireAuth>
+				        } />
+                <Route path="/goals/history/:id" element={
+                  // <RequireAuth > 
+                    <HistoryPage />
+                  // </RequireAuth>
+                  } />
                 <Route path="/auth" element={<AuthPage />} />
                 <Route path="/logout" element={<LogoutPage />} />
             </Routes>

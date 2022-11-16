@@ -9,6 +9,7 @@ type ModalProps = {
 
 const EditGoalModal = ({ goal, setSlide }: ModalProps) => {
   const [show, setShow] = useState(false)
+  const [isComplete, setIsComplete] = useState(goal.isComplete)
 
   return (
     <>
@@ -16,7 +17,7 @@ const EditGoalModal = ({ goal, setSlide }: ModalProps) => {
         className="button edit-btn" 
         onClick={() => {setShow(!show)}}
       >
-        Edit
+        {isComplete ? "View": "Edit"}
       </button>
 
       {

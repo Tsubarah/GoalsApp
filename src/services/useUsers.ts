@@ -1,4 +1,3 @@
-import { Value } from "sass";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { IUser } from '../typings/User'
 
@@ -55,13 +54,12 @@ const useUsers = () => {
         const bearer = `Bearer ${accessToken}`;
         headers.append("Authorization", bearer);
         headers.append("Content-Type", "json");
-        // console.log("accessToken", accessToken);
+
         const options = {
             method: "GET",
             headers: headers,
         };
 
-        // let user : IUser | undefined 
         try {
             await fetch("https://graph.microsoft.com/v1.0/me", options)
                 .then(async (response) => {
@@ -77,13 +75,6 @@ const useUsers = () => {
                                 mail: data.mail,
                                 mobilePhone: data.mobilePhone,
                             })
-                            // user = {
-                            //     displayName: data.displayName,
-                            //     id: data.id,
-                            //     jobTitle: data.jobTitle,
-                            //     mail: data.mail,
-                            //     mobilePhone: data.mobilePhone
-                            // }
                         }
                     } else {
                         throw new Error("User not found");
@@ -96,8 +87,6 @@ const useUsers = () => {
             // userObject = {name: "", jobTitle:"", uid: ""};
             console.log(err)
         }
-        // console.log("Return Object", user)
-        // return user
     };
 
     const getUsers = async (accessToken: string) => {
@@ -108,44 +97,23 @@ const useUsers = () => {
         const bearer = `Bearer ${accessToken}`;
         headers.append("Authorization", bearer);
         headers.append("Content-Type", "json");
-        // console.log("accessToken", accessToken);
+
         const options = {
             method: "GET",
             headers: headers,
         };
 
-        let users: IUser[] | undefined
-        let imageUrl = "";
+        // let users: IUser[] | undefined
         try {
             await fetch("https://graph.microsoft.com/v1.0/users", options)
                 .then(async (response) => {
                     if (response != null && response.ok) {
                         const data = await response.json();
                         if (data !== null) {
-                            // console.log("response", data);
-                            window.URL = window.URL || window.webkitURL;
-                            imageUrl = window.URL.createObjectURL(data);
+                            // window.URL = window.URL || window.webkitURL;
+                            // usersUrl = window.URL.createObjectURL(data);
 
-                            // console.log(users)
-                            users = data.value
-
-                            if (users) {
-                                users.map(user => {
-                                    getUsersPhotoUrl(accessToken, user.id).then(value => user.imageUrl = value)
-                                    return user.imageUrl
-                                })
-                                console.log('users', users)
-                                setUsers(users)
-
-                                // await Promise.all(users.map(async (user) => {
-                                //     user.image = getUsersPhotoUrl(accessToken, user.id).then()
-                                // }
-                                // ))
-
-                                // users.forEach(user => {
-                                //     user.imageUrl = getUsersPhotoUrl(accessToken, user.id).then()
-                                // })
-                            }
+                            setUsers(data.value)
                         }
                     } else {
                         throw new Error("Users not found");
@@ -186,8 +154,8 @@ const useUsers = () => {
                         return response.blob().then((data) => {
                             if (data !== null) {
                                 // window.URL = window.URL || window.webkitURL;
-                                imageUrl = response.url
-                                // console.log('imageUrl', imageUrl)
+                                window.URL = window.URL || window.webkitURL;
+                                imageUrl = window.URL.createObjectURL(data);
                             }
                         });
                     } else {
