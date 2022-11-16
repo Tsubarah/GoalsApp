@@ -1,4 +1,3 @@
-import { Value } from "sass";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { IUser } from '../typings/User'
 
@@ -111,10 +110,29 @@ const useUsers = () => {
                     if (response != null && response.ok) {
                         const data = await response.json();
                         if (data !== null) {
-                            // window.URL = window.URL || window.webkitURL;
-                            // usersUrl = window.URL.createObjectURL(data);
-
+                            console.log('data1', data)
                             setUsers(data.value)
+
+                            if (data['@odata.nextLink']) {
+                                const newFetchUrI = data['@odata.nextLink']
+
+                                await fetch(`${newFetchUrI}`, options)
+                                .then(async (response) => {
+                                    if (response != null && response.ok) {
+                                        const newData = await response.json();
+                                        if (newData !== null) {
+                                            console.log('data1', data.value)
+                                            console.log('data2 - newData:', newData.value)
+                                            setUsers([...data.value, ...newData.value])
+                                        }
+                                    } else {
+                                        throw new Error("Users not found");
+                                    }
+                                })
+                                .catch((error) => {
+                                    throw new Error("Users not found");
+                                });
+                            }
                         }
                     } else {
                         throw new Error("Users not found");
@@ -145,16 +163,12 @@ const useUsers = () => {
 
         let imageUrl = "";
         try {
-            await fetch(
-                `https://graph.microsoft.com/v1.0/users/${id}/photo/$value`,
-                options
-            )
+            await fetch(`https://graph.microsoft.com/v1.0/users/${id}/photo/$value`,options)
                 .then((response) => {
                     if (response != null && response.ok) {
-                        // console.log("response",response)
                         return response.blob().then((data) => {
                             if (data !== null) {
-                                // window.URL = window.URL || window.webkitURL;
+                                // window.URL = window.URL || window.webkitURL; 
                                 window.URL = window.URL || window.webkitURL;
                                 imageUrl = window.URL.createObjectURL(data);
                             }
