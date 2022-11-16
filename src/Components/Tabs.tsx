@@ -5,7 +5,6 @@ import Modal from '../Components/Modal'
 import TabsDetails from '../Components/TabsDetails'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from "../Contexts/AuthContext";
-import { FaArrowCircleRight } from 'react-icons/fa'
 
 // Types are used for props 
 type TabsProps = {
