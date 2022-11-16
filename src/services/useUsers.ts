@@ -172,6 +172,13 @@ const useUsers = () => {
         return imageUrl;
     };
 
+    // const getGroups = async (accessToken: string) => {
+    //     if (!accessToken) {
+    //         return "";
+    //     }
+
+    // }
+
     return {
         getProfilePhotoUrl,
         getUserDetails,
