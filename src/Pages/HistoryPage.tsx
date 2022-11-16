@@ -1,15 +1,18 @@
 import { useEffect } from 'react'
-import { useQuery} from 'react-query'
-import { useParams} from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { IGoal } from '../typings/Goal'
 import GoalsAPI from '../services/GoalsAPI'
 import LoadingSpinner from '../Components/LoadingSpinner'
 import HistoryList from '../Components/HistoryList'
 import UserInfo from '../Components/UserInfo'
 
+
 const HistoryPage = () => {
     const { id } = useParams()
     const { data: goals, isLoading } = useQuery<IGoal[]>(['goals', id], () => GoalsAPI.getGoals(id))
+	
 
     useEffect(() => {
         if (!goals)
@@ -32,7 +35,8 @@ const HistoryPage = () => {
 
 				<h2 className='history-h2'>History</h2>
 
-				<HistoryList goals={goals} />
+				<HistoryList  goals={goals} />
+
 				
 				</>
 			)}

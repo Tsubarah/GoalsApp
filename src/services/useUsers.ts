@@ -113,7 +113,7 @@ const useUsers = () => {
                         if (data !== null) {
                             // window.URL = window.URL || window.webkitURL;
                             // usersUrl = window.URL.createObjectURL(data);
-
+                            console.log('data', data)
                             setUsers(data.value)
                         }
                     } else {
