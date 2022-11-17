@@ -8,6 +8,7 @@
     margin-left: 7rem;
     margin-right: 7rem;
     padding-bottom: 4rem;
+    background-image:url(../Images/getshitdone.jpg);
 
     .history-h2 {
         margin-top: 3rem;
@@ -25,7 +26,8 @@
 
 .history-list-wrapper {
     width: 100%;
-    background-color: rgb(212, 212, 212);
+    background-color: #C7DAD4;
+    opacity: 0.9;
     box-shadow: inset 0 0 10px #2e2e2e;
     padding: 2rem;
     border-radius: 8px;
@@ -44,7 +46,7 @@
     }
 
     .history-list-item {
-        background-color: #e7e8e9;
+        background-color: #F1F1EF;
         display: flex;
         justify-content: space-evenly;
         width: 99%;
