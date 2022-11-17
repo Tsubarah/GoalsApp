@@ -1,7 +1,6 @@
 import { useAuthContext } from "../Contexts/AuthContext";
 import { IUser } from '../typings/User'
 
-
 const useUsers = () => {
     const { setCurrentUser, setUsers } = useAuthContext();
 
@@ -216,6 +215,7 @@ const useUsers = () => {
             // group 43 - A-team (97b37a8d-8b5b-4fac-bf58-dca0942f8e8a)
             // https://graph.microsoft.com/v1.0/me/transitiveMemberOf/microsoft.graph.group?$count=true
             // /groups/${groupID}/members
+            // me/memberOf
         }
         // return imageUrl;
     };

@@ -9,12 +9,6 @@ const ConsultantProfile = () => {
       <h2 className="profile-name">{targetedUser?.displayName}</h2>
       <p className="profile-text">{targetedUser?.jobTitle}</p>
       <h4 className="profile-h4">{targetedUser?.mail}</h4>
-      {/* <h4 className="profile-h4">info</h4>
-      <p className="profile-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </p>
-      <h4 className="profile-h4">Details</h4>
-      <p className="profile-text">0989542837</p> */}
     </div>
   )
 }

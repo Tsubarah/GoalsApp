@@ -3,12 +3,15 @@ import LoadingSpinner from '../Components/LoadingSpinner'
 import { IUser } from '../typings/User'
 import { useMsal } from '@azure/msal-react'
 import { loginRequest } from "../authConfig";
+import useUsers from '../services/useUsers';
 
 type ContextProps = {
   children: React.ReactNode,
 }
 
 interface AuthContextInterface {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  loading: boolean,
   currentUser: IUser | undefined,
   setCurrentUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
   targetedUser: IUser | undefined,
@@ -24,12 +27,13 @@ const useAuthContext = () => useContext(AuthContext)
 
 const AuthContextProvider = ({ children }: ContextProps) => {
   const { instance, accounts } = useMsal()
+  const { getUserDetails } = useUsers()
   const [accessToken, setAccessToken] = useState<string | undefined>();
   const [currentUser, setCurrentUser] = useState<IUser>()
   const [targetedUser, setTargetedUser] = useState<IUser>()
   const [users, setUsers] = useState<IUser[]>()
   // const [userEmail, setUserEmail] = useState()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     instance
@@ -47,7 +51,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
               // console.log('response', response)
               if (response.account) {
                 instance.setActiveAccount(response.account);
-
                 // store.setIdToken(response.idToken);
                 // store.setAccessToken(response.accessToken);
                 // store.setUsername(response.account?.name);
@@ -64,6 +67,8 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   }, [accounts, instance]);
 
   const contextValues: AuthContextInterface = {
+    setLoading,
+    loading,
     currentUser,
     setCurrentUser,
     targetedUser,

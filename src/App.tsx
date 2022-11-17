@@ -12,46 +12,51 @@ import { useAuthContext } from './Contexts/AuthContext';
 import useUsers from "./services/useUsers";
 import LogoutPage from './Pages/LogoutPage';
 import RequireAuth from './Components/RequireAuth';
+import LoadingSpinner from './Components/LoadingSpinner';
 
 function App() {
-    const { accessToken } = useAuthContext();
-    const { getUserDetails } = useUsers();
+  const { accessToken, currentUser } = useAuthContext();
+  const { getUserDetails } = useUsers();
 
-    useEffect(() => {
-        if (!accessToken) {
-          return;
-        }
-        async function getUser(accessToken: string) {
-          await getUserDetails(accessToken)
-        }
-        getUser(accessToken)
-      }, [accessToken]);
-      
-    return (
-        <div className="App">
+  useEffect(() => {
+    if (!accessToken) {
+      return;
+    }
+    getUserDetails(accessToken)
+  }, [accessToken]);
 
-            <Navbar />
+  useEffect(() => {
+    console.log('currentUser', currentUser)
+  }, [currentUser])
 
-            <Routes>
-                <Route path="/" element={<ManagerPage />} />
-                <Route path="/goals/:id" element={
-					        <RequireAuth >
-						        <GoalsPage />
-					        </RequireAuth>
-				        } />
-                <Route path="/goals/history/:id" element={
-                  <RequireAuth > 
-                    <HistoryPage />
-                  </RequireAuth>
-                  } />
-                <Route path="/auth" element={<AuthPage />} />
-                <Route path="/logout" element={<LogoutPage />} />
-            </Routes>
+  return (
+    <div className="App">
+      {!currentUser && (
+        <LoadingSpinner />
+      )}
 
-            <ToastContainer autoClose={2000} />
-            <ReactQueryDevtools />
-        </div>
-    );
+      <Navbar />
+
+      <Routes>
+        <Route path="/manager" element={<ManagerPage />} />
+        <Route path="/goals/:id" element={
+          // <RequireAuth>
+            <GoalsPage />
+          // </RequireAuth>
+        } />
+        <Route path="/goals/history/:id" element={
+          <RequireAuth>
+            <HistoryPage />
+          </RequireAuth>
+        } />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/logout" element={<LogoutPage />} />
+      </Routes>
+
+      <ToastContainer autoClose={2000} />
+      <ReactQueryDevtools />
+    </div>
+  );
 }
 
 export default App;

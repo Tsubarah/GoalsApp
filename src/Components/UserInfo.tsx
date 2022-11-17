@@ -2,7 +2,6 @@ import Profile from "./Profile";
 import { IGoal } from "../typings/Goal";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { useParams } from 'react-router-dom'
-import { ClassNames } from "@emotion/react";
 
 type UserInfoProps = {
   goals: IGoal[],

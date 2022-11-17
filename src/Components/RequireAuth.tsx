@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuthContext } from '../Contexts/AuthContext'
 
@@ -10,6 +11,10 @@ const RequireAuth = ({
 	children,
 }:Props) => {
 	const { currentUser } = useAuthContext()
+
+	// useEffect(() => {
+	// 	console.log('currentUser', currentUser)
+	// }, [currentUser])
 
 	return (
 		currentUser
