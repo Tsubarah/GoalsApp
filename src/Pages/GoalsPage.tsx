@@ -6,13 +6,11 @@ import GoalsAPI from '../services/GoalsAPI'
 import { useParams } from 'react-router-dom'
 import { IGoal } from '../typings/Goal'
 
-
 const GoalsPage = () => {
   const { id } = useParams()
   const { data: goals, isLoading } = useQuery<IGoal[]>(['goals', id], () => GoalsAPI.getGoals(id))
 
   return (
-
     <div className="goals-page-wrapper">
 
       {isLoading && <LoadingSpinner />}
