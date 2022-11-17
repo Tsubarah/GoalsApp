@@ -208,9 +208,9 @@ const useUsers = () => {
         } catch (err) {
             // imageUrl = "";
             /***
-             * 1. Check if currentUser's jobtitle is team-manager
+             * 1. Check if currentUser's jobTitle is team-manager
              * 2. If yes, get all groups that user is a member of
-             * 3. map over groups and check if owners has a jobtitle === team-manager, if yes, check if currentUser.displayName === owners displayName
+             * 3. map over groups and check if owners has a jobTitle === team-manager, if yes, check if currentUser.displayName === owners displayName
              * 4. Get that groups ID
              */
             // group 43 - A-team (97b37a8d-8b5b-4fac-bf58-dca0942f8e8a)
