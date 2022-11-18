@@ -11,7 +11,7 @@ type ModalProps = {
 const EditGoalModal = ({ goal, setSlide }: ModalProps) => {
   const [show, setShow] = useState(false)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
-  // const [isManager, setIsManager] = useState(user.jobTitle.includes('Manager'))
+  // const [isManager, setIsManager] = useState(user.jobTitle.includes('Team Manager'))
 
   return (
     <>
