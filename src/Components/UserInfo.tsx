@@ -28,6 +28,8 @@ const UserInfo = ({ goals }: UserInfoProps) => {
                 <p>{targetedUser?.mail}</p>
                 <hr />
                 <p><strong>ID:</strong> {targetedUser?.id}</p>
+                <h2>Goals</h2>
+                <hr />
                 <div className="user-goals">
                   <div className="user-all-goals goals">
                     <div className="goal-inner">
@@ -56,7 +58,8 @@ const UserInfo = ({ goals }: UserInfoProps) => {
               <>
                 <p>{currentUser?.mail}</p>
                 <hr />
-                <p><strong>ID:</strong> {currentUser?.id}</p>
+                 <p><strong>ID:</strong> {currentUser?.id}</p> 
+                <h2>Goals</h2>
                 <hr />
                 <div className="user-goals">
                   <div className="user-all-goals goals">

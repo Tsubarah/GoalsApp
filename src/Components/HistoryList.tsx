@@ -58,12 +58,14 @@ const HistoryList = ({ goals }:HistoryProps) => {
             </div>  */}
 
              <div className="history-list-wrapper">
+
                 <div className="history-header">
                     <div className="history-creationDate"><h3>Creation Date </h3></div>
                     <div className="history-category category"><h3>Category</h3></div>
                     <div className="history-description description"><h3>Goal Description</h3></div>
                     <div className="history-deadline deadline"><h3 className="deadline">Deadline</h3></div>
                 </div>
+                
                 <ul>
                 {completedGoals.map((goal, i)=> (
                     <li key={i}>
@@ -76,9 +78,11 @@ const HistoryList = ({ goals }:HistoryProps) => {
                                 <div className="history-description">{goal.description}</div>
                                 <div className="history-deadline deadline"><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></div>
                             </div>
+
                             <div className="history-button-holder">
                                 <EditGoalModal setSlide={setSlide} goal={goal}/>
                             </div>
+
                         </div>
                         
                         </li>

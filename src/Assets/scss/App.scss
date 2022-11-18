@@ -33,15 +33,16 @@ body {
     align-items: center;
 }
 
-// $primary:;
-// $secondary:;
-// $third:;
-// $fourth:;
+// scss variabler
+ $biscay:#2f414f;
+ $scooter:#3894a3;
+ $conch:#c7dad4;
+ $gallery:#f1f1ef;
 
 // For use in js
-// :export {
-//     primary:$primary;
-//     secondary: $secondary;
-//     third:$third;
-//     fourth:$fourth;
-// }
+ :export {
+     biscay:$biscay;
+     scooter: $scooter;
+     conch:$conch;
+     gallery:$gallery;
+ }
