@@ -8,22 +8,21 @@ import { useNavigate } from "react-router-dom";
 
 const ManagerPage = () => {
   const [show, setShow] = useState<boolean | null>(null)
-  const { accessToken, currentUser, setLoading } = useAuthContext();
+  const { accessToken, currentUser } = useAuthContext();
   const { getUsers, getGroups } = useUsers()
   const navigate = useNavigate()
   
   useEffect(() => {
-    if (!accessToken) {
-      return;
-    }
 
-    if (currentUser && currentUser.jobTitle !== "Intern") {
-      navigate(`/goals/${currentUser.id}`)
+    // if (currentUser && currentUser.jobTitle !== "Intern") {
+    //   navigate(`/goals/${currentUser.id}`)
+    // }
+
+    // console.log('currentUser', currentUser)
+    if (currentUser) {
+      getUsers(currentUser.token)
+      getGroups(currentUser.token)
     }
-    
-    console.log('currentUser', currentUser)
-    getUsers(accessToken)
-    getGroups(accessToken)
   },[currentUser])
   
   return (

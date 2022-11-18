@@ -1,7 +1,6 @@
 import { logoutReq } from '../authConfig'
 import { useEffect } from 'react';
 import { useMsal } from '@azure/msal-react';
-import LoadingSpinner from '../Components/LoadingSpinner';
 
 const LogoutPage = () => {
     const { instance, accounts} = useMsal();
@@ -13,9 +12,8 @@ const LogoutPage = () => {
       },[]);
 
   return (
-
     <div className="logout">
-        {accounts && <LoadingSpinner />}
+ 
     </div>
   )
 }

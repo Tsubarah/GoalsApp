@@ -13,7 +13,7 @@ const UserList = ({show, setShow}: listProps)  => {
     <div className="user-list-wrapper">
 			{users && (
 				<ul className="user-list">
-					{users.map((user, i) => (
+					{users?.map((user, i) => (
 						<ListItem key={i} setShow={setShow} show={show} user={user} />
 					))}
         </ul>

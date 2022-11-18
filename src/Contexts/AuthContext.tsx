@@ -1,17 +1,16 @@
-import { createContext, useContext, useEffect, useState } from 'react'
-import LoadingSpinner from '../Components/LoadingSpinner'
+import { createContext, useContext, useEffect, useState, useMemo } from 'react'
+import BounceLoader from 'react-spinners/BounceLoader'
 import { IUser } from '../typings/User'
 import { useMsal } from '@azure/msal-react'
 import { loginRequest } from "../authConfig";
-import useUsers from '../services/useUsers';
 
 type ContextProps = {
   children: React.ReactNode,
 }
 
 interface AuthContextInterface {
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  loading: boolean,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  isLoading: boolean,
   currentUser: IUser | undefined,
   setCurrentUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
   targetedUser: IUser | undefined,
@@ -27,13 +26,35 @@ const useAuthContext = () => useContext(AuthContext)
 
 const AuthContextProvider = ({ children }: ContextProps) => {
   const { instance, accounts } = useMsal()
-  const { getUserDetails } = useUsers()
   const [accessToken, setAccessToken] = useState<string | undefined>();
   const [currentUser, setCurrentUser] = useState<IUser>()
   const [targetedUser, setTargetedUser] = useState<IUser>()
   const [users, setUsers] = useState<IUser[]>()
   // const [userEmail, setUserEmail] = useState()
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+
+
+  // const userlol = useMemo(() => {
+  //   if (accessToken) {
+  //     return getUserDetails(accessToken)
+  //   }
+  //   return
+  // }, [currentUser])
+
+
+  useEffect(() => {
+    if (!currentUser) {
+      setIsLoading(true)
+    }
+    setTimeout(() => {
+      if (currentUser) {
+        setIsLoading(false)
+      }
+    }, 1500)
+    
+  }, [currentUser])
+  
+  // const visibleUser = useMemo(() => getUserDetails(currentUser.token), [currentUser])
 
   useEffect(() => {
     instance
@@ -51,24 +72,76 @@ const AuthContextProvider = ({ children }: ContextProps) => {
               // console.log('response', response)
               if (response.account) {
                 instance.setActiveAccount(response.account);
-                // store.setIdToken(response.idToken);
-                // store.setAccessToken(response.accessToken);
-                // store.setUsername(response.account?.name);
-                setAccessToken(response.accessToken);
-              }
-            });
-          // store.setIsLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.log("auth error: " + error);
-        // store.setIsLoading(false);
-      });
+                getUserDetails(response.accessToken).then(user => {
+                  console.log('currentUser', user)
+                  if (user) {
+                    setCurrentUser({
+                      ...user,
+                      token: response.accessToken,
+                    })}
+                  })
+                  // store.setIdToken(response.idToken);
+                  // store.setAccessToken(response.accessToken);
+                  // store.setUsername(response.account?.name);
+
+                  setAccessToken(response.accessToken);
+                }
+              });
+              // store.setIsLoading(false);
+            }
+          })
+          .catch((error) => {
+            console.log("auth error: " + error);
+            // store.setIsLoading(false);
+          });
   }, [accounts, instance]);
 
+  const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
+    if (!accessToken) {
+        return undefined;
+    }
+    const headers = new Headers();
+    const bearer = `Bearer ${accessToken}`;
+    headers.append("Authorization", bearer);
+    headers.append("Content-Type", "json");
+    const options = {
+        method: "GET",
+        headers: headers,
+    };
+    try {
+      const user = await fetch("https://graph.microsoft.com/v1.0/me", options)
+        .then(async (response) => {
+            if (response != null && response.ok) {
+              const data = await response.json();
+              if (data !== null) {
+                return {
+                  displayName: data.displayName,
+                  id: data.id,
+                  jobTitle: data.jobTitle,
+                  mail: data.mail,
+                  mobilePhone: data.mobilePhone,
+                  token: accessToken,
+                }
+              }
+              // setLoading(false)
+            } else {
+                throw new Error("User not found");
+            }
+        })
+        .catch((error) => {
+            throw new Error("User not found");
+        });
+      return user;
+    } catch (err) {
+        // userObject = {name: "", jobTitle:"", uid: ""};
+        console.log(err)
+    }
+};
+
+
   const contextValues: AuthContextInterface = {
-    setLoading,
-    loading,
+    setIsLoading,
+    isLoading,
     currentUser,
     setCurrentUser,
     targetedUser,
@@ -80,9 +153,9 @@ const AuthContextProvider = ({ children }: ContextProps) => {
 
   return (
   <AuthContext.Provider value={contextValues}>
-    {loading ? (
-      <div>
-        <LoadingSpinner />
+    {isLoading ? (
+      <div id="loading-spinner">
+        <BounceLoader size={150} color="#77a5c9" />
       </div>
     ) : (
       children

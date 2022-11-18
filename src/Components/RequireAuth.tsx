@@ -10,16 +10,21 @@ export type Props = {
 const RequireAuth = ({
 	children,
 }:Props) => {
-	const { currentUser } = useAuthContext()
+	const { currentUser, setIsLoading } = useAuthContext()
 
-	// useEffect(() => {
-	// 	console.log('currentUser', currentUser)
-	// }, [currentUser])
+  useEffect(() => {
+    setIsLoading(true)
+		if (currentUser) {
+			console.log('currentUser', currentUser)
+			setIsLoading(false)
+		}
+
+  }, [currentUser])
 
 	return (
-		currentUser
+		currentUser 
 			? children
-			: <Navigate to= "/"/>
+			: <Navigate to= "/" />
 	)
 }
 

@@ -45,48 +45,56 @@ const useUsers = () => {
         return imageUrl;
     };
 
-    const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
-        if (!accessToken) {
-            return undefined;
-        }
-        const headers = new Headers();
-        const bearer = `Bearer ${accessToken}`;
-        headers.append("Authorization", bearer);
-        headers.append("Content-Type", "json");
+    // const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
+    //     if (!accessToken) {
+    //         return undefined;
+    //     }
+    //     const headers = new Headers();
+    //     const bearer = `Bearer ${accessToken}`;
+    //     headers.append("Authorization", bearer);
+    //     headers.append("Content-Type", "json");
 
-        const options = {
-            method: "GET",
-            headers: headers,
-        };
+    //     const options = {
+    //         method: "GET",
+    //         headers: headers,
+    //     };
 
-        try {
-            await fetch("https://graph.microsoft.com/v1.0/me", options)
-                .then(async (response) => {
-                    if (response != null && response.ok) {
-                        const data = await response.json();
-                        if (data !== null) {
+    //     try {
+    //         await fetch("https://graph.microsoft.com/v1.0/me", options)
+    //             .then(async (response) => {
+    //                 if (response != null && response.ok) {
+    //                     const data = await response.json();
+    //                     if (data !== null) {
 
-                            console.log("Me", data)
-                            setCurrentUser({
-                                displayName: data.displayName,
-                                id: data.id,
-                                jobTitle: data.jobTitle,
-                                mail: data.mail,
-                                mobilePhone: data.mobilePhone,
-                            })
-                        }
-                    } else {
-                        throw new Error("User not found");
-                    }
-                })
-                .catch((error) => {
-                    throw new Error("User not found");
-                });
-        } catch (err) {
-            // userObject = {name: "", jobTitle:"", uid: ""};
-            console.log(err)
-        }
-    };
+    //                         console.log("Me", data)
+                            
+    //                         return {
+    //                             displayName: data.displayName,
+    //                             id: data.id,
+    //                             jobTitle: data.jobTitle,
+    //                             mail: data.mail,
+    //                             mobilePhone: data.mobilePhone,
+    //                         }
+    //                         // setCurrentUser({
+    //                         //     displayName: data.displayName,
+    //                         //     id: data.id,
+    //                         //     jobTitle: data.jobTitle,
+    //                         //     mail: data.mail,
+    //                         //     mobilePhone: data.mobilePhone,
+    //                         // })
+    //                     }
+    //                 } else {
+    //                     throw new Error("User not found");
+    //                 }
+    //             })
+    //             .catch((error) => {
+    //                 throw new Error("User not found");
+    //             });
+    //         } catch (err) {
+    //             // userObject = {name: "", jobTitle:"", uid: ""};
+    //             console.log(err)
+    //         }
+    //     };
 
     const getUsers = async (accessToken: string) => {
         if (!accessToken) {
@@ -222,7 +230,7 @@ const useUsers = () => {
 
 
     return {
-        getUserDetails,
+        // getUserDetails,
         getProfilePhotoUrl,
         getUsers,
         getUsersPhotoUrl,

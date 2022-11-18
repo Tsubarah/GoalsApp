@@ -11,20 +11,22 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-  const { setTargetedUser, accessToken } = useAuthContext()
+  const { setTargetedUser, currentUser, accessToken } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
   const [ consultant, setConsultant ] = useState<IUser>()
 
   useEffect(() => {
-    if (!accessToken) {
+    if (!currentUser) {
         return;
       }
-      async function addImage(accessToken: string) {
+      async function getImages(accessToken: string) {
         user.imageUrl = await getUsersPhotoUrl(accessToken, user.id)
+        
         setConsultant(user)
+        console.log('user', user)
       }
-      addImage(accessToken)
-    },[accessToken])
+      getImages(currentUser.token)
+    },[])
 
   return (
     <li className="item">
@@ -34,10 +36,14 @@ const ListItem = ({show, setShow, user}: itemProps) => {
       }}
       >
       <img src={user.imageUrl ? user.imageUrl : placeholder} alt="" />
-      <h3>{user.displayName}</h3>
+      <h3>{user?.displayName}</h3>
       </button>
     </li>
   )
 }
 
 export default ListItem
+
+function getUsers(accessToken: string | undefined) {
+  throw new Error("Function not implemented.");
+}
