@@ -1,8 +1,13 @@
 import logo from '../Assets/Images/geshdo-logo.png'
+import { useState } from 'react'
 import { useAuthContext } from '../Contexts/AuthContext';
+
 
 const Navbar = () => {
     const { currentUser } = useAuthContext()
+    const [isManager, setIsManager] = useState(currentUser?.jobTitle === "Team Manager")
+
+    console.log(`JobTitle`, currentUser?.jobTitle)
     
     return (
         <nav className="navbar">
@@ -12,7 +17,11 @@ const Navbar = () => {
               </a>
             </div>
             <div className="navbar-menu">
+
+               {/* {isManager?  */}
                 <a href="/">Consultants</a>
+                  {/* : ""} */}
+
                 <a href={`/goals/${currentUser?.id}`}>Goals</a>
                 <a href="/logout">Logout</a>
             </div>

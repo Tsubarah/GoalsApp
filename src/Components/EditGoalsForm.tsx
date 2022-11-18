@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useForm, useFieldArray } from "react-hook-form"
 import "react-datepicker/dist/react-datepicker.css"
 import { IGoal } from "../typings/Goal";
+import { useAuthContext } from '../Contexts/AuthContext'
 
 type EditProps = {
   goal: IGoal,
@@ -15,6 +16,9 @@ type EditProps = {
 const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
+  const { currentUser } = useAuthContext()
+  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
+
   
   const { deleteGoal, editGoal } = useGoal();
 
@@ -194,6 +198,7 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
           </div>
         ))}
 
+         {/* { isManager?  */}
         <div className="buttons-container">
           <div>
             <button 
@@ -223,6 +228,8 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
             </button>
           </div>
         </div>
+           {/* :"" }  */}
+           
       </form>
     </div>
   )

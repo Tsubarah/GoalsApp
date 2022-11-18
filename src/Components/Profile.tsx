@@ -28,7 +28,7 @@ const Profile = () => {
               <img src={targetedUser.imageUrl ? targetedUser.imageUrl : placeholder} alt={targetedUser?.displayName} />
               <h2>{targetedUser?.displayName}</h2>
               <hr />
-              <h3>{targetedUser?.jobTitle}</h3>
+              <h3 className="job-title">{targetedUser?.jobTitle}</h3>
             </>
           ) : 
             <>
