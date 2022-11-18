@@ -27,12 +27,14 @@ const Profile = () => {
             <>
               <img src={targetedUser.imageUrl ? targetedUser.imageUrl : placeholder} alt={targetedUser?.displayName} />
               <h2>{targetedUser?.displayName}</h2>
+              <hr />
               <h3>{targetedUser?.jobTitle}</h3>
             </>
           ) : 
             <>
               {photoUrl && <img src={photoUrl ? photoUrl : placeholder} alt={currentUser?.displayName} />}
               <h2>{currentUser?.displayName}</h2>
+              <hr />
               <h3>{currentUser?.jobTitle}</h3>
             </>
           }

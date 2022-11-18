@@ -13,7 +13,11 @@ const UserInfo = ({ goals }: UserInfoProps) => {
   const { currentUser, targetedUser } = useAuthContext()
   const { id } = useParams()
 
+  const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
+  const goalInComplete = goals.filter((goal) => goal.isComplete === false)
+
   console.log('currentUser', currentUser)
+
 
     return (
       <div className="user-wrapper">
@@ -21,7 +25,8 @@ const UserInfo = ({ goals }: UserInfoProps) => {
           <div className="user-stats">
             {targetedUser && id === targetedUser.id ? (
               <>
-                <p><strong>Mail:</strong> {targetedUser?.mail}</p>
+                <p>{targetedUser?.mail}</p>
+                <hr />
                 <p><strong>ID:</strong> {targetedUser?.id}</p>
                 <div className="user-goals">
                   <div className="user-all-goals goals">
@@ -34,14 +39,14 @@ const UserInfo = ({ goals }: UserInfoProps) => {
                   <div className="user-incomplete-goals goals">
                     <div className="goal-inner">
                       <img src={goalIcon} alt="goals" />
-                      <p className="goal-number"><strong>2</strong></p>
+                      <p className="goal-number"><strong>{goalInComplete.length}</strong></p>
                     </div>
                     <p className="goals-p">Incomplete</p>
                   </div>
                   <div className="user-complete-goals goals">
                     <div className="goal-inner">
                     <img src={goalIcon} alt="goals" />
-                    <p className="goal-number"><strong>2</strong></p>
+                    <p className="goal-number"><strong>{goalsCompleted.length}</strong></p>
                     </div>
                     <p className="goals-p">Completed</p>
                   </div>
@@ -50,7 +55,9 @@ const UserInfo = ({ goals }: UserInfoProps) => {
             ) :
               <>
                 <p>{currentUser?.mail}</p>
+                <hr />
                 <p><strong>ID:</strong> {currentUser?.id}</p>
+                <hr />
                 <div className="user-goals">
                   <div className="user-all-goals goals">
                     <div className="goal-inner">
@@ -62,18 +69,19 @@ const UserInfo = ({ goals }: UserInfoProps) => {
                   <div className="user-incomplete-goals goals">
                     <div className="goal-inner">
                       <img src={goalIcon} alt="goals" />
-                      <p className="goal-number"><strong>2</strong></p>
+                      <p className="goal-number"><strong>{goalInComplete.length}</strong></p>
                     </div>
                     <p className="goals-p">Incomplete</p>
                   </div>
                   <div className="user-complete-goals goals">
                     <div className="goal-inner">
                     <img src={goalIcon} alt="goals" />
-                    <p className="goal-number"><strong>2</strong></p>
+                    <p className="goal-number"><strong>{goalsCompleted.length}</strong></p>
                     </div>
                     <p className="goals-p">Completed</p>
                   </div>
                 </div>
+                <hr />
               </>
             }
           </div>
