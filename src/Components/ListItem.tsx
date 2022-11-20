@@ -14,18 +14,12 @@ const ListItem = ({show, setShow, user}: itemProps) => {
   const { setTargetedUser, currentUser, accessToken } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
   const [updatedUser, setUpdatedUser] = useState<IUser>(user)
-  // const [ consultant, setConsultant ] = useState<IUser>()
 
   useEffect(() => {
     if (!currentUser) {
         return;
       }
-      // async function getImages(accessToken: string) {
-      //   user.imageUrl = await getUsersPhotoUrl(accessToken, user.id)
-        
-      //   setConsultant(user)
-      //   console.log('user', user)
-      // }
+
       getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
         if (imageUrl) {
           setUpdatedUser({
