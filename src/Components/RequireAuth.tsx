@@ -22,9 +22,9 @@ const RequireAuth = ({
   }, [currentUser])
 
 	return (
-		currentUser 
+		currentUser?.jobTitle === "Intern" 
 			? children
-			: <Navigate to= "/" />
+			: <Navigate to={`/goals/${currentUser?.id}`} />
 	)
 }
 

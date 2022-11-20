@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useMemo } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { IUser } from '../typings/User'
 import { useMsal } from '@azure/msal-react'
@@ -33,15 +33,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   // const [userEmail, setUserEmail] = useState()
   const [isLoading, setIsLoading] = useState(false)
 
-
-  // const userlol = useMemo(() => {
-  //   if (accessToken) {
-  //     return getUserDetails(accessToken)
-  //   }
-  //   return
-  // }, [currentUser])
-
-
   useEffect(() => {
     if (!currentUser) {
       setIsLoading(true)
@@ -53,8 +44,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     }, 1500)
     
   }, [currentUser])
-  
-  // const visibleUser = useMemo(() => getUserDetails(currentUser.token), [currentUser])
 
   useEffect(() => {
     instance

@@ -34,15 +34,14 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path="/manager" element={<ManagerPage />} />
-          <Route path="/goals/:id" element={
-              <GoalsPage />
+          <Route path="/manager" element={
+          <RequireAuth>
+            <ManagerPage />
+          </RequireAuth>
           } />
-          <Route path="/goals/history/:id" element={
-            <RequireAuth>
-              <HistoryPage />
-            </RequireAuth>
-          } />
+          
+          <Route path="/goals/:id" element={<GoalsPage />} />
+          <Route path="/goals/history/:id" element={<HistoryPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/logout" element={<LogoutPage />} />
         </Routes>

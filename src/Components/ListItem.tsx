@@ -13,19 +13,27 @@ type itemProps = {
 const ListItem = ({show, setShow, user}: itemProps) => {
   const { setTargetedUser, currentUser, accessToken } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [ consultant, setConsultant ] = useState<IUser>()
+  const [updatedUser, setUpdatedUser] = useState<IUser>()
+  // const [ consultant, setConsultant ] = useState<IUser>()
 
   useEffect(() => {
     if (!currentUser) {
         return;
       }
-      async function getImages(accessToken: string) {
-        user.imageUrl = await getUsersPhotoUrl(accessToken, user.id)
+      // async function getImages(accessToken: string) {
+      //   user.imageUrl = await getUsersPhotoUrl(accessToken, user.id)
         
-        setConsultant(user)
-        console.log('user', user)
-      }
-      getImages(currentUser.token)
+      //   setConsultant(user)
+      //   console.log('user', user)
+      // }
+      getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
+        if (imageUrl) {
+          setUpdatedUser({
+            ...user, imageUrl: imageUrl
+          })
+        }
+      })
+      
     },[])
 
   return (
@@ -35,7 +43,7 @@ const ListItem = ({show, setShow, user}: itemProps) => {
         setTargetedUser(user)
       }}
       >
-      <img src={user.imageUrl ? user.imageUrl : placeholder} alt="" />
+      <img src={updatedUser?.imageUrl ? updatedUser.imageUrl : placeholder} alt="" />
       <h3>{user?.displayName}</h3>
       </button>
     </li>
@@ -43,7 +51,3 @@ const ListItem = ({show, setShow, user}: itemProps) => {
 }
 
 export default ListItem
-
-function getUsers(accessToken: string | undefined) {
-  throw new Error("Function not implemented.");
-}
