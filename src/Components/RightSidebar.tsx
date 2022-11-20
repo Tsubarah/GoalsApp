@@ -8,7 +8,7 @@ type sidebarProps ={
 
 const RightSidebar = ({show}: sidebarProps) => {
   const { targetedUser } = useAuthContext()
-  
+  console.log('targetedUser', targetedUser)
   return (
     <div className='rightSidebar-wrapper'>
 

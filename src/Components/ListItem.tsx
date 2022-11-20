@@ -40,7 +40,7 @@ const ListItem = ({show, setShow, user}: itemProps) => {
     <li className="item">
       <button onClick={() => {
         setShow(!show)
-        setTargetedUser(user)
+        setTargetedUser(updatedUser)
       }}
       >
       <img src={updatedUser?.imageUrl ? updatedUser.imageUrl : placeholder} alt="" />
