@@ -13,7 +13,7 @@ type itemProps = {
 const ListItem = ({show, setShow, user}: itemProps) => {
   const { setTargetedUser, currentUser, accessToken } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [updatedUser, setUpdatedUser] = useState<IUser>()
+  const [updatedUser, setUpdatedUser] = useState<IUser>(user)
   // const [ consultant, setConsultant ] = useState<IUser>()
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const ListItem = ({show, setShow, user}: itemProps) => {
       }}
       >
       <img src={updatedUser?.imageUrl ? updatedUser.imageUrl : placeholder} alt="" />
-      <h3>{user?.displayName}</h3>
+      <h3>{updatedUser?.displayName}</h3>
       </button>
     </li>
   )
