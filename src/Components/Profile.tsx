@@ -6,10 +6,14 @@ import { useParams } from 'react-router-dom'
 
 const Profile = () => {
     const [photoUrl, setPhotoUrl] = useState<string>();
-    const { accessToken } = useAuthContext();
-    const { currentUser, targetedUser } = useAuthContext()
+    const { accessToken, currentUser } = useAuthContext();
     const { getProfilePhotoUrl } = useUsers();
     const { id } = useParams()
+
+    let targets: any = window.localStorage.getItem('target')
+    // console.log('targets', targets)
+    let target = JSON.parse(targets)
+    // console.log('target', target)
 
     useEffect(() => {
         if (!accessToken) {
@@ -23,11 +27,11 @@ const Profile = () => {
 
     return (
         <div className="profile">
-          {targetedUser && id === targetedUser.id ? (
+          {target && id === target.id ? (
             <>
-              <img src={targetedUser.imageUrl ? targetedUser.imageUrl : placeholder} alt={targetedUser?.displayName} />
-              <h2>{targetedUser?.displayName}</h2>
-              <h3>{targetedUser?.jobTitle}</h3>
+              <img src={target?.imageUrl ? target.imageUrl : placeholder} alt={target?.displayName} />
+              <h2>{target?.displayName}</h2>
+              <h3>{target?.jobTitle}</h3>
             </>
           ) : 
             <>

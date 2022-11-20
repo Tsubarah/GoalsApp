@@ -35,9 +35,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<ManagerPage />} />
                 <Route path="/goals/:id" element={
-					        <RequireAuth >
+					        // <RequireAuth >
 						        <GoalsPage />
-					        </RequireAuth>
+					        // </RequireAuth>
 				        } />
                 <Route path="/goals/history/:id" element={
                   <RequireAuth > 

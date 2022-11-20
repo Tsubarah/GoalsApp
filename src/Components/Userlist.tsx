@@ -16,7 +16,7 @@ const UserList = ({show, setShow}: listProps)  => {
 					{users.map((user, i) => (
 						<ListItem key={i} setShow={setShow} show={show} user={user} />
 					))}
-        </ul>
+                </ul>
 			)}
     </div>
   )
