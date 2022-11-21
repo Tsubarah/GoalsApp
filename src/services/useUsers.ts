@@ -1,8 +1,8 @@
 import { useAuthContext } from "../Contexts/AuthContext";
-import { IUser } from '../typings/Userinterface'
+import { IUser } from "../typings/Userinterface";
 
 const useUsers = () => {
-    const { setCurrentUser, setUsers } = useAuthContext();
+    const { setUsers, currentUser } = useAuthContext();
 
     const getProfilePhotoUrl = async (accessToken: string) => {
         if (!accessToken) {
@@ -44,57 +44,6 @@ const useUsers = () => {
         }
         return imageUrl;
     };
-
-    // const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
-    //     if (!accessToken) {
-    //         return undefined;
-    //     }
-    //     const headers = new Headers();
-    //     const bearer = `Bearer ${accessToken}`;
-    //     headers.append("Authorization", bearer);
-    //     headers.append("Content-Type", "json");
-
-    //     const options = {
-    //         method: "GET",
-    //         headers: headers,
-    //     };
-
-    //     try {
-    //         await fetch("https://graph.microsoft.com/v1.0/me", options)
-    //             .then(async (response) => {
-    //                 if (response != null && response.ok) {
-    //                     const data = await response.json();
-    //                     if (data !== null) {
-
-    //                         console.log("Me", data)
-                            
-    //                         return {
-    //                             displayName: data.displayName,
-    //                             id: data.id,
-    //                             jobTitle: data.jobTitle,
-    //                             mail: data.mail,
-    //                             mobilePhone: data.mobilePhone,
-    //                         }
-    //                         // setCurrentUser({
-    //                         //     displayName: data.displayName,
-    //                         //     id: data.id,
-    //                         //     jobTitle: data.jobTitle,
-    //                         //     mail: data.mail,
-    //                         //     mobilePhone: data.mobilePhone,
-    //                         // })
-    //                     }
-    //                 } else {
-    //                     throw new Error("User not found");
-    //                 }
-    //             })
-    //             .catch((error) => {
-    //                 throw new Error("User not found");
-    //             });
-    //         } catch (err) {
-    //             // userObject = {name: "", jobTitle:"", uid: ""};
-    //             console.log(err)
-    //         }
-    //     };
 
     const getUsers = async (accessToken: string) => {
         if (!accessToken) {
@@ -245,6 +194,80 @@ const useUsers = () => {
         // return imageUrl;
     };
 
+    const getMyGroups = async (accessToken: string) => {
+        if (!accessToken) {
+            return "";
+        }
+        const headers = new Headers();
+        const bearer = `Bearer ${accessToken}`;
+        headers.append("Authorization", bearer);
+        headers.append("Content-Type", "json");
+
+        const options = {
+            method: "GET",
+            headers: headers,
+        };
+
+        try {
+            await fetch(
+                "https://graph.microsoft.com/v1.0/users/169b8ffd-a176-40ac-9bd7-84dd2a7809e8/transitiveMemberOf/microsoft.graph.group?$count=true&$expand=owners($select=id,city,companyName,department,displayName,givenName,surname,jobTitle,mail,mailNickname,mobilePhone,userPrincipalName)",
+                options
+            )
+                .then(async (response) => {
+                    if (response != null && response.ok) {
+                        // console.log("response",response)
+                        const data = await response.json();
+                      if (data !== null) {
+                        if (!currentUser) {
+                            return
+                        }
+                        console.log('My Groups', data);
+                        const groupIds = data.value
+                                .map((group: { id: string; }) => group.id)
+
+                        const groupArray = data.value.map((arr: any) => arr)
+
+                        const ownersArray = groupArray.map((group: { owners: any; }) => group.owners)
+
+                        const teamManager = ownersArray
+                                                    .map((arr: any[]) => 
+                                                    arr.filter(group => group.jobTitle === "Team Manager" && group.displayName === "Jesper Stoltz"))
+                        
+                        // const owners = data.value.map((group: { owners: string | string[]; }) => group.owners)
+                                
+                        // const managerArray = owners.filter((owner: string | any[]) => owner.length > 0)
+
+                        // const manager = managerArray.map((arr: any[]) => arr.filter(owner => owner.jobTitle === "Team Manager"))
+                        
+                        console.log('groupIds', groupIds)
+                        console.log('teamManager', teamManager)
+                        // console.log('managerArray', managerArray)
+                        console.log('ownersArray', ownersArray)
+                        console.log('groupArray', groupArray)
+                    } 
+                    } else {
+                        throw new Error("data not found");
+                    }
+                })
+                .catch((error) => {
+                    throw new Error("data not found");
+                });
+        } catch (err) {
+            // imageUrl = "";
+            /***
+             * 1. Check if currentUser's jobTitle is team-manager
+             * 2. If yes, get all groups that user is a member of
+             * 3. map over groups and check if owners has a jobTitle === team-manager, if yes, check if currentUser.displayName === owners displayName
+             * 4. Get that groups ID
+             */
+            // group 43 - A-team (97b37a8d-8b5b-4fac-bf58-dca0942f8e8a)
+            // https://graph.microsoft.com/v1.0/me/transitiveMemberOf/microsoft.graph.group?$count=true
+            // /groups/${groupID}/members
+            // me/memberOf
+        }
+        // return imageUrl;
+    };
+
 
     return {
         // getUserDetails,
@@ -252,6 +275,7 @@ const useUsers = () => {
         getUsers,
         getUsersPhotoUrl,
         getGroups,
+        getMyGroups,
     };
 };
 

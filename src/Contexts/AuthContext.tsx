@@ -112,7 +112,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
                   token: accessToken,
                 }
               }
-              // setLoading(false)
             } else {
                 throw new Error("User not found");
             }
