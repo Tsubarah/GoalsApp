@@ -3,7 +3,7 @@ import { IUser } from '../typings/User'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import { useEffect, useState } from 'react'
 import useUsers from "../services/useUsers";
-import useLocalStorage from '../Hooks/useLocalStorage'
+// import useLocalStorage from '../Hooks/useLocalStorage'
 
 type itemProps = {
   show: boolean | null,
