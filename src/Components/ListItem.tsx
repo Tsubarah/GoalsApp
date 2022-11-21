@@ -1,5 +1,5 @@
 import { useAuthContext } from "../Contexts/AuthContext"
-import { IUser } from '../typings/User'
+import { IUser } from '../typings/Userinterface'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import { useEffect, useState } from 'react'
 import useUsers from "../services/useUsers";

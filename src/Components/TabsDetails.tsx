@@ -1,5 +1,5 @@
 import Table from './Table';
-import { IGoal } from '../typings/Goal'
+import { IGoal } from '../typings/Goalinterface'
 
 type TabsDetailsProps = {
   prioPD: IGoal[],

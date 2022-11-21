@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient, useMutation } from 'react-query'
 import GoalsAPI from '../services/GoalsAPI'
 import { useEffect, useState } from "react";
-import { IGoal } from '../typings/Goal'
-import { IUser } from '../typings/User'
+import { IGoal } from '../typings/Goalinterface'
+import { IUser } from '../typings/Userinterface'
 // import { useAuth } from "../services/auth";
 import { useAuthContext } from '../Contexts/AuthContext';
 import useUsers from "../services/useUsers";

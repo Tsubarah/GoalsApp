@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
-import { IUser } from '../typings/User'
+import { IUser } from '../typings/Userinterface'
 import { useMsal } from '@azure/msal-react'
 import { loginRequest } from "../authConfig";
 

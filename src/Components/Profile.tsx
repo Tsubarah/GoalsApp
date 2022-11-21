@@ -3,7 +3,7 @@ import { useAuthContext } from "../Contexts/AuthContext";
 import useUsers from "../services/useUsers";
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import { useParams } from 'react-router-dom'
-import { IUser } from '../typings/User'
+import { IUser } from '../typings/Userinterface'
 
 const Profile = () => {
     let targets: any = window.localStorage.getItem('target')

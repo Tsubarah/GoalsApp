@@ -1,4 +1,4 @@
-import { IGoal } from '../typings/Goal'
+import { IGoal } from '../typings/Goalinterface'
 /**
  * Service for communicating with the json-server backend
  */

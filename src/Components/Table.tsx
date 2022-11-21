@@ -1,7 +1,7 @@
 import Accordion from "./Accordion"
 import Moment from 'react-moment'
 import EditGoalModal from "./EditGoalModal"
-import { IGoal } from '../typings/Goal'
+import { IGoal } from '../typings/Goalinterface'
 import { useEffect, useState } from 'react'
 
 type TabsProps = {

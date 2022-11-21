@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import useUsers from "../services/useUsers";
 import { useAuthContext } from "../Contexts/AuthContext"
-import { IUser } from '../typings/User'
+import { IUser } from '../typings/Userinterface'
 
 const ConsultantProfile = () => {
   let targets: any = window.localStorage.getItem('target')
