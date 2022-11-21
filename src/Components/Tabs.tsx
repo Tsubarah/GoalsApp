@@ -3,8 +3,8 @@ import Table from './Table';
 import { IGoal } from '../typings/Goal'
 import Modal from '../Components/Modal'
 import TabsDetails from '../Components/TabsDetails'
-import { useAuthContext } from '../Contexts/AuthContext'
-
+import { Link } from 'react-router-dom'
+import { useAuthContext } from "../Contexts/AuthContext";
 
 // Types are used for props 
 type TabsProps = {
@@ -17,6 +17,8 @@ const Tabs = ({ goals }: TabsProps) => {
   const [month, setMonth] = useState<string>("all")
   const { currentUser } = useAuthContext()
   const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
+
+  
 
   const sections = [
     {
@@ -102,7 +104,9 @@ const Tabs = ({ goals }: TabsProps) => {
           >
             Create goal
           </button>
-              {/* : "" } */}
+          <Link to={`/goals/history/${currentUser?.id}`}>
+            <button className='button my-history-btn'>History →</button>
+          </Link>
         </div>
       </div>
 

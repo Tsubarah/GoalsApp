@@ -81,16 +81,21 @@ textarea {
   cursor: pointer;
 }
 
-.create-btn {
+.create-btn, .my-history-btn {
   background-color: #1e5f84;
 }
 
-.create-btn:hover {
+.my-history-btn {
+  margin-left: 0.5rem;
+}
+
+.create-btn:hover, .my-history-btn:hover {
   background-color: #3894a3;
   opacity: 1;
   transform: translateY(0);
   transition-duration: .35s;
 }
+
 
 .edit-btn {
     //position: absolute;

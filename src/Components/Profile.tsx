@@ -3,32 +3,53 @@ import { useAuthContext } from "../Contexts/AuthContext";
 import useUsers from "../services/useUsers";
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import { useParams } from 'react-router-dom'
+import { IUser } from '../typings/User'
 
 const Profile = () => {
-    const [photoUrl, setPhotoUrl] = useState<string>();
-    const { accessToken } = useAuthContext();
-    const { currentUser, targetedUser } = useAuthContext()
-    const { getProfilePhotoUrl } = useUsers();
+    let targets: any = window.localStorage.getItem('target')
+    let target = JSON.parse(targets)
+    
+    const { currentUser } = useAuthContext()
+    const { getUsersPhotoUrl, getProfilePhotoUrl } = useUsers()
     const { id } = useParams()
+    const [photoUrl, setPhotoUrl] = useState<string>();
+    const [updatedTarget, setUpdatedTarget] = useState<IUser>(target)
 
     useEffect(() => {
-        if (!accessToken) {
+      if (!currentUser) {
           return;
         }
-        async function getPhoto(accessToken: string) {
-          setPhotoUrl(await getProfilePhotoUrl(accessToken));
+        if (target) {
+          getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
+            if (imageUrl) {
+              setUpdatedTarget({
+                ...target, imageUrl: imageUrl
+              })
+            }
+          })
         }
-        getPhoto(accessToken);
-      }, [accessToken]);
+  
+ 
+    },[])
+
+
+    useEffect(() => {
+        if (!currentUser) {
+          return;
+        }
+
+        getProfilePhotoUrl(currentUser.token).then(imageUrl => {
+          setPhotoUrl(imageUrl)
+        })
+      }, [currentUser]);
 
     return (
         <div className="profile">
-          {targetedUser && id === targetedUser.id ? (
+          {target && id === target.id ? (
             <>
-              <img src={targetedUser.imageUrl ? targetedUser.imageUrl : placeholder} alt={targetedUser?.displayName} />
-              <h2>{targetedUser?.displayName}</h2>
-              <hr />
-              <h3 className="job-title">{targetedUser?.jobTitle}</h3>
+              <img src={updatedTarget?.imageUrl ? updatedTarget.imageUrl : placeholder} alt={updatedTarget?.displayName} />
+              <h2>{updatedTarget?.displayName}</h2>
+              <h3>{updatedTarget?.jobTitle}</h3>
             </>
           ) : 
             <>

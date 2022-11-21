@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Profile from "./Profile";
 import { IGoal } from "../typings/Goal";
 import { useAuthContext } from "../Contexts/AuthContext";
@@ -5,13 +6,18 @@ import { useParams } from 'react-router-dom'
 import { ClassNames } from "@emotion/react";
 import goalIcon from '../Assets/Images/goal-icon.png'
 
+import { IUser } from '../typings/User'
 type UserInfoProps = {
   goals: IGoal[],
 }
 
 const UserInfo = ({ goals }: UserInfoProps) => {
-  const { currentUser, targetedUser } = useAuthContext()
+  let targets: any = window.localStorage.getItem('target')
+  let target = JSON.parse(targets)
+
+  const { currentUser} = useAuthContext()
   const { id } = useParams()
+  const [updatedTarget, setUpdatedTarget] = useState<IUser>(target)
 
   const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
   const goalInComplete = goals.filter((goal) => goal.isComplete === false)
@@ -23,11 +29,11 @@ const UserInfo = ({ goals }: UserInfoProps) => {
       <div className="user-wrapper">
         <div className="user">
           <div className="user-stats">
-            {targetedUser && id === targetedUser.id ? (
+            {updatedTarget && id === updatedTarget.id ? (
               <>
-                <p>{targetedUser?.mail}</p>
+                <p>{updatedTarget?.mail}</p>
                 <hr />
-                <p><strong>ID:</strong> {targetedUser?.id}</p>
+                <p><strong>ID:</strong> {updatedTarget?.id}</p>
                 <h2>Goals</h2>
                 <hr />
                 <div className="user-goals">
@@ -93,6 +99,7 @@ const UserInfo = ({ goals }: UserInfoProps) => {
           </div>
         </div>
       </div>
+    
   )
 };
 

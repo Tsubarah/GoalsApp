@@ -1,20 +1,38 @@
+import { useEffect, useState } from 'react'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
-import { useAuthContext } from '../Contexts/AuthContext'
+import useUsers from "../services/useUsers";
+import { useAuthContext } from "../Contexts/AuthContext"
+import { IUser } from '../typings/User'
 
 const ConsultantProfile = () => {
-  const { targetedUser } = useAuthContext()
+  let targets: any = window.localStorage.getItem('target')
+  let target = JSON.parse(targets)
+
+  const { currentUser } = useAuthContext()
+  const { getUsersPhotoUrl } = useUsers()
+  const [updatedTarget, setUpdatedTarget] = useState<IUser>(target)
+
+  useEffect(() => {
+    if (!currentUser) {
+        return;
+      }
+
+      getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
+        if (imageUrl) {
+          setUpdatedTarget({
+            ...target, imageUrl: imageUrl
+          })
+        }
+      })
+      
+    },[updatedTarget])
+
   return (
     <div className='consultant-profile'>
-      <img src={targetedUser?.imageUrl ? targetedUser?.imageUrl : placeholder} className='consultant-img' alt="" />
-      <h2 className="profile-name">{targetedUser?.displayName}</h2>
-      <h4 className="profile-h4">{targetedUser?.mail}</h4>
-      <p className="profile-text">{targetedUser?.jobTitle}</p>
-      {/* <h4 className="profile-h4">info</h4>
-      <p className="profile-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </p>
-      <h4 className="profile-h4">Details</h4>
-      <p className="profile-text">0989542837</p> */}
+      <img src={updatedTarget?.imageUrl ? updatedTarget.imageUrl : placeholder} className='consultant-img' alt="" />
+      <h2 className="profile-name">{updatedTarget?.displayName}</h2>
+      <p className="profile-text">{updatedTarget?.jobTitle}</p>
+      <h4 className="profile-h4">{updatedTarget?.mail}</h4>
     </div>
   )
 }

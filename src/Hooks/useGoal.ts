@@ -15,8 +15,8 @@ type editGoalParams = {
 
 const useGoal = () => {
   const queryClient = useQueryClient()
-  const { accessToken } = useAuthContext();
-  const { getUserDetails } = useUsers()
+  const { accessToken, currentUser } = useAuthContext();
+  // const { getUserDetails } = useUsers()
   const [userData, setUserData] = useState<IUser>();
 
   // const queryClient = useQueryClient({
@@ -30,19 +30,22 @@ const useGoal = () => {
 
   // const getGoal = useQuery<IGoal>(['goal', id], () => GoalsAPI.getGoal(id))
 
-  useEffect(() => {
-    if (!accessToken) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!accessToken) {
+  //     return;
+  //   }
     
-    async function getUser(accessToken: string) {
-      const user = await getUserDetails(accessToken)
-      if (user) {
-        setUserData(user)
-      }
-    }
-    getUser(accessToken)
-  },[accessToken])
+  //   if (currentUser) {
+  //     setUserData(currentUser)
+  //   }
+  //   async function getUser(accessToken: string) {
+  //     const user = await getUserDetails(accessToken)
+  //     if (user) {
+  //       setUserData(user)
+  //     }
+  //   }
+  //   getUser(accessToken)
+  // },[accessToken])
 
 //   const { data: getGoals, isLoading } = useQuery<IGoal[]>(['goals', userData?.id], GoalsAPI.getGoals, {
 //   })

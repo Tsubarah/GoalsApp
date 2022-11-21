@@ -39,6 +39,19 @@ body {
  $conch:#c7dad4;
  $gallery:#f1f1ef;
 
+ 
+#loading-spinner {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// $primary:;
+// $secondary:;
+// $third:;
+// $fourth:;
+
 // For use in js
  :export {
      biscay:$biscay;
