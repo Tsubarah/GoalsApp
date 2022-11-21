@@ -1,5 +1,5 @@
 import RightSidebar from "../Components/RightSidebar"
-import Sidebar from "../Components/Sidebar"
+import Profile from "../Components/Profile";
 import UserList from "../Components/Userlist"
 import { useState, useEffect } from "react"
 import useUsers from "../services/useUsers";
@@ -21,7 +21,9 @@ const ManagerPage = () => {
   
   return (
     <div className="manager-page-wrapper">
-      <Sidebar />
+      <div className="sidebar">
+       <Profile />
+      </div>
         
       <UserList setShow={setShow} show={show} /> 
 
