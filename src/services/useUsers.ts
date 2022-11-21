@@ -225,13 +225,15 @@ const useUsers = () => {
                         const groupIds = data.value
                                 .map((group: { id: string; }) => group.id)
 
+                        const lol = data.value.map((item: { owners: { jobTitle: any; }[]; }) => item.owners.findIndex((item: any) => item.jobTitle === "Team Manager" && item.displayName === "Jesper Stoltz"))
+                        
                         const groupArray = data.value.map((arr: any) => arr)
 
                         const ownersArray = groupArray.map((group: { owners: any; }) => group.owners)
 
                         const teamManager = ownersArray
                                                     .map((arr: any[]) => 
-                                                    arr.filter(group => group.jobTitle === "Team Manager" && group.displayName === "Jesper Stoltz"))
+                                                    arr.filter(owners => owners.jobTitle === "Team Manager" && owners.displayName === "Jesper Stoltz"))
                         
                         // const owners = data.value.map((group: { owners: string | string[]; }) => group.owners)
                                 
@@ -239,6 +241,7 @@ const useUsers = () => {
 
                         // const manager = managerArray.map((arr: any[]) => arr.filter(owner => owner.jobTitle === "Team Manager"))
                         
+                        console.log('lol', lol)
                         console.log('groupIds', groupIds)
                         console.log('teamManager', teamManager)
                         // console.log('managerArray', managerArray)
