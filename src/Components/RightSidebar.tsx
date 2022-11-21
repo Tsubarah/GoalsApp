@@ -1,7 +1,5 @@
 import ConsultantProfile from './ConsultantProfile'
 import { Link } from 'react-router-dom'
-// import { useAuthContext } from '../Contexts/AuthContext'
-// import { IUser } from '../typings/User'
 
 type sidebarProps ={
   show: boolean | null,
@@ -9,9 +7,7 @@ type sidebarProps ={
 
 const RightSidebar = ({show}: sidebarProps) => {
     let targets: any = window.localStorage.getItem('target')
-    // console.log('targets', targets)
     let target = JSON.parse(targets)
-    // console.log('target', target)
 
   return (
     <div className='rightSidebar-wrapper'>
