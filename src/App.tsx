@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { ToastContainer } from 'react-toastify';
 import '../src/Assets/scss/App.scss'
@@ -14,19 +14,12 @@ import { useEffect } from 'react'
 
 function App() {
   const { currentUser } = useAuthContext()
-  const navigate = useNavigate()
+
   useEffect(() => {
-
-    // if (currentUser && currentUser.jobTitle !== "Intern") {
-    //   navigate(`/goals/${currentUser.id}`)
-    // }
-
-    // if (!currentUser) {
-    //   navigate('/auth')
-    // }
 
     console.log('currentUser', currentUser)
   },[currentUser])
+
   return (
     <div className="App">
       {currentUser && (
