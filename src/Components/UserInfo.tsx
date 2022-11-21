@@ -3,7 +3,6 @@ import { IGoal } from "../typings/Goal";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { useParams } from 'react-router-dom'
 
-
 type UserInfoProps = {
   goals: IGoal[],
 }

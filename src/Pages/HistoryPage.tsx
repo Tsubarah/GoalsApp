@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { IGoal } from '../typings/Goal'
 import GoalsAPI from '../services/GoalsAPI'
-import LoadingSpinner from '../Components/LoadingSpinner'
+// import LoadingSpinner from '../Components/LoadingSpinner'
 import HistoryList from '../Components/HistoryList'
 import UserInfo from '../Components/UserInfo'
 
@@ -26,9 +26,9 @@ const HistoryPage = () => {
 		<div className="history-page-wrapper">
 
 
-			{isLoading && <div className='loading-spinner'><LoadingSpinner /></div>}
+			{/* {isLoading && <div className='loading-spinner'><LoadingSpinner /></div>} */}
 
-			{!isLoading && goals && (
+			{goals && (
 				<>
 
 				<UserInfo goals={goals} />

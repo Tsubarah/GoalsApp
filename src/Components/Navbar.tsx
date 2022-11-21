@@ -12,7 +12,7 @@ const Navbar = () => {
               </a>
             </div>
             <div className="navbar-menu">
-                <a href="/">Consultants</a>
+                <a href="/manager">Consultants</a>
                 <a href={`/goals/${currentUser?.id}`}>Goals</a>
                 <a href="/logout">Logout</a>
             </div>

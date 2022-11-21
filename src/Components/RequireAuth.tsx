@@ -1,4 +1,4 @@
-
+import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuthContext } from '../Contexts/AuthContext'
 
@@ -9,12 +9,21 @@ export type Props = {
 const RequireAuth = ({
 	children,
 }:Props) => {
-	const { currentUser } = useAuthContext()
+	const { currentUser, setIsLoading } = useAuthContext()
+
+  useEffect(() => {
+    setIsLoading(true)
+		if (currentUser) {
+			console.log('currentUser', currentUser)
+			setIsLoading(false)
+		}
+
+  }, [currentUser])
 
 	return (
-		currentUser
+		currentUser?.jobTitle === "Intern" 
 			? children
-			: <Navigate to= "/"/>
+			: <Navigate to={`/goals/${currentUser?.id}`} />
 	)
 }
 

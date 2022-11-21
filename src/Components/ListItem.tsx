@@ -12,34 +12,37 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-  const { accessToken } = useAuthContext()
+  const { setTargetedUser, currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [ consultant, setConsultant ] = useState<IUser>()
-//   const [ target, setTarget ] = useLocalStorage('bengt', '')
+  const [updatedUser, setUpdatedUser] = useState<IUser>(user)
 
   const update = () => {
     setShow(!show)
     window.localStorage.setItem('target', JSON.stringify(user))
-      
+    setTargetedUser(updatedUser)
   }
 
   useEffect(() => {
-    if (!accessToken) {
+    if (!currentUser) {
         return;
       }
-      async function addImage(accessToken: string) {
-        user.imageUrl = await getUsersPhotoUrl(accessToken, user.id)
-        setConsultant(user)
-      }
-      addImage(accessToken)
-    },[accessToken])
+
+      getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
+        if (imageUrl) {
+          setUpdatedUser({
+            ...user, imageUrl: imageUrl
+          })
+        }
+      })
+      
+    },[])
 
   return (
     <li className="item">
       <button onClick={() => update()}
       >
-      <img src={consultant?.imageUrl ? user.imageUrl : placeholder} alt="" />
-      <h3>{consultant?.displayName}</h3>
+      <img src={updatedUser?.imageUrl ? updatedUser.imageUrl : placeholder} alt="" />
+      <h3>{updatedUser?.displayName}</h3>
       </button>
     </li>
   )

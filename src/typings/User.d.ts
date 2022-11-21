@@ -4,6 +4,7 @@ export interface IUser {
     jobTitle: string,
     mail: string, 
     mobilePhone: number,
-    imageUrl?: string
+    imageUrl?: string,
+    token: string,
 }
 
