@@ -3,7 +3,6 @@ import { IUser } from '../typings/Userinterface'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import { useEffect, useState } from 'react'
 import useUsers from "../services/useUsers";
-// import useLocalStorage from '../Hooks/useLocalStorage'
 
 type itemProps = {
   show: boolean | null,
@@ -12,14 +11,13 @@ type itemProps = {
 }
 
 const ListItem = ({show, setShow, user}: itemProps) => {
-  const { setTargetedUser, currentUser } = useAuthContext()
+  const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [updatedUser, setUpdatedUser] = useState<IUser>(user)
+  const [target, setTarget] = useState<IUser>(user)
 
   const update = () => {
     setShow(!show)
     window.localStorage.setItem('target', JSON.stringify(user))
-    setTargetedUser(updatedUser)
   }
 
   useEffect(() => {
@@ -27,22 +25,20 @@ const ListItem = ({show, setShow, user}: itemProps) => {
         return;
       }
 
-      getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
-        if (imageUrl) {
-          setUpdatedUser({
-            ...user, imageUrl: imageUrl
-          })
-        }
-      })
-      
-    },[])
+    getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
+      if (imageUrl) {
+        setTarget({
+          ...user, imageUrl: imageUrl
+        })
+      }
+    })  
+  },[])
 
   return (
     <li className="item">
-      <button onClick={() => update()}
-      >
-      <img src={updatedUser?.imageUrl ? updatedUser.imageUrl : placeholder} alt="" />
-      <h3>{updatedUser?.displayName}</h3>
+      <button onClick={() => update()}>
+      <img src={target?.imageUrl ? target.imageUrl : placeholder} alt="" />
+      <h3>{target?.displayName}</h3>
       </button>
     </li>
   )

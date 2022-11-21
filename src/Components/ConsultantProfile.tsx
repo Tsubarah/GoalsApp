@@ -16,18 +16,15 @@ const ConsultantProfile = () => {
     if (!currentUser) {
         return;
       }
-    //if (target) {
-      getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
-        if (imageUrl) {
-          setUpdatedTarget({
-            ...target, imageUrl: imageUrl
-          })
-        }
-      })
-    //}
-   
-      
-    },[updatedTarget])
+
+    getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
+      if (imageUrl) {
+        setUpdatedTarget({
+          ...target, imageUrl: imageUrl
+        })
+      }
+    })
+  },[updatedTarget])
 
   return (
     <div className='consultant-profile'>

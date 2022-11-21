@@ -2,7 +2,7 @@ import { Controller, useForm, useFieldArray } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import useGoal from '../Hooks/useGoal'
-import { IGoal } from '../typings/Goalinterface'
+import { IGoal } from "../typings/Goalinterface";
 import { useParams} from 'react-router-dom'
 
 type FormProps = {
