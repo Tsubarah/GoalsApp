@@ -2,24 +2,27 @@ import RightSidebar from "../Components/RightSidebar"
 import Sidebar from "../Components/Sidebar"
 import UserList from "../Components/Userlist"
 import { useState, useEffect } from "react"
-// import { useAuth } from "../services/auth";
 import useUsers from "../services/useUsers";
 import { useAuthContext } from "../Contexts/AuthContext";
 
 const ManagerPage = () => {
   const [show, setShow] = useState<boolean | null>(null)
   const { accessToken, currentUser } = useAuthContext();
-  const { getUsers } = useUsers()
+  const { getUsers, getGroups } = useUsers()
 
   useEffect(() => {
     if (!accessToken) {
       return;
     }
     
-    async function getAllUsers(accessToken: string) {
-      await getUsers(accessToken)
-    }
-    getAllUsers(accessToken)
+    // async function getAllUsers(accessToken: string) {
+    //   await getUsers(accessToken)
+    // }
+
+    // getAllUsers(accessToken)
+
+    getUsers(accessToken)
+    getGroups(accessToken)
   },[accessToken])
 
   return (
