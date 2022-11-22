@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
-import { IUser } from '../typings/User'
+import { IUser } from '../typings/Userinterface'
 import { useMsal } from '@azure/msal-react'
 import { loginRequest } from "../authConfig";
 
@@ -13,8 +13,6 @@ interface AuthContextInterface {
   isLoading: boolean,
   currentUser: IUser | undefined,
   setCurrentUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
-  targetedUser: IUser | undefined,
-  setTargetedUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
   users: IUser[] | undefined,
   setUsers: React.Dispatch<React.SetStateAction<IUser[] | undefined>>,
   accessToken: string | undefined
@@ -112,7 +110,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
                   token: accessToken,
                 }
               }
-              // setLoading(false)
             } else {
                 throw new Error("User not found");
             }
@@ -133,8 +130,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     isLoading,
     currentUser,
     setCurrentUser,
-    targetedUser,
-    setTargetedUser,
     users,
     setUsers,
     accessToken,

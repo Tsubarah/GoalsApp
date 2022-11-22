@@ -4,7 +4,7 @@ import UserInfo from "../Components/UserInfo"
 import { useQuery } from 'react-query'
 import GoalsAPI from '../services/GoalsAPI'
 import { useParams } from 'react-router-dom'
-import { IGoal } from '../typings/Goal'
+import { IGoal } from '../typings/Goalinterface'
 import { useAuthContext } from '../Contexts/AuthContext'
 
 const GoalsPage = () => {

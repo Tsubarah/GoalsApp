@@ -3,7 +3,7 @@ import { useAuthContext } from "../Contexts/AuthContext";
 import useUsers from "../services/useUsers";
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import { useParams } from 'react-router-dom'
-import { IUser } from '../typings/User'
+import { IUser } from "../typings/Userinterface";
 
 const Profile = () => {
     let targets: any = window.localStorage.getItem('target')
@@ -13,35 +13,27 @@ const Profile = () => {
     const { getUsersPhotoUrl, getProfilePhotoUrl } = useUsers()
     const { id } = useParams()
     const [photoUrl, setPhotoUrl] = useState<string>();
-    const [updatedTarget, setUpdatedTarget] = useState<IUser>(target)
+    const [updatedTarget, setUpdatedTarget] = useState<IUser>()
 
     useEffect(() => {
       if (!currentUser) {
           return;
         }
-        if (target) {
-          getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
-            if (imageUrl) {
-              setUpdatedTarget({
-                ...target, imageUrl: imageUrl
-              })
-            }
-          })
-        }
-  
- 
-    },[])
 
+      getProfilePhotoUrl(currentUser.token).then(imageUrl => {
+        setPhotoUrl(imageUrl)
+      })
 
-    useEffect(() => {
-        if (!currentUser) {
-          return;
-        }
-
-        getProfilePhotoUrl(currentUser.token).then(imageUrl => {
-          setPhotoUrl(imageUrl)
+      if (target) {
+        getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
+          if (imageUrl) {
+            setUpdatedTarget({
+              ...target, imageUrl: imageUrl
+            })
+          }
         })
-      }, [currentUser]);
+      }
+    },[currentUser])
 
     return (
         <div className="profile">
@@ -55,7 +47,6 @@ const Profile = () => {
             <>
               {photoUrl && <img src={photoUrl ? photoUrl : placeholder} alt={currentUser?.displayName} />}
               <h2>{currentUser?.displayName}</h2>
-              <hr />
               <h3>{currentUser?.jobTitle}</h3>
             </>
           }

@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import Profile from "./Profile";
-import { IGoal } from "../typings/Goal";
+import { IGoal } from "../typings/Goalinterface";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { useParams } from 'react-router-dom'
 import { ClassNames } from "@emotion/react";
 import goalIcon from '../Assets/Images/goal-icon.png'
 
-import { IUser } from '../typings/User'
+import { IUser } from '../typings/Userinterface'
 type UserInfoProps = {
   goals: IGoal[],
 }

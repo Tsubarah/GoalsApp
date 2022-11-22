@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import useUsers from "../services/useUsers";
 import { useAuthContext } from "../Contexts/AuthContext"
-import { IUser } from '../typings/User'
+import { IUser } from '../typings/Userinterface'
 
 const ConsultantProfile = () => {
   let targets: any = window.localStorage.getItem('target')
@@ -10,24 +10,21 @@ const ConsultantProfile = () => {
 
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [updatedTarget, setUpdatedTarget] = useState<IUser>(target)
+  const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
 
   useEffect(() => {
     if (!currentUser) {
         return;
       }
-    //if (target) {
-      getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
+
+      getUsersPhotoUrl(currentUser?.token, target?.id).then(imageUrl => {
         if (imageUrl) {
           setUpdatedTarget({
             ...target, imageUrl: imageUrl
           })
         }
       })
-    //}
-   
-      
-    },[updatedTarget])
+  },[updatedTarget, target])
 
   return (
     <div className='consultant-profile'>

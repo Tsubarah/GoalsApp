@@ -7,7 +7,7 @@ const Navbar = () => {
     const { currentUser } = useAuthContext()
     const [isManager, setIsManager] = useState(currentUser?.jobTitle === "Team Manager")
 
-    console.log(`JobTitle`, currentUser?.jobTitle)
+    // console.log(`JobTitle`, currentUser?.jobTitle)
     
     return (
         <nav className="navbar">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { IGoal } from '../typings/Goal'
+import { IGoal } from '../typings/Goalinterface'
 import EditGoalModal from "./EditGoalModal";
 import Moment from "react-moment";
 

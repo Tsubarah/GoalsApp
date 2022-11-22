@@ -1,6 +1,6 @@
 import { useState } from "react"
 import EditGoalsForm from "./EditGoalsForm"
-import { IGoal } from '../typings/Goal'
+import { IGoal } from '../typings/Goalinterface'
 import { useAuthContext } from '../Contexts/AuthContext'
 
 type ModalProps = {

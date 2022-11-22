@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from './Table';
-import { IGoal } from '../typings/Goal'
+import { IGoal } from '../typings/Goalinterface'
 import Modal from '../Components/Modal'
 import TabsDetails from '../Components/TabsDetails'
 import { Link } from 'react-router-dom'

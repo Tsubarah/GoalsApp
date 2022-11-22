@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import { useState, useEffect } from 'react'
 import { useForm, useFieldArray } from "react-hook-form"
 import "react-datepicker/dist/react-datepicker.css"
-import { IGoal } from "../typings/Goal";
+import { IGoal } from "../typings/Goalinterface";
 import { useAuthContext } from '../Contexts/AuthContext'
 
 type EditProps = {
