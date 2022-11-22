@@ -22,6 +22,8 @@ const UserInfo = ({ goals }: UserInfoProps) => {
   const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
   const goalInComplete = goals.filter((goal) => goal.isComplete === false)
 
+
+
   console.log('currentUser', currentUser)
 
 
@@ -91,6 +93,8 @@ const UserInfo = ({ goals }: UserInfoProps) => {
                   </div>
                 </div>
                 <hr />
+                <p>Sen an email to remind your consultant</p>
+                <button className='send-mail-button button'>Send E-mail</button>
               </>
             }
           </div>
