@@ -16,7 +16,6 @@ function App() {
   const { currentUser } = useAuthContext()
 
   useEffect(() => {
-
     // console.log('currentUser', currentUser)
   },[currentUser])
 

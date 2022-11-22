@@ -14,8 +14,8 @@ const ConsultantProfile = () => {
 
   const getPhotos = () => {
     if (!currentUser) {
-      return;
-    }
+        return;
+      }
     
     getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {  
       setUpdatedTarget({
@@ -24,10 +24,6 @@ const ConsultantProfile = () => {
     })
   }
   useEffect(() => {
-    if (!currentUser) {
-        return;
-      }
-
     getPhotos()
 
   }, [currentUser, target.id])
