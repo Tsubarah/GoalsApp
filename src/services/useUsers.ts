@@ -255,6 +255,56 @@ const useUsers = () => {
         // return imageUrl;
     };
 
+    // const postSendMail = async (accessToken: string) => {
+    //     if (!accessToken) {
+    //         return "";
+    //     }
+    //     const headers = new Headers();
+    //     const bearer = `Bearer ${accessToken}`;
+    //     headers.append("Authorization", bearer);
+    //     headers.append("Content-Type", "json");
+
+
+    // const options = {
+    //     method:"POST",
+    //     headers: headers,
+    // };
+
+    
+    
+    // const client = Client.init(options);
+    
+    // const sendMail  = {
+    //   message: {
+    //     subject: 'test msg',
+    //     body: {
+    //       contentType: 'Text',
+    //       content: 'This is a test msg.'
+    //     },
+    //     toRecipients: [
+    //       {
+    //         emailAddress: {
+    //           address: 'Malin.Olsson@geshdo.com'
+    //         }
+    //       }
+    //     ],
+    //     // ccRecipients: [
+    //     //   {
+    //     //     emailAddress: {
+    //     //       address: 'Malin.Olsson@geshdo.com'
+    //     //     }
+    //     //   }
+    //     // ]
+    //   },
+    //   saveToSentItems: 'true'
+    // };
+
+    
+    //  await client.api('/me/sendMail')
+    //      .post(sendMail);
+
+//}
+
 
     return {
         // getUserDetails,
@@ -263,6 +313,7 @@ const useUsers = () => {
         getUsersPhotoUrl,
         getGroups,
         getMyGroups,
+        //postSendMail,
     };
 };
 
