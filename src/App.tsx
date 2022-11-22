@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
 
-    console.log('currentUser', currentUser)
+    // console.log('currentUser', currentUser)
   },[currentUser])
 
   return (

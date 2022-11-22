@@ -70,7 +70,7 @@ const useUsers = () => {
                             // window.URL = window.URL || window.webkitURL;
                             // usersUrl = window.URL.createObjectURL(data);
 
-                            console.log('users', data)
+                            // console.log('users', data)
                             setUsers(data.value)
 
                             if (data['@odata.nextLink']) {
@@ -169,7 +169,7 @@ const useUsers = () => {
                         // console.log("response",response)
                         const data = await response.json();
                       if (data !== null) {
-                        console.log('groups', data);
+                        // console.log('groups', data);
                       }
                     } else {
                         throw new Error("data not found");
@@ -221,32 +221,16 @@ const useUsers = () => {
                         if (!currentUser) {
                             return
                         }
-                        console.log('My Groups', data);
-                        const groupIds = data.value
-                                .map((group: { id: string; }) => group.id)
-
-                        const lol = data.value.map((item: { owners: { jobTitle: any; }[]; }) => item.owners.findIndex((item: any) => item.jobTitle === "Team Manager" && item.displayName === "Jesper Stoltz"))
+                        // console.log('My Groups', data);
                         
-                        const groupArray = data.value.map((arr: any) => arr)
 
-                        const ownersArray = groupArray.map((group: { owners: any; }) => group.owners)
+                        const managerOf = data.value.map((group: { owners: any[]; id: any; }) => {
+                            const isOwner = group.owners.find(item => item.jobTitle === "Team Manager" && item.displayName === "Jesper Stoltz"); 
+                          
+                            if (isOwner) return group.id;
+                          });
 
-                        const teamManager = ownersArray
-                                                    .map((arr: any[]) => 
-                                                    arr.filter(owners => owners.jobTitle === "Team Manager" && owners.displayName === "Jesper Stoltz"))
-                        
-                        // const owners = data.value.map((group: { owners: string | string[]; }) => group.owners)
-                                
-                        // const managerArray = owners.filter((owner: string | any[]) => owner.length > 0)
-
-                        // const manager = managerArray.map((arr: any[]) => arr.filter(owner => owner.jobTitle === "Team Manager"))
-                        
-                        console.log('lol', lol)
-                        console.log('groupIds', groupIds)
-                        console.log('teamManager', teamManager)
-                        // console.log('managerArray', managerArray)
-                        console.log('ownersArray', ownersArray)
-                        console.log('groupArray', groupArray)
+                        //   console.log('managerOf', managerOf)
                     } 
                     } else {
                         throw new Error("data not found");

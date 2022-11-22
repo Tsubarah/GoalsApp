@@ -19,19 +19,19 @@ const ListItem = ({show, setShow, user}: itemProps) => {
     setShow(!show)
     window.localStorage.setItem('target', JSON.stringify(user))
   }
-
+  
   useEffect(() => {
     if (!currentUser) {
         return;
       }
 
-    getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
-      if (imageUrl) {
-        setTarget({
-          ...user, imageUrl: imageUrl
-        })
-      }
-    })  
+      getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
+        if (imageUrl) {
+          setTarget({
+            ...user, imageUrl: imageUrl
+          })
+        }
+      })  
   },[])
 
   return (

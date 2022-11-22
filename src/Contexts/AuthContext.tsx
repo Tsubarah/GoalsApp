@@ -13,8 +13,6 @@ interface AuthContextInterface {
   isLoading: boolean,
   currentUser: IUser | undefined,
   setCurrentUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
-  targetedUser: IUser | undefined,
-  setTargetedUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
   users: IUser[] | undefined,
   setUsers: React.Dispatch<React.SetStateAction<IUser[] | undefined>>,
   accessToken: string | undefined
@@ -132,8 +130,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     isLoading,
     currentUser,
     setCurrentUser,
-    targetedUser,
-    setTargetedUser,
     users,
     setUsers,
     accessToken,

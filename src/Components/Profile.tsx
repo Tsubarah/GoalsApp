@@ -13,7 +13,7 @@ const Profile = () => {
     const { getUsersPhotoUrl, getProfilePhotoUrl } = useUsers()
     const { id } = useParams()
     const [photoUrl, setPhotoUrl] = useState<string>();
-    const [updatedTarget, setUpdatedTarget] = useState<IUser>(target)
+    const [updatedTarget, setUpdatedTarget] = useState<IUser>()
 
     useEffect(() => {
       if (!currentUser) {

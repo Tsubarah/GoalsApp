@@ -10,21 +10,21 @@ const ConsultantProfile = () => {
 
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [updatedTarget, setUpdatedTarget] = useState<IUser>(target)
+  const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
 
   useEffect(() => {
     if (!currentUser) {
         return;
       }
 
-    getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
-      if (imageUrl) {
-        setUpdatedTarget({
-          ...target, imageUrl: imageUrl
-        })
-      }
-    })
-  },[updatedTarget])
+      getUsersPhotoUrl(currentUser?.token, target?.id).then(imageUrl => {
+        if (imageUrl) {
+          setUpdatedTarget({
+            ...target, imageUrl: imageUrl
+          })
+        }
+      })
+  },[updatedTarget, target])
 
   return (
     <div className='consultant-profile'>
