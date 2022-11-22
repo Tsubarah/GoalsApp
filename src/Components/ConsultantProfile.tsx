@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import useUsers from "../services/useUsers";
 import { useAuthContext } from "../Contexts/AuthContext"
@@ -12,19 +12,25 @@ const ConsultantProfile = () => {
   const { getUsersPhotoUrl } = useUsers()
   const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
 
+  const getPhotos = () => {
+    if (!currentUser) {
+      return;
+    }
+    
+    getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {  
+      setUpdatedTarget({
+        ...target, imageUrl: imageUrl
+      })
+    })
+  }
   useEffect(() => {
     if (!currentUser) {
         return;
       }
 
-      getUsersPhotoUrl(currentUser?.token, target?.id).then(imageUrl => {
-        if (imageUrl) {
-          setUpdatedTarget({
-            ...target, imageUrl: imageUrl
-          })
-        }
-      })
-  },[updatedTarget, target])
+    getPhotos()
+
+  }, [currentUser, target.id])
 
   return (
     <div className='consultant-profile'>

@@ -8,13 +8,13 @@ import { useAuthContext } from "../Contexts/AuthContext";
 const ManagerPage = () => {
   const [show, setShow] = useState<boolean | null>(null)
   const { currentUser } = useAuthContext();
-  const { getUsers, getGroups, getMyGroups } = useUsers()
+  const { getUsers, getGroups, getGroupId } = useUsers()
   
   useEffect(() => {
     if (currentUser) {
       getUsers(currentUser.token)
       getGroups(currentUser.token)
-      getMyGroups(currentUser.token)
+      getGroupId(currentUser.token)
     }
   },[currentUser])
   

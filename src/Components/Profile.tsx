@@ -26,14 +26,13 @@ const Profile = () => {
 
       if (target) {
         getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
-          if (imageUrl) {
             setUpdatedTarget({
               ...target, imageUrl: imageUrl
             })
-          }
         })
       }
-    },[currentUser])
+    },[currentUser, target.id])
+
 
     return (
         <div className="profile">
