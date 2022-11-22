@@ -1,5 +1,4 @@
 import { useAuthContext } from "../Contexts/AuthContext";
-import { IUser } from "../typings/Userinterface";
 
 const useUsers = () => {
     const { setUsers, currentUser } = useAuthContext();

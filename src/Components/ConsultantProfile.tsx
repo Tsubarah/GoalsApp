@@ -1,12 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import useUsers from "../services/useUsers";
 import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/Userinterface'
 
-const ConsultantProfile = () => {
-  let targets: any = window.localStorage.getItem('target')
-  let target = JSON.parse(targets)
+type ConsultantProps = {
+  user: IUser | undefined,
+}
+
+const ConsultantProfile = ({ user }:ConsultantProps) => {
+  // let targets: any = window.localStorage.getItem('target')
+  // let target = JSON.parse(targets)
 
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
@@ -17,16 +21,19 @@ const ConsultantProfile = () => {
         return;
       }
     
-    getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {  
+    if (!user) {
+      return
+    }
+    getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {  
       setUpdatedTarget({
-        ...target, imageUrl: imageUrl
+        ...user, imageUrl: imageUrl
       })
     })
   }
   useEffect(() => {
     getPhotos()
 
-  }, [currentUser, target.id])
+  }, [currentUser, user])
 
   return (
     <div className='consultant-profile'>

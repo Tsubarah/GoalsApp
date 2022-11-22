@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, useRef } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { IUser } from '../typings/Userinterface'
 import { useMsal } from '@azure/msal-react'
@@ -61,7 +61,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
                 instance.setActiveAccount(response.account);
                 getUserDetails(response.accessToken).then(user => {
                   console.log('currentUser', user)
-                  window.localStorage.setItem('target', JSON.stringify(user))
+                  // window.localStorage.setItem('target', JSON.stringify(user))
                   if (user) {
                     setCurrentUser({
                       ...user,

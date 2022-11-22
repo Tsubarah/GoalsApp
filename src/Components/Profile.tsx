@@ -5,37 +5,41 @@ import placeholder from '../Assets/Images/placeholder-image.jpeg'
 import { useParams } from 'react-router-dom'
 import { IUser } from "../typings/Userinterface";
 
-const Profile = () => {
-  let targets: any = window.localStorage.getItem('target')
-  let target = JSON.parse(targets)
-  
+type ProfileProps = {
+  user: IUser | undefined,
+}
+
+const Profile = ({ user }:ProfileProps) => {
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl, getProfilePhotoUrl } = useUsers()
   const { id } = useParams()
   const [photoUrl, setPhotoUrl] = useState<string>();
   const [updatedTarget, setUpdatedTarget] = useState<IUser>()
-
+  
+  console.log('user', user)
   useEffect(() => {
     if (!currentUser) {
         return;
       }
-
     getProfilePhotoUrl(currentUser.token).then(imageUrl => {
       setPhotoUrl(imageUrl)
     })
 
-    getUsersPhotoUrl(currentUser.token, target.id).then(imageUrl => {
+    if (!user) {
+      return
+    }
+    getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
       setUpdatedTarget({
-        ...target, imageUrl: imageUrl
+        ...user, imageUrl: imageUrl
       })
     })
     
-  },[currentUser, target.id])
+  },[currentUser, user])
 
 
   return (
     <div className="profile">
-      {target && id === target.id ? (
+      {user && id === user.id ? (
         <>
           <img src={updatedTarget?.imageUrl ? updatedTarget.imageUrl : placeholder} alt={updatedTarget?.displayName} />
           <h2>{updatedTarget?.displayName}</h2>
