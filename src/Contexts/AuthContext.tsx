@@ -61,7 +61,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
                 instance.setActiveAccount(response.account);
                 getUserDetails(response.accessToken).then(user => {
                   console.log('currentUser', user)
-                  // window.localStorage.setItem('target', JSON.stringify(user))
                   if (user) {
                     setCurrentUser({
                       ...user,

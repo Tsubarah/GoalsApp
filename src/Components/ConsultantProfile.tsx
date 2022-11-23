@@ -9,9 +9,6 @@ type ConsultantProps = {
 }
 
 const ConsultantProfile = ({ user }:ConsultantProps) => {
-  // let targets: any = window.localStorage.getItem('target')
-  // let target = JSON.parse(targets)
-
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
   const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()

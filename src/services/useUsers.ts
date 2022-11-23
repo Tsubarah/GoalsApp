@@ -70,7 +70,7 @@ const useUsers = () => {
                             // usersUrl = window.URL.createObjectURL(data);
 
                             // console.log('users', data)
-                            setUsers(data.value)
+                            // setUsers(data.value)
 
                             if (data['@odata.nextLink']) {
                                 const newFetchUrI = data['@odata.nextLink']
@@ -178,22 +178,12 @@ const useUsers = () => {
                     throw new Error("data not found");
                 });
         } catch (err) {
-            // imageUrl = "";
-            /***
-             * 1. Check if currentUser's jobTitle is team-manager
-             * 2. If yes, get all groups that user is a member of
-             * 3. map over groups and check if owners has a jobTitle === team-manager, if yes, check if currentUser.displayName === owners displayName
-             * 4. Get that groups ID
-             */
-            // group 43 - A-team (97b37a8d-8b5b-4fac-bf58-dca0942f8e8a)
-            // https://graph.microsoft.com/v1.0/me/transitiveMemberOf/microsoft.graph.group?$count=true
-            // /groups/${groupID}/members
-            // me/memberOf
+
         }
         // return imageUrl;
     };
 
-    const getGroupId = async (accessToken: string) => {
+    const getManagersGroup = async (accessToken: string) => {
         if (!accessToken) {
             return "";
         }
@@ -235,6 +225,8 @@ const useUsers = () => {
                           }).filter((id: undefined | string) => id !== undefined);
 
                           console.log('managerOf', managerOf)
+
+                          getGroupMembers(accessToken, managerOf)
                     } 
                     } else {
                         throw new Error("data not found");
@@ -258,6 +250,48 @@ const useUsers = () => {
         }
     };
 
+    const getGroupMembers = async (accessToken: string, groupID: string) => {
+        if (!accessToken) {
+            return "";
+        }
+        const headers = new Headers();
+        const bearer = `Bearer ${accessToken}`;
+        headers.append("Authorization", bearer);
+        headers.append("Content-Type", "json");
+
+        const options = {
+            method: "GET",
+            headers: headers,
+        };
+
+        try {
+            await fetch(
+                `https://graph.microsoft.com/v1.0/groups/${groupID}/members`,
+                options
+            )
+                .then(async (response) => {
+                    if (response != null && response.ok) {
+                        // console.log("response",response)
+                        const data = await response.json();
+                      if (data !== null) {
+                        if (!currentUser) {
+                            return
+                        }
+                        console.log('My Groups members:', data);
+                        setUsers(data.value)
+                        
+                    } 
+                    } else {
+                        throw new Error("data not found");
+                    }
+                })
+                .catch((error) => {
+                    throw new Error("data not found");
+                });
+        } catch (err) {
+        }
+    };
+
 
     return {
         // getUserDetails,
@@ -265,7 +299,7 @@ const useUsers = () => {
         getUsers,
         getUsersPhotoUrl,
         getGroups,
-        getGroupId,
+        getManagersGroup,
     };
 };
 

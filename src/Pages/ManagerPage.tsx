@@ -9,8 +9,8 @@ import { IUser } from "../typings/Userinterface";
 const ManagerPage = () => {
   const [show, setShow] = useState<boolean | null>(null)
   const { currentUser } = useAuthContext();
-  const { getUsers, getGroups, getGroupId } = useUsers()
-  const [user, setUser] = useState<IUser>()
+  const { getUsers, getGroups, getManagersGroup } = useUsers()
+  const [user, setUser] = useState<IUser | undefined>()
 
   const setUserFromUserlist = (user: IUser) => {
     setUser(user)
@@ -20,7 +20,7 @@ const ManagerPage = () => {
     if (currentUser) {
       getUsers(currentUser.token)
       getGroups(currentUser.token)
-      getGroupId(currentUser.token)
+      getManagersGroup(currentUser.token)
     }
   },[currentUser])
   
