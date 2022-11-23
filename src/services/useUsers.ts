@@ -295,7 +295,7 @@ const useUsers = () => {
            }
          ]
       },
-      saveToSentItems: 'true'
+      saveToSentItems: true
     };
 
     
