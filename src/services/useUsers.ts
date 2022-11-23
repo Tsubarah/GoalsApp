@@ -1,4 +1,3 @@
-import { group } from "console";
 import { useAuthContext } from "../Contexts/AuthContext";
 
 const useUsers = () => {
@@ -184,6 +183,7 @@ const useUsers = () => {
     // return imageUrl;
   };
 
+
   let managerOf: { teamId: string; }[];
   const getManagersGroup = async (accessToken: string) => {
     if (!accessToken) {
@@ -201,7 +201,7 @@ const useUsers = () => {
 
     try {
       await fetch(
-        "https://graph.microsoft.com/v1.0/users/169b8ffd-a176-40ac-9bd7-84dd2a7809e8/transitiveMemberOf/microsoft.graph.group?$count=true&$expand=owners($select=id,city,companyName,department,displayName,givenName,surname,jobTitle,mail,mailNickname,mobilePhone,userPrincipalName)",
+        "https://graph.microsoft.com/v1.0/users/99f714b1-4b6f-4a38-99f2-ece0e4043919/transitiveMemberOf/microsoft.graph.group?$count=true&$expand=owners($select=id,city,companyName,department,displayName,givenName,surname,jobTitle,mail,mailNickname,mobilePhone,userPrincipalName)",
         options
       )
         .then(async (response) => {
@@ -214,14 +214,14 @@ const useUsers = () => {
               }
               console.log('My Groups', data);
 
-              const teams = ["A-Team", "Atlas", "Enigma", "Core-Team"]
+              const teams = ["A-Team", "Atlas", "enigma", "Core Team"]
               // eslint-disable-next-line array-callback-return
               managerOf = data.value.map((group: {
                 displayName: string; owners: any[]; id: any;
                 // eslint-disable-next-line array-callback-return
               }) => {
                 const team = teams.find(name => name === group.displayName)
-                const isOwner = group.owners.find(item => item.jobTitle === "Team Manager" && item.displayName === "Jesper Stoltz");
+                const isOwner = group.owners.find(item => item.jobTitle === "Team Manager" && item.displayName === "Pierre Aupeix");
 
                 if (team && isOwner) return {name: team, teamId: group.id};
               }).filter((id: undefined | string) => id !== undefined);
