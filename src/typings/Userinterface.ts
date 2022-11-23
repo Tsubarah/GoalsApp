@@ -8,3 +8,8 @@ export interface IUser {
     token: string,
 }
 
+export interface ITeam {
+    name: string,
+    teamId: string,
+}
+
