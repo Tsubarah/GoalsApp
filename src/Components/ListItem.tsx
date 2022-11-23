@@ -7,10 +7,11 @@ import useUsers from "../services/useUsers";
 type itemProps = {
   show: boolean | null,
   setShow: (show: boolean) => void,
-  user: IUser
+  user: IUser,
+  setUserFromUserlist: (user: IUser) => void,
 }
 
-const ListItem = ({show, setShow, user}: itemProps) => {
+const ListItem = ({show, setShow, user, setUserFromUserlist}: itemProps) => {
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
   const [target, setTarget] = useState<IUser>(user)
@@ -18,6 +19,8 @@ const ListItem = ({show, setShow, user}: itemProps) => {
   const update = () => {
     setShow(!show)
     window.localStorage.setItem('target', JSON.stringify(user))
+    setUserFromUserlist(user)
+    console.log('user', user)
   }
   
   useEffect(() => {

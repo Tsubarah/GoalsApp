@@ -1,14 +1,13 @@
 import ConsultantProfile from './ConsultantProfile'
 import { Link } from 'react-router-dom'
+import { IUser } from "../typings/Userinterface";
 
 type sidebarProps ={
   show: boolean | null,
+  user: IUser | undefined,
 }
 
-const RightSidebar = ({show}: sidebarProps) => {
-    let targets: any = window.localStorage.getItem('target')
-    let target = JSON.parse(targets)
-
+const RightSidebar = ({show, user}: sidebarProps) => {
   return (
     <div className='rightSidebar-wrapper'>
 
@@ -18,14 +17,14 @@ const RightSidebar = ({show}: sidebarProps) => {
         }`}
       >
                         
-        <ConsultantProfile />
+        <ConsultantProfile user={user} />
 
         <div className='consultant-buttons-container'>
-          <Link to={`/goals/${target?.id}`}>
+          <Link to={`/goals/${user?.id}`}>
             <button className='button goals-btn'>Goals</button>
           </Link>
 
-          <Link to={`/goals/history/${target?.id}`}>
+          <Link to={`/goals/history/${user?.id}`}>
             <button className='button history-btn'>History</button>
           </Link>
         </div>

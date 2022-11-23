@@ -4,27 +4,36 @@ import useUsers from "../services/useUsers";
 import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/Userinterface'
 
-const ConsultantProfile = () => {
-  let targets: any = window.localStorage.getItem('target')
-  let target = JSON.parse(targets)
+type ConsultantProps = {
+  user: IUser | undefined,
+}
+
+const ConsultantProfile = ({ user }:ConsultantProps) => {
+  // let targets: any = window.localStorage.getItem('target')
+  // let target = JSON.parse(targets)
 
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
   const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
 
-  useEffect(() => {
+  const getPhotos = () => {
     if (!currentUser) {
         return;
       }
-
-      getUsersPhotoUrl(currentUser?.token, target?.id).then(imageUrl => {
-        if (imageUrl) {
-          setUpdatedTarget({
-            ...target, imageUrl: imageUrl
-          })
-        }
+    
+    if (!user) {
+      return
+    }
+    getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {  
+      setUpdatedTarget({
+        ...user, imageUrl: imageUrl
       })
-  },[updatedTarget, target])
+    })
+  }
+  useEffect(() => {
+    getPhotos()
+
+  }, [currentUser, user])
 
   return (
     <div className='consultant-profile'>

@@ -1,12 +1,14 @@
 import ListItem from "./ListItem"
 import { useAuthContext } from "../Contexts/AuthContext";
+import { IUser } from "../typings/Userinterface";
 
 type listProps = {
   show: boolean | null,
   setShow: (show: boolean) => void,
+  setUserFromUserlist: (user: IUser) => void,
 }
 
-const UserList = ({show, setShow}: listProps)  => {
+const UserList = ({show, setShow, setUserFromUserlist}: listProps)  => {
   const { users } = useAuthContext()
     
   return (
@@ -14,9 +16,9 @@ const UserList = ({show, setShow}: listProps)  => {
 			{users && (
 				<ul className="user-list">
 					{users?.map((user, i) => (
-						<ListItem key={i} setShow={setShow} show={show} user={user} />
+						<ListItem key={i} setShow={setShow} show={show} user={user} setUserFromUserlist={setUserFromUserlist} />
 					))}
-                </ul>
+        </ul>
 			)}
     </div>
   )

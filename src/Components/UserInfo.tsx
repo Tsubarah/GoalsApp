@@ -3,21 +3,18 @@ import Profile from "./Profile";
 import { IGoal } from "../typings/Goalinterface";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { useParams } from 'react-router-dom'
-import { ClassNames } from "@emotion/react";
 import goalIcon from '../Assets/Images/goal-icon.png'
-
 import { IUser } from '../typings/Userinterface'
+
 type UserInfoProps = {
   goals: IGoal[],
+  user: IUser | undefined,
 }
 
-const UserInfo = ({ goals }: UserInfoProps) => {
-  let targets: any = window.localStorage.getItem('target')
-  let target = JSON.parse(targets)
-
+const UserInfo = ({ goals, user }: UserInfoProps) => {
   const { currentUser} = useAuthContext()
   const { id } = useParams()
-  const [updatedTarget, setUpdatedTarget] = useState<IUser>(target)
+  const [updatedTarget, setUpdatedTarget] = useState<IUser | undefined>(user)
 
   const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
   const goalInComplete = goals.filter((goal) => goal.isComplete === false)
@@ -99,7 +96,7 @@ const UserInfo = ({ goals }: UserInfoProps) => {
             }
           </div>
           <div className="user-profile">
-            <Profile />
+            <Profile user={user} />
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import { useAuthContext } from "../Contexts/AuthContext";
-import { IUser } from "../typings/Userinterface";
 
 const useUsers = () => {
     const { setUsers, currentUser } = useAuthContext();
@@ -194,7 +193,7 @@ const useUsers = () => {
         // return imageUrl;
     };
 
-    const getMyGroups = async (accessToken: string) => {
+    const getGroupId = async (accessToken: string) => {
         if (!accessToken) {
             return "";
         }
@@ -221,16 +220,21 @@ const useUsers = () => {
                         if (!currentUser) {
                             return
                         }
-                        // console.log('My Groups', data);
+                        console.log('My Groups', data);
                         
-
-                        const managerOf = data.value.map((group: { owners: any[]; id: any; }) => {
+                        const teams = ["A-Team", "Atlas", "Enigma", "Core-Team"]
+                        // eslint-disable-next-line array-callback-return
+                        const managerOf = data.value.map((group: {
+                            displayName: string; owners: any[]; id: any; 
+// eslint-disable-next-line array-callback-return
+}) => {
+                            const team = teams.find(name => name === group.displayName)
                             const isOwner = group.owners.find(item => item.jobTitle === "Team Manager" && item.displayName === "Jesper Stoltz"); 
-                          
-                            if (isOwner) return group.id;
-                          });
 
-                        //   console.log('managerOf', managerOf)
+                            if (team && isOwner) return group.id;
+                          }).filter((id: undefined | string) => id !== undefined);
+
+                          console.log('managerOf', managerOf)
                     } 
                     } else {
                         throw new Error("data not found");
@@ -252,7 +256,6 @@ const useUsers = () => {
             // /groups/${groupID}/members
             // me/memberOf
         }
-        // return imageUrl;
     };
 
     const postSendMail = async (accessToken: string) => {
@@ -311,8 +314,8 @@ const useUsers = () => {
         getUsers,
         getUsersPhotoUrl,
         getGroups,
-        getMyGroups,
-        postSendMail,
+        getGroupId,
+        postSendMail
     };
 };
 
