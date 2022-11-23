@@ -1,7 +1,7 @@
 import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/Userinterface'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import useUsers from "../services/useUsers";
 
 type itemProps = {
@@ -16,11 +16,20 @@ const ListItem = ({show, setShow, user, setUserFromUserlist}: itemProps) => {
   const { getUsersPhotoUrl } = useUsers()
   const [target, setTarget] = useState<IUser>(user)
 
+  // const prevTarget = usePrevious(target);
+
   const update = () => {
-    setShow(!show)
+    if (currentUser) {
+      setShow(true)
+    }
+    let localStorageTarget: any = window.localStorage.getItem('target')
+    let prevTarget = JSON.parse(localStorageTarget)
     window.localStorage.setItem('target', JSON.stringify(user))
     setUserFromUserlist(user)
-    console.log('user', user)
+
+    if (prevTarget.displayName === user.displayName) {
+      setShow(!show)
+    }
   }
   
   useEffect(() => {
