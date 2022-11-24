@@ -4,24 +4,32 @@ import UserList from "../Components/Userlist"
 import { useState, useEffect } from "react"
 import useUsers from "../services/useUsers";
 import { useAuthContext } from "../Contexts/AuthContext";
-import { IUser } from "../typings/Userinterface";
+import { IUser, ITeam } from "../typings/Userinterface";
 
 const ManagerPage = () => {
   const [show, setShow] = useState<boolean | null>(null)
+  const [user, setUser] = useState<IUser | undefined>()
+  const [team, setTeam] = useState<ITeam | undefined>()
   const { currentUser } = useAuthContext();
-  const { getUsers, getGroups, getGroupId } = useUsers()
-  const [user, setUser] = useState<IUser>()
+  const { getManagersGroup } = useUsers()
 
   const setUserFromUserlist = (user: IUser) => {
     setUser(user)
   }
+
+  const getTeam = async () => {
+    if (!currentUser) return
+
+    const getTeam = getManagersGroup(currentUser.token)
+      getTeam.then((team: any) => {
+        setTeam(team[0])
+      })
+    }
   
   useEffect(() => {
     if (currentUser) {
-      getUsers(currentUser.token)
-      getGroups(currentUser.token)
-      getGroupId(currentUser.token)
-    }
+      getTeam()
+      }
   },[currentUser])
   
   return (
@@ -30,7 +38,7 @@ const ManagerPage = () => {
        <Profile user={user} />
       </div>
         
-      <UserList setShow={setShow} show={show} setUserFromUserlist={setUserFromUserlist} /> 
+      <UserList setShow={setShow} show={show} setUserFromUserlist={setUserFromUserlist} team={team} /> 
 
       <RightSidebar show={show} user={user} />
 

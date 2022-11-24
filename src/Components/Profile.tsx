@@ -16,7 +16,6 @@ const Profile = ({ user }:ProfileProps) => {
   const [photoUrl, setPhotoUrl] = useState<string>();
   const [updatedTarget, setUpdatedTarget] = useState<IUser>()
   
-  console.log('user', user)
   useEffect(() => {
     if (!currentUser) {
         return;
