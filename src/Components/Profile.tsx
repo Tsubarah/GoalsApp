@@ -10,11 +10,12 @@ type ProfileProps = {
 }
 
 const Profile = ({ user }:ProfileProps) => {
+  const [photoUrl, setPhotoUrl] = useState<string>();
+  const [updatedTarget, setUpdatedTarget] = useState<IUser>()
+
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl, getProfilePhotoUrl } = useUsers()
   const { id } = useParams()
-  const [photoUrl, setPhotoUrl] = useState<string>();
-  const [updatedTarget, setUpdatedTarget] = useState<IUser>()
   
   useEffect(() => {
     if (!currentUser) {
@@ -40,13 +41,25 @@ const Profile = ({ user }:ProfileProps) => {
     <div className="profile">
       {user && id === user.id ? (
         <>
-          <img src={updatedTarget?.imageUrl ? updatedTarget.imageUrl : placeholder} alt={updatedTarget?.displayName} />
+          <img src={updatedTarget?.imageUrl 
+                      ? updatedTarget.imageUrl 
+                      : placeholder
+                    } 
+                    alt={updatedTarget?.displayName} 
+          />
           <h2>{updatedTarget?.displayName}</h2>
           <h3>{updatedTarget?.jobTitle}</h3>
         </>
       ) : 
         <>
-          {photoUrl && <img src={photoUrl ? photoUrl : placeholder} alt={currentUser?.displayName} />}
+          {photoUrl && 
+            <img src={photoUrl 
+                        ? photoUrl 
+                        : placeholder
+                      } 
+                      alt={currentUser?.displayName} 
+            />
+          }
           <h2>{currentUser?.displayName}</h2>
           <h3>{currentUser?.jobTitle}</h3>
         </>

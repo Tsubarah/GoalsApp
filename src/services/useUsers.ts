@@ -66,11 +66,6 @@ const useUsers = () => {
           if (response != null && response.ok) {
             const data = await response.json();
             if (data !== null) {
-              // window.URL = window.URL || window.webkitURL;
-              // usersUrl = window.URL.createObjectURL(data);
-
-              // console.log('users', data)
-              // setUsers(data.value)
 
               if (data['@odata.nextLink']) {
                 const newFetchUrI = data['@odata.nextLink']
@@ -240,17 +235,6 @@ const useUsers = () => {
           throw new Error("data not found");
         });
     } catch (err) {
-      // imageUrl = "";
-      /***
-       * 1. Check if currentUser's jobTitle is team-manager
-       * 2. If yes, get all groups that user is a member of
-       * 3. map over groups and check if owners has a jobTitle === team-manager, if yes, check if currentUser.displayName === owners displayName
-       * 4. Get that groups ID
-       */
-      // group 43 - A-team (97b37a8d-8b5b-4fac-bf58-dca0942f8e8a)
-      // https://graph.microsoft.com/v1.0/me/transitiveMemberOf/microsoft.graph.group?$count=true
-      // /groups/${groupID}/members
-      // me/memberOf
     }
     return managerOf
   };
@@ -299,7 +283,6 @@ const useUsers = () => {
 
 
   return {
-    // getUserDetails,
     getProfilePhotoUrl,
     getUsers,
     getUsersPhotoUrl,

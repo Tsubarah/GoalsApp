@@ -11,10 +11,12 @@ const RightSidebar = ({show, user}: sidebarProps) => {
   return (
     <div className='rightSidebar-wrapper'>
 
-      <div className={`${show === null ? "hidden" : show 
-        ? "slide-in-right rightSidebar" 
-        : "slide-out-right rightSidebar"
-        }`}
+      <div className={`${show === null 
+                          ? "hidden" 
+                          : show 
+                            ? "slide-in-right rightSidebar" 
+                            : "slide-out-right rightSidebar"
+                        }`}
       >
                         
         <ConsultantProfile user={user} />

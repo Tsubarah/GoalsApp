@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react'
 import useUsers from "../services/useUsers";
 
 type itemProps = {
-  show: boolean | null,
-  setShow: (show: boolean) => void,
   user: IUser,
   setUserFromUserlist: (user: IUser) => void,
   setIsActive: React.Dispatch<React.SetStateAction<string>>,
@@ -14,13 +12,11 @@ type itemProps = {
   id: any,
 }
 
-const ListItem = ({show, setShow, user, setUserFromUserlist, isActive, setIsActive, id}: itemProps) => {
+const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemProps) => {
+  const [target, setTarget] = useState<IUser>(user)
+  
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [target, setTarget] = useState<IUser>(user)
-
-  // const prevTarget = usePrevious(target);
-  // isActive === `${id}` ? "active" : undefined + 
 
   const update = (e: any) => {
     if (currentUser) {
@@ -34,10 +30,6 @@ const ListItem = ({show, setShow, user, setUserFromUserlist, isActive, setIsActi
     window.localStorage.setItem('target', JSON.stringify(user))
     setUserFromUserlist(user)
   }
-
-  useEffect(() => {
-
-  }, [isActive])
   
   useEffect(() => {
     if (!currentUser) {
