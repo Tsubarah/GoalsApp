@@ -18,9 +18,9 @@ const Navbar = () => {
             </div>
             <div className="navbar-menu">
 
-               {/* {isManager?  */}
+                {isManager?  
                 <a href="/manager">Consultants</a>
-                  {/* : ""} */}
+                   : ""}
 
                 <a href={`/goals/${currentUser?.id}`}>Goals</a>
                 <a href="/logout">Logout</a>

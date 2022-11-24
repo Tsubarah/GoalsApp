@@ -97,19 +97,20 @@ const Tabs = ({ goals }: TabsProps) => {
           <span className="custom-arrow"></span>
         </div>
         <div>
-          {/* { isManager ? */}
+           { isManager ? 
           <button
             className="button create-btn"
             onClick={() => setShow(!show)}
           >
             Create goal
           </button>
+          : "" }
           <Link to={`/goals/history/${currentUser?.id}`}>
             <button className='button my-history-btn'>History →</button>
           </Link>
         </div>
       </div>
-
+            
       <div className="bloc-tabs">
         {sections.map((section, i) => (
           <button

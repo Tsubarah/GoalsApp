@@ -90,7 +90,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
                   </div>
                 </div>
                 <hr />
-                <p>Sen an email to remind your consultant</p>
+                <p>Send an email to remind your consultant about their goals</p>
                 <button className='send-mail-button button'>Send E-mail</button>
               </>
             }
