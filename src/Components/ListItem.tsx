@@ -24,7 +24,12 @@ const ListItem = ({show, setShow, user, setUserFromUserlist, isActive, setIsActi
 
   const update = (e: any) => {
     if (currentUser) {
-      setShow(true)
+      if (e.target.className === "active") {
+        setIsActive("")
+        console.log('Inactive', e.target.className)
+        console.log('e.target', e.target)
+        return
+      } 
       setIsActive(e.target.id)
       console.log('e.target', e.target)
     }
@@ -38,6 +43,10 @@ const ListItem = ({show, setShow, user, setUserFromUserlist, isActive, setIsActi
       setShow(!show)
     }
   }
+
+  useEffect(() => {
+
+  }, [isActive])
   
   useEffect(() => {
     if (!currentUser) {
