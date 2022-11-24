@@ -1,7 +1,7 @@
 import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/Userinterface'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import useUsers from "../services/useUsers";
 
 type itemProps = {
@@ -9,19 +9,25 @@ type itemProps = {
   setShow: (show: boolean) => void,
   user: IUser,
   setUserFromUserlist: (user: IUser) => void,
+  setIsActive: any,
+  isActive: string,
+  id: any,
 }
 
-const ListItem = ({show, setShow, user, setUserFromUserlist}: itemProps) => {
+const ListItem = ({show, setShow, user, setUserFromUserlist, isActive, setIsActive, id}: itemProps) => {
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
   const [target, setTarget] = useState<IUser>(user)
 
   // const prevTarget = usePrevious(target);
+  // isActive === `${id}` ? "active" : undefined + 
 
-  const update = () => {
+  const update = (e: any) => {
     if (currentUser) {
       setShow(true)
+      setIsActive(e.target.id)
     }
+
     let localStorageTarget: any = window.localStorage.getItem('target')
     let prevTarget = JSON.parse(localStorageTarget)
     window.localStorage.setItem('target', JSON.stringify(user))
@@ -37,20 +43,29 @@ const ListItem = ({show, setShow, user, setUserFromUserlist}: itemProps) => {
         return;
       }
 
-      getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
-        if (imageUrl) {
-          setTarget({
-            ...user, imageUrl: imageUrl
-          })
-        }
-      })  
+    getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
+      if (imageUrl) {
+        setTarget({
+          ...user, imageUrl: imageUrl
+        })
+      }
+    })  
   },[])
 
   return (
-    <li className="item">
-      <button onClick={() => update()}>
-      <img src={target?.imageUrl ? target.imageUrl : placeholder} alt="" />
-      <h3>{target?.displayName}</h3>
+    <li className={"item"}>
+      <button 
+        id={id} 
+        className={isActive === `${id}` ? "active" : undefined} 
+        onClick={(e) => update(e)}
+      >
+        <img 
+          src={target?.imageUrl 
+                ? target.imageUrl 
+                : placeholder} 
+          alt="" 
+        />
+        <h3>{target?.displayName}</h3>
       </button>
     </li>
   )

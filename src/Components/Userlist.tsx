@@ -1,6 +1,7 @@
 import ListItem from "./ListItem"
 import { useAuthContext } from "../Contexts/AuthContext";
 import { IUser, ITeam } from "../typings/Userinterface";
+import { useState } from 'react'
 
 type listProps = {
   show: boolean | null,
@@ -11,6 +12,7 @@ type listProps = {
 
 const UserList = ({show, setShow, setUserFromUserlist, team}: listProps)  => {
   const { users } = useAuthContext()
+  const [isActive, setIsActive] = useState("")
   console.log('team', team)
     
   return (
@@ -22,10 +24,13 @@ const UserList = ({show, setShow, setUserFromUserlist, team}: listProps)  => {
             {users?.map((user, i) => (
               <ListItem 
                 key={i} 
+                id={i}
                 setShow={setShow} 
                 show={show} 
                 user={user} 
                 setUserFromUserlist={setUserFromUserlist} 
+                setIsActive={setIsActive}
+                isActive={isActive}
               />
             ))}
           </ul>
