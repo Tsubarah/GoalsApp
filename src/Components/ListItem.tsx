@@ -26,6 +26,7 @@ const ListItem = ({show, setShow, user, setUserFromUserlist, isActive, setIsActi
     if (currentUser) {
       setShow(true)
       setIsActive(e.target.id)
+      console.log('e.target', e.target)
     }
 
     let localStorageTarget: any = window.localStorage.getItem('target')
