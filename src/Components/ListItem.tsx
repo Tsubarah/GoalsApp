@@ -9,7 +9,7 @@ type itemProps = {
   setShow: (show: boolean) => void,
   user: IUser,
   setUserFromUserlist: (user: IUser) => void,
-  setIsActive: any,
+  setIsActive: React.Dispatch<React.SetStateAction<string>>,
   isActive: string,
   id: any,
 }
@@ -26,22 +26,13 @@ const ListItem = ({show, setShow, user, setUserFromUserlist, isActive, setIsActi
     if (currentUser) {
       if (e.target.className === "active") {
         setIsActive("")
-        console.log('Inactive', e.target.className)
-        console.log('e.target', e.target)
         return
       } 
       setIsActive(e.target.id)
-      console.log('e.target', e.target)
     }
 
-    let localStorageTarget: any = window.localStorage.getItem('target')
-    let prevTarget = JSON.parse(localStorageTarget)
     window.localStorage.setItem('target', JSON.stringify(user))
     setUserFromUserlist(user)
-
-    if (prevTarget.displayName === user.displayName) {
-      setShow(!show)
-    }
   }
 
   useEffect(() => {
@@ -66,7 +57,7 @@ const ListItem = ({show, setShow, user, setUserFromUserlist, isActive, setIsActi
     <li className={"item"}>
       <button 
         id={id} 
-        className={isActive === `${id}` ? "active" : undefined} 
+        className={isActive === `${id}` ? "active" : ""} 
         onClick={(e) => update(e)}
       >
         <img 

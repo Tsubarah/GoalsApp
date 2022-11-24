@@ -19,6 +19,7 @@ const UserList = ({show, setShow, setUserFromUserlist, team}: listProps)  => {
   } else {
     setShow(false)
   }
+    
   return (
     <div className="user-list-wrapper">
       {users && (
