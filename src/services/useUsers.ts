@@ -259,9 +259,7 @@ const useUsers = () => {
     };
 
     const postSendMail = async (accessToken: string) => {
-        if (!accessToken) {
-            return "";
-        }
+        
         const headers = new Headers();
         const bearer = `Bearer ${accessToken}`;
         headers.append("Authorization", bearer);
@@ -274,14 +272,14 @@ const useUsers = () => {
     };
 
     
-    const client = Client.init(options);
+    const client = .init(options);
     
     const sendMail  = {
       message: {
-        subject: 'test msg',
+        subject: 'Your goals',
         body: {
           contentType: 'Text',
-          content: 'This is a test msg.'
+          content: 'Hello! Here is a friendly reminder from your manager to take a look at your goals! Go to GoalsNow and check!'
         },
         toRecipients: [
           {
