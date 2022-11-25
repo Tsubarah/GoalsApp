@@ -1,35 +1,34 @@
 import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from '../typings/Userinterface'
 import placeholder from '../Assets/Images/placeholder-image.jpeg'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import useUsers from "../services/useUsers";
 
 type itemProps = {
-  show: boolean | null,
-  setShow: (show: boolean) => void,
   user: IUser,
   setUserFromUserlist: (user: IUser) => void,
+  setIsActive: React.Dispatch<React.SetStateAction<string>>,
+  isActive: string,
+  id: any,
 }
 
-const ListItem = ({show, setShow, user, setUserFromUserlist}: itemProps) => {
+const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemProps) => {
+  const [target, setTarget] = useState<IUser>(user)
+  
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [target, setTarget] = useState<IUser>(user)
 
-  // const prevTarget = usePrevious(target);
-
-  const update = () => {
+  const update = (e: any) => {
     if (currentUser) {
-      setShow(true)
+      if (e.target.className === "active") {
+        setIsActive("")
+        return
+      } 
+      setIsActive(e.target.id)
     }
-    let localStorageTarget: any = window.localStorage.getItem('target')
-    let prevTarget = JSON.parse(localStorageTarget)
+
     window.localStorage.setItem('target', JSON.stringify(user))
     setUserFromUserlist(user)
-
-    if (prevTarget.displayName === user.displayName) {
-      setShow(!show)
-    }
   }
   
   useEffect(() => {
@@ -37,20 +36,29 @@ const ListItem = ({show, setShow, user, setUserFromUserlist}: itemProps) => {
         return;
       }
 
-      getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
-        if (imageUrl) {
-          setTarget({
-            ...user, imageUrl: imageUrl
-          })
-        }
-      })  
+    getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
+      if (imageUrl) {
+        setTarget({
+          ...user, imageUrl: imageUrl
+        })
+      }
+    })  
   },[])
 
   return (
-    <li className="item">
-      <button onClick={() => update()}>
-      <img src={target?.imageUrl ? target.imageUrl : placeholder} alt="" />
-      <h3>{target?.displayName}</h3>
+    <li className={"item"}>
+      <button 
+        id={id} 
+        className={isActive === `${id}` ? "active" : ""} 
+        onClick={(e) => update(e)}
+      >
+        <img 
+          src={target?.imageUrl 
+                ? target.imageUrl 
+                : placeholder} 
+          alt="" 
+        />
+        <h3>{target?.displayName}</h3>
       </button>
     </li>
   )

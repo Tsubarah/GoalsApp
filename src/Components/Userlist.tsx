@@ -1,6 +1,7 @@
 import ListItem from "./ListItem"
 import { useAuthContext } from "../Contexts/AuthContext";
 import { IUser, ITeam } from "../typings/Userinterface";
+import { useState } from 'react'
 
 type listProps = {
   show: boolean | null,
@@ -11,7 +12,20 @@ type listProps = {
 
 const UserList = ({show, setShow, setUserFromUserlist, team}: listProps)  => {
   const { users } = useAuthContext()
-  console.log('team', team)
+  const [isActive, setIsActive] = useState("")
+
+  const sidebarStatus = () => {
+    if (show === null && isActive === "") {
+      return
+    }
+    if (isActive !== "") {
+      setShow(true)
+    } else {
+      setShow(false)
+    }
+  }
+  
+  sidebarStatus()
     
   return (
     <div className="user-list-wrapper">
@@ -22,10 +36,11 @@ const UserList = ({show, setShow, setUserFromUserlist, team}: listProps)  => {
             {users?.map((user, i) => (
               <ListItem 
                 key={i} 
-                setShow={setShow} 
-                show={show} 
+                id={i}
                 user={user} 
                 setUserFromUserlist={setUserFromUserlist} 
+                setIsActive={setIsActive}
+                isActive={isActive}
               />
             ))}
           </ul>

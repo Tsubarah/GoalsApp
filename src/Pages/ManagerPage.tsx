@@ -10,7 +10,7 @@ const ManagerPage = () => {
   const [show, setShow] = useState<boolean | null>(null)
   const [user, setUser] = useState<IUser | undefined>()
   const [team, setTeam] = useState<ITeam | undefined>()
-  const { currentUser } = useAuthContext();
+  const { currentUser, setIsLoading } = useAuthContext();
   const { getManagersGroup } = useUsers()
 
   const setUserFromUserlist = (user: IUser) => {
@@ -28,7 +28,9 @@ const ManagerPage = () => {
   
   useEffect(() => {
     if (currentUser) {
+      setIsLoading(true)
       getTeam()
+      setIsLoading(false)
       }
   },[currentUser])
   
@@ -38,10 +40,17 @@ const ManagerPage = () => {
        <Profile user={user} />
       </div>
         
-      <UserList setShow={setShow} show={show} setUserFromUserlist={setUserFromUserlist} team={team} /> 
+      <UserList 
+        setShow={setShow} 
+        show={show} 
+        setUserFromUserlist={setUserFromUserlist} 
+        team={team} 
+      /> 
 
-      <RightSidebar show={show} user={user} />
-
+      <RightSidebar 
+        show={show} 
+        user={user} 
+      />
     </div>
   )
 }

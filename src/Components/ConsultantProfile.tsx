@@ -9,9 +9,10 @@ type ConsultantProps = {
 }
 
 const ConsultantProfile = ({ user }:ConsultantProps) => {
+  const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
+
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
-  const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
 
   const getPhotos = () => {
     if (!currentUser) {
@@ -34,7 +35,13 @@ const ConsultantProfile = ({ user }:ConsultantProps) => {
 
   return (
     <div className='consultant-profile'>
-      <img src={updatedTarget?.imageUrl ? updatedTarget.imageUrl : placeholder} className='consultant-img' alt="" />
+      <img  src={updatedTarget?.imageUrl 
+                  ? updatedTarget.imageUrl 
+                  : placeholder
+                } 
+            className='consultant-img' 
+            alt="" 
+      />
       <h2 className="profile-name">{updatedTarget?.displayName}</h2>
       <p className="profile-text">{updatedTarget?.jobTitle}</p>
       <h4 className="profile-h4">{updatedTarget?.mail}</h4>
