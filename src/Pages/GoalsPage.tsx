@@ -25,7 +25,7 @@ const GoalsPage = () => {
         <>
           <UserInfo goals={goals} user={user} />
 
-          <Tabs goals={goals} />
+          <Tabs goals={goals} user={user} />
         </>
       )}
     </div>

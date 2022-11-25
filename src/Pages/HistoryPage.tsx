@@ -20,7 +20,6 @@ const HistoryPage = () => {
 			let target = JSON.parse(targets)
 			setUser(target)
 		}, [])
-	
 
     useEffect(() => {
         if (!goals)
@@ -32,9 +31,6 @@ const HistoryPage = () => {
 	return (
 		
 		<div className="history-page-wrapper">
-
-
-			{/* {isLoading && <div className='loading-spinner'><LoadingSpinner /></div>} */}
 
 			{goals && (
 				<>

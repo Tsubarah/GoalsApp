@@ -10,9 +10,10 @@ type itemProps = {
   setIsActive: React.Dispatch<React.SetStateAction<string>>,
   isActive: string,
   id: any,
+  sidebarStatus: () => void
 }
 
-const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemProps) => {
+const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id, sidebarStatus}: itemProps) => {
   const [target, setTarget] = useState<IUser>(user)
   
   const { currentUser } = useAuthContext()

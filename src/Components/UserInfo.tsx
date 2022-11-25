@@ -26,11 +26,11 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
       <div className="user-wrapper">
         <div className="user">
           <div className="user-stats">
-            {updatedTarget && id === updatedTarget.id ? (
+            {user && id === user.id ? (
               <>
-                <p>{updatedTarget?.mail}</p>
+                <p>{user?.mail}</p>
                 <hr />
-                <p><strong>ID:</strong> {updatedTarget?.id}</p>
+                <p><strong>ID:</strong> {user?.id}</p>
                 <h2>Goals</h2>
                 <hr />
                 <div className="user-goals">

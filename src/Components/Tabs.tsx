@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goalinterface'
+import { IUser } from '../typings/Userinterface'
 import Modal from '../Components/Modal'
 import TabsDetails from '../Components/TabsDetails'
 import { Link } from 'react-router-dom'
@@ -9,9 +10,10 @@ import { useAuthContext } from "../Contexts/AuthContext";
 // Types are used for props 
 type TabsProps = {
   goals: IGoal[],
+  user: IUser | undefined,
 }
 
-const Tabs = ({ goals }: TabsProps) => {
+const Tabs = ({ goals, user }: TabsProps) => {
   const [toggleState, setToggleState] = useState(1);
   const [show, setShow] = useState<boolean>(false)
   const [month, setMonth] = useState<string>("all")
@@ -104,7 +106,7 @@ const Tabs = ({ goals }: TabsProps) => {
           >
             Create goal
           </button>
-          <Link to={`/goals/history/${currentUser?.id}`}>
+          <Link to={`/goals/history/${user ? user.id : currentUser?.id}`}>
             <button className='button my-history-btn'>History →</button>
           </Link>
         </div>
