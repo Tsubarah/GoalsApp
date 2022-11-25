@@ -10,13 +10,14 @@ import { AuthPage } from './Pages/AuthPage';
 import LogoutPage from './Pages/LogoutPage';
 import RequireAuth from './Components/RequireAuth';
 import { useAuthContext } from './Contexts/AuthContext';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
   const { currentUser } = useAuthContext()
+  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
   useEffect(() => {
-    // console.log('currentUser', currentUser)
+
   },[currentUser])
 
   return (
@@ -26,6 +27,12 @@ function App() {
         <Navbar />
 
         <Routes>
+          {isManager ? (
+            <Route path="/" element={<ManagerPage />} />
+          )
+            :<Route path="/" element={<GoalsPage />} />
+          }
+          
           <Route path="/manager" element={
           <RequireAuth>
             <ManagerPage />

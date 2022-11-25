@@ -11,9 +11,6 @@ type editGoalParams = {
 const useGoal = () => {
   const queryClient = useQueryClient()
 
-//   const { data: getGoals, isLoading } = useQuery<IGoal[]>(['goals', userData?.id], GoalsAPI.getGoals, {
-//   })
-
   const createGoal = useMutation(GoalsAPI.createGoal, {
     onError: (error: { message: String}) => {
       console.log(error.message)

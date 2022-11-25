@@ -9,9 +9,9 @@ import Moment from "react-moment";
 
 const HistoryList = ({ goals }:HistoryProps) => {
 
-  const completedGoals = goals.filter((goal) => goal.isComplete === true);
+  const completedGoals = goals.filter((goal) => goal.isComplete);
+
   useEffect(() => {
-    console.log('completedGoals', completedGoals)
   }, [goals]);
 
   return (
