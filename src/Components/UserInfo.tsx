@@ -17,7 +17,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
   const { currentUser} = useAuthContext()
   const { id } = useParams()
   const [updatedTarget, setUpdatedTarget] = useState<IUser | undefined>(user)
-  const { postSendMail } = useUsers()
+
 
   const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
   const goalInComplete = goals.filter((goal) => goal.isComplete === false)
@@ -63,7 +63,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
                 </div>
                 <hr />
                 <p>Send an email to remind your consultant about their goals</p>
-                <button onClick={()=> postSendMail} className='send-mail-button button'>Send E-mail</button>
+                <button onClick={()=>{}} className='send-mail-button button'>Send E-mail</button>
               </>
             ) :
               <>
