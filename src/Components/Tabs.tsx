@@ -18,7 +18,7 @@ const Tabs = ({ goals, user }: TabsProps) => {
   const [show, setShow] = useState<boolean>(false)
   const [month, setMonth] = useState<string>("all")
   const { currentUser } = useAuthContext()
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
+  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
   
 
@@ -99,19 +99,20 @@ const Tabs = ({ goals, user }: TabsProps) => {
           <span className="custom-arrow"></span>
         </div>
         <div>
-          {/* { isManager ? */}
-          <button
-            className="button create-btn"
-            onClick={() => setShow(!show)}
-          >
-            Create goal
-          </button>
-          <Link to={`/goals/history/${user ? user.id : currentUser?.id}`}>
-            <button className='button my-history-btn'>History →</button>
-          </Link>
+          {isManager ? 
+            <button
+              className="button create-btn"
+              onClick={() => setShow(!show)}
+            >
+              Create goal
+            </button>
+            : "" }
+            <Link to={`/goals/history/${user ? user.id : currentUser?.id}`}>
+              <button className='button my-history-btn'>History →</button>
+            </Link>
         </div>
       </div>
-
+            
       <div className="bloc-tabs">
         {sections.map((section, i) => (
           <button

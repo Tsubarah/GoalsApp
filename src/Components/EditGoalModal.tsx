@@ -17,14 +17,14 @@ const EditGoalModal = ({ goal, setSlide }: ModalProps) => {
 
   return (
     <>
-      {/* { isManager ?   */}
+       { isManager ?   
       <button 
         className="button edit-btn" 
         onClick={() => {setShow(!show)}}
       >
         {isComplete ? "View": "Edit"}
       </button>
-      {/* : ""}   */}
+       : ""}   
       {
         show && (
 

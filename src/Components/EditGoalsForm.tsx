@@ -198,7 +198,7 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
           </div>
         ))}
 
-         {/* { isManager?  */}
+          { isManager? 
         <div className="buttons-container">
           <div>
             <button 
@@ -228,7 +228,7 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
             </button>
           </div>
         </div>
-           {/* :"" }  */}
+            :"" }
            
       </form>
     </div>

@@ -1,5 +1,6 @@
 import { useAuthContext } from "../Contexts/AuthContext";
 
+
 const useUsers = () => {
   const { setUsers, currentUser } = useAuthContext();
 
@@ -282,12 +283,51 @@ const useUsers = () => {
   };
 
 
+
+    const postSendMail = async (accessToken: string) => {
+            let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", "Bearer " + accessToken);
+            
+        let raw = JSON.stringify({
+        "message": {
+        "subject": "GoalNow - Have you reached your goals?",
+                "body": {
+                    "contentType": "Text",
+                    "content": "This is a friendly reminder from your manager to take look at your goals. Go to GoalsNow!"
+                },
+                "toRecipients": [
+                {
+                    "emailAddress": {
+                        "address": "Malin.Olsson@geshdo.com"
+                    }
+                }
+                ]   
+        },
+        "saveToSentItems": "true"
+        });
+        console.log("Mail-sent", raw)
+        let requestOptions :any = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://graph.microsoft.com/v1.0/me/sendMail", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    }   
+
+
   return {
     getProfilePhotoUrl,
     getUsers,
     getUsersPhotoUrl,
     getGroups,
     getManagersGroup,
+    postSendMail,
   };
 };
 

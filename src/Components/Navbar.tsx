@@ -5,9 +5,7 @@ import { useAuthContext } from '../Contexts/AuthContext';
 
 const Navbar = () => {
     const { currentUser } = useAuthContext()
-    const [isManager, setIsManager] = useState(currentUser?.jobTitle === "Team Manager")
-
-    // console.log(`JobTitle`, currentUser?.jobTitle)
+    const [isManager, setIsManager] = useState(currentUser?.jobTitle === "Intern")
     
     return (
         <nav className="navbar">
@@ -18,13 +16,14 @@ const Navbar = () => {
             </div>
             <div className="navbar-menu">
 
-               {/* {isManager?  */}
-                <a href="/manager">Consultants</a>
-                  {/* : ""} */}
+            {isManager
+              ?  
+              <a href="/manager">Consultants</a>
+              : ""}
 
-                <a href={`/goals/${currentUser?.id}`}>Goals</a>
-                <a href="/logout">Logout</a>
-            </div>
+              <a href={`/goals/${currentUser?.id}`}>Goals</a>
+              <a href="/logout">Logout</a>
+              </div>
         </nav>
     )
 }
