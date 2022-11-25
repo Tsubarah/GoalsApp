@@ -62,8 +62,8 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
                   </div>
                 </div>
                 <hr />
-                <p>Send an email to remind your consultant about their goals</p>
-                <button onClick={()=>{}} className='send-mail-button button'>Send E-mail</button>
+                <p>Remind your consultant about their goals</p>
+                <button onClick={()=>{}} className='send-mail-button button'>Send mail</button>
               </>
             ) :
               <>

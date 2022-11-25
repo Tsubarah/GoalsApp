@@ -16,7 +16,7 @@ const Tabs = ({ goals }: TabsProps) => {
   const [show, setShow] = useState<boolean>(false)
   const [month, setMonth] = useState<string>("all")
   const { currentUser } = useAuthContext()
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
+  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
   
 
@@ -97,7 +97,7 @@ const Tabs = ({ goals }: TabsProps) => {
           <span className="custom-arrow"></span>
         </div>
         <div>
-           { isManager ? 
+           {isManager ? 
           <button
             className="button create-btn"
             onClick={() => setShow(!show)}

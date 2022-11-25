@@ -26,9 +26,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   const { instance, accounts } = useMsal()
   const [accessToken, setAccessToken] = useState<string | undefined>();
   const [currentUser, setCurrentUser] = useState<IUser>()
-  const [targetedUser, setTargetedUser] = useState<IUser>()
   const [users, setUsers] = useState<IUser[]>()
-  // const [userEmail, setUserEmail] = useState()
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -67,19 +65,13 @@ const AuthContextProvider = ({ children }: ContextProps) => {
                       token: response.accessToken,
                     })}
                   })
-                  // store.setIdToken(response.idToken);
-                  // store.setAccessToken(response.accessToken);
-                  // store.setUsername(response.account?.name);
-
                   setAccessToken(response.accessToken);
                 }
               });
-              // store.setIsLoading(false);
             }
           })
           .catch((error) => {
             console.log("auth error: " + error);
-            // store.setIsLoading(false);
           });
   }, [accounts, instance]);
 
@@ -119,7 +111,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
         });
       return user;
     } catch (err) {
-        // userObject = {name: "", jobTitle:"", uid: ""};
         console.log(err)
     }
 };
