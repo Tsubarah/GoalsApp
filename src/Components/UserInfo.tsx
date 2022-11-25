@@ -5,8 +5,6 @@ import { useAuthContext } from "../Contexts/AuthContext";
 import { useParams } from 'react-router-dom'
 import goalIcon from '../Assets/Images/goal-icon.png'
 import { IUser } from '../typings/Userinterface'
-import useUsers from "../services/useUsers"
-
 
 type UserInfoProps = {
   goals: IGoal[],
@@ -16,16 +14,9 @@ type UserInfoProps = {
 const UserInfo = ({ goals, user }: UserInfoProps) => {
   const { currentUser} = useAuthContext()
   const { id } = useParams()
-  const [updatedTarget, setUpdatedTarget] = useState<IUser | undefined>(user)
 
-
-  const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
-  const goalInComplete = goals.filter((goal) => goal.isComplete === false)
-
-
-
-  console.log('currentUser', currentUser)
-
+  const goalsCompleted = goals.filter((goal)=> goal.isComplete)
+  const goalInComplete = goals.filter((goal) => !goal.isComplete)
 
     return (
       <div className="user-wrapper">

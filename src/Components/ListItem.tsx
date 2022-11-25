@@ -10,14 +10,12 @@ type itemProps = {
   setIsActive: React.Dispatch<React.SetStateAction<string>>,
   isActive: string,
   id: any,
-  sidebarStatus: () => void
 }
 
-const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id, sidebarStatus}: itemProps) => {
-  const [target, setTarget] = useState<IUser>(user)
-  
+const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemProps) => {
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
+  const [target, setTarget] = useState<IUser>(user)
 
   const update = (e: any) => {
     if (currentUser) {
@@ -54,10 +52,10 @@ const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id, sidebar
         onClick={(e) => update(e)}
       >
         <img 
+          alt="" 
           src={target?.imageUrl 
                 ? target.imageUrl 
                 : placeholder} 
-          alt="" 
         />
         <h3>{target?.displayName}</h3>
       </button>

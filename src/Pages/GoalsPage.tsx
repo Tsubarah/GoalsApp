@@ -8,9 +8,10 @@ import { useEffect, useState } from 'react'
 import { IUser } from '../typings/Userinterface'
 
 const GoalsPage = () => {
-  const [user, setUser] = useState<IUser | undefined>()
   const { id } = useParams()
   const { data: goals } = useQuery<IGoal[]>(['goals', id], () => GoalsAPI.getGoals(id))
+  
+  const [user, setUser] = useState<IUser | undefined>()
 
   useEffect(() => {
     let targets: any = window.localStorage.getItem('target')

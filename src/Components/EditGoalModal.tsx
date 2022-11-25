@@ -5,48 +5,41 @@ import { useAuthContext } from '../Contexts/AuthContext'
 
 type ModalProps = {
   goal: IGoal,
-  
-  setSlide: (slide: string) => void,
 }
 
-const EditGoalModal = ({ goal, setSlide }: ModalProps) => {
-  const [show, setShow] = useState(false)
-  const [isComplete, setIsComplete] = useState(goal.isComplete)
+const EditGoalModal = ({goal}: ModalProps) => {
   const { currentUser } = useAuthContext()
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
+  
+  const [show, setShow] = useState(false)
+  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
   return (
     <>
-       { isManager ?   
-      <button 
-        className="button edit-btn" 
-        onClick={() => {setShow(!show)}}
-      >
-        {isComplete ? "View": "Edit"}
-      </button>
+      {isManager ?   
+        <button 
+          className="button edit-btn" 
+          onClick={() => {setShow(!show)}}
+        >
+          {isManager ? "Edit": "View"}
+        </button>
+        
        : ""}   
-      {
-        show && (
 
+      {show && (
         <div className="addGoal-modal">
-
           <div className="button-container">
-
             <button 
               className="button close-btn" 
               onClick={() => {setShow(!show)}}
             >
               Close
             </button>
-            
           </div>
 
           <h2>Edit a Goal</h2>
-          
+
           <hr />
-          
-           <EditGoalsForm setShow={setShow} show={show} setSlide={setSlide} goal={goal} /> 
-            
+           <EditGoalsForm setShow={setShow} show={show} goal={goal} /> 
         </div>
         )
       }

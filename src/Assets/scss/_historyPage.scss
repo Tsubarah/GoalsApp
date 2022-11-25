@@ -29,14 +29,6 @@
     }
 }
 
-.loading-spinner {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 5%;
-    height: 100%;
-}
-
 .history-list-wrapper {
     width: 90%;
     background-color: rgba(199, 218, 212, .9);
@@ -46,7 +38,6 @@
     border-radius: 8px;
 
     .history-header {
-        width: 80%;
         display: flex;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -59,20 +50,11 @@
     }
 
     .history-list-item {
-        background-color: #F1F1EF;
+        margin: 1rem 2rem;
+        padding: 2rem;
         display: flex;
-        //justify-content: space-evenly;
-        justify-content: center;
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-        padding-top: 1.5rem;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-        padding-bottom: 1.5rem;
+        background-color: #F1F1EF;
         border-radius: 8px;
-        margin-left: 2rem;
-        margin-right: 2rem;
-
         
         .history-list-div {
             display: flex;
@@ -89,37 +71,27 @@
     }
 }
 
-.history-deadline {
- width: 20%;
-}
-
-.deadline {
-    padding-left: 4rem;
+.history-creationDate {
+    width: 15%;
 }
 
 .history-category {
-    width: 20%;
-    padding-left: 1rem;
+    width: 15%;
 }
 
-.category {
-    padding-left: 2rem;
+.history-deadline {
+ width: 15%;
 }
 
 .history-description {
-    width: 50%;
-    padding-right: 2rem;
+    width: 30%;
 }
 
-.description {
-    padding-left: 1.5rem;
+.history-review {
+    width: 20%;
 }
 
-.history-creationDate {
-    width: 10%;
-}
 
  .history-list-item:hover {
      background-color: #f0f2f5;
-//      transform: scale(1.05);
   }

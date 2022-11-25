@@ -5,8 +5,8 @@ import useUsers from "../services/useUsers";
 export const AuthPage = () => {
   const { accessToken, currentUser } = useAuthContext();
   const { getProfilePhotoUrl, getUsers } = useUsers();
+
   const [photoUrl, setPhotoUrl] = useState<string>();
-  // const userName = getUserName();
 
   useEffect(() => {
     if (!accessToken) {
@@ -16,7 +16,6 @@ export const AuthPage = () => {
       setPhotoUrl(await getProfilePhotoUrl(accessToken));
     }
     getPhoto(accessToken);
-    // getUserDetails(accessToken)
     getUsers(accessToken)
   }, [accessToken]);
 

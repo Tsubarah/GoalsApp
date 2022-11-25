@@ -38,7 +38,6 @@ const UserList = ({show, setShow, setUserFromUserlist, team}: listProps)  => {
                 key={i} 
                 id={i}
                 user={user} 
-                sidebarStatus={sidebarStatus}
                 setUserFromUserlist={setUserFromUserlist} 
                 setIsActive={setIsActive}
                 isActive={isActive}

@@ -7,11 +7,12 @@ import { useAuthContext } from "../Contexts/AuthContext";
 import { IUser, ITeam } from "../typings/Userinterface";
 
 const ManagerPage = () => {
+  const { currentUser, setIsLoading } = useAuthContext();
+  const { getManagersGroup } = useUsers()
+  
   const [show, setShow] = useState<boolean | null>(null)
   const [user, setUser] = useState<IUser | undefined>()
   const [team, setTeam] = useState<ITeam | undefined>()
-  const { currentUser, setIsLoading } = useAuthContext();
-  const { getManagersGroup } = useUsers()
 
   const setUserFromUserlist = (user: IUser) => {
     setUser(user)
