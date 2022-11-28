@@ -122,6 +122,10 @@ select {
     width: 100%;
     margin: 3rem 0;
 
+    p {
+        word-wrap: break-word;
+    }
+
     .table-headers {
         margin-bottom: 0.5rem;
         font-weight: 600;

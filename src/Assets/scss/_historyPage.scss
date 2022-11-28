@@ -6,6 +6,7 @@
 	min-height: calc(100vh - 4rem);
 	width: 100%;
 	background-image: url(../Images/getshitdone.jpg);
+	background-position: left;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -68,6 +69,7 @@
 					p {
 						margin: 0;
 						font-size: 0.8rem;
+						word-wrap: break-word;
 					}
 
 					.body {
