@@ -10,6 +10,12 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 
+    .user-wrapper {
+        padding: 3rem 0;
+        width: 100%;
+        background-image: none;
+    }
+
 	.history-list-wrapper {
 		width: 90%;
 		background-color: rgba(199, 218, 212, 0.9);

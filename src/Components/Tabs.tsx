@@ -76,7 +76,9 @@ const Tabs = ({ goals, user }: TabsProps) => {
   }, [goals, toggleState])
 
   return (
-    <>
+    
+    <div className="tabs-wrapper">
+
       <Modal setShow={setShow} show={show} />
 
       <div className="select-header">
@@ -191,8 +193,9 @@ const Tabs = ({ goals, user }: TabsProps) => {
           )
         )}
       </div>
-    </>
+    </div>
   );
+  
 }
 
 export default Tabs
