@@ -193,7 +193,7 @@ const useUsers = () => {
 
     try {
       await fetch(
-        "https://graph.microsoft.com/v1.0/users/99f714b1-4b6f-4a38-99f2-ece0e4043919/transitiveMemberOf/microsoft.graph.group?$count=true&$expand=owners($select=id,city,companyName,department,displayName,givenName,surname,jobTitle,mail,mailNickname,mobilePhone,userPrincipalName)",
+        "https://graph.microsoft.com/v1.0/users/3f9b30de-ba17-4aa0-9dc1-93f680463543/transitiveMemberOf/microsoft.graph.group?$count=true&$expand=owners($select=id,city,companyName,department,displayName,givenName,surname,jobTitle,mail,mailNickname,mobilePhone,userPrincipalName)",
         options
       )
         .then(async (response) => {
@@ -213,7 +213,7 @@ const useUsers = () => {
                 // eslint-disable-next-line array-callback-return
               }) => {
                 const team = teams.find(name => name === group.displayName)
-                const isOwner = group.owners.find(item => item.jobTitle === "Team Manager" && item.displayName === "Pierre Aupeix");
+                const isOwner = group.owners.find(item => item.jobTitle === "Team Manager" && item.displayName === "Stefan Cumtell");
 
                 if (team && isOwner) return {name: team, teamId: group.id};
               }).filter((id: undefined | string) => id !== undefined);
@@ -280,14 +280,14 @@ const useUsers = () => {
 
 
 
-    const postSendMail = async (accessToken: string) => {
+    const postSendMail = async (accessToken: string, mail: string) => {
             let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", "Bearer " + accessToken);
+        myHeaders.append("Authorization",  `Bearer ${accessToken}`);
             
         let raw = JSON.stringify({
         "message": {
-        "subject": "GoalNow - Have you reached your goals?",
+        "subject": "GoalsNow - Have you reached your goals?",
                 "body": {
                     "contentType": "Text",
                     "content": "This is a friendly reminder from your manager to take look at your goals. Go to GoalsNow!"
@@ -295,14 +295,13 @@ const useUsers = () => {
                 "toRecipients": [
                 {
                     "emailAddress": {
-                        "address": "Malin.Olsson@geshdo.com"
+                        "address": mail
                     }
                 }
                 ]   
         },
         "saveToSentItems": "true"
         });
-        console.log("Mail-sent", raw)
         let requestOptions :any = {
             method: 'POST',
             headers: myHeaders,
