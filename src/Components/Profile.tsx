@@ -10,12 +10,12 @@ type ProfileProps = {
 }
 
 const Profile = ({ user }:ProfileProps) => {
-  const [photoUrl, setPhotoUrl] = useState<string>();
-  const [updatedTarget, setUpdatedTarget] = useState<IUser>()
-
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl, getProfilePhotoUrl } = useUsers()
   const { id } = useParams()
+
+  const [photoUrl, setPhotoUrl] = useState<string>();
+  const [updatedTarget, setUpdatedTarget] = useState<IUser>()
   
   useEffect(() => {
     if (!currentUser) {

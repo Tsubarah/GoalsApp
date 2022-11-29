@@ -1,24 +1,26 @@
 import { useState, useEffect } from "react";
 import Table from './Table';
 import { IGoal } from '../typings/Goalinterface'
+import { IUser } from '../typings/Userinterface'
 import Modal from '../Components/Modal'
 import TabsDetails from '../Components/TabsDetails'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useAuthContext } from "../Contexts/AuthContext";
 
 // Types are used for props 
 type TabsProps = {
   goals: IGoal[],
+  user: IUser | undefined,
 }
 
-const Tabs = ({ goals }: TabsProps) => {
+const Tabs = ({ goals, user }: TabsProps) => {
+  const { currentUser } = useAuthContext()
+  const { id } = useParams()
+
   const [toggleState, setToggleState] = useState(1);
   const [show, setShow] = useState<boolean>(false)
   const [month, setMonth] = useState<string>("all")
-  const { currentUser } = useAuthContext()
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
-
-  
+  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
   const sections = [
     {
@@ -47,7 +49,6 @@ const Tabs = ({ goals }: TabsProps) => {
     }
   ]
 
-  // const incompleteGoals = sections[0].goals.filter(goal => !goal.isComplete)
   const prioGoals = sections[0].goals
   const filterByCategories = sections.filter(section => section.name !== "Prio")
   const filterPrioPD = sections[0].goals.filter(goal => goal.category === "personalDevelopment")
@@ -75,7 +76,9 @@ const Tabs = ({ goals }: TabsProps) => {
   }, [goals, toggleState])
 
   return (
-    <>
+    
+    <div className="tabs-wrapper">
+
       <Modal setShow={setShow} show={show} />
 
       <div className="select-header">
@@ -97,17 +100,17 @@ const Tabs = ({ goals }: TabsProps) => {
           <span className="custom-arrow"></span>
         </div>
         <div>
-           { isManager ? 
-          <button
-            className="button create-btn"
-            onClick={() => setShow(!show)}
-          >
-            Create goal
-          </button>
-          : "" }
-          <Link to={`/goals/history/${currentUser?.id}`}>
-            <button className='button my-history-btn'>History →</button>
-          </Link>
+          {isManager ? 
+            <button
+              className="button create-btn"
+              onClick={() => setShow(!show)}
+            >
+              Create goal
+            </button>
+            : "" }
+            <Link to={`/goals/history/${user && user.id === id ? user.id : currentUser?.id}`}>
+              <button className='button my-history-btn'>History →</button>
+            </Link>
         </div>
       </div>
             
@@ -190,8 +193,9 @@ const Tabs = ({ goals }: TabsProps) => {
           )
         )}
       </div>
-    </>
+    </div>
   );
+  
 }
 
 export default Tabs

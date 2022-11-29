@@ -2,18 +2,16 @@ import Accordion from "./Accordion"
 import Moment from 'react-moment'
 import EditGoalModal from "./EditGoalModal"
 import { IGoal } from '../typings/Goalinterface'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 type TabsProps = {
   goals: IGoal[],
 }
 
 const Table = ({ goals }: TabsProps) => {
-  const [slide, setSlide] = useState<string>("")
 
   useEffect(() => {
-    console.log('slide', slide)
-  }, [slide, goals])
+  }, [goals])
 
   return (
     <>
@@ -43,7 +41,7 @@ const Table = ({ goals }: TabsProps) => {
         </div>
         <div className="body-wrapper">
           {goals.map((goal, i) => (
-            <div className={`cell-row ${goal.isComplete ? slide : ""}`} key={i}>
+            <div className="cell-row" key={i}>
 
               <div className="goal-info">
                 <div className="cells cells-prio">
@@ -75,7 +73,7 @@ const Table = ({ goals }: TabsProps) => {
                       <Accordion data={review} />
                     </div>
                   ))}
-                  <EditGoalModal setSlide={setSlide} goal={goal} />
+                  <EditGoalModal goal={goal} />
                 </div>
               </div>
             </div>

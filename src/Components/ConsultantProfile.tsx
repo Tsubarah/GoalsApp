@@ -9,10 +9,10 @@ type ConsultantProps = {
 }
 
 const ConsultantProfile = ({ user }:ConsultantProps) => {
-  const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
-
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
+
+  const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
 
   const getPhotos = () => {
     if (!currentUser) {

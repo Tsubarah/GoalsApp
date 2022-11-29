@@ -31,10 +31,6 @@ export const getGoals = async (uid: string | undefined):Promise<IGoal[]> => {
   return get(`/goals/${uid}`)
 }
 
-// export const getGoals = ():Promise<IGoal[]> => {
-//   return get('/goals')
-// }
-
 
 /**
  * Get single goal

@@ -5,8 +5,7 @@ import { useAuthContext } from "../Contexts/AuthContext";
 import { useParams } from 'react-router-dom'
 import goalIcon from '../Assets/Images/goal-icon.png'
 import { IUser } from '../typings/Userinterface'
-import useUsers from "../services/useUsers"
-
+import useUsers from "../services/useUsers";
 
 type UserInfoProps = {
   goals: IGoal[],
@@ -44,11 +43,11 @@ console.log("who",user)
       <div className="user-wrapper">
         <div className="user">
           <div className="user-stats">
-            {updatedTarget && id === updatedTarget.id ? (
+            {user && id === user.id ? (
               <>
-                <p>{updatedTarget?.mail}</p>
+                <p>{user?.mail}</p>
                 <hr />
-                <p><strong>ID:</strong> {updatedTarget?.id}</p>
+                <p><strong>ID:</strong> {user?.id}</p>
                 <h2>Goals</h2>
                 <hr />
                 <div className="user-goals">
@@ -75,7 +74,7 @@ console.log("who",user)
                   </div>
                 </div>
                 <hr />
-                <p>Send an email to remind your consultant about their goals</p>
+                <p>Remind your consultant about their goals</p>
                 <button onClick={()=>handleSendMail()} className='send-mail-button button'>Send E-mail</button>
               </>
             ) :

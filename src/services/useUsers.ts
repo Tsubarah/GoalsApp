@@ -60,7 +60,6 @@ const useUsers = () => {
       headers: headers,
     };
 
-    // let users: IUser[] | undefined
     try {
       await fetch("https://graph.microsoft.com/v1.0/users?$count=true&$orderby=displayName&$filter=((endsWith(mail,'@geshdo.com'))and (accountEnabled eq true))", options)
         .then(async (response) => {
@@ -97,9 +96,7 @@ const useUsers = () => {
           throw new Error("Users not found");
         });
     } catch (err) {
-      // users = [];
     }
-    // return users;
   };
 
   const getUsersPhotoUrl = async (accessToken: string, id: string) => {
@@ -176,7 +173,6 @@ const useUsers = () => {
     } catch (err) {
 
     }
-    // return imageUrl;
   };
 
 

@@ -14,7 +14,6 @@ const RequireAuth = ({
   useEffect(() => {
     setIsLoading(true)
 		if (currentUser) {
-			// console.log('currentUser', currentUser)
 			setIsLoading(false)
 		}
 

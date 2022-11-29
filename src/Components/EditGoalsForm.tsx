@@ -10,17 +10,16 @@ type EditProps = {
   goal: IGoal,
   show: boolean,
   setShow: (show: boolean) => void,
-  setSlide: (slide: string) => void,
 }
 
-const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
+const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
+  const { currentUser } = useAuthContext()
+  const { deleteGoal, editGoal } = useGoal();
+
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
-  const { currentUser } = useAuthContext()
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
-
+  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
   
-  const { deleteGoal, editGoal } = useGoal();
 
   const {
     control,
@@ -43,8 +42,6 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
         ],
     },
 })
-  
-  console.log('goal', goal)
 
   const { fields } = useFieldArray({
     control,
@@ -67,11 +64,6 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
       deadline: selectedDate,
       uid: goal.uid
     }
-    console.log('data', data)
-
-    // if (isComplete) {
-    //   setSlide("slide-out-right")
-    // }
 
     console.log('updatedGoal', updatedGoal)
     editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
@@ -198,7 +190,7 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
           </div>
         ))}
 
-          { isManager? 
+        { isManager ? 
         <div className="buttons-container">
           <div>
             <button 
@@ -228,8 +220,8 @@ const EditGoalsForm = ({ goal, show, setShow, setSlide }: EditProps) => {
             </button>
           </div>
         </div>
-            :"" }
-           
+
+          : ""}  
       </form>
     </div>
   )

@@ -1,6 +1,10 @@
 .user-wrapper {
-    padding-bottom: 2rem;
+    padding: 3rem 0;
     width: 100%;
+	background-image: url(../Images/arrow.png);
+	background-size:cover;
+	background-repeat: no-repeat;
+	background-position: center;
 
     .user {
         padding: 2rem;

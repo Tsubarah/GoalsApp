@@ -13,10 +13,9 @@ type itemProps = {
 }
 
 const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemProps) => {
-  const [target, setTarget] = useState<IUser>(user)
-  
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
+  const [target, setTarget] = useState<IUser>(user)
 
   const update = (e: any) => {
     if (currentUser) {
@@ -53,10 +52,10 @@ const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemPr
         onClick={(e) => update(e)}
       >
         <img 
+          alt="" 
           src={target?.imageUrl 
                 ? target.imageUrl 
                 : placeholder} 
-          alt="" 
         />
         <h3>{target?.displayName}</h3>
       </button>

@@ -6,7 +6,7 @@ let auth = {
     "https://login.microsoftonline.com/cd20e4c9-f82c-4d3e-9224-90f2bc4be1a0/v2.0",
   authority: "https://login.microsoftonline.com/geshdo.com",
   redirectUri: "http://localhost:3000/auth", // https://goalsnow.geshdo.dev in dev
-  postLogoutRedirectUri: "http://localhost:3000/auth",
+  postLogoutRedirectUri: "http://localhost:3000/",
 };
 
 export const msalConfig = {
