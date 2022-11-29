@@ -5,6 +5,7 @@ import { useAuthContext } from "../Contexts/AuthContext";
 import { useParams } from 'react-router-dom'
 import goalIcon from '../Assets/Images/goal-icon.png'
 import { IUser } from '../typings/Userinterface'
+import useUsers from "../services/useUsers";
 
 type UserInfoProps = {
   goals: IGoal[],
@@ -12,11 +13,24 @@ type UserInfoProps = {
 }
 
 const UserInfo = ({ goals, user }: UserInfoProps) => {
-  const { currentUser} = useAuthContext()
+  const { currentUser } = useAuthContext()
   const { id } = useParams()
+  const [updatedTarget, setUpdatedTarget] = useState<IUser | undefined>(user)
+  const { postSendMail } = useUsers()
 
-  const goalsCompleted = goals.filter((goal)=> goal.isComplete)
-  const goalInComplete = goals.filter((goal) => !goal.isComplete)
+  const handleSendMail = () => {
+    if (!currentUser) {
+      return
+    }
+    if (!user) {
+      return
+    }
+    postSendMail(currentUser.token, user.mail)
+  }
+  
+  const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
+  const goalInComplete = goals.filter((goal) => goal.isComplete === false)
+
 
     return (
       <div className="user-wrapper">
@@ -54,7 +68,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
                 </div>
                 <hr />
                 <p>Remind your consultant about their goals</p>
-                <button onClick={()=>{}} className='send-mail-button button'>Send mail</button>
+                <button onClick={()=>handleSendMail()} className='send-mail-button button'>Send E-mail</button>
               </>
             ) :
               <>

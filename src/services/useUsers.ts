@@ -280,14 +280,14 @@ const useUsers = () => {
 
 
 
-    const postSendMail = async (accessToken: string) => {
+    const postSendMail = async (accessToken: string, mail: string) => {
             let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", "Bearer " + accessToken);
             
         let raw = JSON.stringify({
         "message": {
-        "subject": "GoalNow - Have you reached your goals?",
+        "subject": "GoalsNow - Have you reached your goals?",
                 "body": {
                     "contentType": "Text",
                     "content": "This is a friendly reminder from your manager to take look at your goals. Go to GoalsNow!"
@@ -295,14 +295,13 @@ const useUsers = () => {
                 "toRecipients": [
                 {
                     "emailAddress": {
-                        "address": "Malin.Olsson@geshdo.com"
+                        "address": mail
                     }
                 }
                 ]   
         },
         "saveToSentItems": "true"
         });
-        console.log("Mail-sent", raw)
         let requestOptions :any = {
             method: 'POST',
             headers: myHeaders,

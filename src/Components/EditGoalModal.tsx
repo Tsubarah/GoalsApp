@@ -13,6 +13,7 @@ const EditGoalModal = ({goal}: ModalProps) => {
   const [show, setShow] = useState(false)
   const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
+  
   return (
     <>
       {isManager ?   
