@@ -1,6 +1,10 @@
 .user-wrapper {
-    margin: 2rem 0;
+    padding: 3rem 0;
     width: 100%;
+	background-image: url(../Images/arrow.png);
+	background-size:cover;
+	background-repeat: no-repeat;
+	background-position: center;
 
     .user {
         padding: 2rem;
@@ -69,9 +73,9 @@
     }
 
     .user-profile {
-        width: 50%;
-        display: flex;
-        justify-content: flex-end;
+        width: 35%;
+        // display: flex;
+        // justify-content: flex-end;
         
         .profile {
             margin: 0;

@@ -1,7 +1,6 @@
 .history-page-wrapper {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	min-height: calc(100vh - 4rem);
 	width: 100%;
@@ -10,6 +9,12 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+
+    .user-wrapper {
+        padding: 3rem 0;
+        width: 100%;
+        background-image: none;
+    }
 
 	.history-list-wrapper {
 		width: 90%;
