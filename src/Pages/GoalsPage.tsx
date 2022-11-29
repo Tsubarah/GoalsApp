@@ -10,7 +10,7 @@ import { IUser } from '../typings/Userinterface'
 const GoalsPage = () => {
   const { id } = useParams()
   const { data: goals } = useQuery<IGoal[]>(['goals', id], () => GoalsAPI.getGoals(id))
-  
+  const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
 
   useEffect(() => {
@@ -19,16 +19,22 @@ const GoalsPage = () => {
     setUser(target)
   }, [])
 
+  useEffect(()=> {
+    setIncompletedGoals(goals?.filter((goal) => !goal.isComplete));
+    console.log('inCompletedGoals', inCompletedGoals)
+},[goals])
+
   return (
     <div className="goals-page-wrapper">
-
+      
       {goals && (
-        <>
-          <UserInfo goals={goals} user={user} />
-
-          <Tabs goals={goals} user={user} />
-        </>
+        <UserInfo goals={goals} user={user} />
       )}
+      
+      {inCompletedGoals && (
+        <Tabs goals={inCompletedGoals} user={user} />
+      )}
+      
     </div>
   )
 }

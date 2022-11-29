@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IGoal } from '../typings/Goalinterface'
 import EditGoalModal from "./EditGoalModal";
 import Moment from "react-moment";
@@ -7,7 +7,12 @@ type HistoryProps = {
 	goals: IGoal[],
 }
 
-const HistoryList = ({ goals }: HistoryProps) => {
+const HistoryList = ({ goals}: HistoryProps) => {
+	const [swipeId, setSwipeId] = useState("")
+
+	const handleId = (id:string) => {
+	  setSwipeId(id)
+	}
 
 	const completedGoals = goals.filter((goal) => goal.isComplete);
 
@@ -29,7 +34,7 @@ const HistoryList = ({ goals }: HistoryProps) => {
 				<div className="history-body">
 					<ul>
 						{completedGoals.map((goal, i) => (
-							<li key={i} className="history-list-item">
+							<li key={i} className={goal.id === swipeId ? "history-list-item slide-out-left" : "history-list-item" }>
 								<div className="body history-creationDate">
 									<p><Moment format="YYYY/MM/DD">{goal.creationDate}</Moment></p>
 								</div>
@@ -46,7 +51,7 @@ const HistoryList = ({ goals }: HistoryProps) => {
 									<p><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></p>
 								</div>
 								<div className=" body history-button-holder">
-									<EditGoalModal goal={goal} />
+									<EditGoalModal goal={goal} handleId={handleId} />
 								</div>
 							</li>
 						))}

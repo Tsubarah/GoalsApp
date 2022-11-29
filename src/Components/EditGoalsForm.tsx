@@ -10,16 +10,16 @@ type EditProps = {
   goal: IGoal,
   show: boolean,
   setShow: (show: boolean) => void,
+  handleId: (id:string) => void
 }
 
-const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
+const EditGoalsForm = ({ goal, show, setShow, handleId }: EditProps) => {
   const { currentUser } = useAuthContext()
   const { deleteGoal, editGoal } = useGoal();
 
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
   const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
-  
 
   const {
     control,
@@ -56,6 +56,8 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
   }
 
   const onUpdateHandler = async (data: IGoal) => {
+    setShow(!show)
+  
     const updatedGoal: IGoal = {
       ...data,
       id: goal.id,
@@ -64,11 +66,12 @@ const EditGoalsForm = ({ goal, show, setShow }: EditProps) => {
       deadline: selectedDate,
       uid: goal.uid
     }
+    handleId(updatedGoal.id)
 
-    console.log('updatedGoal', updatedGoal)
-    editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
-    setShow(!show)
-  }
+    setTimeout(() => {
+      editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
+    }, 1000);
+}
 
   useEffect(() => {
     if (!goal) return
