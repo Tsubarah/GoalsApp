@@ -302,7 +302,6 @@ const useUsers = () => {
         },
         "saveToSentItems": "true"
         });
-        console.log("Mail-sent", raw)
         let requestOptions :any = {
             method: 'POST',
             headers: myHeaders,

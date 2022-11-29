@@ -25,19 +25,12 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
     if (!user) {
       return
     }
-    console.log("running")
     postSendMail(currentUser.token, user.mail)
-    
   }
   
-console.log("who",user)
-
   const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
   const goalInComplete = goals.filter((goal) => goal.isComplete === false)
 
-
-
-  console.log('currentUser', currentUser)
 
     return (
       <div className="user-wrapper">
