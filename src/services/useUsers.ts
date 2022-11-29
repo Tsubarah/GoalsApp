@@ -284,7 +284,7 @@ const useUsers = () => {
 
 
 
-    const postSendMail = async (accessToken: string) => {
+    const postSendMail = async (accessToken: string, mail: string) => {
             let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", "Bearer " + accessToken);
@@ -299,7 +299,7 @@ const useUsers = () => {
                 "toRecipients": [
                 {
                     "emailAddress": {
-                        "address": "Malin.Olsson@geshdo.com"
+                        "address": mail
                     }
                 }
                 ]   

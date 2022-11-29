@@ -15,16 +15,17 @@ const EditGoalModal = ({ goal, setSlide }: ModalProps) => {
   const { currentUser } = useAuthContext()
   const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
 
+  
   return (
     <>
-       { isManager ?   
+       
       <button 
         className="button edit-btn" 
         onClick={() => {setShow(!show)}}
       >
         {isComplete ? "View": "Edit"}
       </button>
-       : ""}   
+     
       {
         show && (
 

@@ -5,58 +5,22 @@ import Moment from "react-moment";
 
  type HistoryProps = {
     goals: IGoal[],
-    
  }
-
 
 const HistoryList = ({ goals }:HistoryProps) => {
     const [slide, setSlide] = useState("")
-    // const [completedDev, setCompletedDev] = useState([]);
-    // const [completedCus, setCompletedCus] = useState([]);
-    // const [completedBui, setCompletedBui] = useState([]);
-
-    const filtering = () => {
-       
-
-        // const completedDevGoals = completedGoals.filter(
-        //     (goal) => goal.category === "personalDevelopment"
-        // );
-        // setCompletedDev(completedDevGoals);
-
-        // const completedCusGoals = completedGoals.filter(
-        //     (goal) => goal.category === "customerInteraction"
-        // );
-        // setCompletedCus(completedCusGoals);
-
-        // const completedBuiGoals = completedGoals.filter(
-        //     (goal) => goal.category === "buildingGeshdo"
-        // );
-        // setCompletedBui(completedBuiGoals);
-    };
+ 
     const completedGoals = goals.filter((goal) => goal.isComplete === true);
 
 
     useEffect(() => {
-        filtering();
     }, [slide, goals]);
-    console.log('completed', completedGoals)
+
+   
+
     return (
         <>
-             {/* <div>
-                <h2 className="history-headers">Personal Development</h2>
-                <Table goals={completedDev} />
-            </div>
-
-            <div>
-                <h2 className="history-headers">Customer Interaction</h2>
-                <Table goals={completedCus} />
-            </div>
-
-            <div>
-                <h2 className="history-headers">Building Geshdo</h2>
-                <Table goals={completedBui} />
-            </div>  */}
-
+        
              <div className="history-list-wrapper">
 
                 <div className="history-header">

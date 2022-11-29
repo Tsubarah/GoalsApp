@@ -14,10 +14,24 @@ type UserInfoProps = {
 }
 
 const UserInfo = ({ goals, user }: UserInfoProps) => {
-  const { currentUser} = useAuthContext()
+  const { currentUser } = useAuthContext()
   const { id } = useParams()
   const [updatedTarget, setUpdatedTarget] = useState<IUser | undefined>(user)
+  const { postSendMail } = useUsers()
 
+  const handleSendMail = () => {
+    if (!currentUser) {
+      return
+    }
+    if (!user) {
+      return
+    }
+    console.log("running")
+    postSendMail(currentUser.token, user.mail)
+    
+  }
+  
+console.log("who",user)
 
   const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
   const goalInComplete = goals.filter((goal) => goal.isComplete === false)
@@ -25,7 +39,6 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
 
 
   console.log('currentUser', currentUser)
-
 
     return (
       <div className="user-wrapper">
@@ -63,7 +76,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
                 </div>
                 <hr />
                 <p>Send an email to remind your consultant about their goals</p>
-                <button onClick={()=>{}} className='send-mail-button button'>Send E-mail</button>
+                <button onClick={()=>handleSendMail()} className='send-mail-button button'>Send E-mail</button>
               </>
             ) :
               <>
