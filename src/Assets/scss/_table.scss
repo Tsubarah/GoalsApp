@@ -6,6 +6,10 @@
         width: 100%;
     }
     
+    p {
+        word-wrap: break-word;
+    }
+    
     .header-wrapper {
         display: flex;
         justify-content: space-around;
