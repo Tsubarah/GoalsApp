@@ -291,7 +291,7 @@ const useUsers = () => {
             
         let raw = JSON.stringify({
         "message": {
-        "subject": "GoalNow - Have you reached your goals?",
+        "subject": "GoalsNow - Have you reached your goals?",
                 "body": {
                     "contentType": "Text",
                     "content": "This is a friendly reminder from your manager to take look at your goals. Go to GoalsNow!"
