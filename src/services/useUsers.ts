@@ -283,7 +283,7 @@ const useUsers = () => {
     const postSendMail = async (accessToken: string, mail: string) => {
             let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", "Bearer " + accessToken);
+        myHeaders.append("Authorization",  `Bearer ${accessToken}`);
             
         let raw = JSON.stringify({
         "message": {
