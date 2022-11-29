@@ -9,7 +9,6 @@ type ModalProps = {
 
 const EditGoalModal = ({goal}: ModalProps) => {
   const { currentUser } = useAuthContext()
-  
   const [show, setShow] = useState(false)
   const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Team Manager')
 
