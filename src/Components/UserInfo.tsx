@@ -15,7 +15,7 @@ type UserInfoProps = {
 const UserInfo = ({ goals, user }: UserInfoProps) => {
   const { currentUser } = useAuthContext()
   const { id } = useParams()
-  const [updatedTarget, setUpdatedTarget] = useState<IUser | undefined>(user)
+  // const [updatedTarget, setUpdatedTarget] = useState<IUser | undefined>(user)
   const { postSendMail } = useUsers()
 
   const handleSendMail = () => {
@@ -31,85 +31,83 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
   const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)
   const goalInComplete = goals.filter((goal) => goal.isComplete === false)
 
-
-    return (
-      <div className="user-wrapper">
-        <div className="user">
-          <div className="user-stats">
-            {user && id === user.id ? (
-              <>
-                <p>{user?.mail}</p>
-                <hr />
-                <p><strong>ID:</strong> {user?.id}</p>
-                <h2>Goals</h2>
-                <hr />
-                <div className="user-goals">
-                  <div className="user-all-goals goals">
-                    <div className="goal-inner">
-                      <img src={goalIcon} alt="goals" />
-                      <p className="goal-number"><strong>{goals.length}</strong></p>
-                    </div>
-                    <p className="goals-p">All</p>
-                  </div>
-                  <div className="user-incomplete-goals goals">
-                    <div className="goal-inner">
-                      <img src={goalIcon} alt="goals" />
-                      <p className="goal-number"><strong>{goalInComplete.length}</strong></p>
-                    </div>
-                    <p className="goals-p">Incomplete</p>
-                  </div>
-                  <div className="user-complete-goals goals">
-                    <div className="goal-inner">
+  return (
+    <div className="user-wrapper">
+      <div className="user">
+        <div className="user-stats">
+          {user && id === user.id ? (
+            <>
+              <p>{user?.mail}</p>
+              <hr />
+              <p><strong>ID:</strong> {user?.id}</p>
+              <h2>Goals</h2>
+              <hr />
+              <div className="user-goals">
+                <div className="user-all-goals goals">
+                  <div className="goal-inner">
                     <img src={goalIcon} alt="goals" />
-                    <p className="goal-number"><strong>{goalsCompleted.length}</strong></p>
-                    </div>
-                    <p className="goals-p">Completed</p>
+                    <p className="goal-number"><strong>{goals.length}</strong></p>
                   </div>
+                  <p className="goals-p">All</p>
                 </div>
-                <hr />
-                <p>Remind your consultant about their goals</p>
-                <button onClick={()=>handleSendMail()} className='send-mail-button button'>Send E-mail</button>
-              </>
-            ) :
-              <>
-                <p>{currentUser?.mail}</p>
-                <hr />
-                 <p><strong>ID:</strong> {currentUser?.id}</p> 
-                <h2>Goals</h2>
-                <hr />
-                <div className="user-goals">
-                  <div className="user-all-goals goals">
-                    <div className="goal-inner">
-                      <img src={goalIcon} alt="goals" />
-                      <p className="goal-number"><strong>{goals.length}</strong></p>
-                    </div>
-                    <p className="goals-p">All</p>
-                  </div>
-                  <div className="user-incomplete-goals goals">
-                    <div className="goal-inner">
-                      <img src={goalIcon} alt="goals" />
-                      <p className="goal-number"><strong>{goalInComplete.length}</strong></p>
-                    </div>
-                    <p className="goals-p">Incomplete</p>
-                  </div>
-                  <div className="user-complete-goals goals">
-                    <div className="goal-inner">
+                <div className="user-incomplete-goals goals">
+                  <div className="goal-inner">
                     <img src={goalIcon} alt="goals" />
-                    <p className="goal-number"><strong>{goalsCompleted.length}</strong></p>
-                    </div>
-                    <p className="goals-p">Completed</p>
+                    <p className="goal-number"><strong>{goalInComplete.length}</strong></p>
                   </div>
+                  <p className="goals-p">Incomplete</p>
                 </div>
-                <hr />
-              </>
-            }
-          </div>
-          <div className="user-profile">
-            <Profile user={user} />
-          </div>
+                <div className="user-complete-goals goals">
+                  <div className="goal-inner">
+                  <img src={goalIcon} alt="goals" />
+                  <p className="goal-number"><strong>{goalsCompleted.length}</strong></p>
+                  </div>
+                  <p className="goals-p">Completed</p>
+                </div>
+              </div>
+              <hr />
+              <p>Remind your consultant about their goals</p>
+              <button onClick={()=>handleSendMail()} className='send-mail-button button'>Send E-mail</button>
+            </>
+          ) :
+            <>
+              <p>{currentUser?.mail}</p>
+              <hr />
+                <p><strong>ID:</strong> {currentUser?.id}</p> 
+              <h2>Goals</h2>
+              <hr />
+              <div className="user-goals">
+                <div className="user-all-goals goals">
+                  <div className="goal-inner">
+                    <img src={goalIcon} alt="goals" />
+                    <p className="goal-number"><strong>{goals.length}</strong></p>
+                  </div>
+                  <p className="goals-p">All</p>
+                </div>
+                <div className="user-incomplete-goals goals">
+                  <div className="goal-inner">
+                    <img src={goalIcon} alt="goals" />
+                    <p className="goal-number"><strong>{goalInComplete.length}</strong></p>
+                  </div>
+                  <p className="goals-p">Incomplete</p>
+                </div>
+                <div className="user-complete-goals goals">
+                  <div className="goal-inner">
+                  <img src={goalIcon} alt="goals" />
+                  <p className="goal-number"><strong>{goalsCompleted.length}</strong></p>
+                  </div>
+                  <p className="goals-p">Completed</p>
+                </div>
+              </div>
+              <hr />
+            </>
+          }
+        </div>
+        <div className="user-profile">
+          <Profile user={user} />
         </div>
       </div>
-    
+    </div>
   )
 };
 

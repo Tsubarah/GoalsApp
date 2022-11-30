@@ -28,20 +28,20 @@ const EditGoalsForm = ({ goal, show, setShow, handleId }: EditProps) => {
     formState: { errors },
   } = useForm<IGoal>({
     defaultValues: {
-        reviews: [
-            {
-                type: "half_year_review",
-                name: "Half year review",
-                value: goal?.reviews[0].value || "",
-            },
-            {
-                type: "end_of_year_review",
-                name: "End of year review",
-                value: goal?.reviews[0].value || "",
-            },
-        ],
+      reviews: [
+        {
+            type: "half_year_review",
+            name: "Half year review",
+            value: goal?.reviews[0].value || "",
+        },
+        {
+            type: "end_of_year_review",
+            name: "End of year review",
+            value: goal?.reviews[0].value || "",
+        },
+      ],
     },
-})
+  })
 
   const { fields } = useFieldArray({
     control,
@@ -71,24 +71,24 @@ const EditGoalsForm = ({ goal, show, setShow, handleId }: EditProps) => {
     setTimeout(() => {
       editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
     }, 1000);
-}
+  }
 
   useEffect(() => {
     if (!goal) return
     setSelectedDate(goal.deadline)
   }, [goal])
 
-
   return (
     <div>
       <form onSubmit={handleSubmit(onUpdateHandler)}>
         <div className="top-section">
-
+          
           <div className="left">
             <label>
               <p className="label-p">Type of Goal:</p>
             </label>
-            <select {...register("category")}
+            <select 
+              {...register("category")}
               id="category"
               defaultValue={goal.category}
             >
@@ -102,8 +102,9 @@ const EditGoalsForm = ({ goal, show, setShow, handleId }: EditProps) => {
             <label>
               <p className="label-p">Prio:</p>
             </label>
-            <select {...register("prio", {
-              valueAsNumber: true,
+            <select 
+              {...register("prio", {
+                valueAsNumber: true,
               })}
               id="prio"
               defaultValue={goal.prio}
@@ -134,7 +135,7 @@ const EditGoalsForm = ({ goal, show, setShow, handleId }: EditProps) => {
             <input
               {...register("cost", {
                 valueAsNumber: true,
-                })}
+              })}
               type="number"
               id="cost"
               defaultValue={goal.cost}
@@ -193,38 +194,38 @@ const EditGoalsForm = ({ goal, show, setShow, handleId }: EditProps) => {
           </div>
         ))}
 
-        { isManager ? 
-        <div className="buttons-container">
-          <div>
-            <button 
-              type="submit" 
-              className="button submit-btn"
-            >
-              Save Changes
-            </button>
+        {isManager ? 
+          <div className="buttons-container">
+            <div>
+              <button 
+                type="submit" 
+                className="button submit-btn"
+              >
+                Save Changes
+              </button>
+            </div>
+
+            <div>
+              <button
+                type="button"
+                className="button status-btn" 
+                onClick={() => setIsComplete(!isComplete)}
+              >
+                {isComplete ? "Completed" : "Not completed"}
+              </button>
+            </div>
+
+            <div>
+              <button 
+                className="button delete-btn"
+                onClick={() => onDeleteHandler(goal.id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
 
-          <div>
-            <button
-              type="button"
-              className="button status-btn" 
-              onClick={() => setIsComplete(!isComplete)}
-            >
-              {isComplete ? "Completed" : "Not completed"}
-            </button>
-          </div>
-
-          <div>
-            <button 
-              className="button delete-btn"
-              onClick={() => onDeleteHandler(goal.id)}
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-
-          : ""}  
+        : ""}  
       </form>
     </div>
   )

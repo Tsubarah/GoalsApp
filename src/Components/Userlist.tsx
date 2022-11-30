@@ -1,7 +1,7 @@
 import ListItem from "./ListItem"
 import { useAuthContext } from "../Contexts/AuthContext";
 import { IUser, ITeam } from "../typings/Userinterface";
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 type listProps = {
   show: boolean | null,
@@ -24,9 +24,8 @@ const UserList = ({show, setShow, setUserFromUserlist, team}: listProps)  => {
       setShow(false)
     }
   }
-    sidebarStatus()
-
-    
+  sidebarStatus()
+ 
   return (
     <div className="user-list-wrapper">
       {users && (

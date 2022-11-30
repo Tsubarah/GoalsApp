@@ -13,7 +13,6 @@ const EditGoalModal = ({goal, handleId}: ModalProps) => {
   const [show, setShow] = useState(false)
   const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
-  
   return (
     <>
       {isManager ?   
@@ -24,7 +23,7 @@ const EditGoalModal = ({goal, handleId}: ModalProps) => {
           {isManager ? "Edit": "View"}
         </button>
         
-       : ""}   
+      : ""}   
 
       {show && (
         <div className="addGoal-modal">

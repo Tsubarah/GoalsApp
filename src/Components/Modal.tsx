@@ -21,7 +21,7 @@ const Modal = ({ show, setShow}: ModalProps) => {
             </div>
 
             <h2>Create a Goal</h2>
-
+            
             <hr />
 
             <GoalsForm setShow={setShow} show={show} />

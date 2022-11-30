@@ -47,7 +47,6 @@ const Table = ({ goals }: TabsProps) => {
         <div className="body-wrapper">
           {goals.map((goal, i) => (
             <div className={goal.id === swipeId ? "cell-row slide-out-right" : "cell-row"} key={i}>
-
               <div className="goal-info">
                 <div className="cells cells-prio">
                   <p>{goal.prio}</p>

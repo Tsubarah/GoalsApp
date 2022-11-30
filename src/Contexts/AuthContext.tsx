@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useRef } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { IUser } from '../typings/Userinterface'
 import { useMsal } from '@azure/msal-react'
@@ -115,7 +115,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     }
 };
 
-
   const contextValues: AuthContextInterface = {
     setIsLoading,
     isLoading,
@@ -138,6 +137,5 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   </AuthContext.Provider>
   )
 }
-
 
 export { AuthContextProvider as default, useAuthContext}

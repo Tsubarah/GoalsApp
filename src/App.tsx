@@ -18,35 +18,34 @@ function App() {
 
   useEffect(() => {
 
-  },[currentUser])
+  }, [currentUser])
 
   return (
     <div className="App">
       {currentUser && (
         <>
-        <Navbar />
+          <Navbar />
 
-        <Routes>
-          {isManager ? (
-            <Route path="/" element={<ManagerPage />} />
-          )
-            :<Route path="/" element={<GoalsPage />} />
-          }
-          
-          <Route path="/manager" element={
-          <RequireAuth>
-            <ManagerPage />
-          </RequireAuth>
-          } />
-          
-          <Route path="/goals/:id" element={<GoalsPage />} />
-          <Route path="/goals/history/:id" element={<HistoryPage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/logout" element={<LogoutPage />} />
-        </Routes>
-      </>
+          <Routes>
+            {isManager ? (
+              <Route path="/" element={<ManagerPage />} />
+            )
+              : <Route path="/" element={<GoalsPage />} />
+            }
+
+            <Route path="/manager" element={
+              <RequireAuth>
+                <ManagerPage />
+              </RequireAuth>
+            } />
+
+            <Route path="/goals/:id" element={<GoalsPage />} />
+            <Route path="/goals/history/:id" element={<HistoryPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/logout" element={<LogoutPage />} />
+          </Routes>
+        </>
       )}
-
 
       <ToastContainer autoClose={2000} />
       <ReactQueryDevtools />

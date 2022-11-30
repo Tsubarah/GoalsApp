@@ -36,16 +36,16 @@ const Profile = ({ user }:ProfileProps) => {
     
   },[currentUser, user])
 
-
   return (
     <div className="profile">
       {user && id === user.id ? (
         <>
-          <img src={updatedTarget?.imageUrl 
-                      ? updatedTarget.imageUrl 
-                      : placeholder
-                    } 
-                    alt={updatedTarget?.displayName} 
+          <img 
+            src={updatedTarget?.imageUrl 
+              ? updatedTarget.imageUrl 
+              : placeholder
+            } 
+            alt={updatedTarget?.displayName} 
           />
           <h2>{updatedTarget?.displayName}</h2>
           <h3>{updatedTarget?.jobTitle}</h3>
@@ -53,11 +53,12 @@ const Profile = ({ user }:ProfileProps) => {
       ) : 
         <>
           {photoUrl && 
-            <img src={photoUrl 
-                        ? photoUrl 
-                        : placeholder
-                      } 
-                      alt={currentUser?.displayName} 
+            <img 
+              src={photoUrl 
+                ? photoUrl 
+                : placeholder
+              } 
+              alt={currentUser?.displayName} 
             />
           }
           <h2>{currentUser?.displayName}</h2>

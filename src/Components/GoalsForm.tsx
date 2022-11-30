@@ -111,7 +111,7 @@ const GoalsForm:Function = ({ setShow, show}: FormProps) => {
             <input
               {...register("cost", {
                 valueAsNumber: true,
-                })}
+              })}
               type="number"
               id="cost"
             ></input>

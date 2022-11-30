@@ -48,14 +48,17 @@ const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemPr
     <li className={"item"}>
       <button 
         id={id} 
-        className={isActive === `${id}` ? "active" : ""} 
+        className={isActive === `${id}` 
+          ? "active" 
+          : ""} 
         onClick={(e) => update(e)}
       >
         <img 
           alt="" 
           src={target?.imageUrl 
-                ? target.imageUrl 
-                : placeholder} 
+            ? target.imageUrl 
+            : placeholder
+          } 
         />
         <h3>{target?.displayName}</h3>
       </button>

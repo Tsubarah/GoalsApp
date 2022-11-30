@@ -34,7 +34,6 @@ const useGoal = () => {
     },
   })
 
-
   const deleteGoal = useMutation((id: string) => GoalsAPI.deleteGoal(id), {
     onSuccess() {
       toast.error("Deleting goal! 🗑")
@@ -44,7 +43,6 @@ const useGoal = () => {
       console.log('error', error)
     }
   })
-
 
   return {
     createGoal,

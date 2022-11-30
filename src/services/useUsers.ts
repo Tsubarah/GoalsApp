@@ -278,43 +278,40 @@ const useUsers = () => {
     }
   };
 
+  const postSendMail = async (accessToken: string, mail: string) => {
+          let myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization",  `Bearer ${accessToken}`);
+          
+      let raw = JSON.stringify({
+      "message": {
+      "subject": "GoalsNow - Have you reached your goals?",
+              "body": {
+                  "contentType": "Text",
+                  "content": "This is a friendly reminder from your manager to take look at your goals. Go to GoalsNow!"
+              },
+              "toRecipients": [
+              {
+                  "emailAddress": {
+                      "address": mail
+                  }
+              }
+              ]   
+      },
+      "saveToSentItems": "true"
+      });
+      let requestOptions :any = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+      };
 
-
-    const postSendMail = async (accessToken: string, mail: string) => {
-            let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization",  `Bearer ${accessToken}`);
-            
-        let raw = JSON.stringify({
-        "message": {
-        "subject": "GoalsNow - Have you reached your goals?",
-                "body": {
-                    "contentType": "Text",
-                    "content": "This is a friendly reminder from your manager to take look at your goals. Go to GoalsNow!"
-                },
-                "toRecipients": [
-                {
-                    "emailAddress": {
-                        "address": mail
-                    }
-                }
-                ]   
-        },
-        "saveToSentItems": "true"
-        });
-        let requestOptions :any = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("https://graph.microsoft.com/v1.0/me/sendMail", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
-    }   
-
+      fetch("https://graph.microsoft.com/v1.0/me/sendMail", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }   
 
   return {
     getProfilePhotoUrl,
