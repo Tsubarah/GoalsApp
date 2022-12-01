@@ -14,8 +14,6 @@ import { useEffect } from 'react'
 function App() {
   const { currentUser, isManager } = useAuthContext()
 
-  console.log('currentUser', currentUser)
-
   useEffect(() => {
 
   }, [currentUser])
