@@ -36,13 +36,11 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     if (!currentUser) {
       setIsLoading(true)
     }
-    setTimeout(() => {
-      if (currentUser) {
-        setIsManager(currentUser?.jobTitle === 'Intern')
-        setIsLoading(false)
-      }
-    }, 1500)
-    
+
+    if (currentUser) {
+      setIsManager(currentUser?.jobTitle === 'Intern')
+      setIsLoading(false)
+    }
   }, [currentUser])
 
   useEffect(() => {
@@ -77,7 +75,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
           .catch((error) => {
             console.log("auth error: " + error);
           });
-  }, [accounts, instance]);
+  }, [accounts, instance, currentUser]);
 
   const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
     if (!accessToken) {

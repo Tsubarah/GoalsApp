@@ -29,14 +29,18 @@ const GoalsPage = () => {
 
   return (
     <div className="goals-page-wrapper">
-      
-      {goals && (
-        <UserInfo goals={goals} user={user} />
+      {currentUser && (
+        <>
+          {goals && (
+            <UserInfo goals={goals} user={user} />
+          )}
+          
+          {inCompletedGoals && (
+            <Tabs goals={inCompletedGoals} user={user} />
+          )}
+        </>
       )}
       
-      {inCompletedGoals && (
-        <Tabs goals={inCompletedGoals} user={user} />
-      )}
       
     </div>
   )
