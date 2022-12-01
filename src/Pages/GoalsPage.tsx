@@ -15,6 +15,10 @@ const GoalsPage = () => {
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
 
+  useEffect(() => {
+
+  }, [currentUser])
+
 
   useEffect(() => {
     let targets: any = window.localStorage.getItem('target')
