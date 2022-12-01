@@ -29,7 +29,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   const [currentUser, setCurrentUser] = useState<IUser>()
   const [isManager, setIsManager] = useState<boolean>(false)
   const [users, setUsers] = useState<IUser[]>()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     if (!currentUser) {
