@@ -6,12 +6,16 @@ import { useParams } from 'react-router-dom'
 import { IGoal } from '../typings/Goalinterface'
 import { useEffect, useState } from 'react'
 import { IUser } from '../typings/Userinterface'
+import { useAuthContext } from '../Contexts/AuthContext'
 
 const GoalsPage = () => {
   const { id } = useParams()
+  const { currentUser } = useAuthContext()
   const { data: goals } = useQuery<IGoal[]>(['goals', id], () => GoalsAPI.getGoals(id))
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
+
+  console.log('currentUser', currentUser)
 
   useEffect(() => {
     let targets: any = window.localStorage.getItem('target')
