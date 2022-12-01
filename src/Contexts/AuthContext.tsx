@@ -129,15 +129,9 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   }
 
   return (
-<<<<<<< HEAD
   <AuthContext.Provider value={contextValues}>
     {children}
   </AuthContext.Provider>
-=======
-    <AuthContext.Provider value={contextValues}>
-      {children}
-    </AuthContext.Provider>
->>>>>>> 1908f01 (.)
   )
 }
 

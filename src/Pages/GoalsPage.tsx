@@ -28,11 +28,7 @@ const GoalsPage = () => {
 
   return (
     <div className="goals-page-wrapper">
-<<<<<<< HEAD
       {currentUser && (
-=======
-       {currentUser && (
->>>>>>> 1908f01 (.)
         <>
           {goals && (
             <UserInfo goals={goals} user={user} />
