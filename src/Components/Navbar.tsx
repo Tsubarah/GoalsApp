@@ -1,5 +1,6 @@
 import logo from '../Assets/Images/geshdo-logo.png'
 import { useAuthContext } from '../Contexts/AuthContext';
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const { currentUser,  isManager } = useAuthContext()
@@ -15,7 +16,7 @@ const Navbar = () => {
         {isManager 
           ? <a href="/manager">Consultants</a> 
           : ""}
-            <a href={`/goals/${currentUser?.id}`}>Goals</a>
+            <Link to={`/goals/${currentUser?.id}`}>Goals</Link>
             <a href="/logout">Logout</a>
       </div>
     </nav>
