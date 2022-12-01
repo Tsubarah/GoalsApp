@@ -15,6 +15,9 @@ const GoalsPage = () => {
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
 
+  let cUser: any = window.localStorage.getItem('current')
+  let cUserObj = JSON.parse(cUser)
+
   useEffect(() => {
 
   }, [currentUser])
@@ -33,7 +36,7 @@ const GoalsPage = () => {
 
   return (
     <div className="goals-page-wrapper">
-      {currentUser && (
+      {cUserObj && (
         <>
           {goals && (
             <UserInfo goals={goals} user={user} />

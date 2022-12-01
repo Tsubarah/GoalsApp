@@ -15,8 +15,8 @@ function App() {
   const { currentUser, isManager } = useAuthContext()
 
   useEffect(() => {
-
-  }, [currentUser])
+    window.localStorage.setItem('current', JSON.stringify(currentUser))
+}, [currentUser])
 
   return (
     <div className="App">
