@@ -30,11 +30,11 @@ const GoalsPage = () => {
   return (
     <div className="goals-page-wrapper">
       
-      {currentUser && goals && (
+      {goals && (
         <UserInfo goals={goals} user={user} />
       )}
       
-      {currentUser && inCompletedGoals && (
+      {inCompletedGoals && (
         <Tabs goals={inCompletedGoals} user={user} />
       )}
       
