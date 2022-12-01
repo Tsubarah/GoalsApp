@@ -13,6 +13,13 @@ import LoadingSpinner from './Components/LoadingSpinner';
 
 function App() {
   const { currentUser, isManager, isLoading } = useAuthContext()
+<<<<<<< HEAD
+=======
+  
+  // useEffect(() => {
+
+  // }, [currentUser])
+>>>>>>> 1908f01 (.)
 
   return (
     <div className="App">

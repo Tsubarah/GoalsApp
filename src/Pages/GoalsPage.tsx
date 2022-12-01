@@ -24,11 +24,15 @@ const GoalsPage = () => {
   useEffect(()=> {
     setIncompletedGoals(goals?.filter((goal) => !goal.isComplete));
     console.log('inCompletedGoals', inCompletedGoals)
-},[goals, currentUser])
+},[goals])
 
   return (
     <div className="goals-page-wrapper">
+<<<<<<< HEAD
       {currentUser && (
+=======
+       {currentUser && (
+>>>>>>> 1908f01 (.)
         <>
           {goals && (
             <UserInfo goals={goals} user={user} />

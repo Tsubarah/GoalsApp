@@ -74,7 +74,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
           .catch((error) => {
             console.log("auth error: " + error);
           });
-  }, [accounts, instance, currentUser]);
+  }, [accounts, instance]);
 
   const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
     if (!accessToken) {
@@ -129,9 +129,15 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   }
 
   return (
+<<<<<<< HEAD
   <AuthContext.Provider value={contextValues}>
     {children}
   </AuthContext.Provider>
+=======
+    <AuthContext.Provider value={contextValues}>
+      {children}
+    </AuthContext.Provider>
+>>>>>>> 1908f01 (.)
   )
 }
 
