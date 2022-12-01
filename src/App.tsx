@@ -11,7 +11,17 @@ import RequireAuth from './Components/RequireAuth';
 import { useAuthContext } from './Contexts/AuthContext';
 
 function App() {
-  const { currentUser, isManager } = useAuthContext()
+  // const { currentUser, isManager } = useAuthContext()
+  const currentUser  = {
+      displayName: "string",
+      id: "string",
+      jobTitle: "string",
+      mail: "string", 
+      mobilePhone: 7,
+      imageUrl: "string",
+      token: "string",
+  }
+  console.log('currentUser', currentUser)
 
   return (
     <div className="App">
@@ -20,7 +30,7 @@ function App() {
           <Navbar />
 
           <Routes>
-            {isManager ? (
+            {true ? (
               <Route path="/" element={<ManagerPage />} />
             )
               : <Route path="/" element={<GoalsPage />} />
