@@ -9,17 +9,17 @@ import HistoryPage from './Pages/HistoryPage';
 import LogoutPage from './Pages/LogoutPage';
 import RequireAuth from './Components/RequireAuth';
 import { useAuthContext } from './Contexts/AuthContext';
-import { useEffect } from 'react'
+import LoadingSpinner from './Components/LoadingSpinner';
 
 function App() {
-  const { currentUser, isManager } = useAuthContext()
-
-  useEffect(() => {
-    window.localStorage.setItem('current', JSON.stringify(currentUser))
-}, [currentUser])
+  const { currentUser, isManager, isLoading } = useAuthContext()
 
   return (
     <div className="App">
+      {isLoading && (
+        <LoadingSpinner />
+      )}
+
       {currentUser && (
         <>
           <Navbar />

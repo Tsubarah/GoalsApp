@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import BounceLoader from 'react-spinners/BounceLoader'
 import { IUser } from '../typings/Userinterface'
 import { useMsal } from '@azure/msal-react'
 import { loginRequest } from "../authConfig";
@@ -75,7 +74,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
           .catch((error) => {
             console.log("auth error: " + error);
           });
-  }, [accounts, instance]);
+  }, [accounts, instance, currentUser]);
 
   const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
     if (!accessToken) {
@@ -131,13 +130,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
 
   return (
   <AuthContext.Provider value={contextValues}>
-    {isLoading ? (
-      <div id="loading-spinner">
-        <BounceLoader size={150} color="#77a5c9" />
-      </div>
-    ) : (
-      children
-    )}
+    {children}
   </AuthContext.Provider>
   )
 }
