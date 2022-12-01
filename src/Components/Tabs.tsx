@@ -14,13 +14,12 @@ type TabsProps = {
 }
 
 const Tabs = ({ goals, user }: TabsProps) => {
-  const { currentUser } = useAuthContext()
+  const { currentUser, isManager } = useAuthContext()
   const { id } = useParams()
 
   const [toggleState, setToggleState] = useState(1);
   const [show, setShow] = useState<boolean>(false)
   const [month, setMonth] = useState<string>("all")
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
   const sections = [
     {

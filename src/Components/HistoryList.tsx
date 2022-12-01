@@ -7,10 +7,10 @@ type HistoryProps = {
 	goals: IGoal[],
 }
 
-const HistoryList = ({ goals}: HistoryProps) => {
+const HistoryList = ({ goals }: HistoryProps) => {
 	const [swipeId, setSwipeId] = useState("")
 
-	const handleId = (id:string) => {
+	const handleSwipe = (id:string) => {
 	  setSwipeId(id)
 	}
 
@@ -51,7 +51,7 @@ const HistoryList = ({ goals}: HistoryProps) => {
 									<p><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></p>
 								</div>
 								<div className=" body history-button-holder">
-									<EditGoalModal goal={goal} handleId={handleId} />
+									<EditGoalModal goal={goal} handleSwipe={handleSwipe} />
 								</div>
 							</li>
 						))}

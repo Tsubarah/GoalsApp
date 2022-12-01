@@ -5,13 +5,12 @@ import { useAuthContext } from '../Contexts/AuthContext'
 
 type ModalProps = {
   goal: IGoal,
-  handleId: (id:string) => void
+  handleSwipe: (id:string) => void
 }
 
-const EditGoalModal = ({goal, handleId}: ModalProps) => {
-  const { currentUser } = useAuthContext()
+const EditGoalModal = ({goal, handleSwipe}: ModalProps) => {
+  const { isManager } = useAuthContext()
   const [show, setShow] = useState(false)
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
   return (
     <>
@@ -39,7 +38,7 @@ const EditGoalModal = ({goal, handleId}: ModalProps) => {
           <h2>Edit a Goal</h2>
 
           <hr />
-           <EditGoalsForm setShow={setShow} show={show} goal={goal} handleId={handleId}/> 
+           <EditGoalsForm setShow={setShow} show={show} goal={goal} handleSwipe={handleSwipe}/> 
         </div>
         )
       }

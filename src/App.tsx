@@ -6,19 +6,12 @@ import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
 import GoalsPage from './Pages/GoalsPage';
 import HistoryPage from './Pages/HistoryPage';
-import { AuthPage } from './Pages/AuthPage';
 import LogoutPage from './Pages/LogoutPage';
 import RequireAuth from './Components/RequireAuth';
 import { useAuthContext } from './Contexts/AuthContext';
-import { useEffect, useState } from 'react'
 
 function App() {
-  const { currentUser } = useAuthContext()
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
-
-  useEffect(() => {
-
-  }, [currentUser])
+  const { currentUser, isManager } = useAuthContext()
 
   return (
     <div className="App">
@@ -41,7 +34,6 @@ function App() {
 
             <Route path="/goals/:id" element={<GoalsPage />} />
             <Route path="/goals/history/:id" element={<HistoryPage />} />
-            <Route path="/auth" element={<AuthPage />} />
             <Route path="/logout" element={<LogoutPage />} />
           </Routes>
         </>

@@ -15,7 +15,9 @@ interface AuthContextInterface {
   setCurrentUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
   users: IUser[] | undefined,
   setUsers: React.Dispatch<React.SetStateAction<IUser[] | undefined>>,
-  accessToken: string | undefined
+  accessToken: string | undefined,
+  isManager: boolean,
+  setIsManager: React.Dispatch<React.SetStateAction<boolean>>
 }
   
 const AuthContext = createContext<AuthContextInterface>({} as AuthContextInterface)
@@ -26,6 +28,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   const { instance, accounts } = useMsal()
   const [accessToken, setAccessToken] = useState<string | undefined>();
   const [currentUser, setCurrentUser] = useState<IUser>()
+  const [isManager, setIsManager] = useState<boolean>(false)
   const [users, setUsers] = useState<IUser[]>()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -35,6 +38,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     }
     setTimeout(() => {
       if (currentUser) {
+        setIsManager(currentUser?.jobTitle === 'Intern')
         setIsLoading(false)
       }
     }, 1500)
@@ -58,7 +62,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
               if (response.account) {
                 instance.setActiveAccount(response.account);
                 getUserDetails(response.accessToken).then(user => {
-                  console.log('currentUser', user)
+                  // console.log('currentUser', user)
                   if (user) {
                     setCurrentUser({
                       ...user,
@@ -123,6 +127,8 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     users,
     setUsers,
     accessToken,
+    isManager,
+    setIsManager,
   }
 
   return (

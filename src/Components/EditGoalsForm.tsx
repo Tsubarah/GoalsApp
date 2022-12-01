@@ -10,16 +10,15 @@ type EditProps = {
   goal: IGoal,
   show: boolean,
   setShow: (show: boolean) => void,
-  handleId: (id:string) => void
+  handleSwipe: (id:string) => void
 }
 
-const EditGoalsForm = ({ goal, show, setShow, handleId }: EditProps) => {
-  const { currentUser } = useAuthContext()
+const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
+  const { isManager } = useAuthContext()
   const { deleteGoal, editGoal } = useGoal();
 
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
-  const [isManager, setIsManager] = useState(currentUser?.jobTitle === 'Intern')
 
   const {
     control,
@@ -66,7 +65,7 @@ const EditGoalsForm = ({ goal, show, setShow, handleId }: EditProps) => {
       deadline: selectedDate,
       uid: goal.uid
     }
-    handleId(updatedGoal.id)
+    handleSwipe(updatedGoal.id)
 
     setTimeout(() => {
       editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
