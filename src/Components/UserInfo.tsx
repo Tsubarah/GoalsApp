@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Profile from "./Profile";
 import { IGoal } from "../typings/Goalinterface";
 import { useAuthContext } from "../Contexts/AuthContext";
@@ -15,7 +14,6 @@ type UserInfoProps = {
 const UserInfo = ({ goals, user }: UserInfoProps) => {
   const { currentUser } = useAuthContext()
   const { id } = useParams()
-  // const [updatedTarget, setUpdatedTarget] = useState<IUser | undefined>(user)
   const { postSendMail } = useUsers()
 
   const handleSendMail = () => {
