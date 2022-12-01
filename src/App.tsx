@@ -9,11 +9,16 @@ import HistoryPage from './Pages/HistoryPage';
 import LogoutPage from './Pages/LogoutPage';
 import RequireAuth from './Components/RequireAuth';
 import { useAuthContext } from './Contexts/AuthContext';
+import { useEffect } from 'react'
 
 function App() {
   const { currentUser, isManager } = useAuthContext()
 
   console.log('currentUser', currentUser)
+
+  useEffect(() => {
+
+  }, [currentUser])
 
   return (
     <div className="App">

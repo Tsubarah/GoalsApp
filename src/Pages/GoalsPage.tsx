@@ -15,7 +15,6 @@ const GoalsPage = () => {
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
 
-  console.log('currentUser', currentUser)
 
   useEffect(() => {
     let targets: any = window.localStorage.getItem('target')
@@ -26,16 +25,16 @@ const GoalsPage = () => {
   useEffect(()=> {
     setIncompletedGoals(goals?.filter((goal) => !goal.isComplete));
     console.log('inCompletedGoals', inCompletedGoals)
-},[goals])
+},[goals, currentUser])
 
   return (
     <div className="goals-page-wrapper">
       
-      {goals && (
+      {currentUser && goals && (
         <UserInfo goals={goals} user={user} />
       )}
       
-      {inCompletedGoals && (
+      {currentUser && inCompletedGoals && (
         <Tabs goals={inCompletedGoals} user={user} />
       )}
       
