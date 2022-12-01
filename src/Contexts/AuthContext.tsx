@@ -75,7 +75,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
           .catch((error) => {
             console.log("auth error: " + error);
           });
-  }, [accounts, instance, currentUser]);
+  }, [accounts, instance]);
 
   const getUserDetails = async (accessToken: string) : Promise<IUser | undefined>=>  {
     if (!accessToken) {
