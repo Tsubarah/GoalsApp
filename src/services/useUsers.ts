@@ -1,5 +1,6 @@
 import { useAuthContext } from "../Contexts/AuthContext";
 
+const baseUrl = "https://random-data-api.com/api/v2/"
 
 const useUsers = () => {
   const { setUsers, currentUser } = useAuthContext();
@@ -45,48 +46,16 @@ const useUsers = () => {
     return imageUrl;
   };
 
-  const getUsers = async (accessToken: string) => {
-    if (!accessToken) {
-      return "";
-    }
-    const headers = new Headers();
-    const bearer = `Bearer ${accessToken}`;
-    headers.append("Authorization", bearer);
-    headers.append("Content-Type", "json");
-    headers.append("ConsistencyLevel", "eventual")
-
-    const options = {
-      method: "GET",
-      headers: headers,
-    };
-
+  const getUsers = async () => {
     try {
-      await fetch("https://graph.microsoft.com/v1.0/users?$count=true&$orderby=displayName&$filter=((endsWith(mail,'@geshdo.com'))and (accountEnabled eq true))", options)
+      await fetch(`${baseUrl}users?size=7`)
         .then(async (response) => {
           if (response != null && response.ok) {
             const data = await response.json();
             if (data !== null) {
+              console.log('data', data)
+              setUsers([...data.value])
 
-              if (data['@odata.nextLink']) {
-                const newFetchUrI = data['@odata.nextLink']
-
-                await fetch(`${newFetchUrI}`, options)
-                  .then(async (response) => {
-                    if (response != null && response.ok) {
-                      const newData = await response.json();
-                      if (newData !== null) {
-                        console.log('data1', data.value)
-                        console.log('data2 - newData:', newData.value)
-                        setUsers([...data.value, ...newData.value])
-                      }
-                    } else {
-                      throw new Error("Users not found");
-                    }
-                  })
-                  .catch((error) => {
-                    throw new Error("Users not found");
-                  });
-              }
             }
           } else {
             throw new Error("Users not found");

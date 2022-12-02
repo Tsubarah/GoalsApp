@@ -8,7 +8,7 @@ import { IUser, ITeam } from "../typings/Userinterface";
 
 const ManagerPage = () => {
   const { currentUser, setIsLoading } = useAuthContext();
-  const { getManagersGroup } = useUsers()
+  const { getManagersGroup, getUsers } = useUsers()
   
   const [show, setShow] = useState<boolean | null>(null)
   const [user, setUser] = useState<IUser | undefined>()
@@ -31,6 +31,7 @@ const ManagerPage = () => {
     if (currentUser) {
       setIsLoading(true)
       getTeam()
+      getUsers()
       setIsLoading(false)
       }
   },[currentUser])
