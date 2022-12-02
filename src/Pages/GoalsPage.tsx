@@ -28,7 +28,7 @@ const GoalsPage = () => {
 
   return (
     <div className="goals-page-wrapper">
-      {currentUser && (
+       {currentUser && (
         <>
           {goals && (
             <UserInfo goals={goals} user={user} />

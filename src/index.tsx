@@ -5,12 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { MsalProvider } from "@azure/msal-react";
-import { PublicClientApplication } from "@azure/msal-browser";
-import { msalConfig } from "./authConfig";
 import AuthContextProvider from './Contexts/AuthContext'
-
-const pca = new PublicClientApplication(msalConfig);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,7 +24,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <MsalProvider instance={pca}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <AuthContextProvider>
@@ -37,7 +31,6 @@ root.render(
           </AuthContextProvider>
         </BrowserRouter>
       </QueryClientProvider>
-    </MsalProvider>
   </React.StrictMode>
 );
 

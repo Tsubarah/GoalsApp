@@ -4,7 +4,7 @@ import { IGoal } from '../typings/Goalinterface'
  */
 import axios from 'axios'
  
-axios.defaults.baseURL = 'https://api.goalsnow.geshdo.dev/api'
+// axios.defaults.baseURL = 'http://localhost:7071/api'
 
 /**
   * GET an endpoint

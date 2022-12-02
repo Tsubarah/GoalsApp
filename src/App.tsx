@@ -6,13 +6,16 @@ import Navbar from './Components/Navbar';
 import ManagerPage from './Pages/ManagerPage';
 import GoalsPage from './Pages/GoalsPage';
 import HistoryPage from './Pages/HistoryPage';
-import LogoutPage from './Pages/LogoutPage';
 import RequireAuth from './Components/RequireAuth';
 import { useAuthContext } from './Contexts/AuthContext';
 import LoadingSpinner from './Components/LoadingSpinner';
 
 function App() {
   const { currentUser, isManager, isLoading } = useAuthContext()
+  
+  // useEffect(() => {
+
+  // }, [currentUser])
 
   return (
     <div className="App">
@@ -39,7 +42,6 @@ function App() {
 
             <Route path="/goals/:id" element={<GoalsPage />} />
             <Route path="/goals/history/:id" element={<HistoryPage />} />
-            <Route path="/logout" element={<LogoutPage />} />
           </Routes>
         </>
       )}
