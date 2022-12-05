@@ -38,8 +38,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     token: "blabla",
   }
 
-  console.log("currentUser", currentUser)
-
   useEffect(() => {
     if (!currentUser) {
       setIsLoading(true)

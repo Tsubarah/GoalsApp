@@ -3,7 +3,7 @@ import { useAuthContext } from "../Contexts/AuthContext"
 const baseUrl = "https://random-data-api.com/api/v2/"
 
 const useUsers = () => {
-  const { setUsers, currentUser } = useAuthContext()
+  const { setUsers, users, currentUser } = useAuthContext()
 
   const getProfilePhotoUrl = async (accessToken: string) => {
     if (!accessToken) {
