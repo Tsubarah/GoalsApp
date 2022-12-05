@@ -1,18 +1,24 @@
 import { useAuthContext } from "../Contexts/AuthContext"
-import { IUser } from '../typings/Userinterface'
-import placeholder from '../Assets/Images/placeholder-image.jpeg'
-import { useEffect, useState } from 'react'
-import useUsers from "../services/useUsers";
+import { IUser } from "../typings/Userinterface"
+import placeholder from "../Assets/Images/placeholder-image.jpeg"
+import { useEffect, useState } from "react"
+import useUsers from "../services/useUsers"
 
 type itemProps = {
-  user: IUser,
-  setUserFromUserlist: (user: IUser) => void,
-  setIsActive: React.Dispatch<React.SetStateAction<string>>,
-  isActive: string,
-  id: any,
+  user: IUser
+  setUserFromUserlist: (user: IUser) => void
+  setIsActive: React.Dispatch<React.SetStateAction<string>>
+  isActive: string
+  id: any
 }
 
-const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemProps) => {
+const ListItem = ({
+  user,
+  setUserFromUserlist,
+  isActive,
+  setIsActive,
+  id,
+}: itemProps) => {
   const { currentUser } = useAuthContext()
   const { getUsersPhotoUrl } = useUsers()
   const [target, setTarget] = useState<IUser>(user)
@@ -22,44 +28,36 @@ const ListItem = ({user, setUserFromUserlist, isActive, setIsActive, id}: itemPr
       if (e.target.className === "active") {
         setIsActive("")
         return
-      } 
+      }
       setIsActive(e.target.id)
     }
 
-    window.localStorage.setItem('target', JSON.stringify(user))
+    window.localStorage.setItem("target", JSON.stringify(user))
     setUserFromUserlist(user)
   }
-  
+
   useEffect(() => {
     if (!currentUser) {
-        return;
-      }
+      return
+    }
 
-    getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
-      if (imageUrl) {
-        setTarget({
-          ...user, imageUrl: imageUrl
-        })
-      }
-    })  
-  },[])
+    // getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
+    //   if (imageUrl) {
+    //     setTarget({
+    //       ...user, imageUrl: imageUrl
+    //     })
+    //   }
+    // })
+  }, [])
 
   return (
     <li className={"item"}>
-      <button 
-        id={id} 
-        className={isActive === `${id}` 
-          ? "active" 
-          : ""} 
+      <button
+        id={id}
+        className={isActive === `${id}` ? "active" : ""}
         onClick={(e) => update(e)}
       >
-        <img 
-          alt="" 
-          src={target?.imageUrl 
-            ? target.imageUrl 
-            : placeholder
-          } 
-        />
+        <img alt="" src={target?.avatar ? target.avatar : placeholder} />
         <h3>{target?.displayName}</h3>
       </button>
     </li>

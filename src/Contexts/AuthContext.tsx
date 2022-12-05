@@ -1,22 +1,24 @@
-import { createContext, useContext, useEffect, useState } from 'react'
-import { IUser } from '../typings/Userinterface'
+import { createContext, useContext, useEffect, useState } from "react"
+import { IUser } from "../typings/Userinterface"
 
 type ContextProps = {
-  children: React.ReactNode,
+  children: React.ReactNode
 }
 
 interface AuthContextInterface {
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  isLoading: boolean,
-  currentUser: IUser | undefined,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+  isLoading: boolean
+  currentUser: IUser | undefined
   // setCurrentUser: React.Dispatch<React.SetStateAction<IUser | undefined>>,
-  users: IUser[] | undefined,
-  setUsers: React.Dispatch<React.SetStateAction<IUser[] | undefined>>,
-  isManager: boolean,
+  users: IUser[] | undefined
+  setUsers: React.Dispatch<React.SetStateAction<IUser[] | undefined>>
+  isManager: boolean
   setIsManager: React.Dispatch<React.SetStateAction<boolean>>
 }
-  
-const AuthContext = createContext<AuthContextInterface>({} as AuthContextInterface)
+
+const AuthContext = createContext<AuthContextInterface>(
+  {} as AuthContextInterface
+)
 
 const useAuthContext = () => useContext(AuthContext)
 
@@ -30,13 +32,13 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     displayName: "LOL",
     id: "1",
     jobTitle: "Intern",
-    mail: "LOL@gmail.com", 
+    mail: "LOL@gmail.com",
     mobilePhone: +46728523253,
-    imageUrl: "",
-    token: "blabla"
+    avatar: "",
+    token: "blabla",
   }
 
-  console.log('currentUser', currentUser)
+  console.log("currentUser", currentUser)
 
   useEffect(() => {
     if (!currentUser) {
@@ -44,11 +46,10 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     }
 
     if (currentUser) {
-      setIsManager(currentUser?.jobTitle === 'Intern')
+      setIsManager(currentUser?.jobTitle === "Intern")
       setIsLoading(false)
     }
   }, [currentUser])
-
 
   const contextValues: AuthContextInterface = {
     setIsLoading,
@@ -68,4 +69,4 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   )
 }
 
-export { AuthContextProvider as default, useAuthContext}
+export { AuthContextProvider as default, useAuthContext }
