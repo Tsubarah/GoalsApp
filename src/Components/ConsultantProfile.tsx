@@ -10,7 +10,8 @@ type ConsultantProps = {
 
 const ConsultantProfile = ({ user }: ConsultantProps) => {
   const { currentUser } = useAuthContext()
-  const { getUsersPhotoUrl } = useUsers()
+  // const { getUsersPhotoUrl } = useUsers()
+  console.log("user", user)
 
   const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
 
@@ -28,20 +29,20 @@ const ConsultantProfile = ({ user }: ConsultantProps) => {
     //   })
     // })
   }
-  useEffect(() => {
-    getPhotos()
-  }, [currentUser, user])
+  useEffect(() => {}, [currentUser, user])
 
   return (
     <div className="consultant-profile">
       <img
-        src={updatedTarget?.avatar ? updatedTarget.avatar : placeholder}
+        src={user?.avatar ? user.avatar : placeholder}
         className="consultant-img"
         alt=""
       />
-      <h2 className="profile-name">{updatedTarget?.displayName}</h2>
-      <p className="profile-text">{updatedTarget?.jobTitle}</p>
-      <h4 className="profile-h4">{updatedTarget?.mail}</h4>
+      <h2 className="profile-name">
+        {user?.first_name} {user?.last_name}
+      </h2>
+      <p className="profile-text">{user?.jobTitle}</p>
+      <h4 className="profile-h4">{user?.email}</h4>
     </div>
   )
 }

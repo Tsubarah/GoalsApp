@@ -4,6 +4,7 @@ import useUsers from "../services/useUsers"
 import placeholder from "../Assets/Images/placeholder-image.jpeg"
 import { useParams } from "react-router-dom"
 import { IUser } from "../typings/Userinterface"
+import LoadingSpinner from "./LoadingSpinner"
 
 type ProfileProps = {
   user: IUser | undefined
@@ -16,6 +17,7 @@ const Profile = ({ user }: ProfileProps) => {
 
   const [photoUrl, setPhotoUrl] = useState<string>()
   const [updatedTarget, setUpdatedTarget] = useState<IUser>()
+  console.log("user", user)
 
   useEffect(() => {
     if (!currentUser) {
@@ -28,25 +30,11 @@ const Profile = ({ user }: ProfileProps) => {
     if (!user) {
       return
     }
-    // getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
-    //   setUpdatedTarget({
-    //     ...user, imageUrl: imageUrl
-    //   })
-    // })
   }, [currentUser, user])
 
   return (
     <div className="profile">
-      {user && id === user.id ? (
-        <>
-          <img
-            src={updatedTarget?.avatar ? updatedTarget.avatar : placeholder}
-            alt={updatedTarget?.displayName}
-          />
-          <h2>{updatedTarget?.displayName}</h2>
-          <h3>{updatedTarget?.jobTitle}</h3>
-        </>
-      ) : (
+      {!id && (
         <>
           {photoUrl && (
             <img
@@ -56,6 +44,21 @@ const Profile = ({ user }: ProfileProps) => {
           )}
           <h2>{currentUser?.displayName}</h2>
           <h3>{currentUser?.jobTitle}</h3>
+        </>
+      )}
+
+      {user && !user.id && <LoadingSpinner />}
+
+      {user && id == user.id && (
+        <>
+          <img
+            src={user?.avatar ? user.avatar : placeholder}
+            alt={user?.displayName}
+          />
+          <h2>
+            {user?.first_name} {user.last_name}
+          </h2>
+          <h3>{user?.jobTitle}</h3>
         </>
       )}
     </div>

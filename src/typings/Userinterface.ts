@@ -1,8 +1,10 @@
 export interface IUser {
+  first_name?: string
+  last_name?: string
   displayName: string
   id: string
   jobTitle: string
-  mail: string
+  email: string
   mobilePhone: number
   avatar?: string
   token: string

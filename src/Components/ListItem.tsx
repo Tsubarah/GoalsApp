@@ -20,7 +20,7 @@ const ListItem = ({
   id,
 }: itemProps) => {
   const { currentUser } = useAuthContext()
-  const { getUsersPhotoUrl } = useUsers()
+  // const { getUsersPhotoUrl } = useUsers()
   const [target, setTarget] = useState<IUser>(user)
 
   const update = (e: any) => {
@@ -40,14 +40,6 @@ const ListItem = ({
     if (!currentUser) {
       return
     }
-
-    // getUsersPhotoUrl(currentUser.token, user.id).then(imageUrl => {
-    //   if (imageUrl) {
-    //     setTarget({
-    //       ...user, imageUrl: imageUrl
-    //     })
-    //   }
-    // })
   }, [])
 
   return (
@@ -58,7 +50,9 @@ const ListItem = ({
         onClick={(e) => update(e)}
       >
         <img alt="" src={target?.avatar ? target.avatar : placeholder} />
-        <h3>{target?.displayName}</h3>
+        <h3>
+          {target?.first_name} {target?.last_name}
+        </h3>
       </button>
     </li>
   )

@@ -51,7 +51,7 @@ const useUsers = () => {
             const data = await response.json()
             if (data !== null) {
               console.log("data", data)
-              setUsers([...data])
+              setUsers(data)
             }
           } else {
             throw new Error("Users not found")

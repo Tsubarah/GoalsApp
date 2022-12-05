@@ -32,7 +32,7 @@ const AuthContextProvider = ({ children }: ContextProps) => {
     displayName: "LOL",
     id: "1",
     jobTitle: "Intern",
-    mail: "LOL@gmail.com",
+    email: "LOL@gmail.com",
     mobilePhone: +46728523253,
     avatar: "",
     token: "blabla",

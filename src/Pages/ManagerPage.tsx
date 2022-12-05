@@ -7,7 +7,7 @@ import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser, ITeam } from "../typings/Userinterface"
 
 const ManagerPage = () => {
-  const { currentUser, setIsLoading } = useAuthContext()
+  const { currentUser, setIsLoading, users } = useAuthContext()
   const { getManagersGroup, getUsers } = useUsers()
 
   const [show, setShow] = useState<boolean | null>(null)
@@ -18,23 +18,23 @@ const ManagerPage = () => {
     setUser(user)
   }
 
-  const getTeam = async () => {
-    if (!currentUser) return
+  // const getTeam = async () => {
+  //   if (!currentUser) return
 
-    const getTeam = getManagersGroup(currentUser.token)
-    getTeam.then((team: any) => {
-      setTeam(team[0])
-    })
-  }
+  //   const getTeam = getManagersGroup(currentUser.token)
+  //   getTeam.then((team: any) => {
+  //     setTeam(team[0])
+  //   })
+  // }
 
-  useEffect(() => {
-    if (currentUser) {
-      setIsLoading(true)
-      getTeam()
-      // getUsers()
-      setIsLoading(false)
-    }
-  }, [currentUser])
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     setIsLoading(true)
+  //     getTeam()
+  //     // getUsers()
+  //     setIsLoading(false)
+  //   }
+  // }, [currentUser])
 
   useEffect(() => {
     getUsers()

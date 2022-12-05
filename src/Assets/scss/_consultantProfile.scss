@@ -1,57 +1,56 @@
 .profile-h4 {
-    margin-bottom: 0.2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    color: #3894a3
+  margin-bottom: 0.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #3894a3;
 }
 
 .profile-text {
-    margin-top: 0;
-    padding: 0 0.75rem;
+  margin-top: 0;
+  padding: 0 0.75rem;
 }
 
 .profile-name {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .consultant-profile {
-    text-align: center;
-    color: rgb(58, 58, 58);
+  text-align: center;
+  color: rgb(58, 58, 58);
 }
 
 .consultant-img {
-    margin-top: 5rem;
-    height: 9rem;
-    border-radius: 50%;
-    border: 4px solid #3894a3;
-    object-fit: cover;
+  margin-top: 5rem;
+  height: 9rem;
+  border-radius: 50%;
+  border: 4px solid #3894a3;
+  object-fit: cover;
+  background-color: #3894a3;
 
-    @media only screen and (min-width: 900px) {
-        height: 10rem
-    }
+  @media only screen and (min-width: 900px) {
+    height: 10rem;
+  }
 }
 
 .consultant-buttons-container {
-    margin-top: 4rem;
-    display: flex;
-    justify-content: space-evenly;
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-evenly;
 
-    .button {
-      padding: 0.5rem .75rem;
-      width: 5rem;
+  .button {
+    padding: 0.5rem 0.75rem;
+    width: 5rem;
 
-        @media only screen and (min-width: 900px) {
-            width: 6rem;
-        }
-
-        @media only screen and (min-width: 1200px) {
-            width: 7rem;
-        }
-
-        @media only screen and (min-width: 1400px) {
-            width: 8rem;
-        }
+    @media only screen and (min-width: 900px) {
+      width: 6rem;
     }
+
+    @media only screen and (min-width: 1200px) {
+      width: 7rem;
+    }
+
+    @media only screen and (min-width: 1400px) {
+      width: 8rem;
+    }
+  }
 }
-
-
