@@ -8,7 +8,7 @@ import { IUser, ITeam } from "../typings/Userinterface"
 
 const ManagerPage = () => {
   const { currentUser, setIsLoading } = useAuthContext()
-  const { getManagersGroup, getUsers } = useUsers()
+  const { getManagersGroup, getUsers,  } = useUsers()
 
   const [show, setShow] = useState<boolean | null>(null)
   const [user, setUser] = useState<IUser | undefined>()
@@ -21,7 +21,7 @@ const ManagerPage = () => {
   const getTeam = async () => {
     if (!currentUser) return
 
-    const getTeam = getManagersGroup(currentUser.token)
+    const getTeam = getManagersGroup(currentUser.id)
     getTeam.then((team: any) => {
       setTeam(team[0])
     })
@@ -38,7 +38,13 @@ const ManagerPage = () => {
 
   useEffect(() => {
     getUsers()
+    // getCurrentUser()
+    console.log('currentUser', currentUser)
   }, [])
+
+  useEffect(() => {
+    console.log('currentUser', currentUser)
+  },[currentUser])
 
   return (
     <div className="manager-page-wrapper">

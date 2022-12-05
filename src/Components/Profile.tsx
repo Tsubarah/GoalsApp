@@ -21,9 +21,9 @@ const Profile = ({ user }: ProfileProps) => {
     if (!currentUser) {
       return
     }
-    getProfilePhotoUrl(currentUser.token).then((imageUrl) => {
-      setPhotoUrl(imageUrl)
-    })
+    // getProfilePhotoUrl(currentUser.id).then((imageUrl) => {
+    //   setPhotoUrl(imageUrl)
+    // })
 
     if (!user) {
       return
@@ -48,9 +48,9 @@ const Profile = ({ user }: ProfileProps) => {
         </>
       ) : (
         <>
-          {photoUrl && (
+          {currentUser && (
             <img
-              src={photoUrl ? photoUrl : placeholder}
+              src={currentUser.avatar ? currentUser.avatar : placeholder}
               alt={currentUser?.displayName}
             />
           )}

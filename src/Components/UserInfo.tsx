@@ -23,7 +23,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
     if (!user) {
       return
     }
-    postSendMail(currentUser.token, user.mail)
+    postSendMail(currentUser.id, user.mail)
   }
   
   const goalsCompleted = goals.filter((goal)=> goal.isComplete === true)

@@ -3,7 +3,7 @@ import { useAuthContext } from "../Contexts/AuthContext"
 const baseUrl = "https://random-data-api.com/api/v2/"
 
 const useUsers = () => {
-  const { setUsers, currentUser } = useAuthContext()
+  const { setUsers } = useAuthContext()
 
   const getProfilePhotoUrl = async (accessToken: string) => {
     if (!accessToken) {
@@ -62,6 +62,8 @@ const useUsers = () => {
         })
     } catch (err) {}
   }
+
+  
 
   const getUsersPhotoUrl = async (accessToken: string, id: string) => {
     if (!accessToken) {
@@ -165,9 +167,9 @@ const useUsers = () => {
             // console.log("response",response)
             const data = await response.json()
             if (data !== null) {
-              if (!currentUser) {
-                return
-              }
+            //   if (!currentUser) {
+            //     return
+            //   }
               console.log("My Groups", data)
 
               const teams = ["A-Team", "Atlas", "enigma", "Core Team"]
@@ -235,9 +237,9 @@ const useUsers = () => {
             // console.log("response",response)
             const data = await response.json()
             if (data !== null) {
-              if (!currentUser) {
-                return
-              }
+            //   if (!currentUser) {
+            //     return
+            //   }
               console.log("My Groups members:", data)
               setUsers(data.value)
             }
@@ -290,6 +292,7 @@ const useUsers = () => {
   return {
     getProfilePhotoUrl,
     getUsers,
+    // getCurrentUser,
     getUsersPhotoUrl,
     getGroups,
     getManagersGroup,
