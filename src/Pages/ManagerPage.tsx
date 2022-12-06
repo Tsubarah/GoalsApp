@@ -9,7 +9,6 @@ import { IUser, ITeam } from "../typings/Userinterface"
 const ManagerPage = () => {
   const { currentUser, setIsLoading } = useAuthContext()
   const { getManagersGroup, getUsers,  } = useUsers()
-
   const [show, setShow] = useState<boolean | null>(null)
   const [user, setUser] = useState<IUser | undefined>()
   const [team, setTeam] = useState<ITeam | undefined>()
@@ -38,8 +37,6 @@ const ManagerPage = () => {
 
   useEffect(() => {
     getUsers()
-    // getCurrentUser()
-    console.log('currentUser', currentUser)
   }, [])
 
   useEffect(() => {
