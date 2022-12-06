@@ -50,7 +50,6 @@ const useUsers = () => {
           if (response != null && response.ok) {
             const data = await response.json()
             if (data !== null) {
-              console.log("data", data)
               setUsers(data)
             }
           } else {

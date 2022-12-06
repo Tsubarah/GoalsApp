@@ -8,7 +8,6 @@ type sidebarProps = {
 }
 
 const RightSidebar = ({ show, user }: sidebarProps) => {
-  console.log("user", user)
   return (
     <div className="rightSidebar-wrapper">
       <div

@@ -31,9 +31,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
   const goalsCompleted = goals?.filter((goal) => goal.isComplete)
   const goalInComplete = goals?.filter((goal) => !goal.isComplete)
 
-  useEffect(() => {
-    console.log("user", user)
-  }, [user])
+  useEffect(() => {}, [user])
 
   return (
     <div className="user-wrapper">

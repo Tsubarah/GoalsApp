@@ -21,7 +21,6 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
   const [toggleState, setToggleState] = useState(1)
   const [show, setShow] = useState<boolean>(false)
   const [month, setMonth] = useState<string>("all")
-  console.log("goals", goals)
 
   const sections = [
     {

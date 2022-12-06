@@ -11,7 +11,6 @@ type ConsultantProps = {
 const ConsultantProfile = ({ user }: ConsultantProps) => {
   const { currentUser } = useAuthContext()
   // const { getUsersPhotoUrl } = useUsers()
-  console.log("user", user)
 
   const [updatedTarget, setUpdatedTarget] = useState<IUser | null>()
 
