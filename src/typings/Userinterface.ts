@@ -7,7 +7,6 @@ export interface IUser {
   email: string
   mobilePhone: number
   avatar?: string
-  token: string
 }
 
 export interface ITeam {
