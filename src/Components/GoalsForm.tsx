@@ -1,18 +1,21 @@
-import { Controller, useForm, useFieldArray } from "react-hook-form";
-import DatePicker from "react-datepicker";
+import { Controller, useForm, useFieldArray } from "react-hook-form"
+import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import useGoal from '../Hooks/useGoal'
-import { IGoal } from "../typings/Goalinterface";
-import { useParams} from 'react-router-dom'
+import useGoal from "../Hooks/useGoal"
+import { IGoal } from "../typings/Goalinterface"
+import { useParams } from "react-router-dom"
+// import useLocalStorage from "../Hooks/useLocalStorage"
 
 type FormProps = {
-  show: boolean,
-  setShow: (show: boolean) => void;
+  show: boolean
+  setShow: (show: boolean) => void
+  goals: IGoal[]
+  setGoals: any
 }
 
-const GoalsForm:Function = ({ setShow, show}: FormProps) => {
+const GoalsForm: Function = ({ setShow, show, goals, setGoals }: FormProps) => {
   const { id } = useParams()
-  const { createGoal } = useGoal();
+  const { createGoal } = useGoal()
 
   const {
     control,
@@ -35,16 +38,23 @@ const GoalsForm:Function = ({ setShow, show}: FormProps) => {
         },
       ],
     },
-  });
+  })
 
   const { fields } = useFieldArray({
     control,
     name: "reviews",
-  });
+  })
 
-  const create = (data: IGoal ) => {
-    data = {...data, uid: id}
-    console.log('data', data)
+  const create = (data: IGoal) => {
+    data = {
+      ...data,
+      uid: id,
+      id: "12",
+      creationDate: "2022-11-11T08:31:50.058Z",
+      isComplete: false,
+    }
+    console.log("data", data)
+    setGoals([...goals, data])
     createGoal.mutate(data)
     reset()
     setShow(!show)
@@ -54,14 +64,11 @@ const GoalsForm:Function = ({ setShow, show}: FormProps) => {
     <div>
       <form onSubmit={handleSubmit(create)}>
         <div className="top-section">
-
           <div className="left">
             <label>
               <p className="label-p">Type of Goal:</p>
             </label>
-            <select {...register("category")}
-              id="category"
-            >
+            <select {...register("category")} id="category">
               <option value="personalDevelopment">Personal Development</option>
               <option value="customerInteraction">Customer Interaction</option>
               <option value="buildingGeshdo">Building Geshdo</option>
@@ -72,8 +79,9 @@ const GoalsForm:Function = ({ setShow, show}: FormProps) => {
             <label>
               <p className="label-p">Prio:</p>
             </label>
-            <select {...register("prio", {
-              valueAsNumber: true,
+            <select
+              {...register("prio", {
+                valueAsNumber: true,
               })}
               id="prio"
             >
@@ -97,17 +105,20 @@ const GoalsForm:Function = ({ setShow, show}: FormProps) => {
                   placeholderText="Select date"
                   dateFormat="dd-MM-yyyy"
                   selected={field.value ? new Date(field.value) : null}
-                  onChange={(date) => { field.onChange(date) }}
+                  onChange={(date) => {
+                    field.onChange(date)
+                  }}
                   minDate={new Date()}
                   required
                 />
               )}
             />
           </div>
-          
+
           <div className="right">
             <label>
-              <p className="label-p">Costs:</p></label>
+              <p className="label-p">Costs:</p>
+            </label>
             <input
               {...register("cost", {
                 valueAsNumber: true,
@@ -139,11 +150,7 @@ const GoalsForm:Function = ({ setShow, show}: FormProps) => {
         <label>
           <p className="label-p">Milestones:</p>
         </label>
-        <input
-          {...register("milestones")}
-          type="text"
-          id="milestones"
-        ></input>
+        <input {...register("milestones")} type="text" id="milestones"></input>
 
         <label>
           <p className="label-p">Expected half year progress:</p>
@@ -167,7 +174,7 @@ const GoalsForm:Function = ({ setShow, show}: FormProps) => {
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default GoalsForm;
+export default GoalsForm

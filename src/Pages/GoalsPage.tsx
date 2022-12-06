@@ -7,6 +7,7 @@ import { IGoal } from "../typings/Goalinterface"
 import { useEffect, useState } from "react"
 import { IUser } from "../typings/Userinterface"
 import { useAuthContext } from "../Contexts/AuthContext"
+import useLocalStorage from "../Hooks/useLocalStorage"
 
 const GoalsPage = () => {
   const { id } = useParams()
@@ -16,6 +17,9 @@ const GoalsPage = () => {
   // )
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
+  const [goals, setGoals] = useLocalStorage("goals", [])
+
+  console.log("goals", goals)
 
   useEffect(() => {
     let targets: any = window.localStorage.getItem("target")
@@ -24,13 +28,9 @@ const GoalsPage = () => {
   }, [])
 
   useEffect(() => {
-    console.log("user", user)
-  }, [user])
-
-  // useEffect(() => {
-  //   setIncompletedGoals(goals?.filter((goal) => !goal.isComplete))
-  //   console.log("inCompletedGoals", inCompletedGoals)
-  // }, [goals])
+    setIncompletedGoals(goals?.filter((goal: any) => !goal.isComplete))
+    console.log("inCompletedGoals", inCompletedGoals)
+  }, [goals])
 
   return (
     <div className="goals-page-wrapper">
@@ -38,7 +38,9 @@ const GoalsPage = () => {
         <>
           {<UserInfo user={user} />}
 
-          {inCompletedGoals && <Tabs goals={inCompletedGoals} user={user} />}
+          {inCompletedGoals && (
+            <Tabs goals={goals} setGoals={setGoals} user={user} />
+          )}
         </>
       )}
     </div>
