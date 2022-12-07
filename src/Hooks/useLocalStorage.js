@@ -4,6 +4,7 @@ const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     // get value from localStorage and parse it from JSON
     const value = window.localStorage.getItem(key)
+    console.log('value', value)
     return value ? JSON.parse(value) : initialValue
   })
 
