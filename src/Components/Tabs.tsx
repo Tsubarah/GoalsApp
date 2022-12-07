@@ -193,8 +193,8 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
             </>
           )}
         </div>
-        {filterByCategories.map((section) => (
-          <div
+        {filterByCategories.map((section,i) => (
+          <div key={i}
             className={
               toggleState === section.id ? "content active-content" : "content"
             }

@@ -22,7 +22,7 @@ const AuthContext = createContext<AuthContextInterface>(
 const useAuthContext = () => useContext(AuthContext)
 
 const AuthContextProvider = ({ children }: ContextProps) => {
-  const [currentUser, setCurrentUser] = useState<IUser | undefined>()
+  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {})
   const [isManager, setIsManager] = useState<boolean>(false)
   const [users, setUsers] = useLocalStorage('users', [])
   const [isLoading, setIsLoading] = useState(false)
@@ -34,15 +34,14 @@ const AuthContextProvider = ({ children }: ContextProps) => {
           if (response != null && response.ok) {
             const data = await response.json()
             if (data !== null) {
-              if (!window.localStorage.getItem("currentUser")) {
-                window.localStorage.setItem(
-                  "currentUser",
-                  JSON.stringify({ ...data, jobTitle: "Intern" })
-                )
-              }
-              const storageCurrentUser =
-                window.localStorage.getItem("currentUser")
-              setCurrentUser(JSON.parse(storageCurrentUser!))
+
+              // if (!currentUser) {
+                setCurrentUser({...data, jobTitle: "Intern"})
+                console.log('currentUser', currentUser)
+              // }
+              // const storageCurrentUser =
+              //   window.localStorage.getItem("currentUser")
+              // setCurrentUser(JSON.parse(storageCurrentUser!))
             }
           } else {
             throw new Error("Users not found")
@@ -76,10 +75,8 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   }
 
   useEffect(() => {
-    if (!currentUser) {
-      setIsLoading(true)
       getCurrentUser()
-    }
+      // setIsLoading(true)
   }, [])
 
   useEffect(() => {

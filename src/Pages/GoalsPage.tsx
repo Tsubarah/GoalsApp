@@ -13,7 +13,7 @@ const GoalsPage = () => {
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
   const [target, setTarget] = useLocalStorage("target")
-  const [goals, setGoals] = useLocalStorage(target.id.toString(), [])
+  const [goals, setGoals] = useLocalStorage(target ? target.id.toString() : "", [])
 
   useEffect(() => {
     if (!user) {
