@@ -10,7 +10,7 @@ type TabsProps = {
 
 const Table = ({ goals }: TabsProps) => {
   const [swipeId, setSwipeId] = useState("")
-  
+
   const handleSwipe = (id:string) => {
     setSwipeId(id)
   }
@@ -77,7 +77,7 @@ const Table = ({ goals }: TabsProps) => {
                       <Accordion data={review} />
                     </div>
                   ))}
-                  <EditGoalModal goal={goal} handleSwipe={handleSwipe} />
+                  <EditGoalModal goal={goal} goals={goals} handleSwipe={handleSwipe} />
                 </div>
               </div>
             </div>

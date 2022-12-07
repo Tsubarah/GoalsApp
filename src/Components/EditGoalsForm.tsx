@@ -5,20 +5,25 @@ import { useForm, useFieldArray } from "react-hook-form"
 import "react-datepicker/dist/react-datepicker.css"
 import { IGoal } from "../typings/Goalinterface";
 import { useAuthContext } from '../Contexts/AuthContext'
+import { useParams} from 'react-router-dom'
 
 type EditProps = {
   goal: IGoal,
+  goals: IGoal[],
   show: boolean,
   setShow: (show: boolean) => void,
   handleSwipe: (id:string) => void
 }
 
-const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
+const EditGoalsForm = ({ goal, goals, show, setShow, handleSwipe }: EditProps) => {
   const { isManager } = useAuthContext()
   const { deleteGoal, editGoal } = useGoal();
+  const { id } = useParams()
 
   const [selectedDate, setSelectedDate] = useState(goal.deadline)
   const [isComplete, setIsComplete] = useState(goal.isComplete)
+
+  console.log('goal', goal)
 
   const {
     control,
@@ -27,6 +32,8 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
     formState: { errors },
   } = useForm<IGoal>({
     defaultValues: {
+      id: goal.id,
+      creationDate: goal.creationDate,
       reviews: [
         {
             type: "half_year_review",
@@ -47,28 +54,38 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
     name: "reviews",
   });
 
-  const onDeleteHandler = (id: string) => {
+  const onDeleteHandler = (goalId: string) => {
+    const index = goals.findIndex(object => {
+      return object.id === goalId;
+    });
+    goals.splice(index, 1)
     if (window.confirm('Are you sure you want to delete this goal?')) {
-      deleteGoal.mutate(id);
+      if (id) {
+        localStorage.setItem(id, JSON.stringify(goals))
+      }
+      console.log('goals', goals)
+      // deleteGoal.mutate(id);
       setShow(!show)
     }
   }
 
   const onUpdateHandler = async (data: IGoal) => {
     setShow(!show)
-  
+    console.log('data', data)
     const updatedGoal: IGoal = {
       ...data,
-      id: goal.id,
-      creationDate: goal.creationDate,
+      uid: goal.uid,
       isComplete: isComplete,
       deadline: selectedDate,
-      uid: goal.uid
     }
     handleSwipe(updatedGoal.id)
+    console.log('updatedGoal', updatedGoal)
 
     setTimeout(() => {
-      editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
+      // editGoal.mutate({ id: updatedGoal.id, data: updatedGoal })
+      if (id) {
+        // localStorage.setItem(id, JSON.stringify(goals))
+      }
     }, 1000);
   }
 
@@ -81,12 +98,12 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
     <div>
       <form onSubmit={handleSubmit(onUpdateHandler)}>
         <div className="top-section">
-          
+
           <div className="left">
             <label>
               <p className="label-p">Type of Goal:</p>
             </label>
-            <select 
+            <select
               {...register("category")}
               id="category"
               defaultValue={goal.category}
@@ -101,7 +118,7 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
             <label>
               <p className="label-p">Prio:</p>
             </label>
-            <select 
+            <select
               {...register("prio", {
                 valueAsNumber: true,
               })}
@@ -127,7 +144,7 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
                 minDate={new Date()}
               />
           </div>
-          
+
           <div className="right">
             <label>
               <p className="label-p">Costs:</p></label>
@@ -193,11 +210,11 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
           </div>
         ))}
 
-        {isManager ? 
+        {isManager ?
           <div className="buttons-container">
             <div>
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="button submit-btn"
               >
                 Save Changes
@@ -207,7 +224,7 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
             <div>
               <button
                 type="button"
-                className="button status-btn" 
+                className="button status-btn"
                 onClick={() => setIsComplete(!isComplete)}
               >
                 {isComplete ? "Completed" : "Not completed"}
@@ -215,7 +232,7 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
             </div>
 
             <div>
-              <button 
+              <button
                 className="button delete-btn"
                 onClick={() => onDeleteHandler(goal.id)}
               >
@@ -224,7 +241,7 @@ const EditGoalsForm = ({ goal, show, setShow, handleSwipe }: EditProps) => {
             </div>
           </div>
 
-        : ""}  
+        : ""}
       </form>
     </div>
   )

@@ -17,6 +17,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
   const { currentUser } = useAuthContext()
   const { id } = useParams()
   const { postSendMail } = useUsers()
+  console.log('goals', goals)
 
   // const handleSendMail = () => {
   //   if (!currentUser) {
@@ -31,7 +32,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
   const goalsCompleted = goals?.filter((goal) => goal.isComplete)
   const goalInComplete = goals?.filter((goal) => !goal.isComplete)
 
-  useEffect(() => {}, [user])
+  useEffect(() => {}, [goals, user])
 
   return (
     <div className="user-wrapper">

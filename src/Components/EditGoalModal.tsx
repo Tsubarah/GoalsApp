@@ -5,30 +5,31 @@ import { useAuthContext } from '../Contexts/AuthContext'
 
 type ModalProps = {
   goal: IGoal,
+  goals: IGoal[],
   handleSwipe: (id:string) => void
 }
 
-const EditGoalModal = ({goal, handleSwipe}: ModalProps) => {
+const EditGoalModal = ({goal, goals, handleSwipe}: ModalProps) => {
   const { isManager } = useAuthContext()
   const [show, setShow] = useState(false)
 
   return (
     <>
-      {isManager ?   
-        <button 
-          className="button edit-btn" 
+      {isManager ?
+        <button
+          className="button edit-btn"
           onClick={() => {setShow(!show)}}
         >
           {isManager ? "Edit": "View"}
         </button>
-        
-      : ""}   
+
+      : ""}
 
       {show && (
         <div className="addGoal-modal">
           <div className="button-container">
-            <button 
-              className="button close-btn" 
+            <button
+              className="button close-btn"
               onClick={() => {setShow(!show)}}
             >
               Close
@@ -38,7 +39,7 @@ const EditGoalModal = ({goal, handleSwipe}: ModalProps) => {
           <h2>Edit a Goal</h2>
 
           <hr />
-           <EditGoalsForm setShow={setShow} show={show} goal={goal} handleSwipe={handleSwipe}/> 
+           <EditGoalsForm setShow={setShow} show={show} goal={goal} goals={goals} handleSwipe={handleSwipe}/>
         </div>
         )
       }

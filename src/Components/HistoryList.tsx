@@ -51,7 +51,7 @@ const HistoryList = ({ goals }: HistoryProps) => {
 									<p><Moment format="YYYY/MM/DD">{goal.deadline}</Moment></p>
 								</div>
 								<div className=" body history-button-holder">
-									<EditGoalModal goal={goal} handleSwipe={handleSwipe} />
+									<EditGoalModal goal={goal} goals={goals} handleSwipe={handleSwipe} />
 								</div>
 							</li>
 						))}

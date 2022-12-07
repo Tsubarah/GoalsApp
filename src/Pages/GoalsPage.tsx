@@ -24,17 +24,18 @@ const GoalsPage = () => {
     if (!user) {
       setUser(target)
     }
-    setIncompletedGoals(goals?.filter((goal: any) => !goal.isComplete))
+    setIncompletedGoals(goals?.filter((goal: IGoal) => !goal.isComplete))
   }, [goals])
+
 
   return (
     <div className="goals-page-wrapper">
       {currentUser && (
         <>
-          {<UserInfo user={user} />}
+          {<UserInfo user={user} goals={goals} />}
 
           {inCompletedGoals && (
-            <Tabs goals={goals} setGoals={setGoals} user={user} />
+            <Tabs goals={inCompletedGoals} setGoals={setGoals} user={user} />
           )}
         </>
       )}

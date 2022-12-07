@@ -127,7 +127,7 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
           )}
           <Link
             to={`/goals/history/${
-              user && user.id === id ? user.id : currentUser?.id
+              user && user.id == id ? user.id : currentUser?.id
             }`}
           >
             <button className="button my-history-btn">History →</button>

@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import useGoal from "../Hooks/useGoal"
 import { IGoal } from "../typings/Goalinterface"
 import { useParams } from "react-router-dom"
+import uuid from "react-uuid"
 
 type FormProps = {
   show: boolean
@@ -44,12 +45,14 @@ const GoalsForm: Function = ({ setShow, show, goals, setGoals }: FormProps) => {
     name: "reviews",
   })
 
+
   const create = (data: IGoal) => {
+    const uniqueId = uuid()
     data = {
       ...data,
       uid: id,
-      id: "12",
-      creationDate: "2022-11-11T08:31:50.058Z",
+      id: uniqueId,
+      creationDate: new Date().toISOString(),
       isComplete: false,
     }
     console.log("data", data)
