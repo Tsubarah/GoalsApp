@@ -13,10 +13,6 @@ import LoadingSpinner from "./Components/LoadingSpinner"
 function App() {
   const { currentUser, isManager, isLoading } = useAuthContext()
 
-  // useEffect(() => {
-
-  // }, [currentUser])
-
   return (
     <div className="App">
       {isLoading && <LoadingSpinner />}

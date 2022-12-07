@@ -12,7 +12,6 @@ export default function SimpleAccordion({ data }) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
-          
         >
           <Typography>{data.name}</Typography>
         </AccordionSummary>

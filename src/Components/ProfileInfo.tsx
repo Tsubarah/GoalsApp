@@ -1,4 +1,3 @@
-import React from 'react'
 import { IUser } from '../typings/Userinterface'
 import placeholder from "../Assets/Images/placeholder-image.jpeg"
 

@@ -2,7 +2,6 @@ import { useAuthContext } from "../Contexts/AuthContext"
 import { IUser } from "../typings/Userinterface"
 import placeholder from "../Assets/Images/placeholder-image.jpeg"
 import { useEffect, useState } from "react"
-import useUsers from "../services/useUsers"
 
 type itemProps = {
   user: IUser
@@ -20,7 +19,6 @@ const ListItem = ({
   id,
 }: itemProps) => {
   const { currentUser } = useAuthContext()
-  // const { getUsersPhotoUrl } = useUsers()
   const [target, setTarget] = useState<IUser>(user)
 
   const update = (e: any) => {

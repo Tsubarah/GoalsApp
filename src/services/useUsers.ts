@@ -1,4 +1,4 @@
-import { useAuthContext } from "../Contexts/AuthContext"
+// import { useAuthContext } from "../Contexts/AuthContext"
 
 const baseUrl = "https://random-data-api.com/api/v2/"
 

@@ -12,7 +12,6 @@ interface AuthContextInterface {
   users: IUser[] | undefined
   isManager: boolean
   setIsManager: React.Dispatch<React.SetStateAction<boolean>>
-  // setUsers: React.Dispatch<React.SetStateAction<IUser[] | undefined>>
 }
 
 const AuthContext = createContext<AuthContextInterface>(
@@ -48,9 +47,6 @@ const AuthContextProvider = ({ children }: ContextProps) => {
                 setCurrentUser({...data, jobTitle: "Intern"})
                 console.log('currentUser', currentUser)
               }
-              // const storageCurrentUser =
-              //   window.localStorage.getItem("currentUser")
-              // setCurrentUser(JSON.parse(storageCurrentUser!))
             }
           } else {
             throw new Error("Users not found")
@@ -84,20 +80,13 @@ const AuthContextProvider = ({ children }: ContextProps) => {
   }
 
   useEffect(() => {
-      getCurrentUser()
-      // setIsLoading(true)
-  }, [])
-
-  useEffect(() => {
+    getCurrentUser()
     getUsers()
-  },[])
-
-  useEffect(() => {
     if (currentUser) {
       setIsManager(currentUser?.jobTitle === "Intern")
       setIsLoading(false)
     }
-  }, [currentUser])
+  }, [])
 
   const contextValues: AuthContextInterface = {
     setIsLoading,
