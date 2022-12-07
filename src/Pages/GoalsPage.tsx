@@ -17,15 +17,15 @@ const GoalsPage = () => {
   // )
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
-  const [goals, setGoals] = useLocalStorage("goals", [])
+  const [target, setTarget] = useLocalStorage("target")
+  const [goals, setGoals] = useLocalStorage(target.id.toString(), [])
 
   useEffect(() => {
-    let targets: any = window.localStorage.getItem("target")
-    let target = JSON.parse(targets)
     setUser(target)
   }, [])
 
   useEffect(() => {
+    console.log('goals', goals)
     setIncompletedGoals(goals?.filter((goal: any) => !goal.isComplete))
   }, [goals])
 
