@@ -4,6 +4,7 @@ import { useAuthContext } from "../Contexts/AuthContext"
 import placeholder from "../Assets/Images/placeholder-image.jpeg"
 import { useParams } from "react-router-dom"
 import { IUser } from "../typings/Userinterface"
+import ProfileInfo from "./ProfileInfo"
 import LoadingSpinner from "./LoadingSpinner"
 
 type ProfileProps = {
@@ -12,7 +13,6 @@ type ProfileProps = {
 
 const Profile = ({ user }: ProfileProps) => {
   const { currentUser } = useAuthContext()
-  // const { getUsersPhotoUrl, getProfilePhotoUrl } = useUsers()
   const { id } = useParams()
 
   const [photoUrl, setPhotoUrl] = useState<string>()
@@ -22,9 +22,6 @@ const Profile = ({ user }: ProfileProps) => {
     if (!currentUser) {
       return
     }
-    // getProfilePhotoUrl(currentUser.id).then((imageUrl) => {
-    //   setPhotoUrl(imageUrl)
-    // })
 
     if (!user) {
       return
@@ -33,32 +30,18 @@ const Profile = ({ user }: ProfileProps) => {
 
   return (
     <div className="profile">
-      {!id && (
-        <>
-          {currentUser && (
-            <img
-              src={currentUser?.avatar ? currentUser.avatar : placeholder}
-              alt={currentUser?.displayName}
-            />
-          )}
-          <h2>{currentUser?.first_name} {currentUser?.last_name}</h2>
-          <h3>{currentUser?.jobTitle}</h3>
-        </>
+      {!id && currentUser && (
+        <ProfileInfo user={currentUser} />
+      )}
+
+      {id == currentUser?.id && (
+        <ProfileInfo user={currentUser} />
       )}
 
       {user && !user.id && <LoadingSpinner />}
 
       {user && id == user.id && (
-        <>
-          <img
-            src={user?.avatar ? user.avatar : placeholder}
-            alt={user?.displayName}
-          />
-          <h2>
-            {user?.first_name} {user.last_name}
-          </h2>
-          <h3>{user?.jobTitle}</h3>
-        </>
+       <ProfileInfo user={user} />
       )}
     </div>
   )

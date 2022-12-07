@@ -26,11 +26,11 @@ function App() {
           <Navbar />
 
           <Routes>
-            {isManager ? (
-              <Route path="/" element={<ManagerPage />} />
+            <Route path="/" element={<ManagerPage />} />
+            {/* {isManager ? (
             ) : (
               <Route path="/" element={<GoalsPage />} />
-            )}
+            )} */}
 
             <Route
               path="/manager"

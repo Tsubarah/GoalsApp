@@ -22,7 +22,16 @@ const AuthContext = createContext<AuthContextInterface>(
 const useAuthContext = () => useContext(AuthContext)
 
 const AuthContextProvider = ({ children }: ContextProps) => {
-  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {})
+  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {
+  first_name: "string",
+  last_name: "string",
+  displayName: "string",
+  id: "string",
+  jobTitle: "Intern",
+  email: "string",
+  mobilePhone: 0,
+  avatar: "string",
+})
   const [isManager, setIsManager] = useState<boolean>(false)
   const [users, setUsers] = useLocalStorage('users', [])
   const [isLoading, setIsLoading] = useState(false)
@@ -35,10 +44,10 @@ const AuthContextProvider = ({ children }: ContextProps) => {
             const data = await response.json()
             if (data !== null) {
 
-              // if (!currentUser) {
+              if (currentUser.displayName === "string") {
                 setCurrentUser({...data, jobTitle: "Intern"})
                 console.log('currentUser', currentUser)
-              // }
+              }
               // const storageCurrentUser =
               //   window.localStorage.getItem("currentUser")
               // setCurrentUser(JSON.parse(storageCurrentUser!))

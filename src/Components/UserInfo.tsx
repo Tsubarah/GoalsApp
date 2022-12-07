@@ -37,7 +37,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
     <div className="user-wrapper">
       <div className="user">
         <div className="user-stats">
-          {id === currentUser?.id ? (
+          {currentUser?.id == id ? (
             <>
               <p>{currentUser?.email}</p>
               <hr />
