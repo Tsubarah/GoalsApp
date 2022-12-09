@@ -75,7 +75,7 @@ const EditGoalsForm = ({
       // deleteGoal.mutate(id);
       setShow(!show)
     }
-    // setGoals([...goals, data])
+    setGoals([...goals])
   }
 
   const onUpdateHandler = async (data: IGoal) => {
