@@ -17,7 +17,7 @@ const UserInfo = ({ goals, user }: UserInfoProps) => {
   const { currentUser } = useAuthContext()
   const { id } = useParams()
   const { postSendMail } = useUsers()
-  console.log('goals', goals)
+  console.log("goals", goals)
 
   // const handleSendMail = () => {
   //   if (!currentUser) {

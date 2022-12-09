@@ -13,12 +13,14 @@ const GoalsPage = () => {
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
   const [target, setTarget] = useLocalStorage("target")
-  const [goals, setGoals] = useLocalStorage(id == target.id
-                                              ? target.id.toString()
-                                              : id == currentUser?.id
-                                                ? currentUser?.id
-                                                : "", [])
-
+  const [goals, setGoals] = useLocalStorage(
+    id == target.id
+      ? target.id.toString()
+      : id == currentUser?.id
+      ? currentUser?.id
+      : "",
+    []
+  )
 
   useEffect(() => {
     if (!user) {
@@ -26,7 +28,6 @@ const GoalsPage = () => {
     }
     setIncompletedGoals(goals?.filter((goal: IGoal) => !goal.isComplete))
   }, [goals])
-
 
   return (
     <div className="goals-page-wrapper">

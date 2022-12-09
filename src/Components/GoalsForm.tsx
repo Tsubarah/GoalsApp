@@ -45,7 +45,6 @@ const GoalsForm: Function = ({ setShow, show, goals, setGoals }: FormProps) => {
     name: "reviews",
   })
 
-
   const create = (data: IGoal) => {
     const uniqueId = uuid()
     data = {
@@ -57,7 +56,7 @@ const GoalsForm: Function = ({ setShow, show, goals, setGoals }: FormProps) => {
     }
     console.log("data", data)
     setGoals([...goals, data])
-    createGoal.mutate(data)
+    // createGoal.mutate(data)
     reset()
     setShow(!show)
   }
