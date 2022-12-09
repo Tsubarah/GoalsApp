@@ -22,7 +22,7 @@ const EditGoalsForm = ({
   show,
   setShow,
   handleSwipe,
-  setGoals
+  setGoals,
 }: EditProps) => {
   const { isManager } = useAuthContext()
   const { deleteGoal, editGoal } = useGoal()
@@ -100,8 +100,8 @@ const EditGoalsForm = ({
         goals.splice(index, 1, updatedGoal)
         // localStorage.setItem(id, JSON.stringify(goals))
         setGoals([...goals])
-    }
-}, 1000)
+      }
+    }, 1000)
   }
 
   useEffect(() => {}, [goals])
