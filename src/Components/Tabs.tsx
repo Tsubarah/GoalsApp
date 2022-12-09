@@ -159,6 +159,7 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
                   prioCI={filterPrioCI}
                   prioBG={filterPrioBG}
                   months={threeMonthsAgo}
+                  setGoals={setGoals}
                 />
               ) : month === "6months" ? (
                 <TabsDetails
@@ -166,6 +167,7 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
                   prioCI={filterPrioCI}
                   prioBG={filterPrioBG}
                   months={sixMonthsAgo}
+                  setGoals={setGoals}
                 />
               ) : month === "12months" ? (
                 <TabsDetails
@@ -173,20 +175,24 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
                   prioCI={filterPrioCI}
                   prioBG={filterPrioBG}
                   months={twelveMonthsAgo}
+                  setGoals={setGoals}
                 />
               ) : (
                 <div>
                   <h2 className="table-headers">Personal Development</h2>
                   <Table
                     goals={filterPrioPD.filter((goal) => !goal.isComplete)}
+                    setGoals={setGoals}
                   />
                   <h2 className="table-headers">Customer Interaction</h2>
                   <Table
                     goals={filterPrioCI.filter((goal) => !goal.isComplete)}
+                    setGoals={setGoals}
                   />
                   <h2 className="table-headers">Building Geshdo</h2>
                   <Table
                     goals={filterPrioBG.filter((goal) => !goal.isComplete)}
+                    setGoals={setGoals}
                   />
                 </div>
               )}
@@ -208,6 +214,7 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
                     (goal) =>
                       Date.parse(goal.creationDate as string) >= threeMonthsAgo
                   )}
+                  setGoals={setGoals}
                 />
               </div>
             ) : month === "6months" ? (
@@ -218,6 +225,7 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
                     (goal) =>
                       Date.parse(goal.creationDate as string) >= sixMonthsAgo
                   )}
+                  setGoals={setGoals}
                 />
               </div>
             ) : month === "twelvemonths" ? (
@@ -228,6 +236,7 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
                     (goal) =>
                       Date.parse(goal.creationDate as string) >= twelveMonthsAgo
                   )}
+                  setGoals={setGoals}
                 />
               </div>
             ) : (
@@ -235,6 +244,7 @@ const Tabs = ({ goals, setGoals, user }: TabsProps) => {
                 <h2 className="table-headers">{section.name}</h2>
                 <Table
                   goals={section.goals.filter((goal) => !goal.isComplete)}
+                  setGoals={setGoals}
                 />
               </div>
             )}

@@ -6,9 +6,10 @@ import { useEffect, useState } from "react"
 
 type TabsProps = {
   goals: IGoal[]
+  setGoals: any
 }
 
-const Table = ({ goals }: TabsProps) => {
+const Table = ({ goals, setGoals }: TabsProps) => {
   const [swipeId, setSwipeId] = useState("")
 
   const handleSwipe = (id: string) => {
@@ -87,6 +88,7 @@ const Table = ({ goals }: TabsProps) => {
                     goal={goal}
                     goals={goals}
                     handleSwipe={handleSwipe}
+                    setGoals={setGoals}
                   />
                 </div>
               </div>

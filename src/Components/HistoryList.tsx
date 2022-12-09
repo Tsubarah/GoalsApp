@@ -5,9 +5,10 @@ import Moment from "react-moment"
 
 type HistoryProps = {
   goals: IGoal[]
+  setGoals: any
 }
 
-const HistoryList = ({ goals }: HistoryProps) => {
+const HistoryList = ({ goals, setGoals }: HistoryProps) => {
   const [swipeId, setSwipeId] = useState("")
 
   const handleSwipe = (id: string) => {
@@ -79,6 +80,7 @@ const HistoryList = ({ goals }: HistoryProps) => {
                     goal={goal}
                     goals={goals}
                     handleSwipe={handleSwipe}
+                    setGoals={setGoals}
                   />
                 </div>
               </li>

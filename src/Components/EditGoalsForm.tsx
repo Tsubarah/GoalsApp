@@ -13,6 +13,7 @@ type EditProps = {
   show: boolean
   setShow: (show: boolean) => void
   handleSwipe: (id: string) => void
+  setGoals: any
 }
 
 const EditGoalsForm = ({
@@ -21,6 +22,7 @@ const EditGoalsForm = ({
   show,
   setShow,
   handleSwipe,
+  setGoals
 }: EditProps) => {
   const { isManager } = useAuthContext()
   const { deleteGoal, editGoal } = useGoal()
@@ -73,6 +75,7 @@ const EditGoalsForm = ({
       // deleteGoal.mutate(id);
       setShow(!show)
     }
+    // setGoals([...goals, data])
   }
 
   const onUpdateHandler = async (data: IGoal) => {
@@ -95,9 +98,10 @@ const EditGoalsForm = ({
           return object.id === data.id
         })
         goals.splice(index, 1, updatedGoal)
-        localStorage.setItem(id, JSON.stringify(goals))
-      }
-    }, 1000)
+        // localStorage.setItem(id, JSON.stringify(goals))
+        setGoals([...goals])
+    }
+}, 1000)
   }
 
   useEffect(() => {}, [goals])

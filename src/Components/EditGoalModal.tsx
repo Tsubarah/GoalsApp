@@ -7,9 +7,10 @@ type ModalProps = {
   goal: IGoal
   goals: IGoal[]
   handleSwipe: (id: string) => void
+  setGoals:any 
 }
 
-const EditGoalModal = ({ goal, goals, handleSwipe }: ModalProps) => {
+const EditGoalModal = ({ goal, goals, handleSwipe, setGoals }: ModalProps) => {
   const { isManager } = useAuthContext()
   const [show, setShow] = useState(false)
 
@@ -50,6 +51,7 @@ const EditGoalModal = ({ goal, goals, handleSwipe }: ModalProps) => {
             goal={goal}
             goals={goals}
             handleSwipe={handleSwipe}
+            setGoals={setGoals}
           />
         </div>
       )}
