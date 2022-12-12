@@ -14,13 +14,14 @@ const GoalsPage = () => {
   const [user, setUser] = useState<IUser | undefined>()
   const [target, setTarget] = useLocalStorage("target")
   const [goals, setGoals] = useLocalStorage(
-    id == target.id
-      ? target.id.toString()
-      : id == currentUser?.id
+    id === currentUser?.id.toString()
       ? currentUser?.id
+      : id === target?.id.toString()
+      ? target?.id
       : "",
     []
   )
+  console.log('currentUser', currentUser)
 
   useEffect(() => {
     if (!user) {
