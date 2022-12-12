@@ -8,7 +8,7 @@ type ContextProps = {
 interface AuthContextInterface {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
   isLoading: boolean
-  currentUser: IUser | undefined
+  currentUser: IUser
   users: IUser[] | undefined
   isManager: boolean
   setIsManager: React.Dispatch<React.SetStateAction<boolean>>
@@ -21,18 +21,18 @@ const AuthContext = createContext<AuthContextInterface>(
 const useAuthContext = () => useContext(AuthContext)
 
 const AuthContextProvider = ({ children }: ContextProps) => {
-  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {
-  first_name: "string",
-  last_name: "string",
-  displayName: "string",
-  id: "string",
-  jobTitle: "Intern",
-  email: "string",
-  mobilePhone: 0,
-  avatar: "string",
-})
+  const [currentUser, setCurrentUser] = useLocalStorage("currentUser", {
+    first_name: "string",
+    last_name: "string",
+    displayName: "string",
+    id: "string",
+    jobTitle: "Intern",
+    email: "string",
+    mobilePhone: 0,
+    avatar: "string",
+  })
   const [isManager, setIsManager] = useState<boolean>(false)
-  const [users, setUsers] = useLocalStorage('users', [])
+  const [users, setUsers] = useLocalStorage("users", [])
   const [isLoading, setIsLoading] = useState(false)
 
   const getCurrentUser = async () => {
@@ -42,10 +42,9 @@ const AuthContextProvider = ({ children }: ContextProps) => {
           if (response != null && response.ok) {
             const data = await response.json()
             if (data !== null) {
-
               if (currentUser.displayName === "string") {
-                setCurrentUser({...data, jobTitle: "Intern"})
-                console.log('currentUser', currentUser)
+                setCurrentUser({ ...data, jobTitle: "Intern" })
+                console.log("currentUser", currentUser)
               }
             }
           } else {

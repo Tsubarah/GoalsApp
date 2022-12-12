@@ -12,7 +12,16 @@ const GoalsPage = () => {
   const { currentUser } = useAuthContext()
   const [inCompletedGoals, setIncompletedGoals] = useState<IGoal[]>()
   const [user, setUser] = useState<IUser | undefined>()
-  const [target, setTarget] = useLocalStorage("target")
+  const [target, setTarget] = useLocalStorage("target", {
+    first_name: "string",
+    last_name: "string",
+    displayName: "string",
+    id: "string",
+    jobTitle: "Intern",
+    email: "string",
+    mobilePhone: 0,
+    avatar: "string",
+  })
   const [goals, setGoals] = useLocalStorage(
     id === currentUser?.id.toString()
       ? currentUser?.id
@@ -21,7 +30,6 @@ const GoalsPage = () => {
       : "",
     []
   )
-  console.log('currentUser', currentUser)
 
   useEffect(() => {
     if (!user) {
